@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class Application extends javafx.application.Application {
 
@@ -32,11 +33,10 @@ public class Application extends javafx.application.Application {
         }
 
         // Load the FXML file and create the scene
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
         Scene scene = new Scene(root);
 
         // Set up the stage
-        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }

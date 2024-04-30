@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.team2.a2.LoginController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="314.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
@@ -18,9 +18,9 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="502.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="101.0" layoutY="179.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField layoutX="102.0" layoutY="238.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="134.0" layoutY="312.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="84.0" style="-fx-background-color: #0598ff;" text="Login" textAlignment="CENTER" textFill="WHITE" />
+            <TextField fx:id="usernameField" layoutX="101.0" layoutY="179.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passwordField" layoutX="102.0" layoutY="238.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="loginButton" layoutX="134.0" layoutY="312.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="84.0" style="-fx-background-color: #0598ff;" text="Login" textAlignment="CENTER" textFill="WHITE" />
             <Text fill="#1000ec" layoutX="118.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login page">
                <font>
                   <Font size="30.0" />

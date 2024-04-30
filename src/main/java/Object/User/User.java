@@ -1,13 +1,15 @@
 package Object.User;
 
+import java.util.HashMap;
+
 abstract public class User {
     protected String username;
     protected String password;
 
     //default constructor
     public User () {
-        this.username = "default";
-        this.password = "default";
+        this.username = null;
+        this.password = null;
     }
 
     //initializer
