@@ -1,6 +1,6 @@
-package Entity.Interface.ProcessManager;
+package com.team2.a2.Entity.Interface.ProcessManager;
 
-import Entity.User.Customer.Customer;
+import com.team2.a2.Entity.User.Customer.Customer;
 
 import java.util.List;
 

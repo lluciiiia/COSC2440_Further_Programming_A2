@@ -1,6 +1,6 @@
-package Entity.Interface.ProcessManager;
+package com.team2.a2.Entity.Interface.ProcessManager;
 
-import Entity.InsuranceObject.Claim;
+import com.team2.a2.Entity.InsuranceObject.Claim;
 
 import java.util.List;
 

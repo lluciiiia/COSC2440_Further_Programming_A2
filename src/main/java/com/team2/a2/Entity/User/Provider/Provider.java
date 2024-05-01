@@ -1,6 +1,6 @@
-package Entity.User.Provider;
+package com.team2.a2.Entity.User.Provider;
 
-import Entity.User.User;
+import com.team2.a2.Entity.User.User;
 
 public class Provider extends User {
     protected String companyName;

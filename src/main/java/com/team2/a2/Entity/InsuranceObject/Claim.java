@@ -1,4 +1,4 @@
-package Entity.InsuranceObject;
+package com.team2.a2.Entity.InsuranceObject;
 
 import java.util.ArrayList;
 import java.util.Date;
