@@ -1,8 +1,8 @@
-package Object.User.Customer;
+package Entity.User.Customer;
 
-import Object.InsuranceObject.Bank;
-import Object.InsuranceObject.Claim;
-import Object.InsuranceObject.InsuranceCard;
+import Entity.InsuranceObject.Bank;
+import Entity.InsuranceObject.Claim;
+import Entity.InsuranceObject.InsuranceCard;
 
 import java.util.List;
 

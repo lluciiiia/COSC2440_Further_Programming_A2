@@ -1,4 +1,4 @@
-package Object.User;
+package Entity.User;
 
 abstract public class User {
     protected String username;

@@ -1,7 +1,7 @@
-package Object.Interface.Implement;
+package Entity.Interface.Implement;
 
-import Object.Interface.ProcessManager.CustomerMap;
-import Object.User.Customer.Customer;
+import Entity.Interface.ProcessManager.CustomerMap;
+import Entity.User.Customer.Customer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

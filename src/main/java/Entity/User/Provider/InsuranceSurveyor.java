@@ -1,6 +1,4 @@
-package Object.User.Provider;
-
-import java.util.List;
+package Entity.User.Provider;
 
 public class InsuranceSurveyor extends Provider{
 

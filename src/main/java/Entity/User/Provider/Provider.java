@@ -1,6 +1,6 @@
-package Object.User.Provider;
+package Entity.User.Provider;
 
-import Object.User.User;
+import Entity.User.User;
 
 public class Provider extends User {
     protected String companyName;

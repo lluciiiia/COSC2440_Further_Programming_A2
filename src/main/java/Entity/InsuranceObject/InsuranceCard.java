@@ -1,4 +1,4 @@
-package Object.InsuranceObject;
+package Entity.InsuranceObject;
 
 import java.util.Date;
 

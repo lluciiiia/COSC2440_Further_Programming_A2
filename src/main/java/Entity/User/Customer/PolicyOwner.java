@@ -1,6 +1,6 @@
-package Object.User.Customer;
+package Entity.User.Customer;
 
-import Object.User.User;
+import Entity.User.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Object.InsuranceObject;
+package Entity.InsuranceObject;
 
 public enum Status {
     New,

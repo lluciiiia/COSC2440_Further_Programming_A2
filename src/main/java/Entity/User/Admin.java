@@ -1,4 +1,4 @@
-package Object.User;
+package Entity.User;
 
 public class Admin extends User {
     //initializer

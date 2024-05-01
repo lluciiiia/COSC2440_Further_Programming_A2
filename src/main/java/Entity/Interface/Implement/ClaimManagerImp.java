@@ -1,7 +1,7 @@
-package Object.Interface.Implement;
+package Entity.Interface.Implement;
 
-import Object.InsuranceObject.Claim;
-import Object.Interface.ProcessManager.ClaimMap;
+import Entity.InsuranceObject.Claim;
+import Entity.Interface.ProcessManager.ClaimMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;

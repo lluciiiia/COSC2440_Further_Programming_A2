@@ -1,4 +1,4 @@
-package Object.User.Provider;
+package Entity.User.Provider;
 
 import java.util.ArrayList;
 import java.util.List;
