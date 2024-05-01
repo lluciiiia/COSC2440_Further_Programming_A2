@@ -4,12 +4,6 @@ abstract public class User {
     protected String username;
     protected String password;
 
-    //default constructor
-    public User () {
-        this.username = "default";
-        this.password = "default";
-    }
-
     //initializer
     public User (String username, String password) {
         this.username = username;
@@ -17,11 +11,11 @@ abstract public class User {
     }
 
     //getter function
-    public String getUsername() {
+    private String getUsername() {
         return username;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
