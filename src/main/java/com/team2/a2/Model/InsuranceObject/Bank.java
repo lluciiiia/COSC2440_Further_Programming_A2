@@ -1,4 +1,4 @@
-package com.team2.a2.Entity.InsuranceObject;
+package com.team2.a2.Model.InsuranceObject;
 
 public class Bank {
     private String bankName;

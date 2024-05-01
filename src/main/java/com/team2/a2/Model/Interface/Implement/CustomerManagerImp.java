@@ -1,7 +1,7 @@
-package com.team2.a2.Entity.Interface.Implement;
+package com.team2.a2.Model.Interface.Implement;
 
-import com.team2.a2.Entity.Interface.ProcessManager.CustomerMap;
-import com.team2.a2.Entity.User.Customer.Customer;
+import com.team2.a2.Model.Interface.ProcessManager.CustomerMap;
+import com.team2.a2.Model.User.Customer.Customer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

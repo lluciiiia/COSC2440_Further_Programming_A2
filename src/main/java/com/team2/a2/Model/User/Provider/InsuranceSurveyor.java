@@ -1,4 +1,4 @@
-package com.team2.a2.Entity.User.Provider;
+package com.team2.a2.Model.User.Provider;
 
 public class InsuranceSurveyor extends Provider{
 
