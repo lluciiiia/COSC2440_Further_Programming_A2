@@ -24,6 +24,7 @@ public class Provider extends User {
     //initialize
     public Provider(String username, String password, String companyName, String companyAddress,
                     String providerPhone, String providerEmail, String providerID, String providerName) {
+        super();
         this.username = username;
         this.password = password;
         this.companyName = companyName;

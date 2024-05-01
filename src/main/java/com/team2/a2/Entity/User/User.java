@@ -4,6 +4,12 @@ abstract public class User {
     protected String username;
     protected String password;
 
+    // Default Constructor
+    public User() {
+        this.username = "";
+        this.password = "";
+    }
+
     //initializer
     public User (String username, String password) {
         this.username = username;
