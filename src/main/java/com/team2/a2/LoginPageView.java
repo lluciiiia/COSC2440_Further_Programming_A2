@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class LoginController {
+public class LoginPageView {
     @FXML
     private Button loginButton;
 
@@ -26,7 +26,7 @@ public class LoginController {
 
     private HashMap<String, String> userCredentials;
 
-    public LoginController() {
+    public LoginPageView() {
         userCredentials = new HashMap<>();
         userCredentials.put("s1", "1");
         userCredentials.put("s2", "2");
@@ -41,7 +41,7 @@ public class LoginController {
 
             if (isValidCredentials(username, password)) {
                 try {
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentPage.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderPage.fxml")));
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.setScene(scene);
