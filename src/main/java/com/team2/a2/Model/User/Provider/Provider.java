@@ -1,8 +1,9 @@
-package com.team2.a2.Entity.User.Provider;
+package com.team2.a2.Model.User.Provider;
 
-import com.team2.a2.Entity.User.User;
+import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.User.Account;
 
-public class Provider extends User {
+public class Provider extends Account {
     protected String companyName;
     protected String companyAddress;
     protected String providerPhone;
@@ -10,22 +11,10 @@ public class Provider extends User {
     protected String providerID;
     protected String providerName;
 
-    //default constructor
-    public Provider(){
-        super();
-        this.companyName = "default";
-        this.companyAddress = "default";
-        this.providerPhone = "default";
-        this.providerEmail = "default";
-        this.providerID = "default";
-        this.providerName = "default";
-    }
-
     //initialize
-    public Provider(String username, String password, String companyName, String companyAddress,
-                    String providerPhone, String providerEmail, String providerID, String providerName) {
-        this.username = username;
-        this.password = password;
+    public Provider(int id, String username, String password, String companyName, String companyAddress,
+                    String providerPhone, String providerEmail, String providerID, String providerName, AccountType type) {
+        super(id, username, password, type);
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.providerPhone = providerPhone;

@@ -1,19 +1,15 @@
-package com.team2.a2.Entity.InsuranceObject;
+package com.team2.a2.Model.InsuranceObject;
+
+import com.team2.a2.Model.BaseEntity;
 
 import java.util.Date;
 
-public class InsuranceCard {
+public class InsuranceCard extends BaseEntity {
     private String cardNumber;
     private Date expiryDate;
 
-    //default constructor
-    public InsuranceCard() {
-        this.cardNumber = "default";
-        this.expiryDate = new Date();
-    }
-
-    //initializer
-    public InsuranceCard(String cardNumber, Date expiryDate) {
+    public InsuranceCard(int id, String cardNumber, Date expiryDate) {
+        super(id);
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
     }

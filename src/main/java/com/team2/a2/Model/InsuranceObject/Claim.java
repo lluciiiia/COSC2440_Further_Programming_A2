@@ -1,42 +1,29 @@
-package com.team2.a2.Entity.InsuranceObject;
+package com.team2.a2.Model.InsuranceObject;
+
+import com.team2.a2.Model.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Claim {
-    private String claimID;
+public class Claim extends BaseEntity {
+
     private Date claimDate;
     private Date examDate;
     private List<String> documents;
-    private Double claimAmount;
+    private Double amount;
     private Status status;
 
-    //default constructor
-    public Claim() {
-        this.claimID = "default";
-        this.claimDate = new Date();
-        this.examDate = new Date();
-        this.documents = new ArrayList<>();
-        this.claimAmount = 0.0;
-        this.status = Status.New;
-    }
-
-    //initializer
-    public Claim(String claimID, Date claimDate, Date examDate,
-                 Double claimAmount, List<String> documents, Status status) {
-        this.claimID = claimID;
+    public Claim(int id, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
+        super(id);
         this.claimDate = claimDate;
         this.examDate = examDate;
         this.documents = documents;
-        this.claimAmount = claimAmount;
+        this.amount = amount;
         this.status = status;
     }
 
     //getter function
-    public String getClaimID() {
-        return claimID;
-    }
 
     public Date getClaimDate() {
         return claimDate;
@@ -50,8 +37,8 @@ public class Claim {
         return documents;
     }
 
-    public Double getClaimAmount() {
-        return claimAmount;
+    public Double getAmount() {
+        return amount;
     }
 
     public Status getStatus() {

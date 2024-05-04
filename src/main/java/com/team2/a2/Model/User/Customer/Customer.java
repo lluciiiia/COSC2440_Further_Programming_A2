@@ -1,16 +1,16 @@
-package com.team2.a2.Entity.User.Customer;
+package com.team2.a2.Model.User.Customer;
 
-import com.team2.a2.Entity.InsuranceObject.Bank;
-import com.team2.a2.Entity.InsuranceObject.Claim;
-import com.team2.a2.Entity.InsuranceObject.InsuranceCard;
-import com.team2.a2.Entity.User.User;
+import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.InsuranceObject.Bank;
+import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.User.Account;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Customer extends User {
-    protected String customerID;
-    protected String customerName;
+abstract public class Customer extends Account {
+    protected String name;
     protected String homeAddress;
     protected String phoneNumber;
     protected String email;
@@ -18,25 +18,11 @@ abstract public class Customer extends User {
     protected InsuranceCard insuranceCard;
     protected Bank bank;
 
-    //default constructor
-    public Customer(){
-        super();
-        this.customerID = "default";
-        this.customerName = "default";
-        this.homeAddress = "default";
-        this.phoneNumber = "default";
-        this.email = "default";
-        this.claims = new ArrayList<>();
-        this.insuranceCard = new InsuranceCard();
-        this.bank = new Bank();
-    }
-
     //initializer
-    public Customer (String username, String password, String customerID, String customerName, String homeAddress,
-                     String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
-        super(username, password);
-        this.customerID = customerID;
-        this.customerName = customerName;
+    public Customer (int id, String username, String password, String name, String homeAddress,
+                     String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank, AccountType type) {
+        super(id, username, password, type);
+        this.name = name;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -46,12 +32,9 @@ abstract public class Customer extends User {
     }
 
     //getter function
-    public String getCustomerID() {
-        return customerID;
-    }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getName() {
+        return name;
     }
 
     public String getHomeAddress() {
