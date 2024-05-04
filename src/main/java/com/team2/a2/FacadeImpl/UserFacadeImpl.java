@@ -15,7 +15,7 @@ public class UserFacadeImpl implements UserFacade {
     UserRepository userRepository;
 
     public boolean login(LoginRequest request) {
-        User user = userRepository.getUser(request.getUserName(), request.getPassword());
+        User user = userRepository.getUser(request.getUsername(), request.getPassword());
         return user != null;
     }
 

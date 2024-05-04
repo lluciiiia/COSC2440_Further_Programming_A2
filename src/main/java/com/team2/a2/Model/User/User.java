@@ -1,6 +1,7 @@
 package com.team2.a2.Model.User;
 
 abstract public class User {
+    public Integer id;
     protected String username;
     protected String password;
 
@@ -29,4 +30,8 @@ abstract public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setId(Integer id) { this.id = id; }
+
+    public void setUsername(String username) { this.username = username;}
 }

@@ -1,11 +1,11 @@
 package com.team2.a2.Request;
 
 public class LoginRequest {
-    String userName;
+    String username;
     String password;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
