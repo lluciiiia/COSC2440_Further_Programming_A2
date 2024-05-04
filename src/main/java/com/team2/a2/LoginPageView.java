@@ -41,7 +41,7 @@ public class LoginPageView {
 
             if (isValidCredentials(username, password)) {
                 try {
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderPage.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerPage.fxml")));
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.setScene(scene);
