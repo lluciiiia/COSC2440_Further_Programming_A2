@@ -3,7 +3,6 @@ package com.team2.a2.FacadeImpl;
 import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.PolicyHolder;
 import com.team2.a2.Repository.AccountRepository;
 import com.team2.a2.Request.LoginRequest;
 
@@ -16,10 +15,10 @@ public class AccountFacadeImpl implements AccountFacade {
 
         if (account == null) return false;
 
-        return createSubUserObject(account);
+        return createSubAccountObject(account);
     }
 
-    public boolean createSubUserObject(Account account) {
+    public boolean createSubAccountObject(Account account) {
         AccountType accountType = account.getType();
 
 //        switch(accountType) {
