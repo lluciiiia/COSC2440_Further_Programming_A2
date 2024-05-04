@@ -25,4 +25,4 @@ To get started with the project:
 Special thanks to the course instructors for providing guidance and resources for this assignment. 
 Additionally, gratitude to all contributors and users who help improve the system through feedback and suggestions.
 
-Thank you for visiting the Insurance Claims Management System repository. Happy coding! 🎉
+Thank you for visiting the COSC2440 Further Programming A2 repository. Happy coding! 🎉
