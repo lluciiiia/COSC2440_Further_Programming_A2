@@ -1,30 +1,18 @@
 package com.team2.a2.Model.User.Customer;
 
-import com.team2.a2.Model.User.User;
+import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.User.Account;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolicyOwner extends User {
+public class PolicyOwner extends Account {
     private String policyOwnerID;
     private String policyOwnerName;
     private List<Customer> beneficiaries;
 
-    //default constructor
-    public PolicyOwner() {
-        super();
-        this.policyOwnerID = "default";
-        this.policyOwnerName = "default";
-        this.beneficiaries = new ArrayList<>();
-    }
-
-    //initializer
-    public PolicyOwner(String username, String password, String policyOwnerID,
-                       String policyOwnerName, List<Customer> beneficiaries) {
-        super(username, password);
-        this.policyOwnerID = policyOwnerID;
-        this.policyOwnerName = policyOwnerName;
-        this.beneficiaries = beneficiaries;
+    public PolicyOwner(int id, String username, String password, AccountType type) {
+        super(id, username, password, type);
     }
 
     //getter function

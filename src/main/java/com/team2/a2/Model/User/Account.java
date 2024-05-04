@@ -1,37 +1,38 @@
 package com.team2.a2.Model.User;
 
-abstract public class User {
-    public Integer id;
+import com.team2.a2.Model.BaseEntity;
+import com.team2.a2.Model.Enum.AccountType;
+
+public class Account extends BaseEntity {
+
     protected String username;
     protected String password;
-
-    // Default Constructor
-    public User() {
-        this.username = "";
-        this.password = "";
-    }
+    public AccountType type;
 
     //initializer
-    public User (String username, String password) {
+    public Account(int id, String username, String password, AccountType type) {
+        super(id);
         this.username = username;
         this.password = password;
+        this.type = type;
     }
 
     //getter function
-    private String getUsername() {
+
+    public String getUsername() {
         return username;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
+
+    public AccountType getType() { return  type; }
 
     //setter function
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setId(Integer id) { this.id = id; }
 
     public void setUsername(String username) { this.username = username;}
 }

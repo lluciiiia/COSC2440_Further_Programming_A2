@@ -1,24 +1,20 @@
 package com.team2.a2.Model.InsuranceObject;
 
-public class Bank {
-    private String bankName;
+import com.team2.a2.Model.BaseEntity;
+
+public class Bank extends BaseEntity {
+    private String name;
     private String accountNumber;
 
-    //default constructor
-    public Bank() {
-        this.bankName = "default";
-        this.accountNumber = "default";
-    }
-
-    //initializer
-    public Bank(String bankName, String accountNumber) {
-        this.bankName = bankName;
+    public Bank(int id, String name, String accountNumber) {
+        super(id);
+        this.name = name;
         this.accountNumber = accountNumber;
     }
 
     //getter function
-    public String getBankName() {
-        return bankName;
+    public String getName() {
+        return name;
     }
 
     public String getAccountNumber() {
