@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class DependentPageView implements Initializable {
+public class DependentView implements Initializable {
     @FXML
     private Button logoutButton;
 //    @FXML

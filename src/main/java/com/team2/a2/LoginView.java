@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginPageView {
+public class LoginView {
     @FXML
     private Button loginButton;
 
@@ -29,7 +29,7 @@ public class LoginPageView {
     private AccountController accountController;
 
     //constructor
-    public LoginPageView() {
+    public LoginView() {
         this.accountController = new AccountController();
     }
 

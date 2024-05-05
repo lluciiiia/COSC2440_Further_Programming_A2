@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PolicyHolderPageView implements Initializable {
+public class PolicyOwnerView implements Initializable {
     @FXML
     private Button logoutButton;
 
