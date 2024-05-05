@@ -14,14 +14,12 @@ import java.util.List;
 abstract public class Customer extends BaseEntity {
 
     private int accountId;
-
     private int policyOwnerId; // As a beneficiary
     private String name;
     private String homeAddress;
     private String phoneNumber;
     private String email;
 
-    //initializer
     public Customer (int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, String name, String homeAddress,
                      String phoneNumber, String email) {
         super(id, createdAt, updatedAt);
