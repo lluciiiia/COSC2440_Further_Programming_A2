@@ -18,7 +18,7 @@ public class Provider extends BaseEntity {
 
     //initialize
     public Provider(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress,
-                    String providerPhone, String providerEmail, String providerID, String providerName, AccountType type) {
+                    String providerPhone, String providerEmail, String providerID, String providerName) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
         this.companyName = companyName;

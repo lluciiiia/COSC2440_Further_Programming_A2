@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class InsuranceSurveyor extends Provider{
 
-    public InsuranceSurveyor(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress, String providerPhone, String providerEmail, String providerID, String providerName, AccountType type) {
-        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, providerPhone, providerEmail, providerID, providerName, type);
+    public InsuranceSurveyor(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress, String providerPhone, String providerEmail, String providerID, String providerName) {
+        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, providerPhone, providerEmail, providerID, providerName);
     }
 }
