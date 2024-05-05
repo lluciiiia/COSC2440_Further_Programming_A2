@@ -1,7 +1,6 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 
 import java.sql.Connection;
@@ -30,7 +29,6 @@ public class PolicyOwnerRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If policyOwner found, create a PolicyOwner object
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");

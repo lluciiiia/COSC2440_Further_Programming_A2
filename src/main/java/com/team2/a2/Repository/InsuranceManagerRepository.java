@@ -1,9 +1,7 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.User.Admin;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
-import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

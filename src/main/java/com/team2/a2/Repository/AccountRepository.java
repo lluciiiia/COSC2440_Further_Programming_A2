@@ -28,7 +28,6 @@ public class AccountRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If account found, create an Account object
                 int id = resultSet.getInt("id");
                 AccountType type = AccountType.valueOf(resultSet.getString("type"));
                 Date createdAt = resultSet.getDate("created_at");

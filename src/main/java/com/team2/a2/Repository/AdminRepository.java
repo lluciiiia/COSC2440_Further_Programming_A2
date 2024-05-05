@@ -28,7 +28,6 @@ public class AdminRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If admin found, create a Admin object
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");

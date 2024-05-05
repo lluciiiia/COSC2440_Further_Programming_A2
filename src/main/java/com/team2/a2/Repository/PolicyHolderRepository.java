@@ -1,8 +1,6 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.PolicyHolder;
 
 import java.sql.Connection;
@@ -30,7 +28,6 @@ public class PolicyHolderRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If policyHolder found, create a Policyholder object
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");

@@ -2,7 +2,6 @@ package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Dependent;
-import com.team2.a2.Model.User.Customer.PolicyHolder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +28,6 @@ public class DependentRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If dependent found, create a Dependent object
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");
