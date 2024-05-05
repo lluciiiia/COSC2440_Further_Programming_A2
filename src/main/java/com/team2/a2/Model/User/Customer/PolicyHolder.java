@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PolicyHolder extends Customer {
 
-    public PolicyHolder(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
-        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank);
+    public PolicyHolder(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, String name, String homeAddress, String phoneNumber, String email) {
+        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email);
     }
 }

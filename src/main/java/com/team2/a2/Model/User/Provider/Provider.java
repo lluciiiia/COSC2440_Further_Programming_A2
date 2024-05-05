@@ -16,7 +16,6 @@ public class Provider extends BaseEntity {
     protected String providerID;
     protected String providerName;
 
-    //initialize
     public Provider(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress,
                     String providerPhone, String providerEmail, String providerID, String providerName) {
         super(id, createdAt, updatedAt);
@@ -27,31 +26,6 @@ public class Provider extends BaseEntity {
         this.providerEmail = providerEmail;
         this.providerID = providerID;
         this.providerName = providerName;
-    }
-
-    //getter function
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getCompanyAddress() {
-        return companyAddress;
-    }
-
-    public String getproviderPhone() {
-        return providerPhone;
-    }
-
-    public String getproviderEmail() {
-        return providerEmail;
-    }
-
-    public String getproviderID() {
-        return providerID;
-    }
-
-    public String getproviderName() {
-        return providerName;
     }
 
 }

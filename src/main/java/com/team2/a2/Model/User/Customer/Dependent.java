@@ -12,8 +12,8 @@ public class Dependent extends Customer {
 
     private int policyHolderId;
 
-    public Dependent(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, int policyHolderId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
-        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank);
+    public Dependent(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, int policyHolderId, String name, String homeAddress, String phoneNumber, String email) {
+        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email);
         this.policyHolderId = policyHolderId;
     }
 }

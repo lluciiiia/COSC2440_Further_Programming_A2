@@ -20,14 +20,10 @@ abstract public class Customer extends BaseEntity {
     private String homeAddress;
     private String phoneNumber;
     private String email;
-    private List<Claim> claims;
-    private InsuranceCard insuranceCard;
-    private Bank bank;
-
 
     //initializer
     public Customer (int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, String name, String homeAddress,
-                     String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
+                     String phoneNumber, String email) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
         this.policyOwnerId = policyOwnerId;
@@ -35,9 +31,6 @@ abstract public class Customer extends BaseEntity {
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.claims = claims;
-        this.insuranceCard = insuranceCard;
-        this.bank = bank;
     }
 
 }
