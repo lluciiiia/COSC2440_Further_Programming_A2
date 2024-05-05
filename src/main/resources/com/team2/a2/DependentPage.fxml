@@ -24,7 +24,7 @@
                         </Text>
                     </top>
                     <center>
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button fx:id="ViewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
                     </center>
                 </BorderPane>
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">

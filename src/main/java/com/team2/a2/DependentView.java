@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 public class DependentView implements Initializable {
     @FXML
     private Button logoutButton;
+
+    @FXML
+    private Button ViewInfoButton;
 //    @FXML
 //    private TableView<Dependent> dependentTableView;
 //    @FXML
@@ -47,6 +50,20 @@ public class DependentView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        ViewInfoButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentInformationPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
 
 //        ObservableList<Dependent> dependentList = FXCollections.observableArrayList(
 //                new Dependent("s101", "ddd", "s123456", "quang", "123 nguyen van linh", "123456", "cdquang@gmail.com"),
