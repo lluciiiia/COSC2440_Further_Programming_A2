@@ -10,7 +10,10 @@ import java.util.List;
 
 public class Dependent extends Customer {
 
-    public Dependent(int id, Date createdAt, Date updatedAt, int accountId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
-        super(id, createdAt, updatedAt, accountId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank);
+    private int policyHolderId;
+
+    public Dependent(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, int policyHolderId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
+        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank);
+        this.policyHolderId = policyHolderId;
     }
 }

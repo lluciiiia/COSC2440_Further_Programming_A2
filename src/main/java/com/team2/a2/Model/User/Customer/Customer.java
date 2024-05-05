@@ -14,6 +14,8 @@ import java.util.List;
 abstract public class Customer extends BaseEntity {
 
     private int accountId;
+
+    private int policyOwnerId; // As a beneficiary
     private String name;
     private String homeAddress;
     private String phoneNumber;
@@ -24,10 +26,11 @@ abstract public class Customer extends BaseEntity {
 
 
     //initializer
-    public Customer (int id, Date createdAt, Date updatedAt, int accountId, String name, String homeAddress,
+    public Customer (int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, String name, String homeAddress,
                      String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
+        this.policyOwnerId = policyOwnerId;
         this.name = name;
         this.homeAddress = homeAddress;
         this.phoneNumber = phoneNumber;

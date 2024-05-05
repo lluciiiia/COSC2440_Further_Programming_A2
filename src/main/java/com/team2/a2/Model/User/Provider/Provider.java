@@ -54,16 +54,4 @@ public class Provider extends BaseEntity {
         return providerName;
     }
 
-    //setter function
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
-    }
-
-    public void setCompanyPhone(String providerPhone) {
-        this.providerPhone = providerPhone;
-    }
-
-    public void setCompanyEmail(String providerEmail) {
-        this.providerEmail = providerEmail;
-    }
 }
