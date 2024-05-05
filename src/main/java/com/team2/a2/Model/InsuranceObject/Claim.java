@@ -14,8 +14,8 @@ public class Claim extends BaseEntity {
     private Double amount;
     private Status status;
 
-    public Claim(int id, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
-        super(id);
+    public Claim(int id, Date createdAt, Date updatedAt, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
+        super(id, createdAt, updatedAt);
         this.claimDate = claimDate;
         this.examDate = examDate;
         this.documents = documents;

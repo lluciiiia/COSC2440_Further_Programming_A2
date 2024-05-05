@@ -8,8 +8,8 @@ public class InsuranceCard extends BaseEntity {
     private String cardNumber;
     private Date expiryDate;
 
-    public InsuranceCard(int id, String cardNumber, Date expiryDate) {
-        super(id);
+    public InsuranceCard(int id, Date createdAt, Date updatedAt, String cardNumber, Date expiryDate) {
+        super(id, createdAt, updatedAt);
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
     }
