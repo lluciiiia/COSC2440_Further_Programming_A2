@@ -10,6 +10,10 @@ public class AccountFacadeImpl implements AccountFacade {
 
     AccountRepository accountRepository;
 
+    public AccountFacadeImpl() {
+        this.accountRepository = new AccountRepository();
+    }
+
     public boolean login(LoginRequest request) {
         Account account = accountRepository.getAccount(request.getUsername(), request.getPassword());
 
@@ -28,7 +32,6 @@ public class AccountFacadeImpl implements AccountFacade {
 //
 //        }
         return true;
-
 
     }
 
