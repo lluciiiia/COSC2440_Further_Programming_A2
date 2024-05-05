@@ -7,6 +7,8 @@ import com.team2.a2.Model.User.Admin;
 import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyHolder;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
+import com.team2.a2.Model.User.Provider.InsuranceManager;
+import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 
@@ -19,6 +21,8 @@ public class AccountFacadeImpl implements AccountFacade {
     PolicyOwnerRepository policyOwnerRepository;
     AdminRepository adminRepository;
 
+    InsuranceManagerRepository insuranceManagerRepository;
+    InsuranceSurveyorRepository insuranceSurveyorRepository;
 
     public AccountFacadeImpl() {
         this.accountRepository = new AccountRepository();
@@ -26,6 +30,8 @@ public class AccountFacadeImpl implements AccountFacade {
         this.policyOwnerRepository = new PolicyOwnerRepository();
         this.dependentRepository = new DependentRepository();
         this.policyHolderRepository = new PolicyHolderRepository();
+        this.insuranceManagerRepository = new InsuranceManagerRepository();
+        this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
     }
 
     public boolean login(LoginRequest request) {
@@ -52,6 +58,11 @@ public class AccountFacadeImpl implements AccountFacade {
             case ADMIN:
                 Admin admin = adminRepository.getAdminByAccountId(account.getId());
 
+            case INSURANCE_MANAGER:
+                InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(account.getId());
+
+            case INSURANCE_SURVEYOR:
+                InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(account.getId());
 
         }
         return true;
