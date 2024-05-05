@@ -11,21 +11,19 @@ public class Provider extends BaseEntity {
     private int accountId;
     protected String companyName;
     protected String companyAddress;
-    protected String providerPhone;
-    protected String providerEmail;
-    protected String providerID;
-    protected String providerName;
+    protected String phoneNumber;
+    protected String email;
+    protected String name;
 
     public Provider(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress,
-                    String providerPhone, String providerEmail, String providerID, String providerName) {
+                    String phoneNumber, String email, String name) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
-        this.providerPhone = providerPhone;
-        this.providerEmail = providerEmail;
-        this.providerID = providerID;
-        this.providerName = providerName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.name = name;
     }
 
 }

@@ -8,8 +8,8 @@ public class InsuranceSurveyor extends Provider{
 
     private int insuranceManagerId;
 
-    public InsuranceSurveyor(int id, Date createdAt, Date updatedAt, int accountId, int insuranceManagerId, String companyName, String companyAddress, String providerPhone, String providerEmail, String providerID, String providerName) {
-        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, providerPhone, providerEmail, providerID, providerName);
+    public InsuranceSurveyor(int id, Date createdAt, Date updatedAt, int accountId, int insuranceManagerId, String companyName, String companyAddress, String phoneNumber, String email, String name) {
+        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
         this.insuranceManagerId = insuranceManagerId;
     }
 }

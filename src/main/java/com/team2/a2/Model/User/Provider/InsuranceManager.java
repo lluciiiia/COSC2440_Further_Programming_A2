@@ -8,7 +8,7 @@ import java.util.List;
 
 public class InsuranceManager extends Provider{
 
-    public InsuranceManager(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress, String providerPhone, String providerEmail, String providerID, String providerName) {
-        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, providerPhone, providerEmail, providerID, providerName);
+    public InsuranceManager(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress, String phoneNumber, String email, String name) {
+        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
     }
 }

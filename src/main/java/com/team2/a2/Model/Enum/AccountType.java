@@ -6,6 +6,5 @@ public enum AccountType {
     POLICY_OWNER,
     INSURANCE_MANAGER,
     INSURANCE_SURVEYOR,
-    PROVIDER,
     ADMIN
 }
