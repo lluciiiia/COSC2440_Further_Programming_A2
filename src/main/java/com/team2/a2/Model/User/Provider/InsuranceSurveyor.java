@@ -12,4 +12,5 @@ public class InsuranceSurveyor extends Provider{
         super(id, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
         this.insuranceManagerId = insuranceManagerId;
     }
+
 }
