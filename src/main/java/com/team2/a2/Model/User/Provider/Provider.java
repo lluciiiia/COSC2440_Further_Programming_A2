@@ -1,9 +1,14 @@
 package com.team2.a2.Model.User.Provider;
 
+import com.team2.a2.Model.BaseEntity;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 
-public class Provider extends Account {
+import java.util.Date;
+
+public class Provider extends BaseEntity {
+
+    private int accountId;
     protected String companyName;
     protected String companyAddress;
     protected String providerPhone;
@@ -12,9 +17,10 @@ public class Provider extends Account {
     protected String providerName;
 
     //initialize
-    public Provider(int id, String username, String password, String companyName, String companyAddress,
+    public Provider(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress,
                     String providerPhone, String providerEmail, String providerID, String providerName, AccountType type) {
-        super(id, username, password, type);
+        super(id, createdAt, updatedAt);
+        this.accountId = accountId;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.providerPhone = providerPhone;

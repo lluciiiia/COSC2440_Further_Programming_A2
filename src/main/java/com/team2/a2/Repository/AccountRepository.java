@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class AccountRepository {
     private Connection connection;
@@ -27,15 +28,17 @@ public class AccountRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If user found, create an Account object
+                // If account found, create an Account object
                 int id = resultSet.getInt("id");
                 AccountType type = AccountType.valueOf(resultSet.getString("type"));
-                account = new Account(id, username, password, type);
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                account = new Account(id, createdAt, updatedAt, username, password, type);
                 return account;
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching user: " + e.getMessage());
+            System.err.println("Error fetching account: " + e.getMessage());
         }
 
         return account;
