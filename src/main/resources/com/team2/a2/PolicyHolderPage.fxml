@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderPageView">
+    <top>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Policy Holder Page" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Text>
+    </top>
+    <left>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane prefHeight="74.0" prefWidth="346.0" style="-fx-background-color: #E0E0E0;">
+                    <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My Information" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </top>
+                    <center>
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <top>
+                        <TableView prefHeight="145.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn prefWidth="133.79998779296875" text="My Claim ID" />
+                                <TableColumn prefWidth="132.60006713867188" text="View button" />
+                            </columns>
+                        </TableView>
+                    </top>
+                    <bottom>
+                        <TableView prefHeight="197.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn prefWidth="135.19998168945312" text="Dependent's ClaimID" />
+                                <TableColumn prefWidth="129.5999755859375" text="View button" />
+                            </columns>
+                        </TableView>
+                    </bottom></BorderPane>
+                <Text layoutX="419.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Claim information">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Text>
+                <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
+                <TableView layoutY="96.0" prefHeight="358.0" prefWidth="347.0">
+                    <columns>
+                        <TableColumn prefWidth="161.79999083280563" text="DependentID" />
+                        <TableColumn prefWidth="91.80001831054688" text="View button" />
+                        <TableColumn prefWidth="94.59996032714844" text="Edit button" />
+                    </columns>
+                </TableView>
+                <Button layoutX="378.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Create Claim" />
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>

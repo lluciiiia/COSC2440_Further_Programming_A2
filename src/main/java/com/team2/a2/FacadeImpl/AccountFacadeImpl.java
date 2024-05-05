@@ -42,6 +42,11 @@ public class AccountFacadeImpl implements AccountFacade {
         return createSubAccountObject(account);
     }
 
+    @Override
+    public Account getAccount(String username, String password) {
+        return accountRepository.getAccount(username, password);
+    }
+
     public boolean createSubAccountObject(Account account) {
         AccountType accountType = account.getType();
 

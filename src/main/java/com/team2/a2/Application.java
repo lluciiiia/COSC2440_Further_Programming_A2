@@ -1,10 +1,12 @@
 package com.team2.a2;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Application extends javafx.application.Application {
@@ -14,12 +16,11 @@ public class Application extends javafx.application.Application {
         // Establish database connection
         ConnectionManager.initConnection();
 
-        // Load the FXML file and create the scene
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        /// Load the FXML file and create the scene
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
+        Scene scene = new Scene(root);
 
         // Set up the stage
-        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }
