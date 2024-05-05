@@ -7,10 +7,15 @@ import java.util.Date;
 
 public class Admin extends BaseEntity {
     private int accountId;
-    public Admin(int id, Date createdAt, Date updatedAt, int accountId) {
+    private String name;
+
+    public Admin(int id, Date createdAt, Date updatedAt, int accountId, String name) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
+        this.name = name;
     }
+
+    public String getName() { return this.name; }
 
 }
 
