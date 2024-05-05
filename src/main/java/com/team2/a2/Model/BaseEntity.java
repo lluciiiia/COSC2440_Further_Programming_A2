@@ -10,10 +10,10 @@ public abstract class BaseEntity {
     private Date updatedAt;
 
     //initializer
-    public BaseEntity(int id) {
+    public BaseEntity(int id, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {

@@ -1,8 +1,7 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.User.Admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,40 +9,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class AccountRepository {
+public class AdminRepository {
+
     private Connection connection;
-    public AccountRepository() {
+    public AdminRepository() {
         this.connection = ConnectionManager.getConnection();
     }
-    public Account getAccount(String username, String password) {
-        Account account = null;
+
+    public Admin getAdminByAccountId(int accountId) {
+        Admin admin = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT * FROM accounts WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM admins WHERE account_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, password);
+            statement.setInt(1, accountId);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                // If account found, create an Account object
+                // If admin found, create a Admin object
                 int id = resultSet.getInt("id");
-                AccountType type = AccountType.valueOf(resultSet.getString("type"));
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");
-                account = new Account(id, createdAt, updatedAt, username, password, type);
-                return account;
+                String name = resultSet.getString("name");
+
+                admin = new Admin(id, createdAt, updatedAt, accountId, name);
+                return admin;
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching account: " + e.getMessage());
+            System.err.println("Error fetching admin: " + e.getMessage());
         }
-
-        return account;
+        return admin;
     }
-
 }
-
-

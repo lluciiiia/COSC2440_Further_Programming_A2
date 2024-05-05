@@ -8,14 +8,17 @@ import java.util.List;
 
 public class Claim extends BaseEntity {
 
+    private int customerId;
+
     private Date claimDate;
     private Date examDate;
     private List<String> documents;
     private Double amount;
     private Status status;
 
-    public Claim(int id, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
-        super(id);
+    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
+        super(id, createdAt, updatedAt);
+        this.customerId = customerId;
         this.claimDate = claimDate;
         this.examDate = examDate;
         this.documents = documents;

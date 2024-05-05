@@ -2,9 +2,15 @@ package com.team2.a2.Model.User.Provider;
 
 import com.team2.a2.Model.Enum.AccountType;
 
+import java.util.Date;
+
 public class InsuranceSurveyor extends Provider{
 
-    public InsuranceSurveyor(int id, String username, String password, String companyName, String companyAddress, String providerPhone, String providerEmail, String providerID, String providerName, AccountType type) {
-        super(id, username, password, companyName, companyAddress, providerPhone, providerEmail, providerID, providerName, type);
+    private int insuranceManagerId;
+
+    public InsuranceSurveyor(int id, Date createdAt, Date updatedAt, int accountId, int insuranceManagerId, String companyName, String companyAddress, String phoneNumber, String email, String name) {
+        super(id, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
+        this.insuranceManagerId = insuranceManagerId;
     }
+
 }
