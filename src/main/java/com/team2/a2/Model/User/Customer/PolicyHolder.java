@@ -16,8 +16,8 @@ public class PolicyHolder extends Customer {
     private List<Dependent> dependents;
 
 
-    public PolicyHolder(int id, Date createdAt, Date updatedAt, int accountId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank, AccountType type, List<Dependent> dependents) {
-        super(id, createdAt, updatedAt, accountId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank, type);
+    public PolicyHolder(int id, Date createdAt, Date updatedAt, int accountId, String name, String homeAddress, String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank, List<Dependent> dependents) {
+        super(id, createdAt, updatedAt, accountId, name, homeAddress, phoneNumber, email, claims, insuranceCard, bank);
         this.dependents = dependents;
     }
 }

@@ -25,7 +25,7 @@ abstract public class Customer extends BaseEntity {
 
     //initializer
     public Customer (int id, Date createdAt, Date updatedAt, int accountId, String name, String homeAddress,
-                     String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank, AccountType type) {
+                     String phoneNumber, String email, List<Claim> claims, InsuranceCard insuranceCard, Bank bank) {
         super(id, createdAt, updatedAt);
         this.accountId = accountId;
         this.name = name;
