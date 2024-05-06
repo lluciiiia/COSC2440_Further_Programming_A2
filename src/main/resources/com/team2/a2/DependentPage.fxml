@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.DependentView">
+    <top>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dependent Page" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Text>
+    </top>
+    <left>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane layoutX="45.0" layoutY="155.0" prefHeight="148.0" prefWidth="200.0" style="-fx-background-color: #E0E0E0;">
+                    <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My Information" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </top>
+                    <center>
+                        <Button fx:id="ViewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <center>
+                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn prefWidth="133.20001220703125" text="Claim ID" />
+                                <TableColumn prefWidth="129.99993896484375" text="Button column" />
+                            </columns>
+                        </TableView>
+                    </center></BorderPane>
+                <Text layoutX="458.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Claims">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Text>
+                <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>
