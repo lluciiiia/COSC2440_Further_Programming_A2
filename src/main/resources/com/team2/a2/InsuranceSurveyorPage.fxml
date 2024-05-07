@@ -6,51 +6,51 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceSurveyorView">
     <top>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Surveyor Page" BorderPane.alignment="CENTER">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Surveyor Page" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>
                 <Font size="31.0" />
             </font>
         </Text>
     </top>
     <left>
-        <AnchorPane prefHeight="374.0" prefWidth="25.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane prefHeight="74.0" prefWidth="346.0" style="-fx-background-color: #E0E0E0;">
                     <top>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My Information" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="20.0" />
-                            </font></Text>
+                            </font>
+                        </Text>
                     </top>
                     <center>
-                        <Button mnemonicParsing="false" prefHeight="7.0" prefWidth="74.0" style="-fx-background-color: #000000;" text="View" textFill="WHITE" BorderPane.alignment="CENTER" />
-                    </center></BorderPane>
-                <TableView layoutY="86.0" prefHeight="274.0" prefWidth="300.0">
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <top>
+                        <TableView prefHeight="330.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn prefWidth="133.79998779296875" text="Customer claim ID" />
+                                <TableColumn prefWidth="132.60006713867188" text="View button" />
+                            </columns>
+                        </TableView>
+                    </top>
+                    <bottom>
+                    </bottom></BorderPane>
+                <Text layoutX="419.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Claim information">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Text>
+                <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
+                <TableView layoutY="96.0" prefHeight="358.0" prefWidth="347.0">
                     <columns>
-                        <TableColumn prefWidth="98.79998475313187" text="Name" />
-                        <TableColumn prefWidth="105.20001220703125" text="View information" />
-                        <TableColumn prefWidth="94.00001525878906" text="View Claim" />
+                        <TableColumn prefWidth="180.4000152349472" text="Customer ID" />
+                        <TableColumn prefWidth="165.99996948242188" text="View button" />
                     </columns>
                 </TableView>
             </children>
         </AnchorPane>
     </left>
-    <right>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <BorderPane layoutX="-100.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #66B2FF;">
-                    <top>
-                        <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" BorderPane.alignment="CENTER" />
-                    </top>
-                </BorderPane>
-                <TableView layoutX="-100.0" layoutY="86.0" prefHeight="274.0" prefWidth="300.0">
-                    <columns>
-                        <TableColumn prefWidth="98.800048828125" text="Name" />
-                        <TableColumn prefWidth="104.4000244140625" text="View information" />
-                        <TableColumn prefWidth="97.20001220703125" text="View Claim" />
-                    </columns>
-                </TableView>
-            </children>
-        </AnchorPane>
-    </right>
 </BorderPane>
