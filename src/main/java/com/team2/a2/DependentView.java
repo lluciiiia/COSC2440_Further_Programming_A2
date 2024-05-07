@@ -20,22 +20,6 @@ public class DependentView implements Initializable {
 
     @FXML
     private Button ViewInfoButton;
-//    @FXML
-//    private TableView<Dependent> dependentTableView;
-//    @FXML
-//    private TableColumn<Dependent, String> usernameColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> passwordColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> cusIDColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> cusNameColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> homeAddressColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> cusEmailColumn;
-//    @FXML
-//    private TableColumn<Dependent, String> cusPhoneColumn;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,22 +47,6 @@ public class DependentView implements Initializable {
             }
         });
 
-
-
-//        ObservableList<Dependent> dependentList = FXCollections.observableArrayList(
-//                new Dependent("s101", "ddd", "s123456", "quang", "123 nguyen van linh", "123456", "cdquang@gmail.com"),
-//                new Dependent("s102", "dd", "s123457", "quan", "123 nguyen van linh", "123456", "cdquan@gmail.com")
-//        );
-//
-//        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-//        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-//        cusIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-//        cusNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-//        homeAddressColumn.setCellValueFactory(new PropertyValueFactory<>("homeAddress"));
-//        cusEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        cusPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-//
-//        dependentTableView.setItems(dependentList);
     }
 
 }

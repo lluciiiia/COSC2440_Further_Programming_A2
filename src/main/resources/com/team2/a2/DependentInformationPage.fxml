@@ -26,7 +26,6 @@
             </padding>
          </VBox>
          <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
-         <Button style="-fx-background-color: black; -fx-text-fill: white;" text="Confirm" />
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
