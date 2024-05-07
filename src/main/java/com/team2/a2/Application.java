@@ -17,7 +17,7 @@ public class Application extends javafx.application.Application {
         ConnectionManager.initConnection();
 
         /// Load the FXML file and create the scene
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentInformationPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
         Scene scene = new Scene(root);
 
         // Set up the stage
