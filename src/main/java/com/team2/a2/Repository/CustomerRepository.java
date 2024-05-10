@@ -1,7 +1,8 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.User.Customer.PolicyHolder;
+import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.CustomerType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,20 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class PolicyHolderRepository {
+public class CustomerRepository {
 
     private Connection connection;
-    public PolicyHolderRepository() {
+    public CustomerRepository() {
         this.connection = ConnectionManager.getConnection();
     }
 
-    public PolicyHolder getPolicyHolderByAccountId(int accountId) {
-        PolicyHolder policyHolder = null;
+    public Customer getCustomerByAccountId(int accountId) {
+        Customer customer = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT * FROM policyholders WHERE account_id = ?";
+            String sql = "SELECT * FROM customers WHERE account_id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, accountId);
             resultSet = statement.executeQuery();
@@ -33,20 +34,22 @@ public class PolicyHolderRepository {
                 Date updatedAt = resultSet.getDate("updated_at");
                 int policyOwnerId = resultSet.getInt("policyowner_id");
                 String name = resultSet.getString("name");
-                String homeAddress = resultSet.getString("home_address");
+                String address = resultSet.getString("address");
                 String phoneNumber = resultSet.getString("phone_number");
                 String email = resultSet.getString("email");
+                String typeString = resultSet.getString("type");
+                CustomerType type = CustomerType.valueOf(typeString);
 
-                policyHolder = new PolicyHolder(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email); // TODO: create a policy holder object based on the result.
+                customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId, name, address, phoneNumber, email, type);
 
-                return policyHolder;
+                return customer;
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching policyholder: " + e.getMessage());
+            System.err.println("Error fetching customer: " + e.getMessage());
         }
 
-        return policyHolder;
+        return customer;
     }
 
 }
