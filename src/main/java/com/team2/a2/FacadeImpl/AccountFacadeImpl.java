@@ -4,8 +4,8 @@ import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Admin;
+import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
-import com.team2.a2.Model.User.Customer.PolicyHolder;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
@@ -15,7 +15,7 @@ import com.team2.a2.Request.LoginRequest;
 public class AccountFacadeImpl implements AccountFacade {
 
     AccountRepository accountRepository;
-    PolicyHolderRepository policyHolderRepository;
+    CustomerRepository customerRepository;
     DependentRepository dependentRepository;
 
     PolicyOwnerRepository policyOwnerRepository;
@@ -29,7 +29,7 @@ public class AccountFacadeImpl implements AccountFacade {
         this.adminRepository = new AdminRepository();
         this.policyOwnerRepository = new PolicyOwnerRepository();
         this.dependentRepository = new DependentRepository();
-        this.policyHolderRepository = new PolicyHolderRepository();
+        this.customerRepository = new CustomerRepository();
         this.insuranceManagerRepository = new InsuranceManagerRepository();
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
     }
@@ -49,29 +49,37 @@ public class AccountFacadeImpl implements AccountFacade {
 
     public boolean createSubAccountObject(Account account) {
         AccountType accountType = account.getType();
+        System.out.println(accountType);
+        Customer customer;
+        Dependent dependent;
+        PolicyOwner policyOwner;
+        Admin admin;
+        InsuranceManager insuranceManager;
+        InsuranceSurveyor insuranceSurveyor;
 
         switch(accountType) {
             case POLICY_HOLDER:
-                PolicyHolder policyHolder = policyHolderRepository.getPolicyHolderByAccountId(account.getId());
-
+                customer = customerRepository.getCustomerByAccountId(account.getId());
+                break;
             case DEPENDENT:
-                  Dependent dependent = dependentRepository.getDependentByAccountId(account.getId());
-
+                customer = customerRepository.getCustomerByAccountId(account.getId());
+                dependent = dependentRepository.getDependentByCustomerId(customer.getId());
+                break;
             case POLICY_OWNER:
-                PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(account.getId());
-
+                policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(account.getId());
+                break;
             case ADMIN:
-                Admin admin = adminRepository.getAdminByAccountId(account.getId());
-
+                admin = adminRepository.getAdminByAccountId(account.getId());
+                break;
             case INSURANCE_MANAGER:
-                InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(account.getId());
-
+                insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(account.getId());
+                break;
             case INSURANCE_SURVEYOR:
-                InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(account.getId());
-
+                insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(account.getId());
+                break;
         }
         return true;
-
     }
+
 
 }
