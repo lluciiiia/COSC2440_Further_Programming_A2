@@ -8,6 +8,10 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     ClaimRepository claimRepository;
 
+    public ClaimFacadeImpl() {
+        this.claimRepository = new ClaimRepository();
+    }
+
     @Override
     public Claim getClaimById(int id) {
      return claimRepository.getClaimById(id);
