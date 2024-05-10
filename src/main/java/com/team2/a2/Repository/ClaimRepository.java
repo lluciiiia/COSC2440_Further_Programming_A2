@@ -2,6 +2,7 @@ package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,14 +38,16 @@ public class ClaimRepository {
                     Date claimDate = resultSet.getDate("claim_date");
                     Date examDate = resultSet.getDate("exam_date");
                     Double amount = resultSet.getDouble("amount");
-//                    Status status = resultSet.getString("status");
+                    String statusString = resultSet.getString("status");
 
-//                    claim = new Account(id, createdAt, updatedAt, customerId, claimDate, type);
+                    ClaimStatus status = ClaimStatus.valueOf(statusString);
+
+                    claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
                     return claim;
                 }
 
             } catch (SQLException e) {
-                System.err.println("Error fetching account: " + e.getMessage());
+                System.err.println("Error fetching claim: " + e.getMessage());
             }
 
             return claim;
