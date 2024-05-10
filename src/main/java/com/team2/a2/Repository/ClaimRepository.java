@@ -1,10 +1,7 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.Status;
-import com.team2.a2.Model.User.Account;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
