@@ -96,6 +96,7 @@ public class ClaimRepository {
             String sql = "DELETE FROM claims WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("Error deleting claim: " + e.getMessage());
