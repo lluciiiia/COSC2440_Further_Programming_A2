@@ -12,16 +12,14 @@ public class Claim extends BaseEntity {
 
     private Date claimDate;
     private Date examDate;
-    private List<String> documents;
     private Double amount;
     private Status status;
 
-    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
+    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, Double amount, Status status) {
         super(id, createdAt, updatedAt);
         this.customerId = customerId;
         this.claimDate = claimDate;
         this.examDate = examDate;
-        this.documents = documents;
         this.amount = amount;
         this.status = status;
     }
@@ -34,10 +32,6 @@ public class Claim extends BaseEntity {
 
     public Date getExamDate() {
         return examDate;
-    }
-
-    public List<String> getDocuments() {
-        return documents;
     }
 
     public Double getAmount() {
@@ -53,7 +47,4 @@ public class Claim extends BaseEntity {
         this.status = status;
     }
 
-    public void setDocuments(List<String> documents) {
-        this.documents = documents;
-    }
 }
