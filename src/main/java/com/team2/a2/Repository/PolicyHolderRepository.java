@@ -22,7 +22,7 @@ public class PolicyHolderRepository {
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT * FROM policyholders WHERE account_id = ?";
+            String sql = "SELECT * FROM policy_holders WHERE account_id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, accountId);
             resultSet = statement.executeQuery();
