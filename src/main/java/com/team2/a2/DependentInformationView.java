@@ -20,17 +20,17 @@ public class DependentInformationView implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        returnButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) returnButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+         returnButton.setOnAction(event -> {
+             try {
+                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentPage.fxml")));
+                 Scene scene = new Scene(root);
+                 Stage stage = (Stage) returnButton.getScene().getWindow();
+                 stage.setScene(scene);
+                 stage.show();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+         });
     }
 
 }

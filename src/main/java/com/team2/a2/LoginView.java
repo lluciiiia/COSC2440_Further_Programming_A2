@@ -76,8 +76,17 @@ public class LoginView {
             case POLICY_OWNER:
                 loadPage("PolicyOwnerPage.fxml");
                 break;
+            case INSURANCE_SURVEYOR:
+                loadPage("InsuranceSurveyorPage.fxml");
+                break;
+            case INSURANCE_MANAGER:
+                loadPage("InsuranceManagerPage.fxml");
+                break;
+//            case ADMIN:
+//                loadPage("AdminPage.fxml");
+//                break;
             default:
-                showAlert("Error", "User type not recognized");
+                showAlert("Error", "Wrong username or password !!!!");
                 break;
         }
     }
