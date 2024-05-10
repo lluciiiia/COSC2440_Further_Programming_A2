@@ -16,29 +16,24 @@ public class DependentRepository {
         this.connection = ConnectionManager.getConnection();
     }
 
-    public Dependent getDependentByAccountId(int accountId) {
+    public Dependent getDependentByCustomerId(int customerId) {
         Dependent dependent = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT * FROM dependents WHERE account_id = ?";
+            String sql = "SELECT * FROM dependents WHERE customer_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, accountId);
+            statement.setInt(1, customerId);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");
-                int policyOwnerId = resultSet.getInt("policyowner_id");
-                int policyHolderId = resultSet.getInt("policyholder_id");
-                String name = resultSet.getString("name");
-                String homeAddress = resultSet.getString("home_address");
-                String phoneNumber = resultSet.getString("phone_number");
-                String email = resultSet.getString("email");
+                int policyHolderId = resultSet.getInt("policy_holder_id");
 
-                dependent = new Dependent(id, createdAt, updatedAt, accountId, policyOwnerId, policyHolderId, name, homeAddress, phoneNumber, email);
+                dependent = new Dependent(id, createdAt, updatedAt, customerId, policyHolderId);
 
                 return dependent;
             }

@@ -1,19 +1,18 @@
 package com.team2.a2.Model.User.Customer;
 
-import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.InsuranceObject.Bank;
-import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.BaseEntity;
 
 import java.util.Date;
-import java.util.List;
 
-public class Dependent extends Customer {
+public class Dependent extends BaseEntity {
 
+    private int customerId;
     private int policyHolderId;
 
-    public Dependent(int id, Date createdAt, Date updatedAt, int accountId, int policyOwnerId, int policyHolderId, String name, String homeAddress, String phoneNumber, String email) {
-        super(id, createdAt, updatedAt, accountId, policyOwnerId, name, homeAddress, phoneNumber, email);
+
+    public Dependent(int id, Date createdAt, Date updatedAt, int customerId, int policyHolderId) {
+        super(id, createdAt, updatedAt);
+        this.customerId = customerId;
         this.policyHolderId = policyHolderId;
     }
 }
