@@ -23,4 +23,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
     public List<Claim> getClaimsByCustomerId(int customerId) {
         return claimRepository.getClaimsByCustomerId(customerId);
     }
+
+    @Override
+    public void deleteClaimById(int id) {
+        claimRepository.deleteClaimById(id);
+    }
 }

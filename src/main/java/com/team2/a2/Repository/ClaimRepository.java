@@ -88,4 +88,18 @@ public class ClaimRepository {
 
         return claims;
     }
+
+    public void deleteClaimById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM claims WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting claim: " + e.getMessage());
+        }
+
+    }
 }

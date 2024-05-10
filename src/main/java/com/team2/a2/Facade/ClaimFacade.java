@@ -8,4 +8,6 @@ public interface ClaimFacade {
     Claim getClaimById(int id);
 
     List<Claim> getClaimsByCustomerId(int id);
+
+    void deleteClaimById(int id);
 }
