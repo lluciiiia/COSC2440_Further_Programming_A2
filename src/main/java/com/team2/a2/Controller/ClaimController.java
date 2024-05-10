@@ -18,4 +18,6 @@ public class ClaimController {
 
     public List<Claim> getClaimsByCustomerId(int customerId) { return claimFacade.getClaimsByCustomerId(customerId); }
 
+    public void deleteClaimById(int id) { claimFacade.deleteClaimById(id); }
+
 }
