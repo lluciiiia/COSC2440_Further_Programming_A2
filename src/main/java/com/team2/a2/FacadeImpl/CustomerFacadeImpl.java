@@ -10,14 +10,14 @@ import java.util.List;
 
 public class CustomerFacadeImpl implements CustomerFacade {
 
-    PolicyHolderRepository policyHolderRepository;
+    CustomerRepository customerRepository;
     DependentRepository dependentRepository;
     PolicyOwnerRepository policyOwnerRepository;
 
     public CustomerFacadeImpl() {
         this.policyOwnerRepository = new PolicyOwnerRepository();
         this.dependentRepository = new DependentRepository();
-        this.policyHolderRepository = new PolicyHolderRepository();
+        this.customerRepository = new CustomerRepository();
     }
 
     @Override
@@ -25,13 +25,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(policyOwnerAccountId);
         if (policyOwner == null) return null;
 
-        List<Customer> customers = new ArrayList<Customer>();
-
-//        policyHolderRepository.getPolicyHoldersByPolicyOwnerId(policyOwner.getId());
-//        dependentRepository.getDependentsByPolicyOwnerId(policyOwner.getId());
-
-
-
-        return customers;
+        return customerRepository.getCustomersByPolicyOwnerId(policyOwner.getId());
     }
 }
