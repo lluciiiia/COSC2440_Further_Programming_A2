@@ -2,9 +2,7 @@ package com.team2.a2.Model.InsuranceObject;
 
 import com.team2.a2.Model.BaseEntity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Claim extends BaseEntity {
 
@@ -12,16 +10,14 @@ public class Claim extends BaseEntity {
 
     private Date claimDate;
     private Date examDate;
-    private List<String> documents;
     private Double amount;
-    private Status status;
+    private ClaimStatus status;
 
-    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, List<String> documents, Double amount, Status status) {
+    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, Double amount, ClaimStatus status) {
         super(id, createdAt, updatedAt);
         this.customerId = customerId;
         this.claimDate = claimDate;
         this.examDate = examDate;
-        this.documents = documents;
         this.amount = amount;
         this.status = status;
     }
@@ -36,24 +32,17 @@ public class Claim extends BaseEntity {
         return examDate;
     }
 
-    public List<String> getDocuments() {
-        return documents;
-    }
-
     public Double getAmount() {
         return amount;
     }
 
-    public Status getStatus() {
+    public ClaimStatus getStatus() {
         return status;
     }
 
     //setter
-    public void setStatus(Status status) {
+    public void setStatus(ClaimStatus status) {
         this.status = status;
     }
 
-    public void setDocuments(List<String> documents) {
-        this.documents = documents;
-    }
 }
