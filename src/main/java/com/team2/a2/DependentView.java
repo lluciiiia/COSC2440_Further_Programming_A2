@@ -21,6 +21,7 @@ public class DependentView implements Initializable {
     @FXML
     private Button ViewInfoButton;
 
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logoutButton.setOnAction(event -> {

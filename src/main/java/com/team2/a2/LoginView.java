@@ -1,7 +1,9 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.FacadeImpl.AccountFacadeImpl;
 import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +103,14 @@ public class LoginView {
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Error", "An error occurred while loading the page.");
+        }
+    }
+
+    private void prepareDataForNextPage(String username, String password) {
+        AccountFacadeImpl accountFacade = new AccountFacadeImpl();
+        Account account = accountFacade.getAccount(username, password);
+        if (account != null) {
+            accountFacade.createSubAccountObject(account);
         }
     }
 

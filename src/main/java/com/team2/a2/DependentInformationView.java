@@ -1,5 +1,8 @@
 package com.team2.a2;
 
+import com.team2.a2.Facade.AccountFacade;
+import com.team2.a2.FacadeImpl.AccountFacadeImpl;
+import com.team2.a2.Model.User.Customer.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +21,16 @@ import java.util.ResourceBundle;
 public class DependentInformationView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField emailField;
+
+    private AccountFacade accountFacade = new AccountFacadeImpl();
+    private int accountID;
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,6 +45,19 @@ public class DependentInformationView implements Initializable {
                  e.printStackTrace();
              }
          });
+         loadData();
     }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
+
+    public void loadData() {
+        Customer customer = accountFacade.getCustomerInfoByAccountID(2);
+        nameField.setText(customer.getName());
+        phoneField.setText(customer.getPhoneNumber());
+        emailField.setText(customer.getEmail());
+    }
+
 
 }

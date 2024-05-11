@@ -47,6 +47,12 @@ public class AccountFacadeImpl implements AccountFacade {
         return accountRepository.getAccount(username, password);
     }
 
+    @Override
+    public Customer getCustomerInfoByAccountID(int accountID) {
+        Customer customer = customerRepository.getCustomerByAccountId(accountID);
+        return customer;
+    }
+
     public boolean createSubAccountObject(Account account) {
         AccountType accountType = account.getType();
         System.out.println(accountType);

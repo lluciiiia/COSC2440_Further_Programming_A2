@@ -27,4 +27,15 @@ public class Customer extends BaseEntity {
         this.type = type;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
