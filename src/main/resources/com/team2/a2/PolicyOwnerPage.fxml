@@ -52,7 +52,7 @@
                     </columns>
                 </TableView>
                 <Button layoutX="378.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Create Claim" />
-                <Button layoutX="510.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Create account" />
+                <Button fx:id="CreateAccButton" layoutX="510.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Create account" />
             </children>
         </AnchorPane>
     </left>
