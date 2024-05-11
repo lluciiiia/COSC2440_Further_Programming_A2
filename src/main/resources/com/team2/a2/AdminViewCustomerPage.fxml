@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.CustomerAdminView" >
+    <top>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="View Customer Page" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Text>
+    </top>
+    <left>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane prefHeight="51.0" prefWidth="315.0" style="-fx-background-color: #E0E0E0;">
+                    <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </top>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <top>
+                        <TableView prefHeight="324.0" prefWidth="235.0" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn prefWidth="133.79998779296875" text="Customer claim ID" />
+                                <TableColumn prefWidth="132.60006713867188" text="View button" />
+                            </columns>
+                        </TableView>
+                    </top>
+                    <bottom>
+                    </bottom></BorderPane>
+                <Text layoutX="419.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Claim information">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Text>
+                <Button fx:id="returnButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="Return" />
+            <Button layoutX="378.0" layoutY="12.0" mnemonicParsing="false" text="Create customer account" />
+                <TableView layoutY="87.0" prefHeight="369.0" prefWidth="375.0">
+                    <columns>
+                        <TableColumn prefWidth="81.00000154972076" text="Customer ID" />
+                        <TableColumn prefWidth="86.5999984741211" text="View button" />
+                  <TableColumn prefWidth="113.39999389648438" text="Account Type" />
+                  <TableColumn prefWidth="91.5999755859375" text="Delete Account" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>
