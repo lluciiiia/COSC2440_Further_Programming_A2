@@ -82,9 +82,9 @@ public class LoginView {
             case INSURANCE_MANAGER:
                 loadPage("InsuranceManagerPage.fxml");
                 break;
-//            case ADMIN:
-//                loadPage("AdminPage.fxml");
-//                break;
+            case ADMIN:
+                loadPage("AdminPage.fxml");
+                break;
             default:
                 showAlert("Error", "Wrong username or password !!!!");
                 break;

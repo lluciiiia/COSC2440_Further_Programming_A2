@@ -18,6 +18,12 @@ public class PolicyOwnerView implements Initializable {
     private Button logoutButton;
 
     @FXML
+    private Button CreateAccButton;
+
+    @FXML
+    private Button returnButton;
+
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logoutButton.setOnAction(event -> {
             try {
@@ -30,5 +36,19 @@ public class PolicyOwnerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        CreateAccButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCreateAccount.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
+
 }
