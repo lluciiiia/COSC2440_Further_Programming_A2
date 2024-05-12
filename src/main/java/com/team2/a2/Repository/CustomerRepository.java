@@ -1,11 +1,10 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.CustomerType;
-import com.team2.a2.Request.UpsertCustomerRequest;
+import com.team2.a2.Request.InsertCustomerRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 
 import java.sql.*;
 import java.util.*;
@@ -123,7 +122,7 @@ public class CustomerRepository {
         return customer;
     }
 
-    public Customer createCustomer(UpsertCustomerRequest request, int accountId, int policyOwnerId) {
+    public Customer createCustomer(InsertCustomerRequest request, int accountId, int policyOwnerId) {
         Customer customer = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -168,6 +167,34 @@ public class CustomerRepository {
             }
         } catch (SQLException e) {
             System.err.println("Error creating customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
+
+    public Customer updateCustomer(UpdateCustomerRequest request) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE customers SET name = ?, address = ?, phone_number = ?, email = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+
+            statement.setString(1, request.getName());
+            statement.setString(2, request.getAddress());
+            statement.setString(3, request.getPhoneNumber());
+            statement.setString(4, request.getEmail());
+            statement.setInt(5, request.getId());
+
+            // Execute the update operation
+            int rowsUpdated = statement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                // If update successful, fetch the updated customer
+                customer = getCustomerById(request.getId());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating customer: " + e.getMessage());
         }
 
         return customer;
