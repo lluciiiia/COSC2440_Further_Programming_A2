@@ -1,9 +1,12 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.FacadeImpl.AccountFacadeImpl;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +31,6 @@ public class LoginView {
     @FXML
     private TextField usernameField;
 
-    private AccountController accountController;
-
-    //constructor
-    public LoginView() {
-        this.accountController = new AccountController();
-    }
-
     @FXML
     protected void initialize() {
         loginButton.setOnAction(event -> {
@@ -42,12 +38,7 @@ public class LoginView {
             String password = passwordField.getText();
 
             if (isValidCredentials(username, password)) {
-                AccountType accountType = login(username, password);
-                if (accountType != null) {
-                    redirectToHomePage(accountType);
-                } else {
-                    showAlert("Error", "User type not recognized");
-                }
+                redirectToHomePage(username, password);
             } else {
                 showAlert("Error", "Invalid username or password");
             }
@@ -58,39 +49,39 @@ public class LoginView {
         return !username.isEmpty() && !password.isEmpty();
     }
 
-    private AccountType login(String username, String password) {
-        LoginRequest loginRequest = new LoginRequest(username, password);
-        boolean loggedIn = accountController.login(loginRequest);
-        if (loggedIn) {
-            return accountController.getAccountType(username, password);
-        }
-        return null;
-    }
+    private void redirectToHomePage(String username, String password) {
+        AccountController accountController = new AccountController();
+        boolean loginSuccess = accountController.login(new LoginRequest(username, password));
 
-    private void redirectToHomePage(AccountType accountType) {
-        switch (accountType) {
-            case POLICY_HOLDER:
-                loadPage("PolicyHolderPage.fxml");
-                break;
-            case DEPENDENT:
-                loadPage("DependentPage.fxml");
-                break;
-            case POLICY_OWNER:
-                loadPage("PolicyOwnerPage.fxml");
-                break;
-            case INSURANCE_SURVEYOR:
-                loadPage("InsuranceSurveyorPage.fxml");
-                break;
-            case INSURANCE_MANAGER:
-                loadPage("InsuranceManagerPage.fxml");
-                break;
-//            case ADMIN:
-//                loadPage("AdminPage.fxml");
-//                break;
-            default:
-                showAlert("Error", "Wrong username or password !!!!");
-                break;
+        if (loginSuccess) {
+            AccountType accountType = accountController.getAccountType(username, password);
+            switch (accountType) {
+                case POLICY_HOLDER:
+                    loadPage("PolicyHolderPage.fxml");
+                    break;
+                case DEPENDENT:
+                    loadPage("DependentPage.fxml");
+                    break;
+                case POLICY_OWNER:
+                    loadPage("PolicyOwnerPage.fxml");
+                    break;
+//                case ADMIN:
+//                    loadPage("AdminPage.fxml");
+//                    break;
+                case INSURANCE_MANAGER:
+                    loadPage("InsuranceManagerPage.fxml");
+                    break;
+                case INSURANCE_SURVEYOR:
+                    loadPage("InsuranceSurveyorPage.fxml");
+                    break;
+                default:
+                    showAlert("Error", "Invalid account type");
+            }
+        } else {
+            showAlert("Error", "Invalid username or password");
         }
+
+
     }
 
     private void loadPage(String pageName) {
@@ -103,14 +94,6 @@ public class LoginView {
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Error", "An error occurred while loading the page.");
-        }
-    }
-
-    private void prepareDataForNextPage(String username, String password) {
-        AccountFacadeImpl accountFacade = new AccountFacadeImpl();
-        Account account = accountFacade.getAccount(username, password);
-        if (account != null) {
-            accountFacade.createSubAccountObject(account);
         }
     }
 

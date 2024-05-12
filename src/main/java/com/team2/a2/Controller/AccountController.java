@@ -19,11 +19,6 @@ public class AccountController {
     }
 
     public AccountType getAccountType(String username, String password) {
-        Account account = accountFacade.getAccount(username, password);
-        if (account != null) {
-            return account.getType();
-        } else {
-            return null;
-        }
+        return accountFacade.getAccountType(username, password);
     }
 }

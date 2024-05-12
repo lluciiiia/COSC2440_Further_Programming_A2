@@ -1,4 +1,4 @@
-module com.team2.a2 {
+module com.team.a2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

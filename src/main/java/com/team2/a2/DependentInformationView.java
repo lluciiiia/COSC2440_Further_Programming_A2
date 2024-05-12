@@ -1,8 +1,12 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.FacadeImpl.AccountFacadeImpl;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.Dependent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,8 +32,11 @@ public class DependentInformationView implements Initializable {
     @FXML
     private TextField emailField;
 
-    private AccountFacade accountFacade = new AccountFacadeImpl();
-    private int accountID;
+    public void initData(Customer customer) {
+        nameField.setText(customer.getName());
+        phoneField.setText(customer.getPhoneNumber());
+        emailField.setText(customer.getEmail());
+    }
 
 
     @FXML
@@ -45,19 +52,15 @@ public class DependentInformationView implements Initializable {
                  e.printStackTrace();
              }
          });
-         loadData();
+
+//         loadData();
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
-
-    public void loadData() {
-        Customer customer = accountFacade.getCustomerInfoByAccountID(2);
-        nameField.setText(customer.getName());
-        phoneField.setText(customer.getPhoneNumber());
-        emailField.setText(customer.getEmail());
-    }
-
+//    void loadData() {
+//
+//        nameField.setText(customer.getName());
+//        phoneField.setText(customer.getPhoneNumber());
+//        emailField.setText(customer.getEmail());
+//    }
 
 }
