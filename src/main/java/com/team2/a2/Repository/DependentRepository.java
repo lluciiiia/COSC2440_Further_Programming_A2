@@ -73,10 +73,8 @@ public class DependentRepository {
         return dependents;
     }
 
-    public Dependent createDependent(int customerId) {
-        Dependent dependent = null;
+    public void createDependent(int customerId) {
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
 
         try {
             String sql = "INSERT INTO dependents (customer_id) " +
@@ -85,25 +83,11 @@ public class DependentRepository {
 
             statement.setInt(1, customerId);
 
-            // Execute the insert operation
-            int rowsInserted = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (rowsInserted > 0) {
-                // If insertion successful
-                resultSet = statement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    int id = resultSet.getInt(1); // Retrieve the auto-generated ID
-                    Date createdAt = resultSet.getDate("created_at");
-                    Date updatedAt = resultSet.getDate("updated_at");
-                    int policyHolderId = resultSet.getInt("policy_holder_id");
-
-                    dependent = new Dependent(id, createdAt, updatedAt, customerId, policyHolderId);
-                }
-            }
         } catch (SQLException e) {
             System.err.println("Error creating customer: " + e.getMessage());
         }
 
-        return dependent;
     }
 }

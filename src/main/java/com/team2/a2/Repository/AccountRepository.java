@@ -49,7 +49,7 @@ public class AccountRepository {
 
         try {
             String sql = "INSERT INTO accounts (username, password, type) VALUES (?, ?, ?)";
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, username);
             statement.setString(2, password);
@@ -57,13 +57,10 @@ public class AccountRepository {
 
             // Execute the insert operation
             int rowsInserted = statement.executeUpdate();
-            System.out.println("rowInserted: ");
-            System.out.println(rowsInserted);
 
             if (rowsInserted > 0) {
                 // If insertion successful, retrieve the newly created account's ID
                 resultSet = statement.getGeneratedKeys();
-                System.out.println(resultSet);
                 if (resultSet.next()) {
                     int id = resultSet.getInt(1);
                     AccountType accountType = AccountType.valueOf(resultSet.getString("type"));
@@ -75,7 +72,7 @@ public class AccountRepository {
         } catch (SQLException e) {
             System.err.println("Error creating account: " + e.getMessage());
         }
-        return account;
+       return account;
     }
 }
 

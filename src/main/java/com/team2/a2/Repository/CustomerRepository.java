@@ -145,11 +145,12 @@ public class CustomerRepository {
             int rowsInserted = statement.executeUpdate();
 
             if (rowsInserted > 0) {
-                System.out.println("success");
                 // If insertion successful, retrieve the newly created customer's ID
                 resultSet = statement.getGeneratedKeys();
+
                 if (resultSet.next()) {
                     int id = resultSet.getInt(1); // Retrieve the auto-generated ID
+
                     Date createdAt = resultSet.getDate("created_at");
                     Date updatedAt = resultSet.getDate("updated_at");
                     String name = resultSet.getString("name");
@@ -165,7 +166,6 @@ public class CustomerRepository {
                     System.out.println(customer.getName());
                 }
             }
-            System.out.println("fail");
         } catch (SQLException e) {
             System.err.println("Error creating customer: " + e.getMessage());
         }
