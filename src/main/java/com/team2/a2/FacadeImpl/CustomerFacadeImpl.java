@@ -37,6 +37,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
+    public Customer getCustomerById(int accountID) {
+        return customerRepository.getCustomerByAccountId(accountID);
+    }
+
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) {
         Customer policyHolder = customerRepository.getCustomerByAccountId(policyHolderAccountId);
         if (policyHolder == null) return null;
@@ -88,5 +92,4 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
         return customerRepository.updateCustomer(request);
     }
-
 }

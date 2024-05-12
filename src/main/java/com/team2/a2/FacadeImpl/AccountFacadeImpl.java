@@ -1,5 +1,6 @@
 package com.team2.a2.FacadeImpl;
 
+import com.team2.a2.DependentInformationView;
 import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
@@ -34,17 +35,13 @@ public class AccountFacadeImpl implements AccountFacade {
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
     }
 
-    public boolean login(LoginRequest request) {
-        Account account = accountRepository.getAccount(request.getUsername(), request.getPassword());
-
-        if (account == null) return false;
-
-        return createSubAccountObject(account);
+    public Account login(LoginRequest request) {
+        return accountRepository.getAccount(request.getUsername(), request.getPassword());
     }
 
     @Override
-    public Account getAccount(String username, String password) {
-        return accountRepository.getAccount(username, password);
+    public Account getAccountByID(int accountID) {
+        return accountRepository.getAccountById(accountID);
     }
 
     public boolean createSubAccountObject(Account account) {
@@ -56,7 +53,6 @@ public class AccountFacadeImpl implements AccountFacade {
         Admin admin;
         InsuranceManager insuranceManager;
         InsuranceSurveyor insuranceSurveyor;
-
         switch(accountType) {
             case POLICY_HOLDER:
                 customer = customerRepository.getCustomerByAccountId(account.getId());
@@ -64,6 +60,7 @@ public class AccountFacadeImpl implements AccountFacade {
             case DEPENDENT:
                 customer = customerRepository.getCustomerByAccountId(account.getId());
                 dependent = dependentRepository.getDependentByCustomerId(customer.getId());
+//                System.out.println(customer.getName());
                 break;
             case POLICY_OWNER:
                 policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(account.getId());

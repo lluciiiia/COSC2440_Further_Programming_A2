@@ -42,6 +42,7 @@
                     </font>
                 </Text>
                 <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
+            <TextField fx:id="accountID" layoutX="71.0" layoutY="38.0" text="AccountID" />
             </children>
         </AnchorPane>
     </left>

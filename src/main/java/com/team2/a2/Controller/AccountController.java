@@ -14,16 +14,11 @@ public class AccountController {
         this.accountFacade = new AccountFacadeImpl();
     }
 
-    public boolean login(LoginRequest request) {
+    public Account login(LoginRequest request) {
         return accountFacade.login(request);
     }
 
-    public AccountType getAccountType(String username, String password) {
-        Account account = accountFacade.getAccount(username, password);
-        if (account != null) {
-            return account.getType();
-        } else {
-            return null;
-        }
+    public Account getAccountByID(int accountID) {
+        return accountFacade.getAccountByID(accountID);
     }
 }

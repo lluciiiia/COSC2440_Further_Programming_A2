@@ -1,7 +1,12 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Facade.AccountFacade;
+import com.team2.a2.FacadeImpl.AccountFacadeImpl;
 import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,13 +31,6 @@ public class LoginView {
     @FXML
     private TextField usernameField;
 
-    private AccountController accountController;
-
-    //constructor
-    public LoginView() {
-        this.accountController = new AccountController();
-    }
-
     @FXML
     protected void initialize() {
         loginButton.setOnAction(event -> {
@@ -40,11 +38,10 @@ public class LoginView {
             String password = passwordField.getText();
 
             if (isValidCredentials(username, password)) {
-                AccountType accountType = login(username, password);
-                if (accountType != null) {
-                    redirectToHomePage(accountType);
-                } else {
-                    showAlert("Error", "User type not recognized");
+                try {
+                    redirectToHomePage(username, password);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             } else {
                 showAlert("Error", "Invalid username or password");
@@ -56,39 +53,47 @@ public class LoginView {
         return !username.isEmpty() && !password.isEmpty();
     }
 
-    private AccountType login(String username, String password) {
-        LoginRequest loginRequest = new LoginRequest(username, password);
-        boolean loggedIn = accountController.login(loginRequest);
-        if (loggedIn) {
-            return accountController.getAccountType(username, password);
-        }
-        return null;
-    }
+    private void redirectToHomePage(String username, String password) throws IOException {
+        AccountController accountController = new AccountController();
+        Account account = accountController.login(new LoginRequest(username, password));
 
-    private void redirectToHomePage(AccountType accountType) {
-        switch (accountType) {
-            case POLICY_HOLDER:
-                loadPage("PolicyHolderPage.fxml");
-                break;
-            case DEPENDENT:
-                loadPage("DependentPage.fxml");
-                break;
-            case POLICY_OWNER:
-                loadPage("PolicyOwnerPage.fxml");
-                break;
-            case INSURANCE_SURVEYOR:
-                loadPage("InsuranceSurveyorPage.fxml");
-                break;
-            case INSURANCE_MANAGER:
-                loadPage("InsuranceManagerPage.fxml");
-                break;
-            case ADMIN:
-                loadPage("AdminPage.fxml");
-                break;
-            default:
-                showAlert("Error", "Wrong username or password !!!!");
-                break;
+        if (account != null) {
+            AccountType accountType = account.getType();
+            switch (accountType) {
+                case POLICY_HOLDER:
+                    loadPage("PolicyHolderPage.fxml");
+                    break;
+                case DEPENDENT:
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentPage.fxml"));
+                    Parent root = loader.load();
+                    DependentView dependentView = loader.getController();
+                    dependentView.initData(account);
+
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                    break;
+                case POLICY_OWNER:
+                    loadPage("PolicyOwnerPage.fxml");
+                    break;
+//                case ADMIN:
+//                    loadPage("AdminPage.fxml");
+//                    break;
+                case INSURANCE_MANAGER:
+                    loadPage("InsuranceManagerPage.fxml");
+                    break;
+                case INSURANCE_SURVEYOR:
+                    loadPage("InsuranceSurveyorPage.fxml");
+                    break;
+                default:
+                    showAlert("Error", "Invalid account type");
+            }
+        } else {
+            showAlert("Error", "Invalid username or password");
         }
+
+
     }
 
     private void loadPage(String pageName) {

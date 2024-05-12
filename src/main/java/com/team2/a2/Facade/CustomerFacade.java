@@ -9,9 +9,10 @@ import java.util.List;
 public interface CustomerFacade {
     List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerId);
 
+    public Customer getCustomerById(int accountID);
+
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
 
     Customer createCustomer(InsertCustomerRequest request);
 
-    Customer updateCustomer(UpdateCustomerRequest request);
 }
