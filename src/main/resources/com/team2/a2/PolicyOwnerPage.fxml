@@ -53,6 +53,7 @@
                 </TableView>
                 <Button layoutX="378.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Create Claim" />
                 <Button fx:id="CreateAccButton" layoutX="510.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Create account" />
+            <TextField fx:id="accountID" disable="true" layoutX="642.0" layoutY="74.0" prefHeight="26.0" prefWidth="45.0" text="AccountID" />
             </children>
         </AnchorPane>
     </left>

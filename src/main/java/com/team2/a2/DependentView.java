@@ -23,7 +23,7 @@ public class DependentView implements Initializable {
     private Button logoutButton;
 
     @FXML
-    private Button ViewInfoButton;
+    private Button viewInfoButton;
 
     @FXML
     private TextField accountID;
@@ -52,14 +52,14 @@ public class DependentView implements Initializable {
             }
         });
 
-        ViewInfoButton.setOnAction(event -> {
+        viewInfoButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentInformationPage.fxml"));
                 Parent root = loader.load();
                 DependentInformationView dependentInformationView = loader.getController();
                 dependentInformationView.initData(customer);
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewInfoButton.getScene().getWindow();
+                Stage stage = (Stage) viewInfoButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

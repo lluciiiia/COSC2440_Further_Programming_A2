@@ -24,7 +24,7 @@
                         </Text>
                     </top>
                     <center>
-                        <Button fx:id="ViewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button fx:id="viewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
                     </center>
                 </BorderPane>
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
@@ -42,7 +42,7 @@
                     </font>
                 </Text>
                 <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
-            <TextField fx:id="accountID" layoutX="71.0" layoutY="38.0" text="AccountID" />
+            <TextField fx:id="accountID" disable="true" layoutX="71.0" layoutY="38.0" text="AccountID" />
             </children>
         </AnchorPane>
     </left>

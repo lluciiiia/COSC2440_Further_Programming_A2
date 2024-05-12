@@ -50,6 +50,7 @@
                         <TableColumn prefWidth="165.99996948242188" text="View button" />
                     </columns>
                 </TableView>
+            <TextField fx:id="accountID" disable="true" layoutX="387.0" layoutY="12.0" prefHeight="26.0" prefWidth="69.0" text="AccountID" />
             </children>
         </AnchorPane>
     </left>

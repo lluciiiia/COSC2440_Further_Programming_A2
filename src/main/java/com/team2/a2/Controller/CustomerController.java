@@ -22,7 +22,6 @@ public class CustomerController {
     public Customer getCustomer(int id) {
         return customerFacade.getCustomerById(id);
     }
-    public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); }
 
     public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); };
 
