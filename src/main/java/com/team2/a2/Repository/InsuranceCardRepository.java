@@ -29,6 +29,8 @@ public class InsuranceCardRepository {
             statement.setString(2, request.getCardNumber());
             statement.setDate(3, request.getExpiryDate());
 
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             System.err.println("Error creating insurance card: " + e.getMessage());
         }
