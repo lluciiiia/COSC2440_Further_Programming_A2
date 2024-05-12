@@ -15,4 +15,6 @@ public class Dependent extends BaseEntity {
         this.customerId = customerId;
         this.policyHolderId = policyHolderId;
     }
+
+    public int getCustomerId() { return customerId; }
 }
