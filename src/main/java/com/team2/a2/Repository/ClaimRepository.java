@@ -4,10 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,5 +99,20 @@ public class ClaimRepository {
             System.err.println("Error deleting claim: " + e.getMessage());
         }
 
+    }
+
+    public void updateClaimStatus(int id, ClaimStatus status) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE claims SET status = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setObject(1, status, Types.OTHER);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating claim status: " + e.getMessage());
+        }
     }
 }
