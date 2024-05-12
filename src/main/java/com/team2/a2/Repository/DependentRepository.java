@@ -4,10 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,5 +71,23 @@ public class DependentRepository {
         }
 
         return dependents;
+    }
+
+    public void createDependent(int customerId) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "INSERT INTO dependents (customer_id) " +
+                    "VALUES (?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, customerId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error creating customer: " + e.getMessage());
+        }
+
     }
 }
