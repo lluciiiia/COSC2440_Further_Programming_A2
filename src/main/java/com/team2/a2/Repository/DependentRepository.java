@@ -73,20 +73,21 @@ public class DependentRepository {
         return dependents;
     }
 
-    public void createDependent(int customerId) {
+    public void createDependent(int customerId, int policyHolderId) {
         PreparedStatement statement = null;
 
         try {
-            String sql = "INSERT INTO dependents (customer_id) " +
-                    "VALUES (?)";
+            String sql = "INSERT INTO dependents (customer_id, policy_holder_id) " +
+                    "VALUES (?, ?)";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             statement.setInt(1, customerId);
+            statement.setInt(2, policyHolderId);
 
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("Error creating customer: " + e.getMessage());
+            System.err.println("Error creating dependent: " + e.getMessage());
         }
 
     }

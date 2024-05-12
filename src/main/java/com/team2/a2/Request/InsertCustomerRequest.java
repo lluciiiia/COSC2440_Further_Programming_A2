@@ -7,6 +7,7 @@ public class InsertCustomerRequest {
     private String username;
     private String password;
     private int policyOwnerAccountId;
+    private int policyHolderId;
     private String name;
     private String address;
     private String phoneNumber;
@@ -14,11 +15,12 @@ public class InsertCustomerRequest {
     private CustomerType type;
 
     // Constructor
-    public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, String name,
+    public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, int policyHolderId, String name,
                                  String address, String phoneNumber, String email, CustomerType type) {
         this.username = username;
         this.password = password;
         this.policyOwnerAccountId = policyOwnerAccountId;
+        this.policyHolderId = policyHolderId;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -37,6 +39,10 @@ public class InsertCustomerRequest {
 
     public int getPolicyOwnerAccountId() {
         return policyOwnerAccountId;
+    }
+
+    public int getPolicyHolderId() {
+        return policyHolderId;
     }
 
     public String getName() {
