@@ -59,7 +59,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
         if (policyOwner == null) return null;
 
-        // TODO: check if the account exists
+        Account existingAccount = accountRepository.getAccount(request.getUsername(), request.getPassword());
+        if ( existingAccount != null ) return null;
 
         AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
