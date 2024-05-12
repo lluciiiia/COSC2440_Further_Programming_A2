@@ -4,6 +4,7 @@ import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.FacadeImpl.ClaimFacadeImpl;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimStatus;
+import com.team2.a2.Request.InsertClaimRequest;
 
 import java.util.List;
 
@@ -22,5 +23,7 @@ public class ClaimController {
     public void deleteClaimById(int id) { claimFacade.deleteClaimById(id); }
 
     public void updateClaimStatus(int id, ClaimStatus status) { claimFacade.updateClaimStatus(id, status); }
+
+    public void createClaim(InsertClaimRequest request) { claimFacade.createClaim(request); }
 
 }
