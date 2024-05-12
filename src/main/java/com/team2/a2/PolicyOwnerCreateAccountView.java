@@ -13,24 +13,22 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PolicyHolderView implements Initializable {
+public class PolicyOwnerCreateAccountView implements Initializable {
     @FXML
-    private Button logoutButton;
+    private Button returnButton;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logoutButton.setOnAction(event -> {
+        returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
-
     }
 }

@@ -1,16 +1,14 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.CustomerType;
+import com.team2.a2.Request.InsertCustomerRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 public class CustomerRepository {
 
@@ -88,4 +86,118 @@ public class CustomerRepository {
 
         return customers;
     }
+
+    public Customer getCustomerById(int id) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM customers WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                int policyOwnerId = resultSet.getInt("policy_owner_id");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String typeString = resultSet.getString("type");
+                CustomerType type = CustomerType.valueOf(typeString);
+
+                customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId, name, address, phoneNumber, email, type);
+
+                return customer;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
+
+    public Customer createCustomer(InsertCustomerRequest request, int accountId, int policyOwnerId) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "INSERT INTO customers (account_id, policy_owner_id, name, address, phone_number, email, type) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, accountId);
+            statement.setInt(2, policyOwnerId);
+            statement.setString(3, request.getName());
+            statement.setString(4, request.getAddress());
+            statement.setString(5, request.getPhoneNumber());
+            statement.setString(6, request.getEmail());
+            statement.setObject(7, request.getType(), Types.OTHER);
+
+            // Execute the insert operation
+            int rowsInserted = statement.executeUpdate();
+
+            if (rowsInserted > 0) {
+                // If insertion successful, retrieve the newly created customer's ID
+                resultSet = statement.getGeneratedKeys();
+
+                if (resultSet.next()) {
+                    int id = resultSet.getInt(1); // Retrieve the auto-generated ID
+
+                    Date createdAt = resultSet.getDate("created_at");
+                    Date updatedAt = resultSet.getDate("updated_at");
+                    String name = resultSet.getString("name");
+                    String address = resultSet.getString("address");
+                    String phoneNumber = resultSet.getString("phone_number");
+                    String email = resultSet.getString("email");
+                    String typeString = resultSet.getString("type");
+                    CustomerType type = CustomerType.valueOf(typeString);
+
+                    // Create the customer object
+                    customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId,
+                            name, address, phoneNumber, email, type);
+                    System.out.println(customer.getName());
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creating customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
+
+    public Customer updateCustomer(UpdateCustomerRequest request) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE customers SET name = ?, address = ?, phone_number = ?, email = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+
+            statement.setString(1, request.getName());
+            statement.setString(2, request.getAddress());
+            statement.setString(3, request.getPhoneNumber());
+            statement.setString(4, request.getEmail());
+            statement.setInt(5, request.getId());
+
+            // Execute the update operation
+            int rowsUpdated = statement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                // If update successful, fetch the updated customer
+                customer = getCustomerById(request.getId());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
+
 }

@@ -26,7 +26,6 @@ public class Customer extends BaseEntity {
         this.email = email;
         this.type = type;
     }
-
     public String getName() {
         return name;
     }
@@ -40,5 +39,8 @@ public class Customer extends BaseEntity {
     }
     public int getAccountId() {
         return accountId;
+    }
+    public CustomerType getType() {
+        return this.type;
     }
 }
