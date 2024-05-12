@@ -1,9 +1,9 @@
 package com.team2.a2.Request;
 
-import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Customer.CustomerType;
 
-public class UpsertCustomerRequest {
+public class InsertCustomerRequest {
+
     private String username;
     private String password;
     private int policyOwnerAccountId;
@@ -14,7 +14,7 @@ public class UpsertCustomerRequest {
     private CustomerType type;
 
     // Constructor
-    public UpsertCustomerRequest(String username, String password, int policyOwnerAccountId, String name,
+    public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, String name,
                                  String address, String phoneNumber, String email, CustomerType type) {
         this.username = username;
         this.password = password;

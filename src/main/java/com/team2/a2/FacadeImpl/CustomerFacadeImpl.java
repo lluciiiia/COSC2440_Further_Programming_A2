@@ -8,7 +8,8 @@ import com.team2.a2.Model.User.Customer.CustomerType;
 import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Repository.*;
-import com.team2.a2.Request.UpsertCustomerRequest;
+import com.team2.a2.Request.InsertCustomerRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer createCustomer(UpsertCustomerRequest request) {
+    public Customer createCustomer(InsertCustomerRequest request) {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
         if (policyOwner == null) return null;
 
@@ -75,6 +76,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
         }
 
         return customer;
+    }
+
+    @Override
+    public Customer updateCustomer(UpdateCustomerRequest request) {
+        return null;
     }
 
 }

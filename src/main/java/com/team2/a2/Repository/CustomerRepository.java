@@ -1,11 +1,9 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.CustomerType;
-import com.team2.a2.Request.UpsertCustomerRequest;
+import com.team2.a2.Request.InsertCustomerRequest;
 
 import java.sql.*;
 import java.util.*;
@@ -123,7 +121,7 @@ public class CustomerRepository {
         return customer;
     }
 
-    public Customer createCustomer(UpsertCustomerRequest request, int accountId, int policyOwnerId) {
+    public Customer createCustomer(InsertCustomerRequest request, int accountId, int policyOwnerId) {
         Customer customer = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
