@@ -72,7 +72,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
         if (customer == null) return null;
 
         if (request.getType() == CustomerType.DEPENDENT) {
-            dependentRepository.createDependent(customer.getId());
+            Customer policyHolder = customerRepository.getCustomerById(request.getPolicyHolderId());
+            if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+
+            dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
 
         return customer;

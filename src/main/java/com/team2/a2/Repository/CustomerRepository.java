@@ -162,7 +162,6 @@ public class CustomerRepository {
                     // Create the customer object
                     customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId,
                             name, address, phoneNumber, email, type);
-                    System.out.println(customer.getName());
                 }
             }
         } catch (SQLException e) {
