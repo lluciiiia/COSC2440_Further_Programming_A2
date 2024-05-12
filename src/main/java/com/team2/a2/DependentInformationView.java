@@ -32,10 +32,15 @@ public class DependentInformationView implements Initializable {
     @FXML
     private TextField emailField;
 
+    private AccountController accountController = new AccountController();
+    private Account account;
+
     public void initData(Customer customer) {
         nameField.setText(customer.getName());
         phoneField.setText(customer.getPhoneNumber());
         emailField.setText(customer.getEmail());
+        int accountID = customer.getAccountId();
+        account = accountController.getAccountByID(accountID);
     }
 
 
@@ -43,7 +48,11 @@ public class DependentInformationView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
          returnButton.setOnAction(event -> {
              try {
-                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentPage.fxml")));
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentPage.fxml"));
+                 Parent root = loader.load();
+                 DependentView dependentView = loader.getController();
+                 dependentView.initData(account);
+
                  Scene scene = new Scene(root);
                  Stage stage = (Stage) returnButton.getScene().getWindow();
                  stage.setScene(scene);
@@ -52,15 +61,5 @@ public class DependentInformationView implements Initializable {
                  e.printStackTrace();
              }
          });
-
-//         loadData();
     }
-
-//    void loadData() {
-//
-//        nameField.setText(customer.getName());
-//        phoneField.setText(customer.getPhoneNumber());
-//        emailField.setText(customer.getEmail());
-//    }
-
 }

@@ -38,7 +38,11 @@ public class LoginView {
             String password = passwordField.getText();
 
             if (isValidCredentials(username, password)) {
-                redirectToHomePage(username, password);
+                try {
+                    redirectToHomePage(username, password);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 showAlert("Error", "Invalid username or password");
             }
@@ -49,18 +53,26 @@ public class LoginView {
         return !username.isEmpty() && !password.isEmpty();
     }
 
-    private void redirectToHomePage(String username, String password) {
+    private void redirectToHomePage(String username, String password) throws IOException {
         AccountController accountController = new AccountController();
-        boolean loginSuccess = accountController.login(new LoginRequest(username, password));
+        Account account = accountController.login(new LoginRequest(username, password));
 
-        if (loginSuccess) {
+        if (account != null) {
             AccountType accountType = accountController.getAccountType(username, password);
             switch (accountType) {
                 case POLICY_HOLDER:
                     loadPage("PolicyHolderPage.fxml");
                     break;
                 case DEPENDENT:
-                    loadPage("DependentPage.fxml");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentPage.fxml"));
+                    Parent root = loader.load();
+                    DependentView dependentView = loader.getController();
+                    dependentView.initData(account);
+
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
                     break;
                 case POLICY_OWNER:
                     loadPage("PolicyOwnerPage.fxml");

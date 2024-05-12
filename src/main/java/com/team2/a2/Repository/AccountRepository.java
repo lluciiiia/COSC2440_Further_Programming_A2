@@ -43,6 +43,32 @@ public class AccountRepository {
         return account;
     }
 
+    public Account getAccountById(int id) {
+        Account account = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM accounts WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                AccountType type = AccountType.valueOf(resultSet.getString("type"));
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                account = new Account(id, createdAt, updatedAt, username, password, type);
+                return account;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching account: " + e.getMessage());
+        }
+
+        return account;
+    }
+
 }
 
 

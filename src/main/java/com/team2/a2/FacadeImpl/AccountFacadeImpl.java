@@ -35,12 +35,8 @@ public class AccountFacadeImpl implements AccountFacade {
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
     }
 
-    public boolean login(LoginRequest request) {
-        Account account = accountRepository.getAccount(request.getUsername(), request.getPassword());
-
-        if (account == null) return false;
-
-        return createSubAccountObject(account);
+    public Account login(LoginRequest request) {
+        return accountRepository.getAccount(request.getUsername(), request.getPassword());
     }
 
     @Override
@@ -50,6 +46,11 @@ public class AccountFacadeImpl implements AccountFacade {
             return account.getType();
         }
         return null;
+    }
+
+    @Override
+    public Account getAccountByID(int accountID) {
+        return accountRepository.getAccountById(accountID);
     }
 
     public boolean createSubAccountObject(Account account) {

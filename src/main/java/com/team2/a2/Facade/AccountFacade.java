@@ -6,6 +6,7 @@ import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Request.LoginRequest;
 
 public interface AccountFacade {
-    public boolean login(LoginRequest request);
+    public Account login(LoginRequest request);
     public AccountType getAccountType(String username, String password);
+    Account getAccountByID(int accountID);
 }

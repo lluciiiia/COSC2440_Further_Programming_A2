@@ -38,4 +38,7 @@ public class Customer extends BaseEntity {
     public String getEmail() {
         return email;
     }
+    public int getAccountId() {
+        return accountId;
+    }
 }

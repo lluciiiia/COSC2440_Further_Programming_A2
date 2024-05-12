@@ -1,17 +1,8 @@
 package com.team2.a2;
 
-import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Facade.AccountFacade;
-import com.team2.a2.Facade.CustomerFacade;
-import com.team2.a2.FacadeImpl.AccountFacadeImpl;
-import com.team2.a2.FacadeImpl.CustomerFacadeImpl;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.Dependent;
-import com.team2.a2.Repository.AccountRepository;
-import com.team2.a2.Repository.CustomerRepository;
-import com.team2.a2.Repository.DependentRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,8 +25,18 @@ public class DependentView implements Initializable {
     @FXML
     private Button ViewInfoButton;
 
+    @FXML
+    private TextField accountID;
+
     private CustomerController customerController = new CustomerController();
-    private Customer customer = customerController.getCustomer(2);
+    private Customer customer;
+
+
+    public void initData(Account account) {
+        accountID.setText(String.valueOf(account.getId()));
+        int accountIDValue = Integer.parseInt(accountID.getText());
+        customer = customerController.getCustomer(accountIDValue);
+    }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,7 +58,6 @@ public class DependentView implements Initializable {
                 Parent root = loader.load();
                 DependentInformationView dependentInformationView = loader.getController();
                 dependentInformationView.initData(customer);
-
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ViewInfoButton.getScene().getWindow();
                 stage.setScene(scene);
