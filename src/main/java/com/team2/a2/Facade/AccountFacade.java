@@ -7,6 +7,5 @@ import com.team2.a2.Request.LoginRequest;
 
 public interface AccountFacade {
     public Account login(LoginRequest request);
-    public AccountType getAccountType(String username, String password);
     Account getAccountByID(int accountID);
 }

@@ -18,10 +18,6 @@ public class AccountController {
         return accountFacade.login(request);
     }
 
-    public AccountType getAccountType(String username, String password) {
-        return accountFacade.getAccountType(username, password);
-    }
-
     public Account getAccountByID(int accountID) {
         return accountFacade.getAccountByID(accountID);
     }

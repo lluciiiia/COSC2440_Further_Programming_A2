@@ -58,7 +58,7 @@ public class LoginView {
         Account account = accountController.login(new LoginRequest(username, password));
 
         if (account != null) {
-            AccountType accountType = accountController.getAccountType(username, password);
+            AccountType accountType = account.getType();
             switch (accountType) {
                 case POLICY_HOLDER:
                     loadPage("PolicyHolderPage.fxml");

@@ -40,15 +40,6 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public AccountType getAccountType(String username, String password) {
-        Account account = accountRepository.getAccount(username, password);
-        if (account != null) {
-            return account.getType();
-        }
-        return null;
-    }
-
-    @Override
     public Account getAccountByID(int accountID) {
         return accountRepository.getAccountById(accountID);
     }
