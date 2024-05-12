@@ -21,14 +21,13 @@ public class InsuranceCardRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "INSERT INTO insurance_cards (customer_id, policy_owner_id, card_number, expiry_date) " +
-                    "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO insurance_cards (customer_id, card_number, expiry_date) " +
+                    "VALUES (?, ?, ?)";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             statement.setInt(1, request.getCustomerId());
-            statement.setInt(2, request.getPolicyOwnerId());
-            statement.setString(3, request.getCardNumber());
-            statement.setDate(4, request.getExpiryDate());
+            statement.setString(2, request.getCardNumber());
+            statement.setDate(3, request.getExpiryDate());
 
         } catch (SQLException e) {
             System.err.println("Error creating insurance card: " + e.getMessage());
