@@ -88,4 +88,39 @@ public class CustomerRepository {
 
         return customers;
     }
+
+    public Customer getCustomerById(int id) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM customers WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                int policyOwnerId = resultSet.getInt("policy_owner_id");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String typeString = resultSet.getString("type");
+                CustomerType type = CustomerType.valueOf(typeString);
+
+                customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId, name, address, phoneNumber, email, type);
+
+                return customer;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
 }

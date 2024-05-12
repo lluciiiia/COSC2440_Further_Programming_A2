@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CustomerFacade {
     List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerId);
+
+    List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
 }

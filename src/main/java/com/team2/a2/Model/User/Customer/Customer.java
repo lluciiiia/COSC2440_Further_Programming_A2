@@ -27,4 +27,8 @@ public class Customer extends BaseEntity {
         this.type = type;
     }
 
+    public CustomerType getType() {
+        return this.type;
+    }
+
 }
