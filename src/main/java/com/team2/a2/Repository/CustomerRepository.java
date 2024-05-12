@@ -5,12 +5,11 @@ import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.CustomerType;
+import com.team2.a2.Request.UpsertCustomerRequest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 public class CustomerRepository {
 
@@ -123,4 +122,55 @@ public class CustomerRepository {
 
         return customer;
     }
+
+    public Customer createCustomer(UpsertCustomerRequest request, int accountId, int policyOwnerId) {
+        Customer customer = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "INSERT INTO customers (account_id, policy_owner_id, name, address, phone_number, email, type) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, accountId);
+            statement.setInt(2, policyOwnerId);
+            statement.setString(3, request.getName());
+            statement.setString(4, request.getAddress());
+            statement.setString(5, request.getPhoneNumber());
+            statement.setString(6, request.getEmail());
+            statement.setObject(7, request.getType(), Types.OTHER);
+
+            // Execute the insert operation
+            int rowsInserted = statement.executeUpdate();
+
+            if (rowsInserted > 0) {
+                System.out.println("success");
+                // If insertion successful, retrieve the newly created customer's ID
+                resultSet = statement.getGeneratedKeys();
+                if (resultSet.next()) {
+                    int id = resultSet.getInt(1); // Retrieve the auto-generated ID
+                    Date createdAt = resultSet.getDate("created_at");
+                    Date updatedAt = resultSet.getDate("updated_at");
+                    String name = resultSet.getString("name");
+                    String address = resultSet.getString("address");
+                    String phoneNumber = resultSet.getString("phone_number");
+                    String email = resultSet.getString("email");
+                    String typeString = resultSet.getString("type");
+                    CustomerType type = CustomerType.valueOf(typeString);
+
+                    // Create the customer object
+                    customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId,
+                            name, address, phoneNumber, email, type);
+                    System.out.println(customer.getName());
+                }
+            }
+            System.out.println("fail");
+        } catch (SQLException e) {
+            System.err.println("Error creating customer: " + e.getMessage());
+        }
+
+        return customer;
+    }
+
 }

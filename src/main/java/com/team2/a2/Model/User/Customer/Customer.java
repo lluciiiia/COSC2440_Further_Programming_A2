@@ -31,4 +31,6 @@ public class Customer extends BaseEntity {
         return this.type;
     }
 
+    public String getName() { return this.name; }
+
 }

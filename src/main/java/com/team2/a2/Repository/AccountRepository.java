@@ -3,15 +3,14 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.User.Customer.CustomerType;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Date;
 
 public class AccountRepository {
     private Connection connection;
+
     public AccountRepository() {
         this.connection = ConnectionManager.getConnection();
     }
@@ -43,6 +42,41 @@ public class AccountRepository {
         return account;
     }
 
+    public Account createAccount(String username, String password, AccountType type) {
+        Account account = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "INSERT INTO accounts (username, password, type) VALUES (?, ?, ?)";
+            statement = connection.prepareStatement(sql);
+
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.setObject(3, type, Types.OTHER);
+
+            // Execute the insert operation
+            int rowsInserted = statement.executeUpdate();
+            System.out.println("rowInserted: ");
+            System.out.println(rowsInserted);
+
+            if (rowsInserted > 0) {
+                // If insertion successful, retrieve the newly created account's ID
+                resultSet = statement.getGeneratedKeys();
+                System.out.println(resultSet);
+                if (resultSet.next()) {
+                    int id = resultSet.getInt(1);
+                    AccountType accountType = AccountType.valueOf(resultSet.getString("type"));
+                    Date createdAt = resultSet.getDate("created_at");
+                    Date updatedAt = resultSet.getDate("updated_at");
+                    account = new Account(id, createdAt, updatedAt, username, password, accountType);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creating account: " + e.getMessage());
+        }
+        return account;
+    }
 }
 
 

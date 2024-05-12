@@ -4,6 +4,7 @@ import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.FacadeImpl.AccountFacadeImpl;
 import com.team2.a2.FacadeImpl.CustomerFacadeImpl;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Request.UpsertCustomerRequest;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public class CustomerController {
 
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };
 
+    public Customer createCustomer(UpsertCustomerRequest request) {
+        return this.customerFacade.createCustomer(request);
+    }
 }
