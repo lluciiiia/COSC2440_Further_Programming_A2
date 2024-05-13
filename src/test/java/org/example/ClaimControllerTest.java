@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.sql.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -47,6 +48,28 @@ public class ClaimControllerTest {
         assertNotEquals(notExpectedClaim.getId(), actualClaim.getId());
         assertNotEquals(notExpectedClaim.getAmount(), actualClaim.getAmount());
         assertNotEquals(notExpectedClaim.getStatus(), actualClaim.getStatus());
+    }
+
+    @Test
+    public void testGetClaimsByCustomerId() {
+        int customerID = 8;
+        Claim expectedClaim = new Claim(6, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
+                customerID, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 23435.00, ClaimStatus.PROCESSING);
+
+        Claim notExpectedClaim = new Claim(1, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
+                6, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 0.00, ClaimStatus.NEW);
+
+        List<Claim> actualClaims = claimController.getClaimsByCustomerId(customerID);
+
+        // True Case
+        assertEquals(actualClaims.size(), 1);
+        assertEquals(actualClaims.get(0).getAmount(), expectedClaim.getAmount());
+        assertEquals(actualClaims.get(0).getStatus(), expectedClaim.getStatus());
+
+        // False Case
+        assertNotEquals(actualClaims.size(), 2);
+        assertNotEquals(actualClaims.get(0).getAmount(), notExpectedClaim.getAmount());
+        assertNotEquals(actualClaims.get(0).getStatus(), notExpectedClaim.getStatus());
     }
 
 }
