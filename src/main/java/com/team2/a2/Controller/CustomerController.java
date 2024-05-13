@@ -24,8 +24,6 @@ public class CustomerController {
     }
     public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); }
 
-    public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); };
-
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };
 
     public Customer createCustomer(InsertCustomerRequest request) { return this.customerFacade.createCustomer(request); }

@@ -15,4 +15,5 @@ public interface CustomerFacade {
 
     Customer createCustomer(InsertCustomerRequest request);
 
+    Customer updateCustomer(UpdateCustomerRequest request);
 }
