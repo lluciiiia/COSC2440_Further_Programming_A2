@@ -13,6 +13,10 @@ public class AccountController {
         this.accountFacade = new AccountFacadeImpl();
     }
 
+    public AccountController(AccountFacade accountFacade) {
+        this.accountFacade = accountFacade;
+    }
+
     public Account login(LoginRequest request) { return accountFacade.login(request); }
 
     public Account getAccountByID(int accountID) {

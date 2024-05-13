@@ -18,10 +18,8 @@ public class AccountFacadeImpl implements AccountFacade {
     AccountRepository accountRepository;
     CustomerRepository customerRepository;
     DependentRepository dependentRepository;
-
     PolicyOwnerRepository policyOwnerRepository;
     AdminRepository adminRepository;
-
     InsuranceManagerRepository insuranceManagerRepository;
     InsuranceSurveyorRepository insuranceSurveyorRepository;
 
