@@ -25,14 +25,20 @@ public class PolicyHolderInformationView implements Initializable {
     private TextField phoneField;
     @FXML
     private TextField emailField;
+    @FXML
+    private TextField addressField;
+    @FXML
+    private TextField policyOwnerIDField;
 
     private AccountController accountController = new AccountController();
     private Account account;
 
     public void initData(Customer customer) {
-        nameField.setText(customer.getName());
-        phoneField.setText(customer.getPhoneNumber());
-        emailField.setText(customer.getEmail());
+        nameField.setText("Name: " + customer.getName());
+        phoneField.setText("Phone: " + customer.getPhoneNumber());
+        emailField.setText("Email: " + customer.getEmail());
+        addressField.setText("Address: " + customer.getAddress());
+        policyOwnerIDField.setText("Policy owner ID: " + customer.getPolicyOwnerId());
         int accountID = customer.getAccountId();
         account = accountController.getAccountByID(accountID);
     }

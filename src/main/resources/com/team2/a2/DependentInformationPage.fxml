@@ -21,7 +21,6 @@
             <TextField fx:id="addressField" disable="true" text="Address" />
             <TextField fx:id="phoneField" disable="true" text="Phone" />
             <TextField fx:id="emailField" disable="true" text="Email" />
-            <TextField disable="true" prefHeight="0.0" prefWidth="580.0" text="Insurance Card Number" />
             <TextField fx:id="policyHolderIDField" disable="true" text="policy holder ID" />
             <TextField fx:id="policyOwnerIDField" disable="true" text="policy owner ID" />
             <padding>

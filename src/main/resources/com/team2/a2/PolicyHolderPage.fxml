@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderView">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
             <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="Policy Holder" textAlignment="CENTER" />
@@ -18,7 +18,7 @@
         <VBox alignment="CENTER" prefHeight="427.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
          <HBox prefHeight="37.0" prefWidth="660.0">
             <children>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " textAlignment="CENTER" wrappingWidth="661.576171875">
+               <Text fx:id="welcomeText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " textAlignment="CENTER" wrappingWidth="661.576171875">
                   <font>
                      <Font name="Bell MT" size="20.0" />
                   </font>
@@ -29,8 +29,8 @@
             <children>
                <VBox alignment="CENTER" prefHeight="250.0" prefWidth="337.0" spacing="25">
                   <children>
-                     <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View My Information" />
-                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View Dependent Information" />
+                     <Button fx:id="viewInfoButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View My Information" />
+                     <Button fx:id="viewDependentInformationButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View Dependent Information" />
                      <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View Dependent Claim" />
                   </children>
                </VBox>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderDependentView">
+    <center>
+        <TableView fx:id="dependentTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="customerID" prefWidth="88.19999694824219" text="CustomerID" />
+                <TableColumn fx:id="address" prefWidth="121.39999389648438" text="address" />
+                <TableColumn fx:id="name" prefWidth="118.5999755859375" text="name" />
+                <TableColumn fx:id="email" prefWidth="120.39999389648438" text="email" />
+                <TableColumn fx:id="phoneNumber" prefWidth="105.80001831054688" text="phone number" />
+                <TableColumn fx:id="policyOwnerID" prefWidth="147.0" text="policy owner ID" />
+            </columns>
+        </TableView>
+    </center>
+    <top>
+        <HBox prefHeight="61.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="700.0" text="Policy Holder Dependent page" />
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Return" />
+        </HBox>
+    </top>
+</BorderPane>
