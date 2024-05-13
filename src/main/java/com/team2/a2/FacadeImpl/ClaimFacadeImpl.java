@@ -22,9 +22,7 @@ public class ClaimFacadeImpl implements ClaimFacade {
     }
 
     @Override
-    public List<Claim> getClaimsByCustomerId(int customerId) {
-        return claimRepository.getClaimsByCustomerId(customerId);
-    }
+    public List<Claim> getClaimsByCustomerId(int customerId) { return claimRepository.getClaimsByCustomerId(customerId); }
 
     @Override
     public void deleteClaimById(int id) {

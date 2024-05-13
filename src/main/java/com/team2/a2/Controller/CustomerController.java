@@ -15,7 +15,6 @@ public class CustomerController {
 
     private CustomerFacade customerFacade;
 
-    // Constructor to initialize customerFacade
     public CustomerController() {
         this.customerFacade = new CustomerFacadeImpl();
     }
