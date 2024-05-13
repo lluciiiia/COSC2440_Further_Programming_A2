@@ -1,6 +1,7 @@
 package com.team2.a2.Facade;
 
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 
@@ -16,4 +17,6 @@ public interface CustomerFacade {
     Customer createCustomer(InsertCustomerRequest request);
 
     Customer updateCustomer(UpdateCustomerRequest request);
+
+    Dependent getDependentByCustomerId(int customerID);
 }

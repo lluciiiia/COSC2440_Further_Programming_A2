@@ -2,8 +2,24 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane fx:controller="com.team2.a2.DependentClaimView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.DependentClaimView">
+   <center>
+      <TableView fx:id="claimTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="claimID" prefWidth="88.19999694824219" text="ClaimID" />
+          <TableColumn fx:id="claimDate" prefWidth="121.39999389648438" text="claim date" />
+            <TableColumn fx:id="examDate" prefWidth="118.5999755859375" text="exam date" />
+            <TableColumn fx:id="claimAmount" prefWidth="120.39999389648438" text="amount" />
+            <TableColumn fx:id="customerID" prefWidth="105.80001831054688" text="cus id" />
+            <TableColumn fx:id="status" prefWidth="147.0" text="status" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+       <HBox prefHeight="61.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+           <Label alignment="CENTER" prefHeight="33.0" prefWidth="700.0" text="Dependent Claim Page"/>
+           <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Return"/>
+       </HBox>
+   </top>
 </BorderPane>

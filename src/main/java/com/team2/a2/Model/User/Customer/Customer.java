@@ -43,4 +43,12 @@ public class Customer extends BaseEntity {
     public CustomerType getType() {
         return this.type;
     }
+
+    public int getPolicyOwnerId() {
+        return policyOwnerId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }

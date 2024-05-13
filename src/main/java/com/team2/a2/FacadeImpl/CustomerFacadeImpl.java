@@ -92,4 +92,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
         return customerRepository.updateCustomer(request);
     }
+
+    @Override
+    public Dependent getDependentByCustomerId(int customerID) {
+        return dependentRepository.getDependentByCustomerId(customerID);
+    }
 }

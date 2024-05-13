@@ -1,9 +1,6 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
-import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Facade.AccountFacade;
-import com.team2.a2.FacadeImpl.AccountFacadeImpl;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
@@ -31,14 +28,23 @@ public class DependentInformationView implements Initializable {
     private TextField phoneField;
     @FXML
     private TextField emailField;
+    @FXML
+    private TextField addressField;
+    @FXML
+    private TextField policyHolderIDField;
+    @FXML
+    private TextField policyOwnerIDField;
 
     private AccountController accountController = new AccountController();
     private Account account;
 
-    public void initData(Customer customer) {
-        nameField.setText(customer.getName());
-        phoneField.setText(customer.getPhoneNumber());
-        emailField.setText(customer.getEmail());
+    public void initData(Customer customer, Dependent dependent) {
+        nameField.setText("Name: " + customer.getName());
+        phoneField.setText("Phone: " + customer.getPhoneNumber());
+        emailField.setText("Email: " + customer.getEmail());
+        addressField.setText("Address: " + customer.getAddress());
+        policyOwnerIDField.setText("Policy owner ID: " + customer.getPolicyOwnerId());
+        policyHolderIDField.setText("Policy holder ID: " + dependent.getId());
         int accountID = customer.getAccountId();
         account = accountController.getAccountByID(accountID);
     }

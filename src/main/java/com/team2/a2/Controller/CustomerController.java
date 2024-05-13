@@ -6,6 +6,7 @@ import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.FacadeImpl.CustomerFacadeImpl;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 
@@ -21,6 +22,9 @@ public class CustomerController {
     }
     public Customer getCustomer(int id) {
         return customerFacade.getCustomerById(id);
+    }
+    public Dependent getDependent(int id) {
+        return customerFacade.getDependentByCustomerId(id);
     }
 
     public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); };
