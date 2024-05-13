@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 public class AccountControllerTest {
 
@@ -35,27 +34,32 @@ public class AccountControllerTest {
         Account actualTrueAccount = accountController.login(loginRequest);
 
         // True Case
-        assertSame(2, actualTrueAccount.getId());
+        assertEquals(2, actualTrueAccount.getId());
 
         // False Case
-        assertNotSame(3, actualTrueAccount.getId());
+        assertNotEquals(3, actualTrueAccount.getId());
 
     }
 
     @Test
     public void testGetAccountByID() {
-        // Arrange
-//        int accountID = 1;
-//        Account expectedAccount = new Account(accountID, Date.valueOf("2024-05-05"), Date.valueOf("2024-05-05"),
-//                "im_dependent", "12345", AccountType.DEPENDENT);
-//
-//        // Mock behavior of AccountFacade
-//        when(accountController.getAccountByID(accountID)).thenReturn(expectedAccount);
-//
-//        // Act
-//        Account actualAccount = accountController.getAccountByID(accountID);
-//
-//        // Assert
-//        assertEquals(expectedAccount, actualAccount);
+        int accountID = 2;
+        Account expectedAccount = new Account(accountID, Date.valueOf("2024-05-05"), Date.valueOf("2024-05-05"),
+                "im_dependent", "12345", AccountType.DEPENDENT);
+
+        Account notExpectedAccount = new Account(3, Date.valueOf("2024-05-05"), Date.valueOf("2024-05-05"),
+                "im_admin", "12345", AccountType.ADMIN);
+
+        Account actualAccount = accountController.getAccountByID(accountID);
+
+        // True Case
+        assertEquals(expectedAccount.getId(), actualAccount.getId());
+        assertEquals(expectedAccount.getUsername(), actualAccount.getUsername());
+        assertEquals(expectedAccount.getType(), actualAccount.getType());
+
+        // False Case
+        assertNotEquals(notExpectedAccount.getId(), actualAccount.getId());
+        assertNotEquals(notExpectedAccount.getUsername(), actualAccount.getUsername());
+        assertNotEquals(notExpectedAccount.getType(), actualAccount.getType());
     }
 }
