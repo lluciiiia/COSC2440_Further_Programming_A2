@@ -19,7 +19,7 @@ public class AccountControllerTest {
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
-        accountController = new AccountController(); // No need to pass mockAccountFacade here if you're not using it
+        accountController = new AccountController();
     }
 
     @Test
