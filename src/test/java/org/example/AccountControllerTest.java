@@ -2,26 +2,21 @@ package org.example;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.AccountController;
-import com.team2.a2.Facade.AccountFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.LoginRequest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.junit.jupiter.api.*;
 
 import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AccountControllerTest {
-
-    @Mock
-    private AccountFacade mockAccountFacade;
 
     private AccountController accountController;
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         accountController = new AccountController(); // No need to pass mockAccountFacade here if you're not using it
