@@ -10,7 +10,7 @@ This repository contains the source code for the project developed in Java, whic
 - [Seokyung Kim - s3939114@rmit.edu.vn](https://github.com/lluciiiia)
 - [Cu Duc Quang - s4021255@rmit.edu.vn](https://github.com/cuducquang)
 - [Ngo Duc Minh Quan - s3938194@rmit.edu.vn](https://github.com/MinhQuan2511)
-- [Nam- s@rmit.edu.vn](https://github.com/nguyenphannam2223)
+- [Nguyen Phan Nam - s3873792@rmit.edu.vn](https://github.com/nguyenphannam2223)
 
 ## Getting Started 🚀
 
