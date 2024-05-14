@@ -86,6 +86,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
+    public List<Customer> getAllCustomers() {
+        return customerRepository.getAllCustomers();
+    }
+
+    @Override
     public Customer updateCustomer(UpdateCustomerRequest request) {
         Customer customer = customerRepository.getCustomerById(request.getId());
         if (customer == null) return null;

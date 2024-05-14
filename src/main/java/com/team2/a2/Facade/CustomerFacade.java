@@ -16,6 +16,8 @@ public interface CustomerFacade {
 
     Customer createCustomer(InsertCustomerRequest request);
 
+    List<Customer> getAllCustomers();
+
     Customer updateCustomer(UpdateCustomerRequest request);
 
     Dependent getDependentByCustomerId(int customerID);

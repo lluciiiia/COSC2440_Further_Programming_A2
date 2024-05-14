@@ -26,4 +26,27 @@ public class Provider extends BaseEntity {
         this.name = name;
     }
 
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
