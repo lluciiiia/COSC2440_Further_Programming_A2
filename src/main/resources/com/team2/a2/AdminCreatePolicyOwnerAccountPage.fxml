@@ -25,6 +25,7 @@
                     <TextField fx:id="tfICNumber" promptText="Enter Email Address" />
                     <TextField fx:id="tfClaimFile" disable="false" promptText="Enter Phone Number" />
                     <TextField fx:id="tfTotal" disable="false" promptText="Enter Home Address" />
+               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" text="Return" />
 
                     <Button fx:id="nextToInsuranceCardButton" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
 
