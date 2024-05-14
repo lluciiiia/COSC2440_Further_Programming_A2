@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class PolicyHolderDependentView implements Initializable {
     @FXML
     private Button returnButton;
 
+    @FXML
+    private Text customerNameText;
     @FXML
     private TableView<Customer> dependentTable;
 
@@ -54,7 +57,7 @@ public class PolicyHolderDependentView implements Initializable {
 
         ObservableList<Customer> dependentList = FXCollections.observableArrayList(dependents);
         dependentTable.setItems(dependentList);
-
+        customerNameText.setText(customer.getName() + "'s dependent list");
         int accountID = customer.getAccountId();
         account = accountController.getAccountByCustomerID(accountID);
     }

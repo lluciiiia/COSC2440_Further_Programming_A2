@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.ManagerAdminView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderDependentView">
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="Dependent Information" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
             <font>
@@ -17,7 +17,7 @@
             <children>
                 <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Policy Holder" BorderPane.alignment="CENTER">
+                        <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -28,14 +28,14 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView layoutX="8.0" layoutY="91.0" prefHeight="365.0" prefWidth="684.0">
+                <TableView fx:id="dependentTable" layoutX="8.0" layoutY="91.0" prefHeight="365.0" prefWidth="684.0">
                     <columns>
-                        <TableColumn prefWidth="96.0" text="Customer ID" />
-                        <TableColumn prefWidth="127.0" text="Address" />
-                        <TableColumn prefWidth="112.0" text="Name" />
-                        <TableColumn prefWidth="123.0" text="Email" />
-                        <TableColumn prefWidth="104.0" text="Phone number" />
-                        <TableColumn prefWidth="121.0" text="Policy Owner ID" />
+                        <TableColumn fx:id="customerID" prefWidth="96.0" text="Customer ID" />
+                        <TableColumn fx:id="address" prefWidth="127.0" text="Address" />
+                        <TableColumn fx:id="name" prefWidth="112.0" text="Name" />
+                        <TableColumn fx:id="email" prefWidth="123.0" text="Email" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="104.0" text="Phone number" />
+                        <TableColumn fx:id="policyOwnerID" prefWidth="121.0" text="Policy Owner ID" />
                     </columns>
                 </TableView>
             </children>

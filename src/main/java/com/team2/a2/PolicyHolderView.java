@@ -1,6 +1,8 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 
@@ -31,12 +33,16 @@ public class PolicyHolderView implements Initializable {
     private Button viewInfoButton;
     @FXML
     private Button viewDependentInformationButton;
+    @FXML
+    private Button viewClaimInformationButton;
 
     @FXML
     private Text welcomeText;
 
     private CustomerController customerController = new CustomerController();
     private Customer customer;
+
+    private final ClaimController claimController = new ClaimController();
 
     public void initData(Account account) {
         customer = customerController.getCustomer(account.getId());
@@ -74,7 +80,7 @@ public class PolicyHolderView implements Initializable {
 
         viewDependentInformationButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentPage.fxml"));
                 Parent root = loader.load();
                 PolicyHolderDependentView policyHolderDependentPage = loader.getController();
                 Task<List<Customer>> loadDependentTask = new Task<>() {
@@ -101,6 +107,40 @@ public class PolicyHolderView implements Initializable {
                 });
 
                 new Thread(loadDependentTask).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewClaimInformationButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderClaimPage.fxml"));
+                Parent root = loader.load();
+                PolicyHolderClaimView policyHolderClaimView = loader.getController();
+                Task<List<Claim>> loadClaimsTask = new Task<>() {
+                    @Override
+                    protected List<Claim> call() throws Exception {
+                        return claimController.getClaimsByCustomerId(customer.getId());
+                    }
+                };
+
+                loadClaimsTask.setOnSucceeded(workerStateEvent -> {
+                    policyHolderClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), customer);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) viewClaimInformationButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadClaimsTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadClaimsTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
