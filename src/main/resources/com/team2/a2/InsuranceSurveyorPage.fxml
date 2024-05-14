@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceSurveyorView">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
             <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="Insurance Surveyor" textAlignment="CENTER" />
@@ -27,16 +27,16 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" spacing="20.0">
-                <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View My Information">
+                <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View My Information">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="ViewPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Customer">
+                <Button fx:id="ViewInsuranceSurveyorCustomerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Customer">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Claims">
+                <Button fx:id="ViewInsuranceSurveyorClaimButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Claims">
                     <font>
                         <Font size="18.0" />
                     </font></Button>

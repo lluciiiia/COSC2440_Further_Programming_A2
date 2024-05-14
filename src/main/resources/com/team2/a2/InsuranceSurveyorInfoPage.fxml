@@ -10,7 +10,7 @@
 
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0"
-            xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+            xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" fx:controller="com.team2.a2.InsuranceSurveyorInfoView">
 
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
@@ -24,7 +24,7 @@
     <center>
         <BorderPane>
             <left>
-                <Button fx:id="btnBack" text="&lt;" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 20;" />
+                <Button fx:id="returnButton" text="&lt;" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 20;" />
             </left>
             <center>
                 <VBox alignment="CENTER" spacing="20.0">

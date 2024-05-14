@@ -18,7 +18,12 @@ import java.util.ResourceBundle;
 public class InsuranceSurveyorView implements Initializable {
     @FXML
     private Button logoutButton;
-
+    @FXML
+    private Button ViewInsuranceSurveyorButton;
+    @FXML
+    private Button ViewInsuranceSurveyorCustomerButton;
+    @FXML
+    private Button ViewInsuranceSurveyorClaimButton;
     @FXML
     private TextField accountID;
 
@@ -40,6 +45,40 @@ public class InsuranceSurveyorView implements Initializable {
                 e.printStackTrace();
             }
         });
+        ViewInsuranceSurveyorButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorInfoPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewInsuranceSurveyorButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
+        ViewInsuranceSurveyorCustomerButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorAllCustomerPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewInsuranceSurveyorCustomerButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewInsuranceSurveyorClaimButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorClaimPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewInsuranceSurveyorClaimButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
