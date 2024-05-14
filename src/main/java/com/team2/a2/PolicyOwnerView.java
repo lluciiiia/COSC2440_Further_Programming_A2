@@ -20,7 +20,16 @@ public class PolicyOwnerView implements Initializable {
     private Button logoutButton;
 
     @FXML
-    private Button CreateAccButton;
+    private Button ViewCustomerButton;
+
+    @FXML
+    private Button ViewLOCButton;
+
+    @FXML
+    private Button CreateClaimButton;
+
+    @FXML
+    private Button CreateCusAccountButton;
 
     @FXML
     private TextField accountID;
@@ -43,11 +52,47 @@ public class PolicyOwnerView implements Initializable {
             }
         });
 
-        CreateAccButton.setOnAction(event -> {
+        CreateCusAccountButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCreateAccount.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                Stage stage = (Stage) CreateCusAccountButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewCustomerButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerViewAllCustomerPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewCustomerButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewLOCButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerClaimPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewLOCButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        CreateClaimButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCreateClaim.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) CreateClaimButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

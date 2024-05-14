@@ -20,6 +20,16 @@ public class InsuranceManagerView implements Initializable {
     private Button logoutButton;
 
     @FXML
+    private Button ViewCustomerButton;
+
+    @FXML
+    private Button ViewSurveyorButton;
+
+    @FXML
+    private Button ViewLOCButton;
+
+
+    @FXML
     private TextField accountID;
 
     public void initData(Account account) {
@@ -39,5 +49,42 @@ public class InsuranceManagerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        ViewCustomerButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceManagerAllCustomerPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewCustomerButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewSurveyorButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceManagerViewSurveyorPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewSurveyorButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewLOCButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceManagerClaimPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewLOCButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 }

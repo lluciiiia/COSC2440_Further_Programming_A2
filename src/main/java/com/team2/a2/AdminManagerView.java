@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ManagerAdminView implements Initializable {
+public class AdminManagerView implements Initializable {
     @FXML
     private Button returnButton;
 

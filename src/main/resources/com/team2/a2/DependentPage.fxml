@@ -8,7 +8,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.DependentView">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="DEPENDENT" textAlignment="CENTER" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="Dependent " textAlignment="CENTER" />
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
@@ -27,11 +27,11 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" prefHeight="268.0" prefWidth="660.0" spacing="20.0">
-                <Button fx:id="viewClaim" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Claim">
+                <Button fx:id="viewClaim" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Claim">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="viewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View My Information">
+                <Button fx:id="viewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View My Information">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
