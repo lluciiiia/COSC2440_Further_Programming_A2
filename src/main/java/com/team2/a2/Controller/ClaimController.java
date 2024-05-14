@@ -17,6 +17,9 @@ public class ClaimController {
     }
 
     public Claim getClaimById(int id) { return claimFacade.getClaimById(id); }
+    public List<Claim> getAllClaims() {
+        return claimFacade.getAllClaims();
+    }
 
     public List<Claim> getClaimsByCustomerId(int customerId) { return claimFacade.getClaimsByCustomerId(customerId); }
 

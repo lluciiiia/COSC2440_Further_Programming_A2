@@ -19,29 +19,29 @@
         <VBox alignment="CENTER" prefHeight="397.0" prefWidth="683.0" spacing="1.0" style="-fx-background-color: #66B2FF;">
             <HBox>
                 <children>
-                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="583.2245941162109">
+                    <Text fx:id="myNameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="583.2245941162109">
                         <font>
                             <Font name="Monospaced Bold Italic" size="18.0" />
                         </font>
                     </Text>
-                    <TextField fx:id="accountID" disable="true" prefHeight="26.0" prefWidth="73.0" text="AccountID" />
+
                 </children>
             </HBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="301.0" prefWidth="567.0" spacing="20.0">
-                <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Customer">
+                <Button fx:id="ViewMyButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View My Information ">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="ViewLOCButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View List of Claims">
+                <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Customer">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="ViewSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Surveyor">
+                <Button fx:id="ViewLOCButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Claims">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Personal Claim">
+                <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Insurance Surveyors">
                     <font>
                         <Font size="18.0" />
                     </font></Button>

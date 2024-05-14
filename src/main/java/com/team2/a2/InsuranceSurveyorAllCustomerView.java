@@ -34,7 +34,6 @@ import java.util.ResourceBundle;
 public class InsuranceSurveyorAllCustomerView implements Initializable {
     @FXML
     private Button returnButton;
-
     @FXML
     private TableView<Customer> customerTable;
     @FXML

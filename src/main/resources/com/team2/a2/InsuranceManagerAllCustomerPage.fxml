@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceManagerCusView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceManagerAllCustomerView">
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="List of Customer Information" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>
@@ -28,15 +28,15 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutY="98.0" prefHeight="358.0" prefWidth="700.0">
+                <TableView fx:id="customerTable" layoutY="98.0" prefHeight="358.0" prefWidth="700.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Customer ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="105.0" text="Insurance Card" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
-                        <TableColumn prefWidth="65.0" text="Type" />
+                        <TableColumn fx:id="cusID" prefWidth="80.5999892950058" text="Customer ID" />
+                        <TableColumn fx:id="name" prefWidth="93.8000259399414" text="Name" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="128.0" text="Phone Number" />
+                        <TableColumn fx:id="homeAddress" prefWidth="125.0" text="Home Address" />
+                        <TableColumn fx:id="email" prefWidth="96.19992065429688" text="Email" />
+                        <TableColumn fx:id="type" prefWidth="72.60003662109375" text="Type" />
+                        <TableColumn fx:id="policyOwnerID" prefWidth="103.20001220703125" text="policy owner ID" />
                     </columns>
                 </TableView>
             </children>

@@ -19,45 +19,46 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class InsuranceManagerSurveyorView implements Initializable {
+public class InsuranceManagerAllCustomerView implements Initializable {
     @FXML
     private Button returnButton;
     @FXML
-    private TableView<InsuranceSurveyor> insuranceSurveyorTable;
+    private TableView<Customer> customerTable;
     @FXML
-    private TableColumn<InsuranceSurveyor, Integer> surveyorID;
+    private TableColumn<Customer, Integer> cusID;
     @FXML
-    private TableColumn<InsuranceSurveyor, String> name;
+    private TableColumn<Customer, String> name;
     @FXML
-    private TableColumn<InsuranceSurveyor, String> companyName;
+    private TableColumn<Customer, String> phoneNumber;
     @FXML
-    private TableColumn<InsuranceSurveyor, String> address;
+    private TableColumn<Customer, String> homeAddress;
     @FXML
-    private TableColumn<InsuranceSurveyor, String> email;
+    private TableColumn<Customer, String> email;
     @FXML
-    private TableColumn<InsuranceSurveyor, String> phoneNumber;
+    private TableColumn<Customer, CustomerType> type;
+    @FXML
+    private TableColumn<Customer, Integer> policyOwnerID;
 
     private AccountController accountController = new AccountController();
     private Account account;
 
-    public void initData(ObservableList<InsuranceSurveyor> surveyors, InsuranceManager insuranceManager) {
-        surveyorID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        address.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCompanyAddress()));
+    public void initData(ObservableList<Customer> customers, InsuranceManager insuranceManager) {
+        cusID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        homeAddress.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress()));
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
         phoneNumber.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
-        companyName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCompanyName()));
+        type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
+        policyOwnerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPolicyOwnerId()).asObject());
 
-        ObservableList<InsuranceSurveyor> surveyorData = FXCollections.observableArrayList(surveyors);
-        insuranceSurveyorTable.setItems(surveyorData);
+        ObservableList<Customer> customerData = FXCollections.observableArrayList(customers);
+        customerTable.setItems(customerData);
 
         int accountID = insuranceManager.getAccountId();
         account = accountController.getAccountByID(accountID);

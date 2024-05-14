@@ -1,5 +1,6 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.ProviderController;
 import com.team2.a2.Model.InsuranceObject.Claim;
@@ -41,11 +42,13 @@ public class InsuranceSurveyorView implements Initializable {
     private InsuranceSurveyor insuranceSurveyor;
 
     private CustomerController customerController = new CustomerController();
+    private ClaimController claimController = new ClaimController();
 
 
     public void initData(Account account) {
         insuranceSurveyor = providerController.getInsuranceSurveyor(account.getId());
         insuranceSurveyorName.setText("Welcome, " + insuranceSurveyor.getName());
+
     }
 
     @FXML
@@ -113,11 +116,33 @@ public class InsuranceSurveyorView implements Initializable {
 
         ViewInsuranceSurveyorClaimButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorLOCPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewInsuranceSurveyorClaimButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceSurveyorLOCPage.fxml"));
+                Parent root = loader.load();
+                InsuranceSurveyorLOCView insuranceSurveyorLOCView = loader.getController();
+                Task<List<Claim>> loadClaimTask = new Task<>() {
+                    @Override
+                    protected List<Claim> call() throws Exception {
+                        return claimController.getAllClaims();
+                    }
+                };
+
+                loadClaimTask.setOnSucceeded(workerStateEvent -> {
+                    insuranceSurveyorLOCView.initData(FXCollections.observableArrayList(loadClaimTask.getValue()), insuranceSurveyor);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ViewInsuranceSurveyorClaimButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadClaimTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadClaimTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

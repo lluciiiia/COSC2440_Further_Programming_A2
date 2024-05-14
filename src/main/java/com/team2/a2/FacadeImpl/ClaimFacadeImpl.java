@@ -34,4 +34,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
     public void updateClaimStatus(int id, ClaimStatus status) {
         claimRepository.updateClaimStatus(id, status);
     }
+
+    @Override
+    public List<Claim> getAllClaims() {
+        return claimRepository.getAllClaim();
+    }
 }

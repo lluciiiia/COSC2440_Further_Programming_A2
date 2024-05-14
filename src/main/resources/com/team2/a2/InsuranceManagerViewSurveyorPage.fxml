@@ -17,7 +17,7 @@
             <children>
                 <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Manager" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Manager's surveyors" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -28,14 +28,14 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
+                <TableView fx:id="insuranceSurveyorTable" layoutX="29.0" layoutY="85.0" prefHeight="371.0" prefWidth="642.0">
                     <columns>
-                        <TableColumn prefWidth="96.0" text="Surveyor ID" />
-                        <TableColumn prefWidth="127.0" text="Name" />
-                        <TableColumn prefWidth="112.0" text="Company Name" />
-                        <TableColumn prefWidth="123.0" text="Address" />
-                        <TableColumn prefWidth="104.0" text="Phone Number" />
-                        <TableColumn prefWidth="78.0" text="Email" />
+                        <TableColumn fx:id="surveyorID" prefWidth="96.0" text="Surveyor ID" />
+                        <TableColumn fx:id="name" prefWidth="127.0" text="Name" />
+                        <TableColumn fx:id="companyName" prefWidth="112.0" text="Company Name" />
+                        <TableColumn fx:id="address" prefWidth="123.0" text="Address" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="104.0" text="Phone Number" />
+                        <TableColumn fx:id="email" prefWidth="78.0" text="Email" />
                     </columns>
                 </TableView>
             </children>
