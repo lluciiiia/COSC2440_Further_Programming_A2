@@ -19,7 +19,7 @@
         <VBox alignment="CENTER" spacing="40.0" style="-fx-background-color: #66B2FF;">
             <HBox>
                 <children>
-                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " wrappingWidth="583.2245941162109">
+                    <Text fx:id="insuranceSurveyorName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " wrappingWidth="583.2245941162109">
                         <font>
                             <Font name="Monospaced Bold Italic" size="20.0" />
                         </font>

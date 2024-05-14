@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,11 +26,11 @@ public class InsuranceSurveyorView implements Initializable {
     @FXML
     private Button ViewInsuranceSurveyorClaimButton;
     @FXML
-    private TextField accountID;
+    private Text insuranceSurveyorName;
 
 
     public void initData(Account account) {
-        accountID.setText(String.valueOf(account.getId()));
+        insuranceSurveyorName.setText("Welcome, " + account.getId());
     }
 
     @FXML
@@ -71,7 +72,7 @@ public class InsuranceSurveyorView implements Initializable {
 
         ViewInsuranceSurveyorClaimButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorClaimPage.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorLOCPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ViewInsuranceSurveyorClaimButton.getScene().getWindow();
                 stage.setScene(scene);
