@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,15 +32,12 @@ public class AdminView implements Initializable {
 
     @FXML
     private Button ViewInsuranceManagerButton;
-
     @FXML
-    private TextField accountID;
+    private Text adminCustomerName;
 
-    public void initData(Account account) {
-        accountID.setText(String.valueOf(account.getId()));
+    public void initData(Account account){
+        adminCustomerName.setText("Welcome " + account.getId());
     }
-
-
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
