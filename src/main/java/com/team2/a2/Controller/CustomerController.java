@@ -23,9 +23,6 @@ public class CustomerController {
     public Customer getCustomerByAccountId(int id) {
         return customerFacade.getCustomerByAccountId(id);
     }
-    public Dependent getDependentByCustomerId(int id) {
-        return customerFacade.getDependentByCustomerId(id);
-    }
 
     public List<Customer> getAllCustomers() {
         return customerFacade.getAllCustomers();
