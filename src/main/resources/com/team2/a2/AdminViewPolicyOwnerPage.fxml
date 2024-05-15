@@ -32,7 +32,7 @@
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Customer">
+                <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owner">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
