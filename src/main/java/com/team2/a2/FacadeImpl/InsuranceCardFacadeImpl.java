@@ -25,6 +25,9 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
         InsuranceCard card = insuranceCardRepository.getInsuranceCard(request.getCardNumber(), request.getExpiryDate());
         if (card != null) return;
 
+        InsuranceCard customerCard = insuranceCardRepository.getInsuranceCardByCustomerId(request.getCustomerId());
+        if (customerCard != null) return;
+
         insuranceCardRepository.createInsuranceCard(request);
      }
 
