@@ -69,4 +69,17 @@ public class ClaimControllerTest {
         assertNotEquals(actualClaims.get(0).getStatus(), notExpectedClaim.getStatus());
     }
 
+    @Test
+    void testUpdateClaimStatus() {
+        int claimId = 7;
+        ClaimStatus newClaimStatus = ClaimStatus.PROCESSING;
+
+        Claim previousClaim = claimController.getClaimById(claimId);
+        claimController.updateClaimStatus(claimId, newClaimStatus);
+
+        Claim updatedClaim = claimController.getClaimById(claimId);
+
+        assertNotEquals(previousClaim.getStatus(), updatedClaim.getStatus());
+    }
+
 }
