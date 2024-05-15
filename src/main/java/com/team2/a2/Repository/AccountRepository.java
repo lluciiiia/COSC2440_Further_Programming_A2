@@ -148,7 +148,8 @@ public class AccountRepository {
         return accounts;
     }
 
-    public void updateAccount(UpdateAccountRequest request) {
+    public Account updateAccount(UpdateAccountRequest request) {
+        Account account = null;
         PreparedStatement statement = null;
 
         try {
@@ -170,7 +171,7 @@ public class AccountRepository {
                 e.printStackTrace();
             }
         }
-
+        return account;
     }
 
     public Account getAccountByUsername(String username) {
