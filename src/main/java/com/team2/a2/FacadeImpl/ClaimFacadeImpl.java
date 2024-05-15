@@ -37,6 +37,6 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     @Override
     public List<Claim> getAllClaims() {
-        return claimRepository.getAllClaim();
+        return claimRepository.getAllClaims();
     }
 }

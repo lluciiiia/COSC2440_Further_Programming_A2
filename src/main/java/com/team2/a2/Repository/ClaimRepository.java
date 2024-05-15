@@ -116,7 +116,7 @@ public class ClaimRepository {
         }
     }
 
-    public List<Claim> getAllClaim() {
+    public List<Claim> getAllClaims() {
         List<Claim> claims = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
