@@ -38,10 +38,11 @@ public class ClaimRepository {
                     Date examDate = resultSet.getDate("exam_date");
                     Double amount = resultSet.getDouble("amount");
                     String statusString = resultSet.getString("status");
+                    boolean documentRequested = resultSet.getBoolean("document_requested");
 
                     ClaimStatus status = ClaimStatus.valueOf(statusString);
 
-                    claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                    claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
                     return claim;
                 }
 
@@ -78,10 +79,11 @@ public class ClaimRepository {
                 Date examDate = resultSet.getDate("exam_date");
                 Double amount = resultSet.getDouble("amount");
                 String statusString = resultSet.getString("status");
+                boolean documentRequested = resultSet.getBoolean("document_requested");
 
                 ClaimStatus status = ClaimStatus.valueOf(statusString);
 
-                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
 
                 claims.add(claim);
             }
@@ -127,6 +129,14 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error updating claim status: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
         }
     }
 
@@ -150,7 +160,9 @@ public class ClaimRepository {
                 Double amount = resultSet.getDouble("amount");
                 String statusString = resultSet.getString("status");
                 ClaimStatus status = ClaimStatus.valueOf(statusString.toUpperCase());
-                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                boolean documentRequested = resultSet.getBoolean("document_requested");
+
+                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
                 claims.add(claim);
             }
         } catch (SQLException e) {
@@ -173,5 +185,28 @@ public class ClaimRepository {
         }
 
         return claims;
+    }
+
+    public void updateClaimDocumentRequested(int id, boolean isRequested) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE claims SET document_requested = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setBoolean(1, isRequested);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating claim documentRequested: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
     }
 }
