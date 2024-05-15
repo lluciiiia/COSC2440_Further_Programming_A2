@@ -5,6 +5,7 @@ import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.LoginRequest;
+import com.team2.a2.Request.UpdateAccountRequest;
 import org.junit.jupiter.api.*;
 
 import java.sql.Date;
@@ -68,6 +69,20 @@ public class AccountControllerTest {
         assertNotEquals(1, accounts.size(), "The size of the returned list should NOT be 1");
         assertEquals("im_dependent", accounts.get(0).getUsername(), "The username of the first account should be im_dependent");
         assertEquals(AccountType.DEPENDENT, accounts.get(0).getType(), "The type of the first account should be DEPENDENT");
+    }
 
+    @Test
+    public void testUpdateAccount() {
+        int id = 40;
+
+        Account currentAccount = accountController.getAccountByID(id);
+
+        UpdateAccountRequest request = new UpdateAccountRequest(id, "i'm updated", "12345678");
+        accountController.updateAccount(request);
+
+        Account updatedAccount = accountController.getAccountByID(id);
+
+        assertNotEquals(currentAccount.getUsername(), updatedAccount.getUsername(), "The username between currentAccount and updatedAccount should NOT be the same.");
+        assertNotEquals(currentAccount.getPassword(), updatedAccount.getPassword(), "The password between currentAccount and updatedAccount should NOT be the same.");
     }
 }

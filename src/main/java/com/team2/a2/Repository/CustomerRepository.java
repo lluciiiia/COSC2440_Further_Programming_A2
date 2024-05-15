@@ -187,6 +187,13 @@ public class CustomerRepository {
             }
         } catch (SQLException e) {
             System.err.println("Error creating customer: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;
@@ -215,6 +222,12 @@ public class CustomerRepository {
             }
         } catch (SQLException e) {
             System.err.println("Error updating customer: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;

@@ -3,11 +3,9 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
+import com.team2.a2.Request.InsertPolicyOwnerRequest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -89,5 +87,29 @@ public class PolicyOwnerRepository {
         }
 
         return policyOwners;
+    }
+
+    public void createPolicyOwner(InsertPolicyOwnerRequest request, int accountId) {
+        PreparedStatement statement = null;
+
+        try {
+
+            String sql = "INSERT INTO policy_owners (account_id, name) VALUES (?, ?)";
+            statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, accountId);
+            statement.setString(2, request.getName());
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error creating policy owner: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Facade.InsuranceCardFacade;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.InsertInsuranceCardRequest;
 import java.sql.Date;
@@ -32,6 +33,27 @@ public class InsuranceCardControllerTest {
                                                                 "1234567890123456",
                                                                             Date.valueOf("2024-12-31"), "VPBank", "1234567890");
         insuranceCardController.createInsuranceCard(request);
+    }
+
+    @Test
+    public void testGetInsuranceCardByCustomerId() {
+        int customerId = 1;
+        InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerId(customerId);
+
+        InsuranceCard expectedInsuranceCard = new InsuranceCard(4,
+                Date.valueOf("2024-05-15"),
+                Date.valueOf("2024-05-15"),
+                customerId,
+                "1234567890123456",
+                Date.valueOf("2024-12-31"),
+                "VPBank",
+                "12390");
+
+        assertEquals(insuranceCard.getId(), expectedInsuranceCard.getId());
+        assertEquals(insuranceCard.getCustomerId(), expectedInsuranceCard.getCustomerId());
+        assertEquals(insuranceCard.getCardNumber(), expectedInsuranceCard.getCardNumber());
+        assertNotEquals(insuranceCard.getAccountNumber(), expectedInsuranceCard.getAccountNumber());
+
     }
 }
 
