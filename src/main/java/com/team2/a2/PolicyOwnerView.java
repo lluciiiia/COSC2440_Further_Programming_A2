@@ -35,9 +35,8 @@ public class PolicyOwnerView implements Initializable {
     @FXML
     private Text nameText;
 
-    private CustomerController customerController = new CustomerController();
-
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
+
     private PolicyOwner policyOwner;
 
     public void initData(Account account) {
