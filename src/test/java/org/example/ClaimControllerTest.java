@@ -11,8 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.sql.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ClaimControllerTest {
@@ -50,6 +49,14 @@ public class ClaimControllerTest {
     }
 
     @Test
+    public void testGetAllClaims() {
+        List<Claim> claims = claimController.getAllClaims();
+
+        assertNotNull(claims, "Claims should NOT be null.");
+        assertEquals(4, claims.size(), "The size of the returned list should be 4.");
+    }
+
+    @Test
     public void testGetClaimsByCustomerId() {
         int customerID = 8;
         Claim expectedClaim = new Claim(6, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
@@ -72,6 +79,17 @@ public class ClaimControllerTest {
     }
 
     @Test
+    public void testDeleteClaimById() {
+        int id = 6;
+
+        claimController.deleteClaimById(id);
+
+        Claim claim = claimController.getClaimById(id);
+
+        assertNull(claim, "Claim should be null.");
+    }
+
+    @Test
     void testUpdateClaimStatus() {
         int claimId = 7;
         ClaimStatus newClaimStatus = ClaimStatus.PROCESSING;
@@ -82,6 +100,13 @@ public class ClaimControllerTest {
         Claim updatedClaim = claimController.getClaimById(claimId);
 
         assertNotEquals(previousClaim.getStatus(), updatedClaim.getStatus());
+    }
+
+    @Test
+    public void testCreateClaim() {
+//        InsertClaimRequest request = new InsertClaimRequest(8, "1234567", Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00, ClaimStatus.NEW);
+//
+//        claimController.createClaim(request);
     }
 
     @Test
