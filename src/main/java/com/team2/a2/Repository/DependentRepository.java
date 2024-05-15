@@ -40,6 +40,13 @@ public class DependentRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching dependent: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return dependent;
     }
@@ -68,6 +75,13 @@ public class DependentRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching dependent: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return dependents;

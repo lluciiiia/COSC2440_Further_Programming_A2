@@ -39,6 +39,13 @@ public class AdminRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching admin: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return admin;
     }
