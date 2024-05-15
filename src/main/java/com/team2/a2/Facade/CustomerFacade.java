@@ -15,8 +15,6 @@ public interface CustomerFacade {
 
     public Customer getCustomerByAccountId(int accountID);
 
-    public PolicyOwner getPolicyOwnerByAccountId(int accountID);
-
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
 
     Customer createCustomer(InsertCustomerRequest request);

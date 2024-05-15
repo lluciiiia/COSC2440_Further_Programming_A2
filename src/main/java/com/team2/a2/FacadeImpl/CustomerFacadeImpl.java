@@ -109,8 +109,5 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return dependentRepository.getDependentByCustomerId(customerID);
     }
 
-    @Override
-    public PolicyOwner getPolicyOwnerByAccountId(int accountID) {
-        return policyOwnerRepository.getPolicyOwnerByAccountId(accountID);
-    }
+
 }
