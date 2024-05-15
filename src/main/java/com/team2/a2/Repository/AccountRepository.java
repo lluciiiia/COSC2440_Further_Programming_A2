@@ -6,7 +6,9 @@ import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.CustomerType;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AccountRepository {
     private Connection connection;
@@ -112,6 +114,38 @@ public class AccountRepository {
          }
 
         return account;
+    }
+
+    public List<Account> getAllAccounts() {
+        List<Account> accounts = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            String sql = "SELECT * FROM accounts";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                AccountType type = AccountType.valueOf(resultSet.getString("type"));
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                Account account = new Account(id, createdAt, updatedAt, username, password, type);
+                accounts.add(account);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching account: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return accounts;
     }
 }
 

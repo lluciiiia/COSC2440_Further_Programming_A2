@@ -60,7 +60,7 @@ public class InsuranceSurveyorRepository {
         return insuranceSurveyor;
     }
 
-    public List<InsuranceSurveyor> getInsuranceSurveyorByManagerID(int insuranceManagerId) {
+    public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerID(int insuranceManagerId) {
         List<InsuranceSurveyor> insuranceSurveyors = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

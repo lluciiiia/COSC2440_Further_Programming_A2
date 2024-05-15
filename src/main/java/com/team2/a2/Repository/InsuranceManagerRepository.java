@@ -67,7 +67,7 @@ public class InsuranceManagerRepository {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 int accountId = resultSet.getInt("account_id");
                 Date createdAt = resultSet.getDate("created_at");

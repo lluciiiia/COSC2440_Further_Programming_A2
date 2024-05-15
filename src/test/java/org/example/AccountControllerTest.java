@@ -8,6 +8,7 @@ import com.team2.a2.Request.LoginRequest;
 import org.junit.jupiter.api.*;
 
 import java.sql.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,5 +57,17 @@ public class AccountControllerTest {
         assertNotEquals(notExpectedAccount.getId(), actualAccount.getId());
         assertNotEquals(notExpectedAccount.getUsername(), actualAccount.getUsername());
         assertNotEquals(notExpectedAccount.getType(), actualAccount.getType());
+    }
+
+    @Test
+    public void testGetAllAccounts() {
+        List<Account> accounts = accountController.getAllAccounts();
+
+        assertNotNull(accounts, "The returned list should not be null");
+
+        assertNotEquals(1, accounts.size(), "The size of the returned list should NOT be 1");
+        assertEquals("im_dependent", accounts.get(0).getUsername(), "The username of the first account should be im_dependent");
+        assertEquals(AccountType.DEPENDENT, accounts.get(0).getType(), "The type of the first account should be DEPENDENT");
+
     }
 }

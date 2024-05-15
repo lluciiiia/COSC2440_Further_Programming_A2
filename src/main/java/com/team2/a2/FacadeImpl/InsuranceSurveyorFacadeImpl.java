@@ -22,7 +22,7 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
     @Override
     public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId) {
-        return insuranceSurveyorRepository.getInsuranceSurveyorByManagerID(managerId);
+        return insuranceSurveyorRepository.getInsuranceSurveyorsByManagerID(managerId);
     }
 
     @Override

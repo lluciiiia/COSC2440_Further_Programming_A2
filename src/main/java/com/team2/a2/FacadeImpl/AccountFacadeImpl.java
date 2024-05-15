@@ -13,6 +13,8 @@ import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 
+import java.util.List;
+
 public class AccountFacadeImpl implements AccountFacade {
 
     AccountRepository accountRepository;
@@ -40,6 +42,11 @@ public class AccountFacadeImpl implements AccountFacade {
     @Override
     public Account getAccountByID(int accountID) {
         return accountRepository.getAccountById(accountID);
+    }
+
+    @Override
+    public List<Account> getAllAccounts() {
+        return accountRepository.getAllAccounts();
     }
 
     public boolean createSubAccountObject(Account account) {

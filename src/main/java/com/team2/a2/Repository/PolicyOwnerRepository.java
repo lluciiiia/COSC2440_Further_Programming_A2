@@ -65,7 +65,7 @@ public class PolicyOwnerRepository {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 Date createdAt = resultSet.getDate("created_at");
                 Date updatedAt = resultSet.getDate("updated_at");
