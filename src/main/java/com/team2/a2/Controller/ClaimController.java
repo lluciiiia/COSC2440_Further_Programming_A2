@@ -30,4 +30,6 @@ public class ClaimController {
 
     public void createClaim(InsertClaimRequest request) { claimFacade.createClaim(request); }
 
+    public void updateClaimDocumentRequested(int id, boolean isRequested) { claimFacade.updateClaimDocumentRequested(id, isRequested); }
+
 }

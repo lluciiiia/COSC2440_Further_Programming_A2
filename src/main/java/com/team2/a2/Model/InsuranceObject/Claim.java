@@ -14,13 +14,16 @@ public class Claim extends BaseEntity {
     private Double amount;
     private ClaimStatus status;
 
-    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, Double amount, ClaimStatus status) {
+    private boolean documentRequested;
+
+    public Claim(int id, Date createdAt, Date updatedAt, int customerId, Date claimDate, Date examDate, Double amount, ClaimStatus status, boolean documentRequested) {
         super(id, createdAt, updatedAt);
         this.customerId = customerId;
         this.claimDate = claimDate;
         this.examDate = examDate;
         this.amount = amount;
         this.status = status;
+        this.documentRequested = documentRequested;
     }
 
     //getter function
@@ -45,6 +48,8 @@ public class Claim extends BaseEntity {
     public int getCustomerId() {
         return customerId;
     }
+
+    public boolean getDocumentRequested() { return documentRequested; }
 
     //setter
     public void setStatus(ClaimStatus status) {
