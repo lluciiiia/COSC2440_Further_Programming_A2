@@ -21,13 +21,15 @@ public class InsuranceCardRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "INSERT INTO insurance_cards (customer_id, card_number, expiry_date) " +
-                    "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO insurance_cards (customer_id, card_number, expiry_date, bank_name, account_number) " +
+                    "VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             statement.setInt(1, request.getCustomerId());
             statement.setString(2, request.getCardNumber());
             statement.setDate(3, request.getExpiryDate());
+            statement.setString(4, request.getBankName());
+            statement.setString(5, request.getAccountNumber());
 
             statement.executeUpdate();
 
@@ -54,8 +56,10 @@ public class InsuranceCardRepository {
                 java.util.Date createdAt = resultSet.getDate("created_at");
                 java.util.Date updatedAt = resultSet.getDate("updated_at");
                 int customerId = resultSet.getInt("customer_id");
+                String bankName = resultSet.getString("bank_name");
+                String accountNumber = resultSet.getString("account_number");
 
-                insuranceCard = new InsuranceCard(id, createdAt, updatedAt, customerId, cardNumber, expiryDate);
+                insuranceCard = new InsuranceCard(id, createdAt, updatedAt, customerId, cardNumber, expiryDate, bankName, accountNumber);
                 return insuranceCard;
             }
 
