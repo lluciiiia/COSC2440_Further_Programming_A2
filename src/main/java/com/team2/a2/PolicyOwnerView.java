@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.PolicyOwnerController;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import javafx.fxml.FXML;
@@ -35,10 +36,12 @@ public class PolicyOwnerView implements Initializable {
     private Text nameText;
 
     private CustomerController customerController = new CustomerController();
+
+    private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
     private PolicyOwner policyOwner;
 
     public void initData(Account account) {
-        policyOwner = customerController.getPolicyOwnerByAccountId(account.getId());
+        policyOwner = policyOwnerController.getPolicyOwnerByAccountId(account.getId());
         nameText.setText("Welcome, " + policyOwner.getName());
     }
 
