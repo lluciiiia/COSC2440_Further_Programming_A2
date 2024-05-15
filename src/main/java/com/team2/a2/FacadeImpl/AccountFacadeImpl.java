@@ -12,6 +12,7 @@ import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
+import com.team2.a2.Request.UpdateAccountRequest;
 
 import java.util.List;
 
@@ -47,6 +48,11 @@ public class AccountFacadeImpl implements AccountFacade {
     @Override
     public List<Account> getAllAccounts() {
         return accountRepository.getAllAccounts();
+    }
+
+    @Override
+    public void updateAccount(UpdateAccountRequest request) {
+        accountRepository.updateAccount(request);
     }
 
     public boolean createSubAccountObject(Account account) {
