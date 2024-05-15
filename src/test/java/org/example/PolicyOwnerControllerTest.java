@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.sql.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +22,20 @@ public class PolicyOwnerControllerTest {
     public void setUp() {
         ConnectionManager.initConnection();
         policyOwnerController = new PolicyOwnerController();
+    }
+
+    @Test
+    public void testGetPolicyOwnerByAccountId() {
+        int accountId = 4;
+
+        PolicyOwner expectedPolicyOwner = new PolicyOwner(1, Date.valueOf("2024-05-05"),
+                Date.valueOf("2024-05-05"), accountId, "impppooo");
+
+        PolicyOwner actualPolicyOwner = policyOwnerController.getPolicyOwnerByAccountId(accountId);
+
+        assertNotNull(actualPolicyOwner, "Policy owner should exist.");
+        assertEquals(expectedPolicyOwner.getId(), actualPolicyOwner.getId(), "The id should be the same.");
+        assertEquals(expectedPolicyOwner.getName(), actualPolicyOwner.getName(), "The name should be the same.");
     }
 
     @Test
