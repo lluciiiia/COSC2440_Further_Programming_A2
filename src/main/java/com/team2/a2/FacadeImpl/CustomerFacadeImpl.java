@@ -67,23 +67,36 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public Customer createCustomer(InsertCustomerRequest request) {
+        Customer customer = null;
+
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
         if (policyOwner == null) return null;
 
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) return null;
 
-        AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
+        if (request.getType() == CustomerType.POLICY_HOLDER) {
 
-        Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
-        if (account == null) return null;
+            AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
-        Customer customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
-        if (customer == null) return null;
+            Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
+            if (account == null) return null;
+
+            customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
+            if (customer == null) return null;
+        }
 
         if (request.getType() == CustomerType.DEPENDENT) {
             Customer policyHolder = customerRepository.getCustomerById(request.getPolicyHolderId());
             if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+
+            AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
+
+            Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
+            if (account == null) return null;
+
+            customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
+            if (customer == null) return null;
 
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
