@@ -129,6 +129,14 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error updating claim status: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
         }
     }
 
@@ -177,5 +185,28 @@ public class ClaimRepository {
         }
 
         return claims;
+    }
+
+    public void updateClaimDocumentRequested(int id, boolean isRequested) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE claims SET document_requested = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setBoolean(1, isRequested);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating claim documentRequested: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
     }
 }

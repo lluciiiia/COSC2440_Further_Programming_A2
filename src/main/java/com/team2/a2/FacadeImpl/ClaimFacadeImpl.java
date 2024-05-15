@@ -56,4 +56,19 @@ public class ClaimFacadeImpl implements ClaimFacade {
     public void createClaim(InsertClaimRequest request) {
 
     }
+
+    @Override
+    public void updateClaimDocumentRequested(int id, boolean isRequested) {
+
+        Claim claim = claimRepository.getClaimById(id);
+        if (claim == null) return;
+
+        if (isRequested) {
+            if (claim.getDocumentRequested() == true) return;
+        } else {
+            if (claim.getDocumentRequested() == false) return;
+        }
+
+        claimRepository.updateClaimDocumentRequested(id, isRequested);
+    }
 }

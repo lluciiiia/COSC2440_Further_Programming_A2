@@ -17,4 +17,6 @@ public interface ClaimFacade {
     List<Claim> getAllClaims();
 
     void createClaim(InsertClaimRequest request);
+
+    void updateClaimDocumentRequested(int id, boolean isRequested);
 }
