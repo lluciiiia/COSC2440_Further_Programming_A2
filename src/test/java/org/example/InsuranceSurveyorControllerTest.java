@@ -43,6 +43,16 @@ public class InsuranceSurveyorControllerTest {
     }
 
     @Test
+    public void testGetInsuranceSurveyorsByManagerId() {
+        int managerId = 2;
+
+        List<InsuranceSurveyor> insuranceSurveyors = insuranceSurveyorController.getInsuranceSurveyorsByManagerId(managerId);
+
+        assertNotNull(insuranceSurveyors, "Insurance surveyors should NOT be null.");
+        assertEquals(1, insuranceSurveyors.size(), "Insurance surveyors size should be 1.");
+    }
+
+    @Test
     public void testGetAllInsuranceSurveyors() {
         List<InsuranceSurveyor> insuranceSurveyors = insuranceSurveyorController.getAllInsuranceSurveyors();
 
