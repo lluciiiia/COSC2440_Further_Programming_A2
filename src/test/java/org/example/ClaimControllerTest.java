@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.sql.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -47,6 +49,14 @@ public class ClaimControllerTest {
         assertNotEquals(notExpectedClaim.getAmount(), actualClaim.getAmount());
         assertNotEquals(notExpectedClaim.getStatus(), actualClaim.getStatus());
         assertNotEquals(notExpectedClaim.getDocumentRequested(), actualClaim.getDocumentRequested());
+    }
+
+    @Test
+    public void testGetAllClaims() {
+        List<Claim> claims = claimController.getAllClaims();
+
+        assertNotNull(claims, "Claims should NOT be null.");
+        assertEquals(4, claims.size(), "The size of the returned list should be 4.");
     }
 
     @Test
