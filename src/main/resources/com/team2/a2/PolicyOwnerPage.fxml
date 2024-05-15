@@ -27,7 +27,7 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="301.0" prefWidth="567.0" spacing="20.0">
-                <Button fx:id="ViewBeneficiaries" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Beneficiaries">
+                <Button fx:id="ViewBeneficiaries" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Customers">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
@@ -35,7 +35,7 @@
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="CreateCusAccountButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="Create Beneficiaries Account">
+                <Button fx:id="CreateCusAccountButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="Create Customers Account">
                     <font>
                         <Font size="18.0" />
                     </font></Button>

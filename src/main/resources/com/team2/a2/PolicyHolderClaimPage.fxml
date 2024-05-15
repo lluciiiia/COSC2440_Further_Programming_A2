@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderClaimView">
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="List of Claims" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
@@ -31,12 +30,13 @@
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView fx:id="claimTable" layoutX="10.0" layoutY="85.0" prefHeight="371.0" prefWidth="681.0">
                     <columns>
-                        <TableColumn fx:id="claimID" prefWidth="96.0" text="Claim ID" />
-                        <TableColumn fx:id="claimDate" prefWidth="127.0" text="Claim Date" />
-                        <TableColumn fx:id="examDate" prefWidth="112.0" text="Exam Date" />
-                        <TableColumn fx:id="claimAmount" prefWidth="123.0" text="Amount" />
-                        <TableColumn fx:id="status" prefWidth="104.0" text="Status" />
-                        <TableColumn fx:id="customerID" prefWidth="118.39998779296877" text="Cus ID" />
+                        <TableColumn fx:id="claimID" prefWidth="64.0" text="Claim ID" />
+                        <TableColumn fx:id="claimDate" prefWidth="105.0" text="Claim Date" />
+                        <TableColumn fx:id="examDate" prefWidth="100.199951171875" text="Exam Date" />
+                        <TableColumn fx:id="claimAmount" prefWidth="100.39996337890625" text="Amount" />
+                        <TableColumn fx:id="status" prefWidth="82.4000244140625" text="Status" />
+                        <TableColumn fx:id="isDocumentRequested" prefWidth="175.20001220703125" text="document requested" />
+                        <TableColumn fx:id="customerID" prefWidth="52.7999267578125" text="Cus ID" />
                     </columns>
                 </TableView>
             </children>

@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.DependentClaimView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyOwnerCustomerClaimView">
     <top>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="List of Claims" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="List of Customers Claims" textAlignment="CENTER" wrappingWidth="390.6162109375" BorderPane.alignment="CENTER">
             <font>
                 <Font size="31.0" />
             </font>
@@ -17,7 +17,7 @@
             <children>
                 <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
-                        <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer's claims" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -30,13 +30,13 @@
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView fx:id="claimTable" layoutX="10.0" layoutY="85.0" prefHeight="371.0" prefWidth="681.0">
                     <columns>
-                        <TableColumn fx:id="claimID" prefWidth="64.0" text="Claim ID" />
-                        <TableColumn fx:id="claimDate" prefWidth="96.20001220703125" text="Claim Date" />
-                        <TableColumn fx:id="examDate" prefWidth="91.79998779296875" text="Exam Date" />
-                        <TableColumn fx:id="claimAmount" prefWidth="99.800048828125" text="Amount" />
-                        <TableColumn fx:id="status" prefWidth="107.60003662109375" text="Status" />
-                        <TableColumn fx:id="isDocumentRequested" prefWidth="157.5999755859375" text="Document requested" />
-                        <TableColumn fx:id="customerID" prefWidth="68.0" text="Cus ID" />
+                        <TableColumn fx:id="claimID" prefWidth="58.99999713897705" text="Claim ID" />
+                        <TableColumn fx:id="claimDate" prefWidth="100.79998779296875" text="Claim Date" />
+                        <TableColumn fx:id="examDate" prefWidth="102.80006408691406" text="Exam Date" />
+                        <TableColumn fx:id="claimAmount" prefWidth="92.60003662109375" text="Amount" />
+                        <TableColumn fx:id="status" prefWidth="92.60003662109375" text="Status" />
+                        <TableColumn fx:id="isDocumentRequested" prefWidth="170.7999267578125" text="document requested" />
+                        <TableColumn fx:id="customerID" prefWidth="66.0" text="Cus ID" />
                     </columns>
                 </TableView>
             </children>

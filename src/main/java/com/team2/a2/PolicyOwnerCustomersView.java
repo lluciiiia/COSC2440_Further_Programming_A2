@@ -2,13 +2,13 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
-import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Controller.DependentController;
+import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Model.User.Customer.PolicyOwner;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,28 +18,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PolicyHolderDependentView implements Initializable {
+public class PolicyOwnerCustomersView implements Initializable {
     @FXML
     private Button returnButton;
-    @FXML
-    private Button dependentClaimView;
 
     @FXML
-    private Text customerNameText;
-    @FXML
-    private TableView<Customer> dependentTable;
+    private TableView<Customer> customerTable;
 
     @FXML
     private TableColumn<Customer, Integer> customerID;
@@ -52,40 +46,46 @@ public class PolicyHolderDependentView implements Initializable {
     @FXML
     private TableColumn<Customer, String> phoneNumber;
     @FXML
-    private TableColumn<Customer, Integer> policyOwnerID;
+    private TableColumn<Customer, CustomerType> type;
+    @FXML
+    private Button viewCustomerClaimButton;
+
+    @FXML
+    private Text nameText;
 
     private AccountController accountController = new AccountController();
-    private ClaimController claimController = new ClaimController();
-    private CustomerController customerController = new CustomerController();
-    private DependentController dependentController = new DependentController();
-
     private Account account;
-    private Customer customer1;
 
-    public void initData(ObservableList<Customer> dependents, Customer customer){
+    private ClaimController claimController = new ClaimController();
+    private PolicyOwner policyOwner1;
+
+
+    public void initData(List<Customer> customers, PolicyOwner policyOwner) {
         customerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         address.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress()));
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
         phoneNumber.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
-        policyOwnerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPolicyOwnerId()).asObject());
+        type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
 
-        ObservableList<Customer> dependentList = FXCollections.observableArrayList(dependents);
-        dependentTable.setItems(dependentList);
-        customerNameText.setText(customer.getName() + "'s dependent list");
-        int accountID = customer.getAccountId();
+        ObservableList<Customer> customerList = FXCollections.observableArrayList(customers);
+        customerTable.setItems(customerList);
+
+        nameText.setText(policyOwner.getName() + "'s beneficiaries");
+
+        int accountID = policyOwner.getAccountId();
         account = accountController.getAccountByID(accountID);
-        customer1 = customer;
+        policyOwner1 = policyOwner;
     }
 
-    @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerPage.fxml"));
                 Parent root = loader.load();
-                PolicyHolderView policyHolderView = loader.getController();
-                policyHolderView.initData(account);
+                PolicyOwnerView policyOwnerView = loader.getController();
+                policyOwnerView.initData(account);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -95,27 +95,26 @@ public class PolicyHolderDependentView implements Initializable {
             }
         });
 
-        dependentClaimView.setOnAction(event -> {
+        viewCustomerClaimButton.setOnAction(event -> {
             try {
-                Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
-                Dependent dependent = dependentController.getDependentByCustomerId(selectedDependent.getId());
-                int dependentID = selectedDependent.getId();
+                Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+                int customerID = selectedCustomer.getId();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentClaimPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCustomerClaimPage.fxml"));
                 Parent root = loader.load();
-                PolicyHolderDependentClaimView policyHolderDependentClaimView = loader.getController();
+                PolicyOwnerCustomerClaimView policyOwnerCustomerClaimView = loader.getController();
                 Task<List<Claim>> loadClaimsTask = new Task<>() {
                     @Override
                     protected List<Claim> call() throws Exception {
-                        return claimController.getClaimsByCustomerId(dependentID);
+                        return claimController.getClaimsByCustomerId(customerID);
                     }
                 };
 
 
                 loadClaimsTask.setOnSucceeded(workerStateEvent -> {
-                    policyHolderDependentClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), customer1, dependent);
+                    policyOwnerCustomerClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), policyOwner1);
                     Scene scene = new Scene(root);
-                    Stage stage = (Stage) dependentClaimView.getScene().getWindow();
+                    Stage stage = (Stage) viewCustomerClaimButton.getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
                 });
@@ -133,6 +132,5 @@ public class PolicyHolderDependentView implements Initializable {
                 e.printStackTrace();
             }
         });
-
     }
 }

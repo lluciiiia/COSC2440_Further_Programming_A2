@@ -1,10 +1,12 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,9 +47,20 @@ public class InsuranceSurveyorLOCView implements Initializable {
     private TableColumn<Claim, ClaimStatus> status;
     @FXML
     private TableColumn<Claim, Integer> cusID;
+    @FXML
+    private TableColumn<Claim, Boolean> isDocumentRequested;
+
+    @FXML
+    private Button requireMoreDocuments;
+    @FXML
+    private Button sendToManager;
 
     private AccountController accountController = new AccountController();
     private Account account;
+
+    private ClaimController claimController = new ClaimController();
+    private Claim selectedClaim;
+    private ObservableList<Claim> claimsData;
 
     public void initData(ObservableList<Claim> claims, InsuranceSurveyor insuranceSurveyor) {
         claimID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -76,12 +90,28 @@ public class InsuranceSurveyorLOCView implements Initializable {
         amount.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getAmount()).asObject());
         cusID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCustomerId()).asObject());
         status.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getStatus()));
+        isDocumentRequested.setCellValueFactory(cellData -> {
+            try {
+                Method method = Claim.class.getMethod("getDocumentRequested");
+                Boolean documentRequested = (Boolean) method.invoke(cellData.getValue());
+                return new SimpleObjectProperty<>(documentRequested);
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
 
-        ObservableList<Claim> claimsData = FXCollections.observableArrayList(claims);
+        claimsData = FXCollections.observableArrayList(claims);
         claimTable.setItems(claimsData);
 
         int accountID = insuranceSurveyor.getAccountId();
         account = accountController.getAccountByID(accountID);
+
+        claimTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                selectedClaim = newSelection;
+            }
+        });
     }
 
     @FXML
@@ -100,5 +130,46 @@ public class InsuranceSurveyorLOCView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        sendToManager.setOnAction(event -> {
+            if (selectedClaim != null) {
+                if (selectedClaim.getStatus() == ClaimStatus.NEW) {
+                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING);
+                    refreshTable();
+                } else {
+                    showAlert("Invalid Status", "Only claims with status 'NEW' can be sent to the manager.");
+                }
+            } else {
+                showAlert("No selection", "Please select a claim to send to the manager.");
+            }
+        });
+
+        requireMoreDocuments.setOnAction(event -> {
+            if (selectedClaim != null) {
+                if (!selectedClaim.getDocumentRequested()) {
+                    claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
+                    refreshTable();
+                } else {
+                    showAlert("Document Requested", "Documents have already been requested for this claim.");
+                }
+            } else {
+                showAlert("No selection", "Please select a claim to request more documents.");
+            }
+        });
+    }
+
+    private void refreshTable() {
+        claimTable.getSelectionModel().clearSelection();
+        claimsData.clear();
+        claimsData.addAll(claimController.getAllClaims());
+        claimTable.refresh();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

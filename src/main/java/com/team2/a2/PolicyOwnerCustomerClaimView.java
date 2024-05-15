@@ -1,9 +1,12 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Model.User.Customer.PolicyOwner;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -28,12 +31,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class PolicyHolderClaimView implements Initializable {
+public class PolicyOwnerCustomerClaimView implements Initializable {
     @FXML
     private Button returnButton;
-
-    @FXML
-    private Text customerNameText;
 
     @FXML
     private TableView<Claim> claimTable;
@@ -52,10 +52,11 @@ public class PolicyHolderClaimView implements Initializable {
     @FXML
     private TableColumn<Claim, Boolean> isDocumentRequested;
 
+    private CustomerController customerController= new CustomerController();
     private AccountController accountController = new AccountController();
     private Account account;
 
-    public void initData(ObservableList<Claim> claims, Customer customer) {
+    public void initData(ObservableList<Claim> claims, PolicyOwner policyOwner) {
         claimID.setCellValueFactory(cellData -> {
             try {
                 Method method = Claim.class.getMethod("getId");
@@ -113,20 +114,19 @@ public class PolicyHolderClaimView implements Initializable {
         ObservableList<Claim> claimsData = FXCollections.observableArrayList(claims);
         claimTable.setItems(claimsData);
 
-        customerNameText.setText(customer.getName() + "'s claims");
-
-        int accountID = customer.getAccountId();
+        int accountID = policyOwner.getAccountId();
         account = accountController.getAccountByID(accountID);
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerPage.fxml"));
                 Parent root = loader.load();
-                PolicyHolderView policyHolderView = loader.getController();
-                policyHolderView.initData(account);
+                PolicyOwnerView policyOwnerView = loader.getController();
+                policyOwnerView.initData(account);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);

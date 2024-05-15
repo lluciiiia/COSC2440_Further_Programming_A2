@@ -50,6 +50,9 @@ public class DependentClaimView implements Initializable {
     @FXML
     private TableColumn<Claim, Integer> customerID;
     @FXML
+    private TableColumn<Claim, Boolean> isDocumentRequested;
+
+    @FXML
     private TableColumn<Claim, String> status;
 
     private AccountController accountController = new AccountController();
@@ -100,13 +103,24 @@ public class DependentClaimView implements Initializable {
             }
         });
 
+        isDocumentRequested.setCellValueFactory(cellData -> {
+            try {
+                Method method = Claim.class.getMethod("getDocumentRequested");
+                Boolean documentRequested = (Boolean) method.invoke(cellData.getValue());
+                return new SimpleObjectProperty<>(documentRequested);
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
         ObservableList<Claim> claimsData = FXCollections.observableArrayList(claims);
         claimTable.setItems(claimsData);
 
         customerNameText.setText(customer.getName() + "'s claims");
 
         int accountID = customer.getAccountId();
-        account = accountController.getAccountByCustomerID(accountID);
+        account = accountController.getAccountByID(accountID);
     }
 
     @FXML

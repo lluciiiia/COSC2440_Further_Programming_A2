@@ -30,16 +30,17 @@
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView fx:id="claimTable" layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
                     <columns>
-                        <TableColumn fx:id="claimID" prefWidth="96.0" text="Claim ID" />
-                        <TableColumn fx:id="claimDate" prefWidth="127.0" text="Claim Date" />
-                        <TableColumn fx:id="examDate" prefWidth="112.0" text="Exam Date" />
-                        <TableColumn fx:id="amount" prefWidth="123.0" text="Amount" />
-                        <TableColumn fx:id="status" prefWidth="104.0" text="Status" />
-                        <TableColumn fx:id="cusID" prefWidth="75.0" text="Cus ID" />
+                        <TableColumn fx:id="claimID" prefWidth="60.000003814697266" text="Claim ID" />
+                        <TableColumn fx:id="claimDate" prefWidth="81.99998474121094" text="Claim Date" />
+                        <TableColumn fx:id="examDate" prefWidth="107.39994812011719" text="Exam Date" />
+                        <TableColumn fx:id="amount" prefWidth="105.39996337890625" text="Amount" />
+                        <TableColumn fx:id="status" prefWidth="93.60003662109375" text="Status" />
+                        <TableColumn fx:id="isDocumentRequested" prefWidth="131.60003662109375" text="document_requested" />
+                        <TableColumn fx:id="cusID" prefWidth="58.79998779296875" text="Cus ID" />
                     </columns>
                 </TableView>
-            <Button layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
-            <Button layoutX="390.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Send to manager" />
+            <Button fx:id="requireMoreDocuments" layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
+            <Button fx:id="sendToManager" layoutX="390.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Send to manager" />
             </children>
         </AnchorPane>
     </left>

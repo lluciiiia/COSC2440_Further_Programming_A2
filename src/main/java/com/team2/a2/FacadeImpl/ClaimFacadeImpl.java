@@ -37,13 +37,16 @@ public class ClaimFacadeImpl implements ClaimFacade {
         switch (status) {
             case ACCEPTED:
                 if (claim.getStatus() == ClaimStatus.REJECTED) return;
+                break;
 
             case REJECTED:
                 // TODO: Check if we need to check this.
 //                if (claim.getStatus() == ClaimStatus.ACCEPTED) return;
+                break;
 
             case PROCESSING:
                 if (claim.getStatus() != ClaimStatus.NEW) return;
+                break;
         }
 
         claimRepository.updateClaimStatus(id, status);
