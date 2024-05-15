@@ -38,8 +38,8 @@
                         <TableColumn fx:id="cusID" prefWidth="75.0" text="Cus ID" />
                     </columns>
                 </TableView>
-            <Button layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
-            <Button layoutX="390.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Send to manager" />
+            <Button fx:id="requireMoreDocuments" layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
+            <Button fx:id="sendToManager" layoutX="390.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Send to manager" />
             </children>
         </AnchorPane>
     </left>

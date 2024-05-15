@@ -2,13 +2,11 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
+import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.CustomerType;
-import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
-import com.team2.a2.Model.User.Provider.InsuranceManager;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

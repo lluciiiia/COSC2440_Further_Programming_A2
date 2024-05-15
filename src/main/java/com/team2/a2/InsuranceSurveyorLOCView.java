@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.User.Account;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,8 +47,17 @@ public class InsuranceSurveyorLOCView implements Initializable {
     @FXML
     private TableColumn<Claim, Integer> cusID;
 
+    @FXML
+    private Button requireMoreDocuments;
+    @FXML
+    private Button sendToManager;
+
     private AccountController accountController = new AccountController();
     private Account account;
+
+    private ClaimController claimController = new ClaimController();
+    private Claim selectedClaim;
+    private ObservableList<Claim> claimsData;
 
     public void initData(ObservableList<Claim> claims, InsuranceSurveyor insuranceSurveyor) {
         claimID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -77,11 +88,17 @@ public class InsuranceSurveyorLOCView implements Initializable {
         cusID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCustomerId()).asObject());
         status.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getStatus()));
 
-        ObservableList<Claim> claimsData = FXCollections.observableArrayList(claims);
+        claimsData = FXCollections.observableArrayList(claims);
         claimTable.setItems(claimsData);
 
         int accountID = insuranceSurveyor.getAccountId();
         account = accountController.getAccountByID(accountID);
+
+        claimTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                selectedClaim = newSelection;
+            }
+        });
     }
 
     @FXML
@@ -100,5 +117,33 @@ public class InsuranceSurveyorLOCView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        sendToManager.setOnAction(event -> {
+            if (selectedClaim != null) {
+                if (selectedClaim.getStatus() == ClaimStatus.NEW) {
+                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING);
+                    refreshTable();
+                } else {
+                    showAlert("Invalid Status", "Only claims with status 'NEW' can be sent to the manager.");
+                }
+            } else {
+                showAlert("No selection", "Please select a claim to send to the manager.");
+            }
+        });
+    }
+
+    private void refreshTable() {
+        claimTable.getSelectionModel().clearSelection();
+        claimsData.clear();
+        claimsData.addAll(claimController.getAllClaims()); // Assuming getAllClaims() returns the updated list of claims
+        claimTable.refresh();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
