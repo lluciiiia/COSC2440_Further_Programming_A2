@@ -18,9 +18,6 @@ public class ProviderController {
         return providerFacade.getInsuranceSurveyorByAccountId(id);
     }
 
-    public InsuranceManager getInsuranceManagerByAccountId(int id) {
-        return providerFacade.getInsuranceManagerByAccountId(id);
-    }
     public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId) {
         return providerFacade.getInsuranceSurveyorsByManagerId(managerId);
     }

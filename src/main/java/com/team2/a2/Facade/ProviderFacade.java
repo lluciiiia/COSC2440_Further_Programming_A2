@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface ProviderFacade {
     public InsuranceSurveyor getInsuranceSurveyorByAccountId(int accountId);
-    public InsuranceManager getInsuranceManagerByAccountId(int accountId);
     List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId);
 }
