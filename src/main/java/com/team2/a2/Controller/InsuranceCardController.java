@@ -19,6 +19,5 @@ public class InsuranceCardController {
     }
     public void createInsuranceCard(InsertInsuranceCardRequest request) { this.insuranceCardFacade.createInsuranceCard(request); }
 
-    public InsuranceCard getInsuranceCardByCustomerId(int customerId) { return this.insuranceCardFacade.getInsuranceCardByCustomerId(customerId); }
 
 }

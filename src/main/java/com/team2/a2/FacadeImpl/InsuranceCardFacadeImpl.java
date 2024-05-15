@@ -30,6 +30,6 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
 
     @Override
     public InsuranceCard getInsuranceCardByCustomerID(int customerID) {
-        return insuranceCardRepository.getInsuranceCardByCustomerID(customerID);
+        return insuranceCardRepository.getInsuranceCardByCustomerId(customerID);
     }
 }
