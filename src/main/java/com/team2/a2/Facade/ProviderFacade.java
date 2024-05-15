@@ -6,7 +6,7 @@ import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import java.util.List;
 
 public interface ProviderFacade {
-    public InsuranceSurveyor getInsuranceSurveyorById(int accountId);
-    public InsuranceManager getInsuranceManagerById(int accountId);
+    public InsuranceSurveyor getInsuranceSurveyorByAccountId(int accountId);
+    public InsuranceManager getInsuranceManagerByAccountId(int accountId);
     List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId);
 }

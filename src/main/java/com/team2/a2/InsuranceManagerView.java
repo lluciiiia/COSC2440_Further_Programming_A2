@@ -51,7 +51,7 @@ public class InsuranceManagerView implements Initializable {
     private ClaimController claimController = new ClaimController();
 
     public void initData(Account account) {
-        insuranceManager = providerController.getInsuranceManager(account.getId());
+        insuranceManager = providerController.getInsuranceManagerByAccountId(account.getId());
         myNameText.setText("Welcome, " + insuranceManager.getName());
     }
 

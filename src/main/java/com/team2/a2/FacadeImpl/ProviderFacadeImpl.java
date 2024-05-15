@@ -19,12 +19,12 @@ public class ProviderFacadeImpl implements ProviderFacade {
 
 
     @Override
-    public InsuranceSurveyor getInsuranceSurveyorById(int accountId) {
+    public InsuranceSurveyor getInsuranceSurveyorByAccountId(int accountId) {
         return insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(accountId);
     }
 
     @Override
-    public InsuranceManager getInsuranceManagerById(int accountId) {
+    public InsuranceManager getInsuranceManagerByAccountId(int accountId) {
         return insuranceManagerRepository.getInsuranceManagerByAccountId(accountId);
     }
 

@@ -14,12 +14,12 @@ public class ProviderController {
         this.providerFacade = new ProviderFacadeImpl();
     }
 
-    public InsuranceSurveyor getInsuranceSurveyor(int id) {
-        return providerFacade.getInsuranceSurveyorById(id);
+    public InsuranceSurveyor getInsuranceSurveyorByAccountId(int id) {
+        return providerFacade.getInsuranceSurveyorByAccountId(id);
     }
 
-    public InsuranceManager getInsuranceManager(int id) {
-        return providerFacade.getInsuranceManagerById(id);
+    public InsuranceManager getInsuranceManagerByAccountId(int id) {
+        return providerFacade.getInsuranceManagerByAccountId(id);
     }
     public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId) {
         return providerFacade.getInsuranceSurveyorsByManagerId(managerId);

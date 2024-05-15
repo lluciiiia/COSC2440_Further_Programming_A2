@@ -46,7 +46,7 @@ public class InsuranceSurveyorView implements Initializable {
 
 
     public void initData(Account account) {
-        insuranceSurveyor = providerController.getInsuranceSurveyor(account.getId());
+        insuranceSurveyor = providerController.getInsuranceSurveyorByAccountId(account.getId());
         insuranceSurveyorName.setText("Welcome, " + insuranceSurveyor.getName());
 
     }
