@@ -173,6 +173,38 @@ public class AccountRepository {
         }
 
     }
+
+    public Account getAccountByUsername(String username) {
+        Account account = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            String sql = "SELECT * FROM accounts WHERE username = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                AccountType type = AccountType.valueOf(resultSet.getString("type"));
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String password = resultSet.getString("password");
+                account = new Account(id, createdAt, updatedAt, username, password, type);
+
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching account: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return account;
+    }
 }
 
 
