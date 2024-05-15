@@ -14,13 +14,26 @@ public class InsertCustomerRequest {
     private String email;
     private CustomerType type;
 
-    // Constructor
+    // Dependent Constructor
     public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, int policyHolderId, String name,
                                  String address, String phoneNumber, String email, CustomerType type) {
         this.username = username;
         this.password = password;
         this.policyOwnerAccountId = policyOwnerAccountId;
         this.policyHolderId = policyHolderId;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.type = type;
+    }
+
+    // Policy Holder Constructor
+    public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, String name,
+                                 String address, String phoneNumber, String email, CustomerType type) {
+        this.username = username;
+        this.password = password;
+        this.policyOwnerAccountId = policyOwnerAccountId;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;

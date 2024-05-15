@@ -4,6 +4,7 @@ import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Request.InsertCustomerRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -64,6 +65,16 @@ public class CustomerControllerTest {
         List<Customer> dependents = customerController.getDependentsByPolicyHolderAccountId(policyHolderAccountId);
 
         assertEquals( 4, dependents.size(), "Dependents size should be 4.");
+    }
+
+    @Test
+    public void testCreateCustomer() {
+        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph", "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER);
+
+        InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT);
+
+        customerController.createCustomer(policyHolderRequest);
+        customerController.createCustomer(dependentRequest);
     }
 
 }
