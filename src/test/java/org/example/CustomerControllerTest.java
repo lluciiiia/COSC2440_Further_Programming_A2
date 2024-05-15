@@ -56,4 +56,14 @@ public class CustomerControllerTest {
         assertNotNull(customers, "Customers should NOT be null.");
         assertEquals(6, customers.get(0).getId(), "The first customer's id should be 6.");
     }
+
+    @Test
+    public void testGetDependentsByPolicyHolderAccountId() {
+        int policyHolderAccountId = 3;
+
+        List<Customer> dependents = customerController.getDependentsByPolicyHolderAccountId(policyHolderAccountId);
+
+        assertEquals( 4, dependents.size(), "Dependents size should be 4.");
+    }
+
 }
