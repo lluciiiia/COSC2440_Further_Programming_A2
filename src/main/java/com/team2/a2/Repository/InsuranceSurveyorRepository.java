@@ -47,6 +47,13 @@ public class InsuranceSurveyorRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching insurance surveyors: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return insuranceSurveyor;

@@ -42,6 +42,13 @@ public class InsuranceManagerRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching insurance manager: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return insuranceManager;

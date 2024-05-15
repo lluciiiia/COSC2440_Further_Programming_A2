@@ -37,6 +37,13 @@ public class AccountRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching account: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return account;
@@ -95,7 +102,14 @@ public class AccountRepository {
             }
         } catch (SQLException e) {
             System.err.println("Error fetching account: " + e.getMessage());
-        }
+        } finally {
+             try {
+                 if (resultSet != null) resultSet.close();
+                 if (statement != null) statement.close();
+             } catch (SQLException e) {
+                 e.printStackTrace();
+             }
+         }
 
         return account;
     }
