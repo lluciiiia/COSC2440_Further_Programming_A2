@@ -9,14 +9,11 @@ import com.team2.a2.Request.LoginRequest;
 public class AccountController {
     private AccountFacade accountFacade;
 
-    // Constructor to initialize accountFacade
     public AccountController() {
         this.accountFacade = new AccountFacadeImpl();
     }
 
-    public Account login(LoginRequest request) {
-        return accountFacade.login(request);
-    }
+    public Account login(LoginRequest request) { return accountFacade.login(request); }
 
     public Account getAccountByID(int accountID) {
         return accountFacade.getAccountByID(accountID);

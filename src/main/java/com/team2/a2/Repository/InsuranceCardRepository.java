@@ -2,13 +2,13 @@ package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.User.Admin;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.CustomerType;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.InsertInsuranceCardRequest;
 
 import java.sql.*;
-import java.util.Date;
 
 public class InsuranceCardRepository {
 
@@ -37,4 +37,31 @@ public class InsuranceCardRepository {
 
     }
 
+    public InsuranceCard getInsuranceCard(String cardNumber, Date expiryDate) {
+        InsuranceCard insuranceCard = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM insurance_cards WHERE card_number = ? AND expiry_date = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, cardNumber);
+            statement.setDate(2, expiryDate);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                java.util.Date createdAt = resultSet.getDate("created_at");
+                java.util.Date updatedAt = resultSet.getDate("updated_at");
+                int customerId = resultSet.getInt("customer_id");
+
+                insuranceCard = new InsuranceCard(id, createdAt, updatedAt, customerId, cardNumber, expiryDate);
+                return insuranceCard;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching insurance card: " + e.getMessage());
+        }
+        return insuranceCard;
+    }
 }

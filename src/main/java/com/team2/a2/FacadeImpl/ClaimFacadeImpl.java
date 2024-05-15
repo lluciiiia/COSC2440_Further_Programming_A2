@@ -4,6 +4,7 @@ import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimStatus;
 import com.team2.a2.Repository.ClaimRepository;
+import com.team2.a2.Request.InsertClaimRequest;
 
 import java.util.List;
 
@@ -21,9 +22,7 @@ public class ClaimFacadeImpl implements ClaimFacade {
     }
 
     @Override
-    public List<Claim> getClaimsByCustomerId(int customerId) {
-        return claimRepository.getClaimsByCustomerId(customerId);
-    }
+    public List<Claim> getClaimsByCustomerId(int customerId) { return claimRepository.getClaimsByCustomerId(customerId); }
 
     @Override
     public void deleteClaimById(int id) {
@@ -38,5 +37,8 @@ public class ClaimFacadeImpl implements ClaimFacade {
     @Override
     public List<Claim> getAllClaims() {
         return claimRepository.getAllClaims();
+    }
+    public void createClaim(InsertClaimRequest request) {
+
     }
 }
