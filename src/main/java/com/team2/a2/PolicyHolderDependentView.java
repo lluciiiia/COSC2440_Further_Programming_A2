@@ -74,7 +74,7 @@ public class PolicyHolderDependentView implements Initializable {
         dependentTable.setItems(dependentList);
         customerNameText.setText(customer.getName() + "'s dependent list");
         int accountID = customer.getAccountId();
-        account = accountController.getAccountByCustomerID(accountID);
+        account = accountController.getAccountByID(accountID);
         customer1 = customer;
     }
 
