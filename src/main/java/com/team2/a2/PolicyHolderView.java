@@ -45,7 +45,7 @@ public class PolicyHolderView implements Initializable {
     private final ClaimController claimController = new ClaimController();
 
     public void initData(Account account) {
-        customer = customerController.getCustomer(account.getId());
+        customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
     }
 

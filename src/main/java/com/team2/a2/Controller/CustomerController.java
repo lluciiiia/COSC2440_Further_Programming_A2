@@ -21,10 +21,10 @@ public class CustomerController {
     public CustomerController() {
         this.customerFacade = new CustomerFacadeImpl();
     }
-    public Customer getCustomer(int id) {
-        return customerFacade.getCustomerById(id);
+    public Customer getCustomerByAccountId(int id) {
+        return customerFacade.getCustomerByAccountId(id);
     }
-    public Dependent getDependent(int id) {
+    public Dependent getDependentByCustomerId(int id) {
         return customerFacade.getDependentByCustomerId(id);
     }
 
@@ -32,7 +32,7 @@ public class CustomerController {
         return customerFacade.getAllCustomers();
     }
 
-    public PolicyOwner getPolicyOwner(int id) {
+    public PolicyOwner getPolicyOwnerByAccountId(int id) {
         return customerFacade.getPolicyOwnerByAccountId(id);
     }
 

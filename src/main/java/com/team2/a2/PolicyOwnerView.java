@@ -38,7 +38,7 @@ public class PolicyOwnerView implements Initializable {
     private PolicyOwner policyOwner;
 
     public void initData(Account account) {
-        policyOwner = customerController.getPolicyOwner(account.getId());
+        policyOwner = customerController.getPolicyOwnerByAccountId(account.getId());
         nameText.setText("Welcome, " + policyOwner.getName());
     }
 

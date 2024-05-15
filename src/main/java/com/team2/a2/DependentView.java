@@ -46,9 +46,9 @@ public class DependentView implements Initializable {
 
 
     public void initData(Account account) {
-        customer = customerController.getCustomer(account.getId());
+        customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
-        dependent = customerController.getDependent(customer.getId());
+        dependent = customerController.getDependentByCustomerId(customer.getId());
     }
 
     @FXML

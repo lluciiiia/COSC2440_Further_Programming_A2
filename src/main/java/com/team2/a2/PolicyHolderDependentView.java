@@ -95,7 +95,7 @@ public class PolicyHolderDependentView implements Initializable {
         dependentClaimView.setOnAction(event -> {
             try {
                 Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
-                Dependent dependent = customerController.getDependent(selectedDependent.getId());
+                Dependent dependent = customerController.getDependentByCustomerId(selectedDependent.getId());
                 int dependentID = selectedDependent.getId();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentClaimPage.fxml"));

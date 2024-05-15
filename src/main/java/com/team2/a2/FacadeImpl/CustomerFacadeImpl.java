@@ -43,7 +43,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
 
     @Override
-    public Customer getCustomerById(int accountID) {
+    public Customer getCustomerByAccountId(int accountID) {
         return customerRepository.getCustomerByAccountId(accountID);
     }
 
