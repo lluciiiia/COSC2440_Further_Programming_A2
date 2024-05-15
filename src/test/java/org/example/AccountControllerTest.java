@@ -61,6 +61,20 @@ public class AccountControllerTest {
     }
 
     @Test
+    public void testGetAccountByCustomerID() {
+        int customerId = 6;
+
+        Account expectedAccount = new Account(37, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
+                "please5@adsf.com", "12345", AccountType.DEPENDENT);
+
+        Account actualAccount = accountController.getAccountByCustomerID(customerId);
+
+        assertEquals(expectedAccount.getId(), actualAccount.getId(), "Id should be the same.");
+        assertEquals(expectedAccount.getUsername(), actualAccount.getUsername(), "Username should be the same.");
+        assertEquals(expectedAccount.getType(), actualAccount.getType(), "AccountType should be the same.");
+    }
+
+    @Test
     public void testGetAllAccounts() {
         List<Account> accounts = accountController.getAllAccounts();
 
