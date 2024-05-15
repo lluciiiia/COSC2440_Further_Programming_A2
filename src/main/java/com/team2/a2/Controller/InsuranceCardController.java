@@ -3,6 +3,7 @@ package com.team2.a2.Controller;
 
 import com.team2.a2.Facade.InsuranceCardFacade;
 import com.team2.a2.FacadeImpl.InsuranceCardFacadeImpl;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Request.InsertInsuranceCardRequest;
 
 public class InsuranceCardController {
@@ -14,4 +15,7 @@ public class InsuranceCardController {
     }
 
     public void createInsuranceCard(InsertInsuranceCardRequest request) { this.insuranceCardFacade.createInsuranceCard(request); }
+
+    public InsuranceCard getInsuranceCardByCustomerId(int customerId) { return this.insuranceCardFacade.getInsuranceCardByCustomerId(customerId); }
+
 }
