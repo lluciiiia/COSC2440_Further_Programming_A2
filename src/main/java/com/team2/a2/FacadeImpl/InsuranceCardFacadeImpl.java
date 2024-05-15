@@ -27,4 +27,9 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
 
         insuranceCardRepository.createInsuranceCard(request);
      }
+
+    @Override
+    public InsuranceCard getInsuranceCardByCustomerId(int customerId) {
+        return insuranceCardRepository.getInsuranceCardByCustomerId(customerId);
+    }
 }
