@@ -2,7 +2,8 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Controller.ProviderController;
+import com.team2.a2.Controller.InsuranceManagerController;
+import com.team2.a2.Controller.InsuranceSurveyorController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -44,14 +45,16 @@ public class InsuranceManagerView implements Initializable {
     @FXML
     private Text myNameText;
 
-    private ProviderController providerController = new ProviderController();
+    private InsuranceManagerController insuranceManagerController = new InsuranceManagerController();
+    private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
+
     private InsuranceManager insuranceManager;
 
     private CustomerController customerController = new CustomerController();
     private ClaimController claimController = new ClaimController();
 
     public void initData(Account account) {
-        insuranceManager = providerController.getInsuranceManagerByAccountId(account.getId());
+        insuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(account.getId());
         myNameText.setText("Welcome, " + insuranceManager.getName());
     }
 
@@ -126,7 +129,7 @@ public class InsuranceManagerView implements Initializable {
                 Task<List<InsuranceSurveyor>> loadSurveyorTask = new Task<>() {
                     @Override
                     protected List<InsuranceSurveyor> call() throws Exception {
-                        return providerController.getInsuranceSurveyorsByManagerId(insuranceManager.getId());
+                        return insuranceSurveyorController.getInsuranceSurveyorsByManagerId(insuranceManager.getId());
                     }
                 };
 

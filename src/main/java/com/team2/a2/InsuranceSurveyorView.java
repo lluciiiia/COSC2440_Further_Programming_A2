@@ -2,7 +2,7 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Controller.ProviderController;
+import com.team2.a2.Controller.InsuranceSurveyorController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -16,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -38,7 +37,7 @@ public class InsuranceSurveyorView implements Initializable {
     @FXML
     private Text insuranceSurveyorName;
 
-    private ProviderController providerController = new ProviderController();
+    private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
     private InsuranceSurveyor insuranceSurveyor;
 
     private CustomerController customerController = new CustomerController();
@@ -46,7 +45,7 @@ public class InsuranceSurveyorView implements Initializable {
 
 
     public void initData(Account account) {
-        insuranceSurveyor = providerController.getInsuranceSurveyorByAccountId(account.getId());
+        insuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(account.getId());
         insuranceSurveyorName.setText("Welcome, " + insuranceSurveyor.getName());
 
     }

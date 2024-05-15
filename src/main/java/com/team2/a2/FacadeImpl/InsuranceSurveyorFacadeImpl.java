@@ -1,32 +1,24 @@
 package com.team2.a2.FacadeImpl;
 
-import com.team2.a2.Facade.ProviderFacade;
-import com.team2.a2.Model.User.Provider.InsuranceManager;
+import com.team2.a2.Facade.InsuranceSurveyorFacade;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.InsuranceManagerRepository;
 import com.team2.a2.Repository.InsuranceSurveyorRepository;
 
 import java.util.List;
 
-public class ProviderFacadeImpl implements ProviderFacade {
+public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
     InsuranceSurveyorRepository insuranceSurveyorRepository;
-    InsuranceManagerRepository insuranceManagerRepository;
 
-    public ProviderFacadeImpl() {
+    public InsuranceSurveyorFacadeImpl() {
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
-        this.insuranceManagerRepository = new InsuranceManagerRepository();
     }
-
 
     @Override
     public InsuranceSurveyor getInsuranceSurveyorByAccountId(int accountId) {
         return insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(accountId);
     }
 
-    @Override
-    public InsuranceManager getInsuranceManagerByAccountId(int accountId) {
-        return insuranceManagerRepository.getInsuranceManagerByAccountId(accountId);
-    }
 
     @Override
     public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId) {
