@@ -146,11 +146,15 @@ public class InsuranceSurveyorLOCView implements Initializable {
 
         requireMoreDocuments.setOnAction(event -> {
             if (selectedClaim != null) {
-                if (!selectedClaim.getDocumentRequested()) {
-                    claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
-                    refreshTable();
+                if (selectedClaim.getStatus() == ClaimStatus.NEW) {
+                    if (!selectedClaim.getDocumentRequested()) {
+                        claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
+                        refreshTable();
+                    } else {
+                        showAlert("Document Requested", "Documents have already been requested for this claim.");
+                    }
                 } else {
-                    showAlert("Document Requested", "Documents have already been requested for this claim.");
+                    showAlert("Invalid Status", "Only claims with status 'NEW' can request more documents.");
                 }
             } else {
                 showAlert("No selection", "Please select a claim to request more documents.");
