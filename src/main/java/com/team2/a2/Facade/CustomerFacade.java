@@ -23,6 +23,5 @@ public interface CustomerFacade {
 
     Customer updateCustomer(UpdateCustomerRequest request);
 
-    Dependent getDependentByCustomerId(int customerID);
 
 }

@@ -2,6 +2,7 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.DependentController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -44,11 +45,13 @@ public class DependentView implements Initializable {
 
     private final ClaimController claimController = new ClaimController();
 
+    private final DependentController dependentController = new DependentController();
+
 
     public void initData(Account account) {
         customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
-        dependent = customerController.getDependentByCustomerId(customer.getId());
+        dependent = dependentController.getDependentByCustomerId(customer.getId());
     }
 
     @FXML

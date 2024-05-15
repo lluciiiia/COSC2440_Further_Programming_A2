@@ -3,6 +3,7 @@ package com.team2.a2;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.DependentController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -56,6 +57,8 @@ public class PolicyHolderDependentView implements Initializable {
     private AccountController accountController = new AccountController();
     private ClaimController claimController = new ClaimController();
     private CustomerController customerController = new CustomerController();
+    private DependentController dependentController = new DependentController();
+
     private Account account;
     private Customer customer1;
 
@@ -95,7 +98,7 @@ public class PolicyHolderDependentView implements Initializable {
         dependentClaimView.setOnAction(event -> {
             try {
                 Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
-                Dependent dependent = customerController.getDependentByCustomerId(selectedDependent.getId());
+                Dependent dependent = dependentController.getDependentByCustomerId(selectedDependent.getId());
                 int dependentID = selectedDependent.getId();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentClaimPage.fxml"));
