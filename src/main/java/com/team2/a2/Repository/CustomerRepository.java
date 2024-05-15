@@ -47,6 +47,13 @@ public class CustomerRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching customer: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;
@@ -82,6 +89,13 @@ public class CustomerRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching customers: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customers;
@@ -117,6 +131,13 @@ public class CustomerRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching customer: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;
