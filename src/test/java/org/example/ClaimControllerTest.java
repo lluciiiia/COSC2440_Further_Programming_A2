@@ -84,4 +84,17 @@ public class ClaimControllerTest {
         assertNotEquals(previousClaim.getStatus(), updatedClaim.getStatus());
     }
 
+    @Test
+    public void testUpdateClaimDocumentRequested() {
+        int claimId = 7;
+
+        Claim previousClaim = claimController.getClaimById(claimId);
+        boolean newDocumentRequested = !previousClaim.getDocumentRequested();
+
+        claimController.updateClaimDocumentRequested(claimId, newDocumentRequested);
+
+        Claim updatedClaim = claimController.getClaimById(claimId);
+
+        assertNotEquals(previousClaim.getDocumentRequested(), updatedClaim.getDocumentRequested());
+    }
 }
