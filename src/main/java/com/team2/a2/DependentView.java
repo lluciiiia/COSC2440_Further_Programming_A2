@@ -3,7 +3,9 @@ package com.team2.a2;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.DependentController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
@@ -39,6 +41,9 @@ public class DependentView implements Initializable {
     @FXML
     private Text welcomeText;
 
+    @FXML
+    private Button viewInsuranceCard;
+
     private final CustomerController customerController = new CustomerController();
     private Customer customer;
     private Dependent dependent;
@@ -46,12 +51,15 @@ public class DependentView implements Initializable {
     private final ClaimController claimController = new ClaimController();
 
     private final DependentController dependentController = new DependentController();
+    private final InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
 
     public void initData(Account account) {
         customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
         dependent = dependentController.getDependentByCustomerId(customer.getId());
+        insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customer.getId());
     }
 
     @FXML
@@ -112,6 +120,21 @@ public class DependentView implements Initializable {
                 });
 
                 new Thread(loadClaimsTask).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewInsuranceCard.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentInsuranceCardPage.fxml"));
+                Parent root = loader.load();
+                DependentInsuranceCardView dependentInsuranceCardView = loader.getController();
+                dependentInsuranceCardView.initData(insuranceCard, customer);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }

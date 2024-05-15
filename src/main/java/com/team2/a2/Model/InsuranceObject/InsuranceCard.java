@@ -37,4 +37,7 @@ public class InsuranceCard extends BaseEntity {
         return accountNumber;
     }
 
+    public int getCustomerId() {
+        return customerId;
+    }
 }

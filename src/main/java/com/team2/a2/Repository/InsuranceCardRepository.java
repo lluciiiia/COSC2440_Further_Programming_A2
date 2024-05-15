@@ -75,4 +75,40 @@ public class InsuranceCardRepository {
         }
         return insuranceCard;
     }
+
+    public InsuranceCard getInsuranceCardByCustomerID(int customerId) {
+        InsuranceCard insuranceCard = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM insurance_cards WHERE customer_id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, customerId);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                java.util.Date createdAt = resultSet.getDate("created_at");
+                java.util.Date updatedAt = resultSet.getDate("updated_at");
+                String cardNumber = resultSet.getString("card_number");
+                Date expiryDate = resultSet.getDate("expiry_date");
+                String bankName = resultSet.getString("bank_name");
+                String accountNumber = resultSet.getString("account_number");
+
+                insuranceCard = new InsuranceCard(id, createdAt, updatedAt, customerId, cardNumber, expiryDate, bankName, accountNumber);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching insurance card by customer ID: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return insuranceCard;
+    }
 }
