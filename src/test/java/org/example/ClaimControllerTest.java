@@ -12,9 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.sql.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ClaimControllerTest {
@@ -79,6 +77,17 @@ public class ClaimControllerTest {
         assertNotEquals(actualClaims.size(), 2);
         assertNotEquals(actualClaims.get(0).getAmount(), notExpectedClaim.getAmount());
         assertNotEquals(actualClaims.get(0).getStatus(), notExpectedClaim.getStatus());
+    }
+
+    @Test
+    public void testDeleteClaimById() {
+        int id = 6;
+
+        claimController.deleteClaimById(id);
+
+        Claim claim = claimController.getClaimById(id);
+
+        assertNull(claim, "Claim should be null.");
     }
 
     @Test
