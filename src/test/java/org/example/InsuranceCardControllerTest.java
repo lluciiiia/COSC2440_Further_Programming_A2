@@ -30,13 +30,8 @@ public class InsuranceCardControllerTest {
     public void testCreateInsuranceCard() {
         InsertInsuranceCardRequest request = new InsertInsuranceCardRequest(1,
                                                                 "1234567890123456",
-                                                                            Date.valueOf("2024-12-31"));
-
-//        // Act
-//        insuranceCardController.createInsuranceCard(request);
-//
-//        // Assert that insuranceCardFacade.createInsuranceCard was invoked with the expected request
-//        verify(insuranceCardController, times(1)).createInsuranceCard(request);
+                                                                            Date.valueOf("2024-12-31"), "VPBank", "1234567890");
+        insuranceCardController.createInsuranceCard(request);
     }
 }
 
