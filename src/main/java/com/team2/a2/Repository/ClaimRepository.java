@@ -47,6 +47,13 @@ public class ClaimRepository {
 
             } catch (SQLException e) {
                 System.err.println("Error fetching claim: " + e.getMessage());
+            } finally {
+                try {
+                    if (resultSet != null) resultSet.close();
+                    if (statement != null) statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
             return claim;
@@ -81,6 +88,13 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching claims: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return claims;

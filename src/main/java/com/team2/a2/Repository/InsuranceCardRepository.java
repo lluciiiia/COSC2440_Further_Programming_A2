@@ -61,6 +61,13 @@ public class InsuranceCardRepository {
 
         } catch (SQLException e) {
             System.err.println("Error fetching insurance card: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return insuranceCard;
     }

@@ -28,20 +28,20 @@
             </children>
          </HBox>
             <VBox alignment="CENTER" spacing="20.0">
-            <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="View Customer">
+            <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="View Customers">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="ViewPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Policy Owner">
+            <Button fx:id="ViewPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Policy Owners">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Surveyor">
+            <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Surveyors">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Manager">
+            <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Managers">
                <font>
                   <Font size="18.0" />
                </font></Button>
