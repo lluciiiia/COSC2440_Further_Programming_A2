@@ -38,4 +38,12 @@ public class CustomerControllerTest {
         assertEquals(customer.getPolicyOwnerId(), expectedCustomer.getPolicyOwnerId());
         assertEquals(customer.getEmail(), expectedCustomer.getEmail());
     }
+
+    @Test
+    public void testGetAllCustomers() {
+        List<Customer> customers = customerController.getAllCustomers();
+
+        assertNotNull(customers, "Customers should NOT be null.");
+        assertEquals( 9, customers.size(), "Customers size should be 9.");
+    }
 }
