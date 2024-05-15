@@ -29,10 +29,10 @@ public class ClaimControllerTest {
     public void testGetClaimById() {
         int claimID = 6;
         Claim expectedClaim = new Claim(claimID, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
-                8, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 23435.00, ClaimStatus.PROCESSING);
+                8, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 23435.00, ClaimStatus.PROCESSING, false);
 
         Claim notExpectedClaim = new Claim(1, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
-                8, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 0.00, ClaimStatus.NEW);
+                8, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 0.00, ClaimStatus.NEW, true);
 
         Claim actualClaim = claimController.getClaimById(claimID);
 
@@ -40,21 +40,23 @@ public class ClaimControllerTest {
         assertEquals(expectedClaim.getId(), actualClaim.getId());
         assertEquals(expectedClaim.getAmount(), actualClaim.getAmount());
         assertEquals(expectedClaim.getStatus(), actualClaim.getStatus());
+        assertEquals(expectedClaim.getDocumentRequested(), actualClaim.getDocumentRequested());
 
         // False Case
         assertNotEquals(notExpectedClaim.getId(), actualClaim.getId());
         assertNotEquals(notExpectedClaim.getAmount(), actualClaim.getAmount());
         assertNotEquals(notExpectedClaim.getStatus(), actualClaim.getStatus());
+        assertNotEquals(notExpectedClaim.getDocumentRequested(), actualClaim.getDocumentRequested());
     }
 
     @Test
     public void testGetClaimsByCustomerId() {
         int customerID = 8;
         Claim expectedClaim = new Claim(6, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
-                customerID, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 23435.00, ClaimStatus.PROCESSING);
+                customerID, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 23435.00, ClaimStatus.PROCESSING, false);
 
         Claim notExpectedClaim = new Claim(1, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
-                6, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 0.00, ClaimStatus.NEW);
+                6, Date.valueOf("2024-05-10"), Date.valueOf("2024-04-29"), 0.00, ClaimStatus.NEW, false);
 
         List<Claim> actualClaims = claimController.getClaimsByCustomerId(customerID);
 

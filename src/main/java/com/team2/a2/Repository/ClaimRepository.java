@@ -38,10 +38,11 @@ public class ClaimRepository {
                     Date examDate = resultSet.getDate("exam_date");
                     Double amount = resultSet.getDouble("amount");
                     String statusString = resultSet.getString("status");
+                    boolean documentRequested = resultSet.getBoolean("document_requested");
 
                     ClaimStatus status = ClaimStatus.valueOf(statusString);
 
-                    claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                    claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
                     return claim;
                 }
 
@@ -78,10 +79,11 @@ public class ClaimRepository {
                 Date examDate = resultSet.getDate("exam_date");
                 Double amount = resultSet.getDouble("amount");
                 String statusString = resultSet.getString("status");
+                boolean documentRequested = resultSet.getBoolean("document_requested");
 
                 ClaimStatus status = ClaimStatus.valueOf(statusString);
 
-                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
 
                 claims.add(claim);
             }
@@ -150,7 +152,9 @@ public class ClaimRepository {
                 Double amount = resultSet.getDouble("amount");
                 String statusString = resultSet.getString("status");
                 ClaimStatus status = ClaimStatus.valueOf(statusString.toUpperCase());
-                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                boolean documentRequested = resultSet.getBoolean("document_requested");
+
+                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status, documentRequested);
                 claims.add(claim);
             }
         } catch (SQLException e) {
