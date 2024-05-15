@@ -5,6 +5,8 @@ import com.team2.a2.Facade.PolicyOwnerFacade;
 import com.team2.a2.FacadeImpl.PolicyOwnerFacadeImpl;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 
+import java.util.List;
+
 public class PolicyOwnerController {
 
     private PolicyOwnerFacade policyOwnerFacade;
@@ -16,4 +18,5 @@ public class PolicyOwnerController {
         return policyOwnerFacade.getPolicyOwnerByAccountId(id);
     }
 
+    public List<PolicyOwner> getAllPolicyOwners() { return policyOwnerFacade.getAllPolicyOwners(); }
 }
