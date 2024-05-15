@@ -4,7 +4,7 @@ import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.CustomerType;
+import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Repository.*;

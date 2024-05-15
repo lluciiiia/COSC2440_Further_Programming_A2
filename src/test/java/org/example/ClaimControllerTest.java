@@ -3,7 +3,7 @@ package org.example;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
+import com.team2.a2.Model.Enum.ClaimStatus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -67,6 +67,19 @@ public class ClaimControllerTest {
         assertNotEquals(actualClaims.size(), 2);
         assertNotEquals(actualClaims.get(0).getAmount(), notExpectedClaim.getAmount());
         assertNotEquals(actualClaims.get(0).getStatus(), notExpectedClaim.getStatus());
+    }
+
+    @Test
+    void testUpdateClaimStatus() {
+        int claimId = 7;
+        ClaimStatus newClaimStatus = ClaimStatus.PROCESSING;
+
+        Claim previousClaim = claimController.getClaimById(claimId);
+        claimController.updateClaimStatus(claimId, newClaimStatus);
+
+        Claim updatedClaim = claimController.getClaimById(claimId);
+
+        assertNotEquals(previousClaim.getStatus(), updatedClaim.getStatus());
     }
 
 }
