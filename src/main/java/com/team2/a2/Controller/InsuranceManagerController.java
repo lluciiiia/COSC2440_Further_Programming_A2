@@ -2,7 +2,10 @@ package com.team2.a2.Controller;
 
 import com.team2.a2.Facade.InsuranceManagerFacade;
 import com.team2.a2.FacadeImpl.InsuranceManagerFacadeImpl;
+import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
+
+import java.util.List;
 
 public class InsuranceManagerController {
 
@@ -15,6 +18,9 @@ public class InsuranceManagerController {
         return insuranceManagerFacade.getInsuranceManagerByAccountId(id);
     }
 
+    public List<InsuranceManager> getAllInsuranceManagers() {
+        return insuranceManagerFacade.getAllInsuranceManagers();
+    }
 
 
 
