@@ -32,11 +32,9 @@ public class AdminView implements Initializable {
 
     @FXML
     private Button ViewInsuranceManagerButton;
-    @FXML
-    private Text adminCustomerName;
 
     public void initData(Account account){
-        adminCustomerName.setText("Welcome " + account.getId());
+
     }
 
     @FXML
