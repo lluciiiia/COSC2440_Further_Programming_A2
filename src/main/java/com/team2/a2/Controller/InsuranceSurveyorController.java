@@ -2,6 +2,7 @@ package com.team2.a2.Controller;
 
 import com.team2.a2.Facade.InsuranceSurveyorFacade;
 import com.team2.a2.FacadeImpl.InsuranceSurveyorFacadeImpl;
+import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 
 import java.util.List;
@@ -22,4 +23,9 @@ public class InsuranceSurveyorController {
     public List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId) {
         return insuranceSurveyorFacade.getInsuranceSurveyorsByManagerId(managerId);
     }
+
+    public List<InsuranceSurveyor> getAllInsuranceSurveyors() {
+        return insuranceSurveyorFacade.getAllInsuranceSurveyors();
+    }
+
 }
