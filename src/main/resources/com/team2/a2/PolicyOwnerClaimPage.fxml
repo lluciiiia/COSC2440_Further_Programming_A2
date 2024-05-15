@@ -6,7 +6,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyOwnerClaimView">
     <top>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="List of Claims" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="List of Customers" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
             <font>
                 <Font size="31.0" />
             </font>
@@ -30,12 +30,12 @@
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
                     <columns>
-                        <TableColumn prefWidth="96.0" text="Claim ID" />
-                        <TableColumn prefWidth="127.0" text="Claim Date" />
-                        <TableColumn prefWidth="112.0" text="Exam Date" />
-                        <TableColumn prefWidth="123.0" text="Amount" />
-                        <TableColumn prefWidth="104.0" text="Status" />
-                        <TableColumn prefWidth="75.0" text="Cus ID" />
+                        <TableColumn prefWidth="96.0" text="CusID" />
+                        <TableColumn prefWidth="127.0" text="Address" />
+                        <TableColumn prefWidth="112.0" text="Name" />
+                        <TableColumn prefWidth="123.0" text="Email" />
+                        <TableColumn prefWidth="92.0" text="Type" />
+                        <TableColumn prefWidth="87.199951171875" text="Phone number" />
                     </columns>
                 </TableView>
             </children>
