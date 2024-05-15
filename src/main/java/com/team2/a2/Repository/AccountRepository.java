@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.CustomerType;
+import com.team2.a2.Request.UpdateAccountRequest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -146,6 +147,29 @@ public class AccountRepository {
         }
 
         return accounts;
+    }
+
+    public void updateAccount(UpdateAccountRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE accounts SET username = ?, password = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, request.getUsername());
+            statement.setString(2, request.getPassword());
+            statement.setInt(3, request.getId());
+
+        } catch (SQLException e) {
+            System.err.println("Error updating account: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
 
