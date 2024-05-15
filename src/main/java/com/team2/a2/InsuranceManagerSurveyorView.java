@@ -2,12 +2,9 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.CustomerType;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,12 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class InsuranceManagerSurveyorView implements Initializable {

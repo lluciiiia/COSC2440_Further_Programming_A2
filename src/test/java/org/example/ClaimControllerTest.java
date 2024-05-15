@@ -3,7 +3,7 @@ package org.example;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
+import com.team2.a2.Model.Enum.ClaimStatus;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

@@ -1,6 +1,7 @@
 package com.team2.a2.Model.InsuranceObject;
 
 import com.team2.a2.Model.BaseEntity;
+import com.team2.a2.Model.Enum.ClaimStatus;
 
 import java.util.Date;
 
