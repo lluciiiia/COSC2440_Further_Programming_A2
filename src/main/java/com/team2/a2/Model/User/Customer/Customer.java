@@ -1,6 +1,7 @@
 package com.team2.a2.Model.User.Customer;
 
 import com.team2.a2.Model.BaseEntity;
+import com.team2.a2.Model.Enum.CustomerType;
 
 import java.util.Date;
 

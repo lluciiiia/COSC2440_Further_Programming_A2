@@ -1,6 +1,6 @@
 package com.team2.a2.Request;
 
-import com.team2.a2.Model.User.Customer.CustomerType;
+import com.team2.a2.Model.Enum.CustomerType;
 
 public class InsertCustomerRequest {
 

@@ -3,8 +3,7 @@ package com.team2.a2.Controller;
 import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.FacadeImpl.ClaimFacadeImpl;
 import com.team2.a2.Model.InsuranceObject.Claim;
-import com.team2.a2.Model.InsuranceObject.ClaimStatus;
-import javafx.collections.ObservableList;
+import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Request.InsertClaimRequest;
 
 
