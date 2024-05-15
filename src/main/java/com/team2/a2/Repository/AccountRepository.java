@@ -160,6 +160,8 @@ public class AccountRepository {
             statement.setString(2, request.getPassword());
             statement.setInt(3, request.getId());
 
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             System.err.println("Error updating account: " + e.getMessage());
         } finally {
