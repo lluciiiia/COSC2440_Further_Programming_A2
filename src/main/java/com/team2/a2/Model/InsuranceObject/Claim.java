@@ -24,6 +24,7 @@ public class Claim extends BaseEntity {
 
     //getter function
 
+
     public Date getClaimDate() {
         return claimDate;
     }
@@ -38,6 +39,10 @@ public class Claim extends BaseEntity {
 
     public ClaimStatus getStatus() {
         return status;
+    }
+
+    public int getCustomerId() {
+        return customerId;
     }
 
     //setter

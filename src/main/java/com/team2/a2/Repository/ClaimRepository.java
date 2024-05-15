@@ -115,4 +115,49 @@ public class ClaimRepository {
             System.err.println("Error updating claim status: " + e.getMessage());
         }
     }
+
+    public List<Claim> getAllClaims() {
+        List<Claim> claims = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM claims";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                int customerId = resultSet.getInt("customer_id");
+                Date claimDate = resultSet.getDate("claim_date");
+                Date examDate = resultSet.getDate("exam_date");
+                Double amount = resultSet.getDouble("amount");
+                String statusString = resultSet.getString("status");
+                ClaimStatus status = ClaimStatus.valueOf(statusString.toUpperCase());
+                Claim claim = new Claim(id, createdAt, updatedAt, customerId, claimDate, examDate, amount, status);
+                claims.add(claim);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching claims: " + e.getMessage());
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing ResultSet: " + e.getMessage());
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+
+        return claims;
+    }
 }

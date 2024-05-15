@@ -18,4 +18,7 @@ public class AccountController {
     public Account getAccountByID(int accountID) {
         return accountFacade.getAccountByID(accountID);
     }
+    public Account getAccountByCustomerID(int customerID) {
+        return accountFacade.getAccountByID(customerID);
+    }
 }

@@ -6,6 +6,8 @@ import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.FacadeImpl.CustomerFacadeImpl;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 
@@ -18,10 +20,22 @@ public class CustomerController {
     public CustomerController() {
         this.customerFacade = new CustomerFacadeImpl();
     }
-    public Customer getCustomer(int id) {
-        return customerFacade.getCustomerById(id);
+    public Customer getCustomerByAccountId(int id) {
+        return customerFacade.getCustomerByAccountId(id);
     }
-    public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) { return customerFacade.getCustomersByPolicyOwnerAccountId(policyOwnerAccountId); }
+    public Dependent getDependentByCustomerId(int id) {
+        return customerFacade.getDependentByCustomerId(id);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerFacade.getAllCustomers();
+    }
+
+    public PolicyOwner getPolicyOwnerByAccountId(int id) {
+        return customerFacade.getPolicyOwnerByAccountId(id);
+    }
+
+    public List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId) { return customerFacade.getCustomersByPolicyOwnerId(policyOwnerId); };
 
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };
 

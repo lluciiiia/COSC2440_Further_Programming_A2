@@ -17,4 +17,12 @@ public class PolicyOwner extends BaseEntity {
         this.accountId = accountId;
         this.name = name;
     }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

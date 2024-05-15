@@ -13,4 +13,7 @@ public class InsuranceSurveyor extends Provider{
         this.insuranceManagerId = insuranceManagerId;
     }
 
+    public int getInsuranceManagerId() {
+        return this.insuranceManagerId;
+    }
 }

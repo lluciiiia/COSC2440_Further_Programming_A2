@@ -1,12 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
-import com.team2.a2.Facade.AccountFacade;
-import com.team2.a2.FacadeImpl.AccountFacadeImpl;
-import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class LoginView {
     @FXML
@@ -58,55 +52,59 @@ public class LoginView {
         Account account = accountController.login(new LoginRequest(username, password));
 
         if (account != null) {
-            AccountType accountType = account.getType();
-            switch (accountType) {
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+
+            switch (account.getType()) {
                 case POLICY_HOLDER:
-                    loadPage("PolicyHolderPage.fxml");
+                    loader.setLocation(getClass().getResource("PolicyHolderPage.fxml"));
+                    root = loader.load();
+                    PolicyHolderView policyHolderView = loader.getController();
+                    policyHolderView.initData(account);
                     break;
                 case DEPENDENT:
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("DependentPage.fxml"));
-                    Parent root = loader.load();
+                    loader.setLocation(getClass().getResource("DependentPage.fxml"));
+                    root = loader.load();
                     DependentView dependentView = loader.getController();
                     dependentView.initData(account);
-
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) loginButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
                     break;
                 case POLICY_OWNER:
-                    loadPage("PolicyOwnerPage.fxml");
+                    loader.setLocation(getClass().getResource("PolicyOwnerPage.fxml"));
+                    root = loader.load();
+                    PolicyOwnerView policyOwnerView = loader.getController();
+                    policyOwnerView.initData(account);
                     break;
-//                case ADMIN:
-//                    loadPage("AdminPage.fxml");
-//                    break;
+                case ADMIN:
+                    loader.setLocation(getClass().getResource("AdminPage.fxml"));
+                    root = loader.load();
+                    AdminView adminView = loader.getController();
+                    adminView.initData(account);
+                    break;
                 case INSURANCE_MANAGER:
-                    loadPage("InsuranceManagerPage.fxml");
+                    loader.setLocation(getClass().getResource("InsuranceManagerPage.fxml"));
+                    root = loader.load();
+                    InsuranceManagerView insuranceManagerView = loader.getController();
+                    insuranceManagerView.initData(account);
                     break;
                 case INSURANCE_SURVEYOR:
-                    loadPage("InsuranceSurveyorPage.fxml");
+                    loader.setLocation(getClass().getResource("InsuranceSurveyorPage.fxml"));
+                    root = loader.load();
+                    InsuranceSurveyorView insuranceSurveyorView = loader.getController();
+                    insuranceSurveyorView.initData(account);
                     break;
                 default:
                     showAlert("Error", "Invalid account type");
             }
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         } else {
             showAlert("Error", "Invalid username or password");
         }
 
 
-    }
-
-    private void loadPage(String pageName) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(pageName)));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Error", "An error occurred while loading the page.");
-        }
     }
 
     private void showAlert(String title, String content) {

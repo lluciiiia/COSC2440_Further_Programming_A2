@@ -17,4 +17,5 @@ public class Dependent extends BaseEntity {
     }
 
     public int getCustomerId() { return customerId; }
+    public int getPolicyHolderId() { return policyHolderId; }
 }

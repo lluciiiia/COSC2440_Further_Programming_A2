@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceSurveyorView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceSurveyorView">
     <top>
-        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Surveyor Page" textAlignment="CENTER" BorderPane.alignment="CENTER">
-            <font>
-                <Font size="31.0" />
-            </font>
-        </Text>
+        <HBox alignment="CENTER" style="-fx-background-color: black;">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="Insurance Surveyor" textAlignment="CENTER" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
     </top>
-    <left>
-        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
-            <children>
-                <BorderPane prefHeight="74.0" prefWidth="346.0" style="-fx-background-color: #E0E0E0;">
-                    <top>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="My Information" BorderPane.alignment="CENTER">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                    </top>
-                    <center>
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #000000;" text="View " textFill="WHITE" BorderPane.alignment="CENTER" />
-                    </center>
-                </BorderPane>
-                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
-                    <top>
-                        <TableView prefHeight="330.0" prefWidth="264.0" BorderPane.alignment="CENTER">
-                            <columns>
-                                <TableColumn prefWidth="133.79998779296875" text="Customer claim ID" />
-                                <TableColumn prefWidth="132.60006713867188" text="View button" />
-                            </columns>
-                        </TableView>
-                    </top>
-                    <bottom>
-                    </bottom></BorderPane>
-                <Text layoutX="419.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Claim information">
+
+    <center>
+        <VBox alignment="CENTER" spacing="40.0" style="-fx-background-color: #66B2FF;">
+            <HBox>
+                <children>
+                    <Text fx:id="insuranceSurveyorName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " wrappingWidth="583.2245941162109">
+                        <font>
+                            <Font name="Monospaced Bold Italic" size="20.0" />
+                        </font>
+                    </Text>
+                </children>
+            </HBox>
+            <VBox alignment="CENTER" spacing="20.0">
+                <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View My Information">
                     <font>
-                        <Font size="23.0" />
+                        <Font size="18.0" />
                     </font>
-                </Text>
-                <Button fx:id="logoutButton" layoutX="627.0" layoutY="12.0" mnemonicParsing="false" text="log out" />
-                <TableView layoutY="96.0" prefHeight="358.0" prefWidth="347.0">
-                    <columns>
-                        <TableColumn prefWidth="180.4000152349472" text="Customer ID" />
-                        <TableColumn prefWidth="165.99996948242188" text="View button" />
-                    </columns>
-                </TableView>
-            </children>
-        </AnchorPane>
-    </left>
+                </Button>
+                <Button fx:id="ViewInsuranceSurveyorCustomerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Customer">
+                    <font>
+                        <Font size="18.0" />
+                    </font></Button>
+                <Button fx:id="ViewInsuranceSurveyorClaimButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: Bold;" text="View Claims">
+                    <font>
+                        <Font size="18.0" />
+                    </font></Button>
+                <padding>
+                    <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                </padding>
+            </VBox>
+            <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: Bold;" text="Logout" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
 </BorderPane>

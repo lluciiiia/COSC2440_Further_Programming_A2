@@ -14,6 +14,7 @@ public interface ClaimFacade {
     void deleteClaimById(int id);
 
     void updateClaimStatus(int id, ClaimStatus status);
+    List<Claim> getAllClaims();
 
     void createClaim(InsertClaimRequest request);
 }

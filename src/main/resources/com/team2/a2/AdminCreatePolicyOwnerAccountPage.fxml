@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
+
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: black;">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30" text="Register Policy Owner's Account" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <BorderPane>
+            <center>
+                <VBox alignment="CENTER" spacing="20.0">
+                    <TextField fx:id="tfClaimID" disable="false" promptText="Username" />
+                    <TextField fx:id="tfClaimDate" promptText="Password" />
+                    <TextField fx:id="tfFName" promptText="Full name" />
+                    <TextField fx:id="tfICNumber" promptText="Enter Email Address" />
+                    <TextField fx:id="tfClaimFile" disable="false" promptText="Enter Phone Number" />
+                    <TextField fx:id="tfTotal" disable="false" promptText="Enter Home Address" />
+               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" text="Return" />
+
+                    <Button fx:id="nextToInsuranceCardButton" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
+
+                    <padding>
+                        <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+
+</BorderPane>
