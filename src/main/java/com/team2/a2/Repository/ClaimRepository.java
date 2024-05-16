@@ -215,16 +215,14 @@ public class ClaimRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "INSERT INTO claims (customer_id, card_number, expiry_date, claim_date, exam_date, amount, status) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO claims (customer_id, claim_date, exam_date, amount, status) " +
+                    "VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, request.getCustomerId());
-            statement.setString(2, request.getCardNumber());
-            statement.setDate(3, request.getExpiryDate());
-            statement.setDate(4, request.getClaimDate());
-            statement.setDate(5, request.getExamDate());
-            statement.setDouble(6, request.getAmount());
-            statement.setString(7, ClaimStatus.NEW.toString());
+            statement.setDate(2, request.getClaimDate());
+            statement.setDate(3, request.getExamDate());
+            statement.setDouble(4, request.getAmount());
+            statement.setObject(5, ClaimStatus.NEW, Types.OTHER);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
