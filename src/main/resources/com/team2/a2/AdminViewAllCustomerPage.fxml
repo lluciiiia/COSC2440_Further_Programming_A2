@@ -28,17 +28,17 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutX="47.0" layoutY="105.0" prefHeight="353.0" prefWidth="607.0">
+                <TableView fx:id="customerTable" layoutX="47.0" layoutY="105.0" prefHeight="353.0" prefWidth="607.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Customer ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
-                        <TableColumn prefWidth="77.0" text="Type" />
+                        <TableColumn fx:id="customerID" prefWidth="85.0000228881836" text="CusID" />
+                        <TableColumn fx:id="address" prefWidth="85.4000244140625" text="Address" />
+                        <TableColumn fx:id="name" prefWidth="101.60000610351562" text="Name" />
+                        <TableColumn fx:id="email" prefWidth="81.0" text="Email" />
+                        <TableColumn fx:id="type" prefWidth="112.19992065429688" text="Type" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="138.4000122070313" text="Phone number" />
                     </columns>
                 </TableView>
-            <ComboBox layoutX="406.0" layoutY="15.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an account type" style="-fx-background-color: #d6cece;" />
+            <ComboBox fx:id="customerTypeComboBox" layoutX="406.0" layoutY="15.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an customer type" style="-fx-background-color: #d6cece;" />
             <Button layoutX="406.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
             </children>
         </AnchorPane>

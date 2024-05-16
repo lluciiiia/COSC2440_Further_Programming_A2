@@ -1,15 +1,21 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.User.Customer.Customer;
+import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -24,6 +30,8 @@ public class AdminCustomerView implements Initializable {
     private Button ViewListOfCustomerClaimButton;
     @FXML
     private Button EditButton;
+
+    private CustomerController customerController = new CustomerController();
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
@@ -62,11 +70,33 @@ public class AdminCustomerView implements Initializable {
 
         ViewCustomerInformationButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllCustomerPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewAllCustomerPage.fxml"));
+                Parent root = loader.load();
+                AdminSeeCustomerAllCustomerView adminSeeCustomerAllCustomerView = loader.getController();
+                Task<List<Customer>> loadCustomersTask = new Task<>() {
+                    @Override
+                    protected List<Customer> call() throws Exception {
+                        return customerController.getAllCustomers();
+                    }
+                };
+
+                loadCustomersTask.setOnSucceeded(workerStateEvent -> {
+                    adminSeeCustomerAllCustomerView.initData(FXCollections.observableArrayList(loadCustomersTask.getValue()));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadCustomersTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadCustomersTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

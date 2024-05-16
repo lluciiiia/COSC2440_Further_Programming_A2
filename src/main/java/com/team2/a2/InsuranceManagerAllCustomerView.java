@@ -16,17 +16,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class InsuranceManagerAllCustomerView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private ComboBox<String> customerTypeComboBox;
     @FXML
     private TableView<Customer> customerTable;
     @FXML
@@ -47,7 +52,10 @@ public class InsuranceManagerAllCustomerView implements Initializable {
     private AccountController accountController = new AccountController();
     private Account account;
 
+    private ObservableList<Customer> originalCustomerList;
+
     public void initData(ObservableList<Customer> customers, InsuranceManager insuranceManager) {
+        originalCustomerList = FXCollections.observableArrayList(customers);
         cusID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         homeAddress.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress()));
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
@@ -56,8 +64,7 @@ public class InsuranceManagerAllCustomerView implements Initializable {
         type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
         policyOwnerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPolicyOwnerId()).asObject());
 
-        ObservableList<Customer> customerData = FXCollections.observableArrayList(customers);
-        customerTable.setItems(customerData);
+        customerTable.setItems(originalCustomerList);
 
         int accountID = insuranceManager.getAccountId();
         account = accountController.getAccountByID(accountID);
@@ -65,6 +72,13 @@ public class InsuranceManagerAllCustomerView implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerTypeComboBox.setItems(FXCollections.observableArrayList("All", "DEPENDENT", "POLICY_HOLDER"));
+        customerTypeComboBox.getSelectionModel().select("All");
+
+        customerTypeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            filterCustomerTable(newVal);
+        });
+
         returnButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceManagerPage.fxml"));
@@ -79,5 +93,17 @@ public class InsuranceManagerAllCustomerView implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void filterCustomerTable(String customerType) {
+        if ("All".equals(customerType)) {
+            customerTable.setItems(originalCustomerList);
+        } else {
+            CustomerType type = CustomerType.valueOf(customerType);
+            List<Customer> filteredList = originalCustomerList.stream()
+                    .filter(customer -> customer.getType() == type)
+                    .collect(Collectors.toList());
+            customerTable.setItems(FXCollections.observableArrayList(filteredList));
+        }
     }
 }

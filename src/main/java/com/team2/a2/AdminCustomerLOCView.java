@@ -19,10 +19,7 @@ public class AdminCustomerLOCView implements Initializable {
     @FXML
     private Button returnButton;
 
-    @FXML
-    private TextField accountID;
-
-    public void initData(Account account) {
+    public void initData() {
 
     }
 
