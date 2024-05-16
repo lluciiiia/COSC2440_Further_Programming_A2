@@ -5,6 +5,7 @@ import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Request.InsertClaimRequest;
+import com.team2.a2.Request.UpdateClaimRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -123,4 +124,23 @@ public class ClaimControllerTest {
 
         assertNotEquals(previousClaim.getDocumentRequested(), updatedClaim.getDocumentRequested());
     }
+
+    @Test
+    public void testUpdateClaim() {
+        int claimId = 4;
+
+        Date newClaimDate = Date.valueOf("2024-05-01");
+        Date newExamDate = Date.valueOf("2024-05-15");
+        Double newAmount = 2500.0;
+
+        UpdateClaimRequest updateRequest = new UpdateClaimRequest(claimId, newClaimDate, newExamDate, newAmount);
+        claimController.updateClaim(updateRequest);
+
+        Claim updatedClaim = claimController.getClaimById(claimId);
+
+        assertEquals(newClaimDate, updatedClaim.getClaimDate(), "Claim date should be updated correctly.");
+        assertEquals(newExamDate, updatedClaim.getExamDate(), "Exam date should be updated correctly.");
+        assertEquals(newAmount, updatedClaim.getAmount(), 0.01, "Amount should be updated correctly.");
+    }
+
 }
