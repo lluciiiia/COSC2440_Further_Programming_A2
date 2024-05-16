@@ -1,10 +1,13 @@
 package org.example;
 
+import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.Enum.CustomerType;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Request.InsertCustomerRequest;
+import com.team2.a2.Request.LoginRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,11 +22,13 @@ import java.util.List;
 public class CustomerControllerTest {
 
     private CustomerController customerController;
+    private AccountController accountController;
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         customerController = new CustomerController();
+        accountController = new AccountController();
     }
 
     @Test
@@ -70,12 +75,32 @@ public class CustomerControllerTest {
 
     @Test
     public void testCreateCustomer() {
-        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph", "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER);
+        String phUsername = "new ph6 username";
+        String phPassword = "12345";
+        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest(phUsername, phPassword, 4,
+                "wanna be a ph", "hochiminh", "098765", "123456@gmail.com",
+                CustomerType.POLICY_HOLDER);
 
-        InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT);
+        String depUsername = "new dep6 username";
+        String depPassword = "12345";
+        InsertCustomerRequest dependentRequest = new InsertCustomerRequest(depUsername, depPassword,
+                4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com",
+                CustomerType.DEPENDENT);
 
         customerController.createCustomer(policyHolderRequest);
         customerController.createCustomer(dependentRequest);
+
+        Account createdPhAccount = accountController.login(new LoginRequest(phUsername, phPassword));
+        Customer createdPhCustomer = customerController.getCustomerByAccountId(createdPhAccount.getId());
+
+        Account createdDepAccount = accountController.login(new LoginRequest(depUsername, depPassword));
+        Customer createdDepCustomer = customerController.getCustomerByAccountId(createdDepAccount.getId());
+
+        assertNotNull(createdPhAccount, "CreatedPhAccount should NOT be null.");
+        assertNotNull(createdPhCustomer, "createdPhCustomer should NOT be null.");
+        assertNotNull(createdDepAccount, "CreatedDepAccount should NOT be null.");
+        assertNotNull(createdDepCustomer, "CreatedDepCustomer should NOT be null.");
+
     }
 
     @Test
