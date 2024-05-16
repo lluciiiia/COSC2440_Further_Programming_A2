@@ -51,8 +51,11 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public void updateAccount(UpdateAccountRequest request) {
-        accountRepository.updateAccount(request);
+    public Account updateAccount(UpdateAccountRequest request) {
+        Account account = accountRepository.getAccountById(request.getId());
+        if (account == null) return null;
+
+        return accountRepository.updateAccount(request);
     }
 
     @Override

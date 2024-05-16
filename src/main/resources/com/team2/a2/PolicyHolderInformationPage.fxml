@@ -32,4 +32,16 @@
             </padding>
         </VBox>
     </center>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="nameEdit" promptText="Name" />
+            <TextField fx:id="addressEdit" promptText="Address" />
+            <TextField fx:id="phoneEdit" promptText="Phone" />
+            <TextField fx:id="emailEdit" promptText="Email" />
+            <TextField fx:id="passwordEdit" promptText="password" />
+            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

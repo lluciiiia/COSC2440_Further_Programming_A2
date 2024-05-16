@@ -38,8 +38,13 @@
                     <TableColumn fx:id="phoneNumber" prefWidth="90.39998779296877" text="Phone number" />
                 </columns>
             </TableView>
-         <Button fx:id="viewCustomerClaimButton" layoutX="378.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="View customer's claim" />
-         <ComboBox layoutX="378.0" layoutY="50.0" prefHeight="25.0" prefWidth="139.0" promptText="Choose a type" />
+         <Button fx:id="viewCustomerClaimButton" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="View customer's claim" />
+         <TextField fx:id="nameEdit" layoutX="29.0" layoutY="69.0" prefHeight="26.0" prefWidth="81.0" promptText="name" />
+         <TextField fx:id="addressEdit" layoutX="128.0" layoutY="69.0" prefHeight="26.0" prefWidth="77.0" promptText="address" />
+         <TextField fx:id="phoneEdit" layoutX="228.0" layoutY="69.0" prefHeight="26.0" prefWidth="78.0" promptText="phone" />
+         <TextField fx:id="emailEdit" layoutX="329.0" layoutY="69.0" prefHeight="26.0" prefWidth="80.0" promptText="email" />
+         <TextField fx:id="passwordEdit" layoutX="432.0" layoutY="69.0" prefHeight="26.0" prefWidth="77.0" promptText="password" />
+         <Button fx:id="editButton" layoutX="547.0" layoutY="69.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Edit customer's infor" />
         </AnchorPane>
     </left>
 </BorderPane>

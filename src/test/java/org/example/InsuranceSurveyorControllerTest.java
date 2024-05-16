@@ -2,6 +2,7 @@ package org.example;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.InsuranceSurveyorController;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,8 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.sql.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class InsuranceSurveyorControllerTest {
@@ -62,5 +62,20 @@ public class InsuranceSurveyorControllerTest {
         assertEquals("im_isssss", insuranceSurveyors.get(0).getName(), "The name of the first insurance surveyor should be im_isssss");
         assertEquals("rmit-surveyor", insuranceSurveyors.get(0).getCompanyName(), "The name of the first insurance surveyor should be rmit-surveyor");
 
+    }
+
+    @Test
+    public void testDeleteInsuranceSurveyorById() {
+        int accountId = 6;
+
+        InsuranceSurveyor insuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(accountId);
+
+        assertNotNull(insuranceSurveyor, "The insurance surveyor should exist.");
+
+        insuranceSurveyorController.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
+
+        InsuranceSurveyor deletedInsuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(accountId);
+
+        assertNull(deletedInsuranceSurveyor, "The insurance surveyor should NOT exist.");
     }
 }

@@ -9,4 +9,6 @@ public interface InsuranceManagerFacade {
     public InsuranceManager getInsuranceManagerByAccountId(int accountId);
 
     List<InsuranceManager> getAllInsuranceManagers();
+
+    void deleteInsuranceManagerById(int id);
 }
