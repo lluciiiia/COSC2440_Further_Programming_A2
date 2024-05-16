@@ -4,7 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<<<<<<< HEAD:src/main/resources/com/team2/a2/AdminSeeCustomerAllCustomerPage.fxml
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminSeeCustomerAllCustomerView">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminAllPolicyOwnerView">
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler"):src/main/resources/com/team2/a2/AdminViewAllPolicyOwnerPage.fxml
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="List of Customer Information" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>

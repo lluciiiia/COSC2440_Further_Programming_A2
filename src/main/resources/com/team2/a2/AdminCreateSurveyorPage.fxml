@@ -4,11 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateSurveyorView">
+
 
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30" text="Register Customer's Account" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30" text="Register Surveyor's Account" />
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
@@ -18,20 +19,15 @@
     <center>
         <BorderPane>
             <center>
-                <VBox alignment="CENTER" spacing="20.0">
+                <VBox alignment="CENTER" prefHeight="435.0" prefWidth="660.0" spacing="20.0">
                     <TextField fx:id="tfClaimID" disable="false" promptText="Username" />
                     <TextField fx:id="tfClaimDate" promptText="Password" />
                     <TextField fx:id="tfFName" promptText="Full name" />
                     <TextField fx:id="tfICNumber" promptText="Enter Email Address" />
                     <TextField fx:id="tfClaimFile" disable="false" promptText="Enter Phone Number" />
-                    <TextField fx:id="tfTotal" disable="false" promptText="Enter Home Address" />
-<<<<<<< HEAD
-                    <TextField fx:id="tfExDate" disable="false" promptText="Choose customer type (Dependent or Policy Holder)" />
-               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
-=======
-               <ComboBox prefHeight="25.0" prefWidth="606.0" promptText="Click to choose customer's account type" style="-fx-background-color: #d6cece;" />
-               <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
->>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
+                    <TextField fx:id="tfTotal" disable="false" promptText="Enter Company Name" />
+                    <TextField fx:id="tfExDate" disable="false" promptText="Enter Company Address" />
+                    <ComboBox prefHeight="26.0" prefWidth="580.0" promptText="Click to select an Insurance Manager ID " style="-fx-background-color: #d6cece;" />
 
                     <Button fx:id="nextToInsuranceCardButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
 
@@ -42,5 +38,8 @@
             </center>
         </BorderPane>
     </center>
+    <left>
+        <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 20;" text="&lt;" />
+    </left>
 
 </BorderPane>

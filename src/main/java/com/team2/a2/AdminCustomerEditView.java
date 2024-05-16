@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminSeeCustomerAllCustomerView implements Initializable {
+public class AdminCustomerEditView implements Initializable {
     @FXML
     private Button returnButton;
 

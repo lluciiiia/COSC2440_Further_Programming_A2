@@ -24,7 +24,11 @@
                      <Font name="Monospaced Bold Italic" size="18.0" />
                   </font>
                </Text>
+<<<<<<< HEAD
                <TextField fx:id="accountID" disable="true" prefHeight="26.0" prefWidth="73.0" text="AccountID" />
+=======
+               <Button fx:id="AllAccountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
             </children>
          </HBox>
             <VBox alignment="CENTER" spacing="20.0">
