@@ -6,7 +6,11 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminSurveyorView">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminSurveyorView">
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminSurveyorView">
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
@@ -83,6 +87,9 @@
         </VBox>
     </center>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
+=======
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")

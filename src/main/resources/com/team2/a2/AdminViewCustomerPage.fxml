@@ -42,7 +42,11 @@
                     </font></Button>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Delete Claim">
+=======
+                <Button fx:id="EditButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Edit Customer Details">
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
                 <Button fx:id="EditButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Edit Customer Details">
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
@@ -66,6 +70,9 @@
 =======
     </center>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
+=======
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")

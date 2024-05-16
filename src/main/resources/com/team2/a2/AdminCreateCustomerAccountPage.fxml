@@ -27,8 +27,13 @@
                     <TextField fx:id="tfTotal" disable="false" promptText="Enter Home Address" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <TextField fx:id="tfExDate" disable="false" promptText="Choose customer type (Dependent or Policy Holder)" />
                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
+=======
+               <ComboBox prefHeight="25.0" prefWidth="606.0" promptText="Click to choose customer's account type" style="-fx-background-color: #d6cece;" />
+               <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
                <ComboBox prefHeight="25.0" prefWidth="606.0" promptText="Click to choose customer's account type" style="-fx-background-color: #d6cece;" />
                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
