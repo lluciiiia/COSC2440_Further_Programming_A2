@@ -17,13 +17,6 @@
     <center>
         <VBox alignment="CENTER" prefHeight="372.0" prefWidth="651.0" spacing="40.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <HBox>
-                <children>
-                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " wrappingWidth="500.22459411621094">
-                        <font>
-                            <Font name="Monospaced Bold Italic" size="18.0" />
-                        </font>
-                    </Text>
-                </children>
             </HBox>
             <VBox alignment="CENTER" prefWidth="531.0" spacing="20.0">
                 <Button fx:id="CreateCustomerAccountButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="Create Customer Account">
