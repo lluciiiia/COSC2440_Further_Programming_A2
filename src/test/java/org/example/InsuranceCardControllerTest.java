@@ -28,14 +28,6 @@ public class InsuranceCardControllerTest {
     }
 
     @Test
-    public void testCreateInsuranceCard() {
-        InsertInsuranceCardRequest request = new InsertInsuranceCardRequest(1,
-                                                                "1234567890123456",
-                                                                            Date.valueOf("2024-12-31"), "VPBank", "1234567890");
-        insuranceCardController.createInsuranceCard(request);
-    }
-
-    @Test
     public void testGetInsuranceCardByCustomerId() {
         int customerId = 1;
         InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);
@@ -53,6 +45,19 @@ public class InsuranceCardControllerTest {
         assertEquals(insuranceCard.getCustomerId(), expectedInsuranceCard.getCustomerId());
         assertEquals(insuranceCard.getCardNumber(), expectedInsuranceCard.getCardNumber());
         assertNotEquals(insuranceCard.getAccountNumber(), expectedInsuranceCard.getAccountNumber());
+
+    }
+
+    @Test
+    public void testCreateInsuranceCard() {
+        InsertInsuranceCardRequest request = new InsertInsuranceCardRequest(1,
+                                                                "1234567890123456",
+                                                                            Date.valueOf("2024-12-31"), "VPBank", "1234567890");
+        insuranceCardController.createInsuranceCard(request);
+    }
+
+    @Test
+    public void testDeleteInsuranceCardById() {
 
     }
 }
