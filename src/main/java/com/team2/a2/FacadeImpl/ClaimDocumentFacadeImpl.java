@@ -7,6 +7,7 @@ import com.team2.a2.Repository.ClaimDocumentRepository;
 import com.team2.a2.Repository.ClaimRepository;
 import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Request.InsertClaimDocumentRequest;
+import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
 import java.util.List;
 
@@ -34,5 +35,13 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
         if (claim == null) return null;
 
         return claimDocumentRepository.getClaimDocumentsByClaimId(claimId);
+    }
+
+    @Override
+    public void updateClaimDocument(UpdateClaimDocumentRequest request) {
+        Claim claim = claimRepository.getClaimById(request.getId());
+        if (claim == null) return;
+
+        claimDocumentRepository.updateClaimDocument(request);
     }
 }
