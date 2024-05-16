@@ -321,4 +321,25 @@ public class CustomerRepository {
     }
 
 
+    public void deleteCustomerById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM customers WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error deleting customer: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
 }

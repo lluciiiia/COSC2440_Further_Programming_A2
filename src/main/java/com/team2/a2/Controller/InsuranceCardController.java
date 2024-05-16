@@ -21,4 +21,7 @@ public class InsuranceCardController {
 
     public void deleteInsuranceCardById(int id) { this.insuranceCardFacade.deleteInsuranceCardById(id); }
 
+    public InsuranceCard getInsuranceCardById(int id) {
+        return this.insuranceCardFacade.getInsuranceCardById(id);
+    }
 }

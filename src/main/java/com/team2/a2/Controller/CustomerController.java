@@ -35,4 +35,6 @@ public class CustomerController {
 
     public Customer updateCustomer(UpdateCustomerRequest request) { return this.customerFacade.updateCustomer(request); }
 
+    public void deleteCustomerById(int id) { this.customerFacade.deleteCustomerById(id); }
+
 }
