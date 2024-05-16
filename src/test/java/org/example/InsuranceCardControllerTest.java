@@ -66,5 +66,15 @@ public class InsuranceCardControllerTest {
         assertNull(deletedInsuranceCard, "The insurance card should NOT exist.");
 
     }
+
+    @Test
+    public void testGetInsuranceCardById() {
+        int id = 5;
+
+        InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardById(id);
+
+        assertNotNull(insuranceCard, "The insurance card should not be null");
+        assertEquals(id, insuranceCard.getId(), "The card ID should match");
+    }
 }
 
