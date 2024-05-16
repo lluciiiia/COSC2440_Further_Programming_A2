@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="25.0" layoutY="13.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="25.0" layoutY="6.0" prefHeight="40.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                             <font>
@@ -38,7 +38,7 @@
                         <TableColumn fx:id="policyOwnerID" prefWidth="121.0" text="Policy Owner ID" />
                     </columns>
                 </TableView>
-            <Button fx:id="dependentClaimView" layoutX="314.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="View dependent's claim" />
+            <Button fx:id="dependentClaimView" layoutX="339.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="View dependent's claim" />
             <Button fx:id="editButton" layoutX="540.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent's infor" />
             <TextField fx:id="nameEdit" layoutX="14.0" layoutY="55.0" prefHeight="26.0" prefWidth="88.0" promptText="name" />
             <TextField fx:id="addressEdit" layoutX="121.0" layoutY="54.0" prefHeight="26.0" prefWidth="89.0" promptText="address" />
