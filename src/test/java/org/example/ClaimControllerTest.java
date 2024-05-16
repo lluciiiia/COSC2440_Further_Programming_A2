@@ -127,20 +127,17 @@ public class ClaimControllerTest {
 
     @Test
     public void testUpdateClaim() {
-        int claimId = 4;
+        int claimId = 8;
 
-        Date newClaimDate = Date.valueOf("2024-05-01");
-        Date newExamDate = Date.valueOf("2024-05-15");
-        Double newAmount = 2500.0;
-
-        UpdateClaimRequest updateRequest = new UpdateClaimRequest(claimId, newClaimDate, newExamDate, newAmount);
+        UpdateClaimRequest updateRequest = new UpdateClaimRequest(claimId,
+                Date.valueOf("2024-05-01"), Date.valueOf("2024-05-15"), 2500.0);
         claimController.updateClaim(updateRequest);
 
         Claim updatedClaim = claimController.getClaimById(claimId);
 
-        assertEquals(newClaimDate, updatedClaim.getClaimDate(), "Claim date should be updated correctly.");
-        assertEquals(newExamDate, updatedClaim.getExamDate(), "Exam date should be updated correctly.");
-        assertEquals(newAmount, updatedClaim.getAmount(), 0.01, "Amount should be updated correctly.");
+        assertEquals(updateRequest.getClaimDate(), updatedClaim.getClaimDate(), "Claim date should be updated correctly.");
+        assertEquals(updateRequest.getExamDate(), updatedClaim.getExamDate(), "Exam date should be updated correctly.");
+        assertEquals(updateRequest.getAmount(), updatedClaim.getAmount(), 0.01, "Amount should be updated correctly.");
     }
 
 }
