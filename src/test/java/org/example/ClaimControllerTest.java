@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
+import com.team2.a2.Request.InsertClaimRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -104,9 +105,9 @@ public class ClaimControllerTest {
 
     @Test
     public void testCreateClaim() {
-//        InsertClaimRequest request = new InsertClaimRequest(8, "1234567", Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00, ClaimStatus.NEW);
-//
-//        claimController.createClaim(request);
+        InsertClaimRequest request = new InsertClaimRequest(8, Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00);
+
+        claimController.createClaim(request);
     }
 
     @Test
