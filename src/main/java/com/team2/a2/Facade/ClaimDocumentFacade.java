@@ -14,4 +14,6 @@ public interface ClaimDocumentFacade {
     void updateClaimDocument(UpdateClaimDocumentRequest request);
 
     ClaimDocument getClaimDocumentById(int id);
+
+    void deleteClaimDocumentById(int id);
 }

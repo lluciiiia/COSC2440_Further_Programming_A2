@@ -16,4 +16,8 @@ public class DependentController {
         return dependentFacade.getDependentByCustomerId(id);
     }
 
+    public void deleteDependentById(int id) { dependentFacade.deleteDependentById(id); }
+
+    public Dependent getDependentById(int id) { return dependentFacade.getDependentById(id);
+    }
 }

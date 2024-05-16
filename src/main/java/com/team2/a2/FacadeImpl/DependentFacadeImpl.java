@@ -19,4 +19,17 @@ public class DependentFacadeImpl implements DependentFacade {
         return dependentRepository.getDependentByCustomerId(customerID);
     }
 
+    @Override
+    public void deleteDependentById(int id) {
+        Dependent dependent = dependentRepository.getDependentById(id);
+        if (dependent == null) return;
+
+        dependentRepository.deleteDependentById(id);
+    }
+
+    @Override
+    public Dependent getDependentById(int id) {
+        return dependentRepository.getDependentById(id);
+    }
+
 }

@@ -1,11 +1,18 @@
 package org.example;
 
+import com.team2.a2.Controller.ClaimController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.Enum.CustomerType;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Repository.CustomerRepository;
+import com.team2.a2.Repository.DependentRepository;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -13,17 +20,26 @@ import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CustomerControllerTest {
 
     private CustomerController customerController;
+    private InsuranceCardController insuranceCardController;
+    private ClaimController claimController;
+    private CustomerRepository customerRepository;
+    private DependentRepository dependentRepository;
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         customerController = new CustomerController();
+        insuranceCardController = new InsuranceCardController();
+        claimController = new ClaimController();
+        customerRepository = new CustomerRepository();
+        dependentRepository = new DependentRepository();
     }
 
     @Test
@@ -104,11 +120,39 @@ public class CustomerControllerTest {
 
     
     @Test
-    public void testgetAllPolicyHoldersByPolicyOwnerId() {
+    public void testGetAllPolicyHoldersByPolicyOwnerId() {
         int policyOwnerId = 1;
         List<Customer> customers = customerController.getAllPolicyHoldersByPolicyOwnerId(policyOwnerId);
         assertNotNull(customers, "Customers should NOT be null.");
         assertEquals(8, customers.size(), "Customers size should be 6.");
+    }
 
+    @Test
+    public void testDeleteCustomerById() {
+        int accountId = 3;
+        List<Dependent> dependents = new ArrayList<>();
+
+        Customer customer = customerController.getCustomerByAccountId(accountId);
+
+        if (customer.getType() == CustomerType.POLICY_HOLDER) {
+            dependents = dependentRepository.getDependentsByPolicyHolderId(customer.getId());
+        }
+
+        assertNotNull(customer, "Customer should NOT be null for testing.");
+
+        customerController.deleteCustomerById(customer.getId());
+
+        assertNull(customerRepository.getCustomerById(customer.getId()), "Customer should be deleted");
+
+        if (customer.getType() == CustomerType.POLICY_HOLDER) {
+            for (Dependent dependent : dependents) {
+                assertNull(dependentRepository.getDependentById(dependent.getId()), "Dependent " + dependent.getId() + " should be deleted");
+            }
+        }
+
+        assertNull(insuranceCardController.getInsuranceCardByCustomerID(customer.getId()), "Insurance card should be deleted");
+
+        List<Claim> claims = claimController.getClaimsByCustomerId(customer.getId());
+        assertTrue(claims.isEmpty(), "All claims should be deleted");
     }
 }
