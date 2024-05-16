@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane prefHeight="46.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                             <font>
@@ -38,8 +38,13 @@
                         <TableColumn fx:id="policyOwnerID" prefWidth="121.0" text="Policy Owner ID" />
                     </columns>
                 </TableView>
-            <Button fx:id="dependentClaimView" layoutX="314.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="152.0" text="View dependent's claim" />
-            <Button layoutX="314.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent's claim" />
+            <Button fx:id="dependentClaimView" layoutX="314.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="View dependent's claim" />
+            <Button fx:id="editButton" layoutX="540.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent's infor" />
+            <TextField fx:id="nameEdit" layoutX="14.0" layoutY="55.0" prefHeight="26.0" prefWidth="88.0" promptText="name" />
+            <TextField fx:id="addressEdit" layoutX="121.0" layoutY="54.0" prefHeight="26.0" prefWidth="89.0" promptText="address" />
+            <TextField fx:id="phoneEdit" layoutX="222.0" layoutY="54.0" prefHeight="26.0" prefWidth="91.0" promptText="phone" />
+            <TextField fx:id="emailEdit" layoutX="334.0" layoutY="55.0" prefHeight="26.0" prefWidth="92.0" promptText="email" />
+            <TextField fx:id="passwordEdit" layoutX="434.0" layoutY="54.0" prefHeight="26.0" prefWidth="98.0" promptText="password" />
             </children>
         </AnchorPane>
     </left>
