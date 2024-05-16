@@ -151,10 +151,7 @@ public class PolicyOwnerCreateAccountView implements Initializable {
             customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, fullName, address, phone, email, customerType);
         }
 
-        UpdateAccountRequest accountRequest = new UpdateAccountRequest(policyOwnerAccountId, username, password);
-
         customerController.createCustomer(customerRequest);
-        accountController.updateAccount(accountRequest);
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
 
     }

@@ -36,9 +36,6 @@ public class AdminView implements Initializable {
     @FXML
     private Button AllAccountButton;
 
-    public void initData(Account account){
-
-    }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
