@@ -14,7 +14,10 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     InsuranceSurveyorRepository insuranceSurveyorRepository;
 
     public InsuranceManagerFacadeImpl() {
+
         this.insuranceManagerRepository = new InsuranceManagerRepository();
+        this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
+
     }
 
     @Override
@@ -29,12 +32,14 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
 
     @Override
     public void deleteInsuranceManagerById(int id) {
-        insuranceManagerRepository.deleteInsuranceManagerById(id);
 
         List<InsuranceSurveyor> insuranceSurveyors = insuranceSurveyorRepository.getInsuranceSurveyorsByManagerID(id);
 
         for (InsuranceSurveyor surveyor : insuranceSurveyors) {
             insuranceSurveyorRepository.deleteInsuranceSurveyorById(surveyor.getId());
         }
+
+        insuranceManagerRepository.deleteInsuranceManagerById(id);
+
     }
 }
