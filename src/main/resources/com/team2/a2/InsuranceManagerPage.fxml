@@ -28,23 +28,26 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="301.0" prefWidth="567.0" spacing="20.0">
-                <Button fx:id="ViewMyButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View My Information ">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Customer">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="ViewLOCButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Claims">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Insurance Surveyors">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
+            <Button fx:id="ViewMyButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="361.0" text="View My Information">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="ViewCustomerButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="363.0" text="View List of Customers">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="ViewLOCButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="365.0" text="View Claims">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="366.0" text="View List of Surveyors">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
                 <padding>
                     <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
                 </padding>

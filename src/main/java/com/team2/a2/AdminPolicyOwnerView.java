@@ -52,7 +52,7 @@ public class AdminPolicyOwnerView implements Initializable {
 
         ViewCustomerInformationButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllPolicyOwner.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllPolicyOwnerPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
                 stage.setScene(scene);
