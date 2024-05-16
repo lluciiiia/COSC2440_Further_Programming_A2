@@ -23,4 +23,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     public List<InsuranceManager> getAllInsuranceManagers() {
         return insuranceManagerRepository.getAllInsuranceManagers();
     }
+
+    @Override
+    public void deleteInsuranceManagerById(int id) {
+        insuranceManagerRepository.deleteInsuranceManagerById(id);
+    }
 }
