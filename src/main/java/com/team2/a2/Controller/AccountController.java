@@ -25,5 +25,5 @@ public class AccountController {
     }
     public List<Account> getAllAccounts() { return accountFacade.getAllAccounts(); }
 
-    public void updateAccount(UpdateAccountRequest request) { accountFacade.updateAccount(request); }
+    public Account updateAccount(UpdateAccountRequest request) { return this.accountFacade.updateAccount(request); }
 }
