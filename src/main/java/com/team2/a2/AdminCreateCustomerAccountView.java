@@ -14,17 +14,17 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminCreateCustomerAccountView implements Initializable {
-
     @FXML
-    private Button returnButton;
+    private Button nextToInsuranceCardButton;
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        returnButton.setOnAction(event -> {
+        nextToInsuranceCardButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerPage.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateInsuranceCardPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) returnButton.getScene().getWindow();
+                Stage stage = (Stage) nextToInsuranceCardButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

@@ -15,16 +15,16 @@ import java.util.ResourceBundle;
 
 public class AdminCreatePolicyOwnerAccountView implements Initializable {
     @FXML
-    private Button returnButton;
+    private Button register;
 
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        returnButton.setOnAction(event -> {
+        register.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewPolicyOwnerPage.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateInsuranceCardPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) returnButton.getScene().getWindow();
+                Stage stage = (Stage) register.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

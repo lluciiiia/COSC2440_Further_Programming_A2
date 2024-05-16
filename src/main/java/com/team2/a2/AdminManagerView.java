@@ -16,10 +16,6 @@ import java.util.ResourceBundle;
 public class AdminManagerView implements Initializable {
     @FXML
     private Button returnButton;
-    @FXML
-    private Button CreateManagerAccountButton;
-    @FXML
-    private Button ViewAllManager;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,30 +24,6 @@ public class AdminManagerView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        CreateManagerAccountButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateManagerPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) CreateManagerAccountButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        ViewAllManager.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllManagerPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewAllManager.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

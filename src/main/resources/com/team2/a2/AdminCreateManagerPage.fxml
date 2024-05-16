@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateManagerAccountView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
 
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
@@ -26,7 +26,7 @@
                     <TextField fx:id="tfClaimFile" disable="false" promptText="Enter Phone Number" />
                     <TextField fx:id="tfTotal" disable="false" promptText="Enter Company Name" />
                     <TextField fx:id="tfExDate" disable="false" promptText="Enter Company Address" />
-                    <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
+                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
 
                     <Button fx:id="nextToInsuranceCardButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
 

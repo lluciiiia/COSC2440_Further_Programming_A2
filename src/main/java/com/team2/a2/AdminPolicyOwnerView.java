@@ -19,8 +19,11 @@ public class AdminPolicyOwnerView implements Initializable {
     @FXML
     private Button CreatePolicyOwnerAccount;
     @FXML
-    private Button ViewAllPolicyOwnerButton;
-
+    private Button ViewCustomerInformationButton;
+    @FXML
+    private Button ViewPolicyOwnerListOfClaim;
+    @FXML
+    private Button DeleteClaimButton;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
@@ -47,11 +50,11 @@ public class AdminPolicyOwnerView implements Initializable {
             }
         });
 
-        ViewAllPolicyOwnerButton.setOnAction(event -> {
+        ViewCustomerInformationButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllPolicyOwnerPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewAllPolicyOwnerButton.getScene().getWindow();
+                Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -59,5 +62,28 @@ public class AdminPolicyOwnerView implements Initializable {
             }
         });
 
+        ViewPolicyOwnerListOfClaim.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewPolicyOwnerLOCPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewPolicyOwnerListOfClaim.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        DeleteClaimButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) DeleteClaimButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

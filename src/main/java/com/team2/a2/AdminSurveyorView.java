@@ -16,10 +16,6 @@ import java.util.ResourceBundle;
 public class AdminSurveyorView implements Initializable {
     @FXML
     private Button returnButton;
-    @FXML
-    private Button CreateSurveyorButton;
-    @FXML
-    private Button ViewAllSurveyorButton;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,30 +24,6 @@ public class AdminSurveyorView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        CreateSurveyorButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateSurveyorPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) CreateSurveyorButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        ViewAllSurveyorButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllSurveyorPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewAllSurveyorButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

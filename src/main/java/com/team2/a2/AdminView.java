@@ -33,9 +33,6 @@ public class AdminView implements Initializable {
     @FXML
     private Button ViewInsuranceManagerButton;
 
-    @FXML
-    private Button AllAccountButton;
-
     public void initData(Account account){
 
     }
@@ -58,7 +55,7 @@ public class AdminView implements Initializable {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewCustomerButton.getScene().getWindow();
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -70,7 +67,7 @@ public class AdminView implements Initializable {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewPolicyOwnerPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewPolicyOwnerButton.getScene().getWindow();
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -82,7 +79,7 @@ public class AdminView implements Initializable {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewSurveyorPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewInsuranceSurveyorButton.getScene().getWindow();
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -94,7 +91,7 @@ public class AdminView implements Initializable {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewManagerPage.fxml")));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewInsuranceManagerButton.getScene().getWindow();
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -102,17 +99,7 @@ public class AdminView implements Initializable {
             }
         });
 
-        AllAccountButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllAccountPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) AllAccountButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+
 
     }
 }

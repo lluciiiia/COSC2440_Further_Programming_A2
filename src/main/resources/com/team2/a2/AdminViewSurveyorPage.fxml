@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminSurveyorView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCustomerView">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
             <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="View Insurance Surveyor" textAlignment="CENTER" />
@@ -26,12 +26,12 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" prefHeight="352.0" prefWidth="680.0" spacing="20.0">
-                <Button fx:id="CreateSurveyorButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="Create Surveyor Account">
+                <Button fx:id="CreateCustomerAccountButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="Create Surveyor Account">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="ViewAllSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Surveyor">
+                <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Surveyor">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
@@ -39,7 +39,7 @@
                     <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
                 </padding>
             </VBox>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>

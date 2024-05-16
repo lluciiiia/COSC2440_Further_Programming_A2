@@ -39,7 +39,7 @@
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="EditButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Edit Customer Details">
+                <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Edit Customer Details">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
@@ -47,7 +47,7 @@
                     <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
                 </padding>
             </VBox>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
