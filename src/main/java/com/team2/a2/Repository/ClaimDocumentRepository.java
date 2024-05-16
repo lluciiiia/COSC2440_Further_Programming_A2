@@ -103,4 +103,45 @@ public class ClaimDocumentRepository {
         }
     }
 
+    public ClaimDocument getClaimDocumentById(int id) {
+        ClaimDocument claimDocument = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM claim_documents WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int claimId = resultSet.getInt("claim_id");
+                String imageSrc = resultSet.getString("image_src");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+
+                claimDocument = new ClaimDocument(id, createdAt, updatedAt, claimId, imageSrc);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching claim document: " + e.getMessage());
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+
+        return claimDocument;
+    }
+
 }

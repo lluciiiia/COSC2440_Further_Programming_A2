@@ -22,4 +22,6 @@ public class ClaimDocumentController {
     public List<ClaimDocument> getClaimDocumentsByClaimId(int claimId) { return claimDocumentFacade.getClaimDocumentsByClaimId(claimId);}
 
     public void updateClaimDocument(UpdateClaimDocumentRequest request) { claimDocumentFacade.updateClaimDocument(request); }
+
+    public ClaimDocument getClaimDocumentById(int id) { return claimDocumentFacade.getClaimDocumentById(id); }
 }

@@ -39,9 +39,14 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
     @Override
     public void updateClaimDocument(UpdateClaimDocumentRequest request) {
-        Claim claim = claimRepository.getClaimById(request.getId());
-        if (claim == null) return;
+        ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(request.getId());
+        if (claimDocument == null) return;
 
         claimDocumentRepository.updateClaimDocument(request);
+    }
+
+    @Override
+    public ClaimDocument getClaimDocumentById(int id) {
+        return claimDocumentRepository.getClaimDocumentById(id);
     }
 }

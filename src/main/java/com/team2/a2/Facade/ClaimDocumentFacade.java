@@ -12,4 +12,6 @@ public interface ClaimDocumentFacade {
     List<ClaimDocument> getClaimDocumentsByClaimId(int claimId);
 
     void updateClaimDocument(UpdateClaimDocumentRequest request);
+
+    ClaimDocument getClaimDocumentById(int id);
 }
