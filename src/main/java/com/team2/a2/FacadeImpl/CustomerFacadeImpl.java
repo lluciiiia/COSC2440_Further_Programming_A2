@@ -1,6 +1,8 @@
 package com.team2.a2.FacadeImpl;
 
+import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.Facade.CustomerFacade;
+import com.team2.a2.Facade.InsuranceCardFacade;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
@@ -24,6 +26,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
     AccountRepository accountRepository;
     InsuranceCardRepository insuranceCardRepository;
     ClaimRepository claimRepository;
+    ClaimFacade claimFacade;
+    InsuranceCardFacade insuranceCardFacade;
+
 
     public CustomerFacadeImpl() {
         this.policyOwnerRepository = new PolicyOwnerRepository();
@@ -32,6 +37,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
         this.accountRepository = new AccountRepository();
         this.insuranceCardRepository = new InsuranceCardRepository();
         this.claimRepository = new ClaimRepository();
+        this.claimFacade = new ClaimFacadeImpl();
+        this.insuranceCardFacade = new InsuranceCardFacadeImpl();
     }
 
     @Override
@@ -139,6 +146,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
             for (Dependent dependent : dependents) {
                 dependentRepository.deleteDependentById(dependent.getId());
             }
+
         } else if (customer.getType() == CustomerType.DEPENDENT) {
             Dependent dependent = dependentRepository.getDependentByCustomerId(id);
 
@@ -149,13 +157,13 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardByCustomerId(id);
         if (insuranceCard != null) {
-            insuranceCardRepository.deleteInsuranceCardById(insuranceCard.getId());
+            insuranceCardFacade.deleteInsuranceCardById(insuranceCard.getId());
         }
 
         List<Claim> claims = claimRepository.getClaimsByCustomerId(id);
 
         for (Claim claim : claims) {
-            claimRepository.deleteClaimById(claim.getId());
+            claimFacade.deleteClaimById(claim.getId());
         }
 
         customerRepository.deleteCustomerById(id);
