@@ -23,24 +23,15 @@
                             <Font name="Monospaced Bold Italic" size="18.0" />
                         </font>
                     </Text>
-                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Delete Customer Account" />
                 </children>
             </HBox>
-            <VBox alignment="CENTER" prefWidth="531.0" spacing="20.0">
-                <Button fx:id="CreateCustomerAccountButton" mnemonicParsing="false" onAction="#CreatePolicyOwnerAccount" prefHeight="40.0" prefWidth="367.0" text="Create Policy Owner Account">
+            <VBox alignment="CENTER" prefHeight="352.0" prefWidth="680.0" spacing="20.0">
+                <Button fx:id="CreateCustomerAccountButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="Create Policy Owner Account">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owner">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="ViewPolicyOwnerListOfClaim" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Policy Owner Claim">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="DeleteClaimButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Delete Claim">
+                <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owners">
                     <font>
                         <Font size="18.0" />
                     </font></Button>

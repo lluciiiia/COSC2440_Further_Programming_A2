@@ -19,12 +19,12 @@
         <VBox alignment="CENTER" spacing="40.0" style="-fx-background-color: #66B2FF;">
          <HBox>
             <children>
-               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, ADMIN" wrappingWidth="583.2245941162109">
+               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, ADMIN" wrappingWidth="533.2245941162109">
                   <font>
                      <Font name="Monospaced Bold Italic" size="18.0" />
                   </font>
                </Text>
-               <TextField fx:id="accountID" disable="true" prefHeight="26.0" prefWidth="73.0" text="AccountID" />
+               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
             </children>
          </HBox>
             <VBox alignment="CENTER" spacing="20.0">

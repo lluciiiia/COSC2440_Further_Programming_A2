@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="23.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer's claims" BorderPane.alignment="CENTER">
                             <font>
@@ -28,7 +28,7 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView fx:id="claimTable" layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
+                <TableView fx:id="claimTable" layoutX="24.0" layoutY="117.0" prefHeight="339.0" prefWidth="652.0">
                     <columns>
                         <TableColumn fx:id="claimID" prefWidth="60.000003814697266" text="Claim ID" />
                         <TableColumn fx:id="claimDate" prefWidth="81.99998474121094" text="Claim Date" />
@@ -36,7 +36,7 @@
                         <TableColumn fx:id="amount" prefWidth="105.39996337890625" text="Amount" />
                         <TableColumn fx:id="status" prefWidth="93.60003662109375" text="Status" />
                         <TableColumn fx:id="isDocumentRequested" prefWidth="131.60003662109375" text="document_requested" />
-                        <TableColumn fx:id="cusID" prefWidth="58.79998779296875" text="Cus ID" />
+                        <TableColumn fx:id="cusID" prefWidth="68.0" text="Cus ID" />
                     </columns>
                 </TableView>
             <Button fx:id="requireMoreDocuments" layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
