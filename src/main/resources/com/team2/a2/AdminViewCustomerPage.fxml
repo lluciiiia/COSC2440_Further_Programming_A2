@@ -14,7 +14,7 @@
             </padding>
         </HBox>
     </top>
-    <center>
+   <center>
         <VBox alignment="CENTER" prefHeight="372.0" prefWidth="651.0" spacing="40.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <HBox>
                 <children>
@@ -23,6 +23,7 @@
                             <Font name="Monospaced Bold Italic" size="18.0" />
                         </font>
                     </Text>
+               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Delete Customer Account" />
                 </children>
             </HBox>
             <VBox alignment="CENTER" prefWidth="531.0" spacing="20.0">
@@ -39,7 +40,7 @@
                     <font>
                         <Font size="18.0" />
                     </font></Button>
-                <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Edit Customer Details">
+                <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Delete Claim">
                     <font>
                         <Font size="18.0" />
                     </font></Button>
@@ -52,5 +53,5 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </VBox>
-    </center>
+   </center>
 </BorderPane>

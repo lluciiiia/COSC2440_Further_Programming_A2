@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="23.0" layoutY="15.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Surveyor" BorderPane.alignment="CENTER">
                             <font>
@@ -27,7 +27,7 @@
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
                     <bottom>
                     </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="621.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
+                <Button fx:id="returnButton" layoutX="615.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
                 <TableView fx:id="customerTable" layoutY="98.0" prefHeight="358.0" prefWidth="700.0" AnchorPane.topAnchor="98.0">
                     <columns>
                         <TableColumn fx:id="cusID" prefWidth="80.5999892950058" text="Customer ID" />

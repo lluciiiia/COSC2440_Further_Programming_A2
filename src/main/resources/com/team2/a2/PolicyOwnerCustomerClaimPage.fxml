@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="26.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer's claims" BorderPane.alignment="CENTER">
                             <font>
@@ -27,7 +27,7 @@
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
                     <bottom>
                     </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="568.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
+                <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView fx:id="claimTable" layoutX="10.0" layoutY="85.0" prefHeight="371.0" prefWidth="681.0">
                     <columns>
                         <TableColumn fx:id="claimID" prefWidth="58.99999713897705" text="Claim ID" />
