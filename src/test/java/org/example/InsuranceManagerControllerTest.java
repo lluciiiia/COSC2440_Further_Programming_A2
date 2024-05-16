@@ -1,10 +1,16 @@
 package org.example;
 
 import com.team2.a2.ConnectionManager;
+import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceManagerController;
 import com.team2.a2.Controller.InsuranceSurveyorController;
+import com.team2.a2.Model.Enum.CustomerType;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
+import com.team2.a2.Request.InsertCustomerRequest;
+import com.team2.a2.Request.InsertInsuranceManagerRequest;
+import com.team2.a2.Request.LoginRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -20,12 +26,16 @@ public class InsuranceManagerControllerTest {
     private InsuranceManagerController insuranceManagerController;
     private InsuranceSurveyorController insuranceSurveyorController;
 
+    private AccountController accountController;
+
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         insuranceManagerController = new InsuranceManagerController();
         insuranceSurveyorController = new InsuranceSurveyorController();
+        accountController = new AccountController();
+
     }
 
     @Test
@@ -74,5 +84,22 @@ public class InsuranceManagerControllerTest {
 
         assertEquals(0, deletedSurveyors.size(), "The deleted surveyors size should be 0.");
     }
+
+    @Test
+    public void testCreateInsuranceManager() {
+        String username = "new im username";
+        String password = "12345";
+
+        InsertInsuranceManagerRequest request = new InsertInsuranceManagerRequest(username, password, "rmit", "hcm", "2134567589", "12435@gmail.com", "im imim");
+
+        insuranceManagerController.createInsuranceManager(request);
+
+        Account createdAccount = accountController.login(new LoginRequest(username, password));
+        InsuranceManager createdInsuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(createdAccount.getId());
+
+        assertNotNull(createdAccount, "CreatedAccount should NOT be null.");
+        assertNotNull(createdInsuranceManager, "CreatedInsuranceManager should NOT be null.");
+    }
+
 
 }
