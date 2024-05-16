@@ -25,7 +25,11 @@
                   </font>
                </Text>
 <<<<<<< HEAD
+<<<<<<< HEAD
                <TextField fx:id="accountID" disable="true" prefHeight="26.0" prefWidth="73.0" text="AccountID" />
+=======
+               <Button fx:id="AllAccountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
                <Button fx:id="AllAccountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")

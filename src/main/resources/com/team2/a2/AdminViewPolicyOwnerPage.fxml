@@ -32,11 +32,15 @@
 =======
             <VBox alignment="CENTER" prefHeight="352.0" prefWidth="680.0" spacing="20.0">
                 <Button fx:id="CreatePolicyOwnerAccount" mnemonicParsing="false" prefHeight="40.0" prefWidth="367.0" text="Create Policy Owner Account">
+<<<<<<< HEAD
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
+=======
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <Button fx:id="ViewCustomerInformationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owner">
                     <font>
@@ -47,6 +51,9 @@
                         <Font size="18.0" />
                     </font></Button>
                 <Button fx:id="DeleteClaimButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="Delete Claim">
+=======
+                <Button fx:id="ViewAllPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owners">
+>>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
 =======
                 <Button fx:id="ViewAllPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View List of Policy Owners">
 >>>>>>> parent of 75690c8 (Revert "feat: connect buttons in UI with Event handler")
