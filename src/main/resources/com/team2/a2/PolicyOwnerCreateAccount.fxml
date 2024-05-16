@@ -35,10 +35,10 @@
                     </padding>
                 </VBox>
             </center>
-         <right>
-                 <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" BorderPane.alignment="CENTER" />
-         </right>
         </BorderPane>
     </center>
+   <left>
+      <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-size: 20;" text="&lt;" BorderPane.alignment="TOP_LEFT" />
+   </left>
 
 </BorderPane>

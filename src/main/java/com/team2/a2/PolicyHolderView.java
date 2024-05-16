@@ -35,6 +35,8 @@ public class PolicyHolderView implements Initializable {
     private Button viewDependentInformationButton;
     @FXML
     private Button viewClaimInformationButton;
+//    @FXML
+//    private Button viewCardButton;
 
     @FXML
     private Text welcomeText;
@@ -145,6 +147,18 @@ public class PolicyHolderView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+//        viewCardButton.setOnAction(event -> {
+//            try {
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DependentInsuranceCardPage.fxml")));
+//                Scene scene = new Scene(root);
+//                Stage stage = (Stage) viewCardButton.getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
 
 
     }
