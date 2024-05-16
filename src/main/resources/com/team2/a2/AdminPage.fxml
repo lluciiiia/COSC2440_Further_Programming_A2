@@ -24,7 +24,7 @@
                      <Font name="Monospaced Bold Italic" size="18.0" />
                   </font>
                </Text>
-               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
+               <Button fx:id="AllAccountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="View All Account" />
             </children>
          </HBox>
             <VBox alignment="CENTER" spacing="20.0">

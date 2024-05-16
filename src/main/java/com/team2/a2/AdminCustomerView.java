@@ -23,6 +23,8 @@ public class AdminCustomerView implements Initializable {
     @FXML
     private Button ViewListOfCustomerClaimButton;
     @FXML
+    private Button EditButton;
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
@@ -48,9 +50,33 @@ public class AdminCustomerView implements Initializable {
         });
         ViewListOfCustomerClaimButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerLOCPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ViewListOfCustomerClaimButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        ViewCustomerInformationButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllCustomerPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        EditButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCusForEditPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) EditButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
