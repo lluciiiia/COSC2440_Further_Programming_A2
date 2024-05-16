@@ -7,6 +7,7 @@ import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Repository.ClaimRepository;
 import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Request.InsertClaimRequest;
+import com.team2.a2.Request.UpdateClaimRequest;
 
 import java.util.List;
 
@@ -83,5 +84,13 @@ public class ClaimFacadeImpl implements ClaimFacade {
         }
 
         claimRepository.updateClaimDocumentRequested(id, isRequested);
+    }
+
+    @Override
+    public void updateClaim(UpdateClaimRequest request) {
+        Claim claim = claimRepository.getClaimById(request.getId());
+        if (claim == null) return;
+
+        claimRepository.updateClaim(request);
     }
 }
