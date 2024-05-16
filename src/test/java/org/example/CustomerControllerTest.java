@@ -102,4 +102,13 @@ public class CustomerControllerTest {
         assertNotEquals(previousCustomer.getEmail(), updatedCustomer.getEmail(), "The email should be NOT the same as before.");
     }
 
+    
+    @Test
+    public void testgetAllPolicyHoldersByPolicyOwnerId() {
+        int policyOwnerId = 1;
+        List<Customer> customers = customerController.getAllPolicyHoldersByPolicyOwnerId(policyOwnerId);
+        assertNotNull(customers, "Customers should NOT be null.");
+        assertEquals(8, customers.size(), "Customers size should be 6.");
+
+    }
 }
