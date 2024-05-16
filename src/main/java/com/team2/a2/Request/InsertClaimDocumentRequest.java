@@ -1,15 +1,11 @@
-package com.team2.a2.Model.InsuranceObject;
+package com.team2.a2.Request;
 
-import com.team2.a2.Model.BaseEntity;
-
-import java.util.Date;
-
-public class ClaimDocument extends BaseEntity {
+public class InsertClaimDocumentRequest {
     private int claimId;
     private String imageSrc;
 
-    public ClaimDocument(int id, Date createdAt, Date updatedAt, int claimId, String imageSrc) {
-        super(id, createdAt, updatedAt);
+    // Constructor
+    public InsertClaimDocumentRequest(int claimId, String imageSrc) {
         this.claimId = claimId;
         this.imageSrc = imageSrc;
     }
