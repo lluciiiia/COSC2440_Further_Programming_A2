@@ -38,7 +38,7 @@ public class InsuranceCardControllerTest {
     @Test
     public void testGetInsuranceCardByCustomerId() {
         int customerId = 1;
-        InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerId(customerId);
+        InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);
 
         InsuranceCard expectedInsuranceCard = new InsuranceCard(4,
                 Date.valueOf("2024-05-15"),
