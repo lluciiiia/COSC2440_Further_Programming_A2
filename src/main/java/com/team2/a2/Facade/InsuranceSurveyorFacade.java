@@ -10,4 +10,6 @@ public interface InsuranceSurveyorFacade {
     List<InsuranceSurveyor> getInsuranceSurveyorsByManagerId(int managerId);
 
     List<InsuranceSurveyor> getAllInsuranceSurveyors();
+
+    void deleteInsuranceSurveyorById(int id);
 }

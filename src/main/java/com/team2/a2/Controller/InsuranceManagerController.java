@@ -22,6 +22,6 @@ public class InsuranceManagerController {
         return insuranceManagerFacade.getAllInsuranceManagers();
     }
 
-
+    public void deleteInsuranceManagerById(int id) { insuranceManagerFacade.deleteInsuranceManagerById(id); }
 
 }

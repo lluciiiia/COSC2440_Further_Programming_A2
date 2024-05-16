@@ -19,5 +19,6 @@ public class InsuranceCardController {
     }
     public void createInsuranceCard(InsertInsuranceCardRequest request) { this.insuranceCardFacade.createInsuranceCard(request); }
 
+    public void deleteInsuranceCardById(int id) { this.insuranceCardFacade.deleteInsuranceCardById(id); }
 
 }

@@ -32,4 +32,9 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     public InsuranceCard getInsuranceCardByCustomerID(int customerID) {
         return insuranceCardRepository.getInsuranceCardByCustomerId(customerID);
     }
+
+    @Override
+    public void deleteInsuranceCardById(int id) {
+        insuranceCardRepository.deleteInsuranceCardById(id);
+    }
 }

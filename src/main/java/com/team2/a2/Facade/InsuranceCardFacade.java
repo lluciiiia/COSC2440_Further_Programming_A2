@@ -7,4 +7,6 @@ public interface InsuranceCardFacade {
     void createInsuranceCard(InsertInsuranceCardRequest request);
 
     public InsuranceCard getInsuranceCardByCustomerID(int customerId);
+
+    void deleteInsuranceCardById(int id);
 }

@@ -2,9 +2,9 @@ package org.example;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.InsuranceManagerController;
-import com.team2.a2.Controller.PolicyOwnerController;
-import com.team2.a2.Model.User.Customer.PolicyOwner;
+import com.team2.a2.Controller.InsuranceSurveyorController;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
+import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -12,18 +12,20 @@ import org.junit.jupiter.api.TestInstance;
 import java.sql.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class InsuranceManagerControllerTest {
 
     private InsuranceManagerController insuranceManagerController;
+    private InsuranceSurveyorController insuranceSurveyorController;
+
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         insuranceManagerController = new InsuranceManagerController();
+        insuranceSurveyorController = new InsuranceSurveyorController();
     }
 
     @Test
@@ -55,5 +57,22 @@ public class InsuranceManagerControllerTest {
 
     }
 
+    @Test
+    public void testDeleteInsuranceManagerById() {
+        int accountId = 5;
+
+        InsuranceManager insuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(accountId);
+
+        assertNotNull(insuranceManager, "The insurance manager should exist.");
+
+        insuranceManagerController.deleteInsuranceManagerById(insuranceManager.getId());
+
+        InsuranceManager deletedInsuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(accountId);
+        assertNull(deletedInsuranceManager, "The insurance manager should NOT exist.");
+
+        List<InsuranceSurveyor> deletedSurveyors = insuranceSurveyorController.getInsuranceSurveyorsByManagerId(insuranceManager.getId());
+
+        assertEquals(0, deletedSurveyors.size(), "The deleted surveyors size should be 0.");
+    }
 
 }
