@@ -44,7 +44,7 @@
          <TextField fx:id="phoneEdit" layoutX="228.0" layoutY="82.0" prefHeight="26.0" prefWidth="78.0" promptText="phone" />
          <TextField fx:id="emailEdit" layoutX="329.0" layoutY="82.0" prefHeight="26.0" prefWidth="80.0" promptText="email" />
          <TextField fx:id="passwordEdit" layoutX="432.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" promptText="password" />
-         <Button fx:id="editButton" layoutX="547.0" layoutY="69.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Edit customer's infor" />
+         <Button fx:id="editButton" layoutX="547.0" layoutY="69.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Edit customer" />
         </AnchorPane>
     </left>
 </BorderPane>

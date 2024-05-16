@@ -39,7 +39,7 @@
                     </columns>
                 </TableView>
             <Button fx:id="dependentClaimView" layoutX="339.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="View dependent's claim" />
-            <Button fx:id="editButton" layoutX="540.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent's infor" />
+            <Button fx:id="editButton" layoutX="540.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent" />
             <TextField fx:id="nameEdit" layoutX="14.0" layoutY="55.0" prefHeight="26.0" prefWidth="88.0" promptText="name" />
             <TextField fx:id="addressEdit" layoutX="121.0" layoutY="54.0" prefHeight="26.0" prefWidth="89.0" promptText="address" />
             <TextField fx:id="phoneEdit" layoutX="222.0" layoutY="54.0" prefHeight="26.0" prefWidth="91.0" promptText="phone" />
