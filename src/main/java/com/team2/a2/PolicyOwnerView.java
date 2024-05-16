@@ -64,17 +64,20 @@ public class PolicyOwnerView implements Initializable {
             }
         });
 
-//        CreateCusAccountButton.setOnAction(event -> {
-//            try {
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCreateAccount.fxml")));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) CreateCusAccountButton.getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        CreateCusAccountButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCreateAccount.fxml"));
+                Parent root = loader.load();
+                PolicyOwnerCreateAccountView policyOwnerCreateAccountView = loader.getController();
+                policyOwnerCreateAccountView.initData(policyOwner);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) CreateCusAccountButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         ViewBeneficiaries.setOnAction(event -> {
             try {

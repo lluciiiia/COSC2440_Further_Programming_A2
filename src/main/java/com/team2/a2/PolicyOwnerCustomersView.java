@@ -116,7 +116,12 @@ public class PolicyOwnerCustomersView implements Initializable {
         viewCustomerClaimButton.setOnAction(event -> {
             try {
                 Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+                if (selectedCustomer == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
                 int customerID = selectedCustomer.getId();
+
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCustomerClaimPage.fxml"));
                 Parent root = loader.load();

@@ -13,6 +13,8 @@ public interface CustomerFacade {
 
     List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId);
 
+    List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId);
+
     public Customer getCustomerByAccountId(int accountID);
 
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
