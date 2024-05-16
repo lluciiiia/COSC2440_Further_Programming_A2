@@ -3,6 +3,7 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
+import com.team2.a2.Request.InsertClaimRequest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -199,6 +200,39 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error updating claim documentRequested: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public void createClaim(InsertClaimRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "INSERT INTO claims (customer_id, card_number, expiry_date, claim_date, exam_date, amount, status) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, request.getCustomerId());
+            statement.setString(2, request.getCardNumber());
+            statement.setDate(3, request.getExpiryDate());
+            statement.setDate(4, request.getClaimDate());
+            statement.setDate(5, request.getExamDate());
+            statement.setDouble(6, request.getAmount());
+            statement.setString(7, ClaimStatus.NEW.toString());
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new claim was inserted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error creating claim: " + e.getMessage());
         } finally {
             if (statement != null) {
                 try {

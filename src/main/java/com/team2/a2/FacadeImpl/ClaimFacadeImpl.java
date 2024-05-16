@@ -3,7 +3,9 @@ package com.team2.a2.FacadeImpl;
 import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
+import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Repository.ClaimRepository;
+import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Request.InsertClaimRequest;
 
 import java.util.List;
@@ -11,9 +13,12 @@ import java.util.List;
 public class ClaimFacadeImpl implements ClaimFacade {
 
     ClaimRepository claimRepository;
+    CustomerRepository customerRepository;
 
     public ClaimFacadeImpl() {
+
         this.claimRepository = new ClaimRepository();
+        this.customerRepository = new CustomerRepository();
     }
 
     @Override
@@ -56,8 +61,13 @@ public class ClaimFacadeImpl implements ClaimFacade {
     public List<Claim> getAllClaims() {
         return claimRepository.getAllClaims();
     }
-    public void createClaim(InsertClaimRequest request) {
 
+    @Override
+    public void createClaim(InsertClaimRequest request) {
+        Customer customer = customerRepository.getCustomerById(request.getCustomerId());
+        if (customer == null) return;
+
+        claimRepository.createClaim(request);
     }
 
     @Override
