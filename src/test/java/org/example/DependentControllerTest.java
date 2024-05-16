@@ -35,4 +35,24 @@ public class DependentControllerTest {
         assertEquals(expectedDependent.getCustomerId(), actualDependent.getCustomerId());
         assertEquals(expectedDependent.getPolicyHolderId(), actualDependent.getPolicyHolderId());
     }
+
+    @Test
+    public void testDeleteDependentById() {
+        int id = 16;
+
+        dependentController.deleteDependentById(id);
+
+        Dependent deletedDependent = dependentController.getDependentById(id);
+        assertNull(deletedDependent, "Dependent should be null after deletion");
+    }
+
+    @Test
+    public void testGetDependentById() {
+        int id = 16;
+
+        Dependent dependent = dependentController.getDependentById(id);
+
+        assertNotNull(dependent, "Dependent should not be null");
+        assertEquals(id, dependent.getId(), "The ID should match");
+    }
 }

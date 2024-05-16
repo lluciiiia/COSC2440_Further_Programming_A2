@@ -4,4 +4,8 @@ import com.team2.a2.Model.User.Customer.Dependent;
 
 public interface DependentFacade {
     Dependent getDependentByCustomerId(int id);
+
+    void deleteDependentById(int id);
+
+    Dependent getDependentById(int id);
 }
