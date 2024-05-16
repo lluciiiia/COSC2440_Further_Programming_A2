@@ -21,7 +21,7 @@ public class AccountController {
         return accountFacade.getAccountByID(accountID);
     }
     public Account getAccountByCustomerID(int customerID) {
-        return accountFacade.getAccountByID(customerID);
+        return accountFacade.getAccountByCustomerID(customerID);
     }
     public List<Account> getAllAccounts() { return accountFacade.getAllAccounts(); }
 
