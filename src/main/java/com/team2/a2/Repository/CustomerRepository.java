@@ -321,4 +321,6 @@ public class CustomerRepository {
     }
 
 
+    public void deleteCustomerById(int id) {
+    }
 }

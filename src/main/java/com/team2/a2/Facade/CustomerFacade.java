@@ -26,4 +26,5 @@ public interface CustomerFacade {
     Customer updateCustomer(UpdateCustomerRequest request);
 
 
+    void deleteCustomerById(int id);
 }

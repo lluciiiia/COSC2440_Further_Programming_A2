@@ -2,6 +2,8 @@ package com.team2.a2.FacadeImpl;
 
 import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.Enum.CustomerType;
@@ -20,12 +22,16 @@ public class CustomerFacadeImpl implements CustomerFacade {
     DependentRepository dependentRepository;
     PolicyOwnerRepository policyOwnerRepository;
     AccountRepository accountRepository;
+    InsuranceCardRepository insuranceCardRepository;
+    ClaimRepository claimRepository;
 
     public CustomerFacadeImpl() {
         this.policyOwnerRepository = new PolicyOwnerRepository();
         this.dependentRepository = new DependentRepository();
         this.customerRepository = new CustomerRepository();
         this.accountRepository = new AccountRepository();
+        this.insuranceCardRepository = new InsuranceCardRepository();
+        this.claimRepository = new ClaimRepository();
     }
 
     @Override
@@ -122,5 +128,37 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerRepository.updateCustomer(request);
     }
 
+    @Override
+    public void deleteCustomerById(int id) {
+        Customer customer = customerRepository.getCustomerById(id);
+        if (customer == null) return;
+
+        if (customer.getType() == CustomerType.POLICY_HOLDER) {
+            List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(id);
+
+            for (Dependent dependent : dependents) {
+                dependentRepository.deleteDependentById(dependent.getId());
+            }
+        } else if (customer.getType() == CustomerType.DEPENDENT) {
+            Dependent dependent = dependentRepository.getDependentByCustomerId(id);
+
+            if (dependent != null) {
+                dependentRepository.deleteDependentById(dependent.getId());
+            }
+        }
+
+        InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardByCustomerId(id);
+        if (insuranceCard != null) {
+            insuranceCardRepository.deleteInsuranceCardById(insuranceCard.getId());
+        }
+
+        List<Claim> claims = claimRepository.getClaimsByCustomerId(id);
+
+        for (Claim claim : claims) {
+            claimRepository.deleteClaimById(claim.getId());
+        }
+
+        customerRepository.deleteCustomerById(id);
+    }
 
 }
