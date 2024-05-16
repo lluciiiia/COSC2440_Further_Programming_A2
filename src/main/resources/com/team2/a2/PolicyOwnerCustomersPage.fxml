@@ -14,7 +14,11 @@
     </top>
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+<<<<<<< HEAD
             <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+=======
+            <BorderPane layoutX="29.0" layoutY="14.0" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0;">
+>>>>>>> parent of 0ac46fa (Revert "feat: add combo boxes, fix dependent, surveyors, managers, button handler UI page")
                 <center>
                     <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                         <font>
@@ -38,7 +42,12 @@
                     <TableColumn fx:id="phoneNumber" prefWidth="90.39998779296877" text="Phone number" />
                 </columns>
             </TableView>
+<<<<<<< HEAD
          <Button fx:id="viewCustomerClaimButton" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="View customer's claim" />
+=======
+         <Button fx:id="viewCustomerClaimButton" layoutX="378.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="View customer's claim" />
+         <ComboBox layoutX="378.0" layoutY="50.0" prefHeight="25.0" prefWidth="139.0" promptText="Choose a type" />
+>>>>>>> parent of 0ac46fa (Revert "feat: add combo boxes, fix dependent, surveyors, managers, button handler UI page")
         </AnchorPane>
     </left>
 </BorderPane>

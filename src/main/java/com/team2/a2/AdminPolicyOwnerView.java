@@ -49,7 +49,11 @@ public class AdminPolicyOwnerView implements Initializable {
 
         ViewAllPolicyOwnerButton.setOnAction(event -> {
             try {
+<<<<<<< HEAD
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminSeePOwnerAllCustomerPage.fxml")));
+=======
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllPolicyOwnerPage.fxml")));
+>>>>>>> parent of 0ac46fa (Revert "feat: add combo boxes, fix dependent, surveyors, managers, button handler UI page")
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ViewAllPolicyOwnerButton.getScene().getWindow();
                 stage.setScene(scene);

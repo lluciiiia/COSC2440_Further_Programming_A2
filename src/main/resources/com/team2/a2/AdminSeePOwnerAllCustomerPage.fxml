@@ -28,17 +28,17 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutY="98.0" prefHeight="358.0" prefWidth="700.0">
+                <TableView layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Customer ID" />
+                        <TableColumn prefWidth="85.0" text="Owner ID" />
                         <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="105.0" text="Insurance Card" />
                         <TableColumn prefWidth="128.0" text="Phone Number" />
                         <TableColumn prefWidth="125.0" text="Home Address" />
                         <TableColumn prefWidth="103.0" text="Email" />
-                        <TableColumn prefWidth="65.0" text="Type" />
                     </columns>
                 </TableView>
+            <Button layoutX="423.0" layoutY="15.0" mnemonicParsing="false" text="Edit Policy Owner information" />
+            <Button layoutX="423.0" layoutY="44.0" mnemonicParsing="false" text="Delete Policy Owner account" />
             </children>
         </AnchorPane>
     </left>
