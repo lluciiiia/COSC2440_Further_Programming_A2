@@ -23,6 +23,10 @@ public class CustomerController {
         return customerFacade.getAllCustomers();
     }
 
+    public List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId) {
+        return customerFacade.getAllPolicyHoldersByPolicyOwnerId(policyOwnerId);
+    }
+
     public List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId) { return customerFacade.getCustomersByPolicyOwnerId(policyOwnerId); };
 
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };

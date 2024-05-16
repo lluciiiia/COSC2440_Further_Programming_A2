@@ -5,9 +5,10 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyOwnerCreateAccountView">
+
     <top>
-        <HBox alignment="CENTER" style="-fx-background-color: black;">
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="Create Account" />
+        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="700.0" style="-fx-background-color: black;">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30" text="Register Customer's Account" />
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
@@ -15,23 +16,29 @@
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="40.0">
-            <VBox alignment="CENTER" spacing="20.0">
-                <TextField disable="true" text="Name" />
-                <TextField disable="true" text="Phone" />
-                <TextField disable="true" text="Email" />
-                <TextField disable="true" prefWidth="601.0" text="Insurance Card Number" />
-                <padding>
-                    <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
-                </padding>
-            </VBox>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Confirm" />
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-        </VBox>
+        <BorderPane>
+            <center>
+                <VBox alignment="CENTER" prefHeight="476.0" prefWidth="580.0" spacing="20.0">
+                    <TextField fx:id="usernameTextField" prefHeight="0.0" prefWidth="580.0" promptText="Username" />
+                    <TextField fx:id="passwordTextField" promptText="Password" />
+                    <TextField fx:id="fullNameTextField" promptText="Full name" />
+                    <TextField fx:id="emailTextField" promptText="Enter Email Address" />
+                    <TextField fx:id="phoneTextField" promptText="Enter Phone Number" />
+                    <TextField fx:id="homeAddressTextField" promptText="Enter Home Address" />
+                    <ComboBox fx:id="customerTypeComboBox" prefHeight="25.0" prefWidth="606.0" promptText="Click to choose customer's account type" style="-fx-background-color: #d6cece;" />
+                    <ComboBox fx:id="policyHolder" prefHeight="26.0" prefWidth="705.0" promptText="Click to choose policy holder ID" style="-fx-background-color: #d6cece;" />
+
+                    <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
+
+                    <padding>
+                        <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </center>
+         <right>
+                 <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" BorderPane.alignment="CENTER" />
+         </right>
+        </BorderPane>
     </center>
-   <left>
-      <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 20;" text="&lt;" />
-   </left>
+
 </BorderPane>

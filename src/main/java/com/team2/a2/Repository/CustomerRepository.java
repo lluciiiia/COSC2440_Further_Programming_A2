@@ -275,4 +275,50 @@ public class CustomerRepository {
         return customers;
     }
 
+    public List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId) {
+        List<Customer> customers = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Convert the CustomerType enum to a string
+            String customerType = CustomerType.POLICY_HOLDER.name();
+            String sql = "SELECT * FROM customers WHERE policy_owner_id = ? AND type::text = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, policyOwnerId);
+            statement.setString(2, customerType);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String typeString = resultSet.getString("type");
+                CustomerType type = CustomerType.valueOf(typeString);
+
+                Customer customer = new Customer(id, createdAt, updatedAt, accountId, policyOwnerId, name, address, phoneNumber, email, type);
+
+                customers.add(customer);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching policy holders: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return customers;
+    }
+
+
 }
