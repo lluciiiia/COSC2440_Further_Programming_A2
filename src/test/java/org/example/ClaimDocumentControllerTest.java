@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimDocumentController;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
 import com.team2.a2.Request.InsertClaimDocumentRequest;
+import com.team2.a2.Request.UpdateClaimDocumentRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -43,4 +44,28 @@ public class ClaimDocumentControllerTest {
 
         assertNotEquals(0, claimDocuments, "Claim document should not be null");
     }
+
+    @Test
+    public void testUpdateClaimDocument() {
+        int id = 1;
+
+        UpdateClaimDocumentRequest updateRequest = new UpdateClaimDocumentRequest(id, "new_image_src.jpg");
+
+        claimDocumentController.updateClaimDocument(updateRequest);
+
+        ClaimDocument updatedClaimDocument = claimDocumentController.getClaimDocumentById(id);
+
+        assertEquals(updateRequest.getImageSrc(), updatedClaimDocument.getImageSrc(), "The image source should be updated");
+    }
+
+    @Test
+    public void testGetClaimDocumentById() {
+        int id = 1;
+
+        ClaimDocument claimDocument = claimDocumentController.getClaimDocumentById(id);
+
+        assertNotNull(claimDocument, "ClaimDocument should not be null");
+        assertEquals(id, claimDocument.getId(), "The ID should match");
+    }
+
 }
