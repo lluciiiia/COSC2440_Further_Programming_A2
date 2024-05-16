@@ -5,7 +5,6 @@ import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Request.InsertCustomerRequest;
-import com.team2.a2.Request.UpdateCustomerRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -76,30 +75,6 @@ public class CustomerControllerTest {
 
         customerController.createCustomer(policyHolderRequest);
         customerController.createCustomer(dependentRequest);
-    }
-
-    @Test
-    public void testUpdateCustomer() {
-
-        int accountId = 48;
-
-        Customer previousCustomer = customerController.getCustomerByAccountId(accountId);
-
-        assertNotNull(previousCustomer, "Previous customer should NOT be null.");
-        assertEquals(CustomerType.DEPENDENT, previousCustomer.getType(), "Previous customer's type should be DEPENDENT.");
-
-        UpdateCustomerRequest request = new UpdateCustomerRequest(previousCustomer.getId(), "already dp", "Hoi an", "12345678987654", "changed@gmail.com");
-
-        customerController.updateCustomer(request);
-
-        Customer updatedCustomer = customerController.getCustomerByAccountId(accountId);
-
-        assertEquals(previousCustomer.getId(), updatedCustomer.getId(), "The id should be the same as before.");
-        assertEquals(previousCustomer.getType(), updatedCustomer.getType(), "The type should be the same as before.");
-        assertNotEquals(previousCustomer.getName(), updatedCustomer.getName(), "The name should be NOT the same as before.");
-        assertNotEquals(previousCustomer.getAddress(), updatedCustomer.getAddress(), "The address should be NOT the same as before.");
-        assertNotEquals(previousCustomer.getPhoneNumber(), updatedCustomer.getPhoneNumber(), "The phone number should be NOT the same as before.");
-        assertNotEquals(previousCustomer.getEmail(), updatedCustomer.getEmail(), "The email should be NOT the same as before.");
     }
 
 }

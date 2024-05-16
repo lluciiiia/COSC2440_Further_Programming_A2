@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import java.sql.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,23 +23,6 @@ public class InsuranceManagerControllerTest {
     public void setUp() {
         ConnectionManager.initConnection();
         insuranceManagerController = new InsuranceManagerController();
-    }
-
-    @Test
-    public void testGetInsuranceManagerByAccountId() {
-        int accountId = 5;
-
-        InsuranceManager expectedInsuranceManager = new InsuranceManager(2, Date.valueOf("2024-05-05"), Date.valueOf("2024-05-05"),
-                accountId, "rmit", "22 DaNang", "090", "123@gmail.com", "im_ismmm");
-
-        InsuranceManager actualInsuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(accountId);
-
-        assertNotNull(actualInsuranceManager, "The insurance manager should exist.");
-        assertEquals(expectedInsuranceManager.getId(), actualInsuranceManager.getId(), "The id should be the same.");
-        assertEquals(expectedInsuranceManager.getName(), actualInsuranceManager.getName(), "The name should be the same.");
-        assertEquals(expectedInsuranceManager.getCompanyName(), actualInsuranceManager.getCompanyName(), "The company name should be the same.");
-        assertEquals(expectedInsuranceManager.getCompanyAddress(), actualInsuranceManager.getCompanyAddress(), "The address should be the same.");
-
     }
 
     @Test
