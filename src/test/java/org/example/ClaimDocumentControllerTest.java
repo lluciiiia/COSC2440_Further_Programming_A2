@@ -68,4 +68,21 @@ public class ClaimDocumentControllerTest {
         assertEquals(id, claimDocument.getId(), "The ID should match");
     }
 
+    @Test
+    public void testDeleteClaimDocumentById() {
+        int id = 1;
+
+        InsertClaimDocumentRequest insertRequest = new InsertClaimDocumentRequest(id, "image_src.jpg");
+        claimDocumentController.createClaimDocument(insertRequest);
+
+        ClaimDocument claimDocument = claimDocumentController.getClaimDocumentById(id);
+        assertNotNull(claimDocument, "ClaimDocument should exist before deletion");
+
+        claimDocumentController.deleteClaimDocumentById(id);
+
+        ClaimDocument deletedClaimDocument = claimDocumentController.getClaimDocumentById(id);
+        assertNull(deletedClaimDocument, "ClaimDocument should be null after deletion");
+    }
+
+
 }
