@@ -49,4 +49,12 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     public ClaimDocument getClaimDocumentById(int id) {
         return claimDocumentRepository.getClaimDocumentById(id);
     }
+
+    @Override
+    public void deleteClaimDocumentById(int id) {
+        ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(id);
+        if (claimDocument == null) return;
+
+        claimDocumentRepository.deleteClaimDocumentById(id);
+    }
 }

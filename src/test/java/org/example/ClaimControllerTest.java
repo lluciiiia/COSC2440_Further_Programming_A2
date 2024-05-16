@@ -82,7 +82,7 @@ public class ClaimControllerTest {
 
     @Test
     public void testDeleteClaimById() {
-        int id = 6;
+        int id = 7;
 
         claimController.deleteClaimById(id);
 

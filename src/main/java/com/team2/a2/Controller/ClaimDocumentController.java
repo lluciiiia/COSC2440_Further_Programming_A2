@@ -24,4 +24,6 @@ public class ClaimDocumentController {
     public void updateClaimDocument(UpdateClaimDocumentRequest request) { claimDocumentFacade.updateClaimDocument(request); }
 
     public ClaimDocument getClaimDocumentById(int id) { return claimDocumentFacade.getClaimDocumentById(id); }
+
+    public void deleteClaimDocumentById(int id) { claimDocumentFacade.deleteClaimDocumentById(id); }
 }
