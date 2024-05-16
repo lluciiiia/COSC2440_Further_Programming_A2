@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: black;">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="View Information" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="40.0">
+            <VBox alignment="CENTER" prefHeight="379.0" prefWidth="660.0" spacing="20.0">
+                <TextField fx:id="customerID" disable="true" prefHeight="0.0" prefWidth="580.0" text="CustomerID" />
+                <TextField fx:id="cardNumber" disable="true" text="CardNumber" />
+                <TextField fx:id="ExpiryDate" disable="true" text="Expiry_date" />
+                <TextField fx:id="BankName" disable="true" text="Bank name" />
+                <TextField fx:id="BankAccountNumber" disable="true" text="Bank account number" />
+                <padding>
+                    <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                </padding>
+            </VBox>
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Return" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

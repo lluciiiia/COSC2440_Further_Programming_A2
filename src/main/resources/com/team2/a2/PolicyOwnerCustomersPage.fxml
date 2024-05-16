@@ -14,7 +14,7 @@
     </top>
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
-            <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+            <BorderPane layoutX="29.0" layoutY="14.0" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0;">
                 <center>
                     <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                         <font>
@@ -27,7 +27,7 @@
                 <bottom>
                 </bottom>
             </BorderPane>
-            <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
+            <Button fx:id="returnButton" layoutX="565.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
             <TableView fx:id="customerTable" layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
                 <columns>
                     <TableColumn fx:id="customerID" prefWidth="96.0" text="CusID" />
