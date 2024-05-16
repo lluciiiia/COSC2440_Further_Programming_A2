@@ -155,4 +155,28 @@ public class InsuranceSurveyorRepository {
 
         return insuranceSurveyors;
     }
+
+    public void deleteInsuranceSurveyorById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM insurance_surveyors WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("An insurance surveyor was deleted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting insurance surveyor: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

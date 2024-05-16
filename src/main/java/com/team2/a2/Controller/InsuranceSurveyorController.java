@@ -28,4 +28,6 @@ public class InsuranceSurveyorController {
         return insuranceSurveyorFacade.getAllInsuranceSurveyors();
     }
 
+    public void deleteInsuranceSurveyorById(int id) { insuranceSurveyorFacade.deleteInsuranceSurveyorById(id); }
+
 }

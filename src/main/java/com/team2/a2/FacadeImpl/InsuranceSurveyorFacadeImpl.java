@@ -29,4 +29,9 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
     public List<InsuranceSurveyor> getAllInsuranceSurveyors() {
         return insuranceSurveyorRepository.getAllInsuranceSurveyors();
     }
+
+    @Override
+    public void deleteInsuranceSurveyorById(int id) {
+        insuranceSurveyorRepository.deleteInsuranceSurveyorById(id);
+    }
 }
