@@ -91,7 +91,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
         if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) throw new Exception("Someone else is using the username. Please use a different username");
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
         AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
