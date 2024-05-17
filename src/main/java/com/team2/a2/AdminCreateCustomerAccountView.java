@@ -66,16 +66,6 @@ public class AdminCreateCustomerAccountView implements Initializable {
 
     @FXML
     private ComboBox<Integer> policyHolder;
-
-    @FXML
-    private TextField cardTextField;
-    @FXML
-    private TextField bankNameTextField;
-    @FXML
-    private TextField accountNumberTextField;
-    @FXML
-    private DatePicker expiryDate;
-
     @FXML
     private Button createAccountButton;
 
