@@ -10,8 +10,11 @@ import java.util.List;
 
 public interface CustomerFacade {
     List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerId);
+    Customer getCustomerByCustomerId(int customerId);
 
     List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId);
+
+    List<Customer> getAllPolicyHolders();
 
     List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId);
 

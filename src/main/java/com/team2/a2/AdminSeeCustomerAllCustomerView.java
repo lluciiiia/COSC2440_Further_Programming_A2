@@ -1,9 +1,12 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -49,6 +52,22 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
 
     private ObservableList<Customer> originalCustomerList;
 
+    @FXML
+    private TextField nameEdit;
+    @FXML
+    private TextField phoneEdit;
+    @FXML
+    private TextField emailEdit;
+    @FXML
+    private TextField addressEdit;
+    @FXML
+    private TextField passwordEdit;
+    @FXML
+    private Button editButton;
+
+    private AccountController accountController = new AccountController();
+    private CustomerController customerController = new CustomerController();
+
     public void initData(ObservableList<Customer> customers) {
         originalCustomerList = FXCollections.observableArrayList(customers);
 
@@ -82,6 +101,39 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        editButton.setOnAction(event -> {
+            Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+            if (selectedCustomer == null) {
+                showAlert("No Selection", "Please select a dependent from the table.");
+                return;
+            }
+            Account accountSelected = accountController.getAccountByID(selectedCustomer.getAccountId());
+            String name = nameEdit.getText();
+            String phone = phoneEdit.getText();
+            String email = emailEdit.getText();
+            String address = addressEdit.getText();
+            String password = passwordEdit.getText();
+
+            if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()) {
+                showAlert("Invalid Input", "All fields must be filled.");
+                return;
+            }
+
+            UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(), name, address, phone, email);
+            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            accountController.updateAccount(updateAccountRequest);
+            customerController.updateCustomer(updateCustomerRequest);
+            showAlert("Success", "Customer information updated successfully.");
+
+            refreshTable();
+        });
+    }
+
+    private void refreshTable() {
+        String selectedCustomerType = customerTypeComboBox.getValue();
+        filterCustomerTable(selectedCustomerType);
+        customerTable.refresh();
     }
 
     private void filterCustomerTable(String customerType) {
@@ -94,5 +146,13 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
                     .collect(Collectors.toList());
             customerTable.setItems(FXCollections.observableArrayList(filteredList));
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

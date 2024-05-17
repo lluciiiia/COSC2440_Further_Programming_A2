@@ -50,8 +50,18 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
+    public Customer getCustomerByCustomerId(int customerId) {
+        return customerRepository.getCustomerById(customerId);
+    }
+
+    @Override
     public List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId) {
         return customerRepository.getCustomersByPolicyOwnerId(policyOwnerId);
+    }
+
+    @Override
+    public List<Customer> getAllPolicyHolders() {
+        return customerRepository.getAllPolicyHolders();
     }
 
     @Override

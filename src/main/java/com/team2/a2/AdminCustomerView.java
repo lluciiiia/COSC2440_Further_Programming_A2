@@ -28,8 +28,6 @@ public class AdminCustomerView implements Initializable {
     private Button ViewCustomerInformationButton;
     @FXML
     private Button ViewListOfCustomerClaimButton;
-    @FXML
-    private Button EditButton;
 
     private CustomerController customerController = new CustomerController();
     @FXML
@@ -97,18 +95,6 @@ public class AdminCustomerView implements Initializable {
                 });
 
                 new Thread(loadCustomersTask).start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        EditButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCusForEditPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) EditButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
