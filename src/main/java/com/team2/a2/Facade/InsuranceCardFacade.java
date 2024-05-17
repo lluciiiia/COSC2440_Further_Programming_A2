@@ -9,4 +9,6 @@ public interface InsuranceCardFacade {
     public InsuranceCard getInsuranceCardByCustomerID(int customerId);
 
     void deleteInsuranceCardById(int id);
+
+    InsuranceCard getInsuranceCardById(int id);
 }

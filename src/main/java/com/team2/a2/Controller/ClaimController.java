@@ -5,6 +5,7 @@ import com.team2.a2.FacadeImpl.ClaimFacadeImpl;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Request.InsertClaimRequest;
+import com.team2.a2.Request.UpdateClaimRequest;
 
 
 import java.util.List;
@@ -32,4 +33,5 @@ public class ClaimController {
 
     public void updateClaimDocumentRequested(int id, boolean isRequested) { claimFacade.updateClaimDocumentRequested(id, isRequested); }
 
+    public void updateClaim(UpdateClaimRequest request) { claimFacade.updateClaim(request); }
 }

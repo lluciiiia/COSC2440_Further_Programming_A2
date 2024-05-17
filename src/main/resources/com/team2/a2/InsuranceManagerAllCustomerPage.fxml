@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="25.0" layoutY="15.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Manager" BorderPane.alignment="CENTER">
                             <font>
@@ -39,6 +39,8 @@
                         <TableColumn fx:id="policyOwnerID" prefWidth="103.20001220703125" text="policy owner ID" />
                     </columns>
                 </TableView>
+            <ComboBox layoutX="399.0" layoutY="15.0" prefHeight="25.0" prefWidth="186.0" promptText="Choose an account type" style="-fx-background-color: #d6cece;" />
+            <Button layoutX="399.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
             </children>
         </AnchorPane>
     </left>

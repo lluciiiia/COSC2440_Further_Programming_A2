@@ -77,8 +77,6 @@ public class LoginView {
                 case ADMIN:
                     loader.setLocation(getClass().getResource("AdminPage.fxml"));
                     root = loader.load();
-                    AdminView adminView = loader.getController();
-                    adminView.initData(account);
                     break;
                 case INSURANCE_MANAGER:
                     loader.setLocation(getClass().getResource("InsuranceManagerPage.fxml"));

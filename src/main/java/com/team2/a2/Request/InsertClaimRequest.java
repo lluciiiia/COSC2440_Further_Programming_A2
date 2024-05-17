@@ -7,12 +7,32 @@ import java.sql.Date;
 public class InsertClaimRequest {
 
     private int customerId;
-    private String cardNumber;
-    private Date expiryDate;
     private Date claimDate;
     private Date examDate;
     private Double amount;
-    private ClaimStatus status;
 
+    // Constructor
+    public InsertClaimRequest(int customerId, Date claimDate, Date examDate, Double amount) {
+        this.customerId = customerId;
+        this.claimDate = claimDate;
+        this.examDate = examDate;
+        this.amount = amount;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public Date getClaimDate() {
+        return claimDate;
+    }
+
+    public Date getExamDate() {
+        return examDate;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
 
 }

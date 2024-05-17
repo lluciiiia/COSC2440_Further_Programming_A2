@@ -105,4 +105,58 @@ public class DependentRepository {
         }
 
     }
+
+    public void deleteDependentById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM dependents WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error deleting dependent: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public Dependent getDependentById(int id) {
+        Dependent dependent = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM dependents WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                int customerId = resultSet.getInt("customer_id");
+                int policyHolderId = resultSet.getInt("policy_holder_id");
+
+                dependent = new Dependent(id, createdAt, updatedAt, customerId, policyHolderId);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching dependent: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return dependent;
+    }
+
 }

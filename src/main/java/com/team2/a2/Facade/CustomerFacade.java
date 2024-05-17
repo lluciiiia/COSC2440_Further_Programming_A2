@@ -13,6 +13,8 @@ public interface CustomerFacade {
 
     List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId);
 
+    List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId);
+
     public Customer getCustomerByAccountId(int accountID);
 
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
@@ -24,4 +26,5 @@ public interface CustomerFacade {
     Customer updateCustomer(UpdateCustomerRequest request);
 
 
+    void deleteCustomerById(int id);
 }

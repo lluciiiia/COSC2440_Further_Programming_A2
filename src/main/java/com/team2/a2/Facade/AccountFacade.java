@@ -14,7 +14,9 @@ public interface AccountFacade {
 
     List<Account> getAllAccounts();
 
-    void updateAccount(UpdateAccountRequest request);
+    Account updateAccount(UpdateAccountRequest request);
 
     Account getAccountByCustomerID(int customerID);
+
+    void deleteAccountById(int id);
 }

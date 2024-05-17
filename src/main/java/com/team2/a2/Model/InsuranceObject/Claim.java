@@ -26,9 +26,6 @@ public class Claim extends BaseEntity {
         this.documentRequested = documentRequested;
     }
 
-    //getter function
-
-
     public Date getClaimDate() {
         return claimDate;
     }

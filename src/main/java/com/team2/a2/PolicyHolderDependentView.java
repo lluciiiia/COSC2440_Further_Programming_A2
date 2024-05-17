@@ -8,6 +8,8 @@ import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,10 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,6 +52,19 @@ public class PolicyHolderDependentView implements Initializable {
     private TableColumn<Customer, String> phoneNumber;
     @FXML
     private TableColumn<Customer, Integer> policyOwnerID;
+
+    @FXML
+    private TextField nameEdit;
+    @FXML
+    private TextField phoneEdit;
+    @FXML
+    private TextField emailEdit;
+    @FXML
+    private TextField addressEdit;
+    @FXML
+    private TextField passwordEdit;
+    @FXML
+    private Button editButton;
 
     private AccountController accountController = new AccountController();
     private ClaimController claimController = new ClaimController();
@@ -98,6 +110,10 @@ public class PolicyHolderDependentView implements Initializable {
         dependentClaimView.setOnAction(event -> {
             try {
                 Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
+                if (selectedDependent == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
                 Dependent dependent = dependentController.getDependentByCustomerId(selectedDependent.getId());
                 int dependentID = selectedDependent.getId();
 
@@ -134,5 +150,40 @@ public class PolicyHolderDependentView implements Initializable {
             }
         });
 
+        editButton.setOnAction(event -> {
+            Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
+            if (selectedDependent == null) {
+                showAlert("No Selection", "Please select a dependent from the table.");
+                return;
+            }
+            Account accountSelected = accountController.getAccountByID(selectedDependent.getAccountId());
+            String name = nameEdit.getText();
+            String phone = phoneEdit.getText();
+            String email = emailEdit.getText();
+            String address = addressEdit.getText();
+            String password = passwordEdit.getText();
+
+            if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()) {
+                showAlert("Invalid Input", "All fields must be filled.");
+                return;
+            }
+
+            UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedDependent.getId(),name, address, phone, email);
+            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            accountController.updateAccount(updateAccountRequest);
+            customerController.updateCustomer(updateCustomerRequest);
+            showAlert("Success", "Customer information updated successfully.");
+
+        });
+
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

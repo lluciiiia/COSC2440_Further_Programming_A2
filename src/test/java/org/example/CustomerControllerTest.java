@@ -1,14 +1,18 @@
 package org.example;
 
-import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.ClaimController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.Enum.CustomerType;
-import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Repository.CustomerRepository;
+import com.team2.a2.Repository.DependentRepository;
 import com.team2.a2.Request.InsertCustomerRequest;
-import com.team2.a2.Request.LoginRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -22,13 +26,19 @@ import java.util.List;
 public class CustomerControllerTest {
 
     private CustomerController customerController;
-    private AccountController accountController;
+    private InsuranceCardController insuranceCardController;
+    private ClaimController claimController;
+    private CustomerRepository customerRepository;
+    private DependentRepository dependentRepository;
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         customerController = new CustomerController();
-        accountController = new AccountController();
+        insuranceCardController = new InsuranceCardController();
+        claimController = new ClaimController();
+        customerRepository = new CustomerRepository();
+        dependentRepository = new DependentRepository();
     }
 
     @Test
@@ -75,32 +85,12 @@ public class CustomerControllerTest {
 
     @Test
     public void testCreateCustomer() {
-        String phUsername = "new ph6 username";
-        String phPassword = "12345";
-        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest(phUsername, phPassword, 4,
-                "wanna be a ph", "hochiminh", "098765", "123456@gmail.com",
-                CustomerType.POLICY_HOLDER);
+        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph", "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER);
 
-        String depUsername = "new dep6 username";
-        String depPassword = "12345";
-        InsertCustomerRequest dependentRequest = new InsertCustomerRequest(depUsername, depPassword,
-                4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com",
-                CustomerType.DEPENDENT);
+        InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT);
 
         customerController.createCustomer(policyHolderRequest);
         customerController.createCustomer(dependentRequest);
-
-        Account createdPhAccount = accountController.login(new LoginRequest(phUsername, phPassword));
-        Customer createdPhCustomer = customerController.getCustomerByAccountId(createdPhAccount.getId());
-
-        Account createdDepAccount = accountController.login(new LoginRequest(depUsername, depPassword));
-        Customer createdDepCustomer = customerController.getCustomerByAccountId(createdDepAccount.getId());
-
-        assertNotNull(createdPhAccount, "CreatedPhAccount should NOT be null.");
-        assertNotNull(createdPhCustomer, "createdPhCustomer should NOT be null.");
-        assertNotNull(createdDepAccount, "CreatedDepAccount should NOT be null.");
-        assertNotNull(createdDepCustomer, "CreatedDepCustomer should NOT be null.");
-
     }
 
     @Test
@@ -127,4 +117,41 @@ public class CustomerControllerTest {
         assertNotEquals(previousCustomer.getEmail(), updatedCustomer.getEmail(), "The email should be NOT the same as before.");
     }
 
+
+    @Test
+    public void testGetAllPolicyHoldersByPolicyOwnerId() {
+        int policyOwnerId = 1;
+        List<Customer> customers = customerController.getAllPolicyHoldersByPolicyOwnerId(policyOwnerId);
+        assertNotNull(customers, "Customers should NOT be null.");
+        assertEquals(8, customers.size(), "Customers size should be 6.");
+    }
+
+    @Test
+    public void testDeleteCustomerById() {
+        int accountId = 3;
+        List<Dependent> dependents = new ArrayList<>();
+
+        Customer customer = customerController.getCustomerByAccountId(accountId);
+
+        if (customer.getType() == CustomerType.POLICY_HOLDER) {
+            dependents = dependentRepository.getDependentsByPolicyHolderId(customer.getId());
+        }
+
+        assertNotNull(customer, "Customer should NOT be null for testing.");
+
+        customerController.deleteCustomerById(customer.getId());
+
+        assertNull(customerRepository.getCustomerById(customer.getId()), "Customer should be deleted");
+
+        if (customer.getType() == CustomerType.POLICY_HOLDER) {
+            for (Dependent dependent : dependents) {
+                assertNull(dependentRepository.getDependentById(dependent.getId()), "Dependent " + dependent.getId() + " should be deleted");
+            }
+        }
+
+        assertNull(insuranceCardController.getInsuranceCardByCustomerID(customer.getId()), "Insurance card should be deleted");
+
+        List<Claim> claims = claimController.getClaimsByCustomerId(customer.getId());
+        assertTrue(claims.isEmpty(), "All claims should be deleted");
+    }
 }

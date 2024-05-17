@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminAllPolicyOwnerView">
+    <top>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="List of Accounts" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Text>
+    </top>
+    <left>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane layoutX="26.0" layoutY="15.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                    <center>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <bottom>
+                    </bottom></BorderPane>
+                <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
+                <TableView layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
+                    <columns>
+                        <TableColumn prefWidth="85.0" text="Owner ID" />
+                        <TableColumn prefWidth="88.0" text="Name" />
+                        <TableColumn prefWidth="128.0" text="Phone Number" />
+                        <TableColumn prefWidth="125.0" text="Home Address" />
+                        <TableColumn prefWidth="103.0" text="Email" />
+                    </columns>
+                </TableView>
+                <Button layoutX="423.0" layoutY="15.0" mnemonicParsing="false" text="Edit this account information" />
+                <Button layoutX="423.0" layoutY="44.0" mnemonicParsing="false" text="Delete this account" />
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>

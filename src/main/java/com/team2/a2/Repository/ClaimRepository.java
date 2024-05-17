@@ -3,6 +3,8 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
+import com.team2.a2.Request.InsertClaimRequest;
+import com.team2.a2.Request.UpdateClaimRequest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -199,6 +201,66 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error updating claim documentRequested: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public void createClaim(InsertClaimRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "INSERT INTO claims (customer_id, claim_date, exam_date, amount, status) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, request.getCustomerId());
+            statement.setDate(2, request.getClaimDate());
+            statement.setDate(3, request.getExamDate());
+            statement.setDouble(4, request.getAmount());
+            statement.setObject(5, ClaimStatus.NEW, Types.OTHER);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new claim was inserted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error creating claim: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public void updateClaim(UpdateClaimRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE claims SET claim_date = ?, exam_date = ?, amount = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setDate(1, request.getClaimDate());
+            statement.setDate(2, request.getExamDate());
+            statement.setDouble(3, request.getAmount());
+            statement.setInt(4, request.getId());
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Claim was updated successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error updating claim: " + e.getMessage());
         } finally {
             if (statement != null) {
                 try {

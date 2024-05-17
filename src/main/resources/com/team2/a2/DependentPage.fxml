@@ -27,18 +27,21 @@
                 </children>
             </HBox>
             <VBox alignment="CENTER" prefHeight="268.0" prefWidth="660.0" spacing="20.0">
-                <Button fx:id="viewClaim" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View Claim">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="viewInfoButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View My Information">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
-                <Button fx:id="viewInsuranceCard" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" style="-fx-font-weight: bold;" text="View My InsuranceCard">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
+            <Button fx:id="viewClaim" mnemonicParsing="false" prefHeight="39.0" prefWidth="365.0" text="View My Claims">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewInfoButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="367.0" text="View My Information">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewInsuranceCard" mnemonicParsing="false" prefHeight="27.0" prefWidth="366.0" text="View My Insurance Card">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
             </VBox>
             <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Logout" />
             <padding>

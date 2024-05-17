@@ -1,13 +1,17 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdateCustomerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,8 +34,24 @@ public class PolicyHolderInformationView implements Initializable {
     @FXML
     private TextField policyOwnerIDField;
 
+    @FXML
+    private TextField nameEdit;
+    @FXML
+    private TextField phoneEdit;
+    @FXML
+    private TextField emailEdit;
+    @FXML
+    private TextField addressEdit;
+    @FXML
+    private TextField passwordEdit;
+    @FXML
+    private Button editButton;
+
+    private CustomerController customerController = new CustomerController();
     private AccountController accountController = new AccountController();
     private Account account;
+
+    Customer customer1;
 
     public void initData(Customer customer) {
         nameField.setText("Name: " + customer.getName());
@@ -41,6 +61,7 @@ public class PolicyHolderInformationView implements Initializable {
         policyOwnerIDField.setText("Policy owner ID: " + customer.getPolicyOwnerId());
         int accountID = customer.getAccountId();
         account = accountController.getAccountByID(accountID);
+        customer1 = customer;
     }
 
 
@@ -61,5 +82,46 @@ public class PolicyHolderInformationView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        editButton.setOnAction(event -> {
+            String name = nameEdit.getText();
+            String phone = phoneEdit.getText();
+            String email = emailEdit.getText();
+            String address = addressEdit.getText();
+            String password = passwordEdit.getText();
+            editInformation(name, phone, email, address, password);
+        });
+
     }
+
+    public void editInformation(String name, String phone, String email, String address, String password) {
+        if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()) {
+            showAlert("Invalid Input", "All fields must be filled.");
+            return;
+        }
+        UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(account.getId(), account.getUsername(), password);
+        UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(customer1.getId(),name, address, phone, email);
+        Account updatedAccount = accountController.updateAccount(updateAccountRequest);
+        Customer updatedCustomer = customerController.updateCustomer(updateCustomerRequest);
+
+        if (updatedCustomer != null) {
+            customer1 = updatedCustomer;
+            nameField.setText("Name: " + updatedCustomer.getName());
+            phoneField.setText("Phone: " + updatedCustomer.getPhoneNumber());
+            emailField.setText("Email: " + updatedCustomer.getEmail());
+            addressField.setText("Address: " + updatedCustomer.getAddress());
+            showAlert("Success", "Customer information updated successfully.");
+        } else {
+            showAlert("Update Failed", "Failed to update customer information.");
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
