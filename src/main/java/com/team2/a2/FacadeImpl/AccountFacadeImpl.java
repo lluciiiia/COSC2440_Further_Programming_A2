@@ -63,6 +63,9 @@ public class AccountFacadeImpl implements AccountFacade {
         Account account = accountRepository.getAccountById(request.getId());
         if (account == null) throw new Exception("Account doesn't exist");
 
+        Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
+
         return accountRepository.updateAccount(request);
     }
 

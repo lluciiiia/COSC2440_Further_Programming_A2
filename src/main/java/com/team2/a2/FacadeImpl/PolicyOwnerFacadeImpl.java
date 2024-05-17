@@ -42,7 +42,6 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
 
     @Override
     public void createPolicyOwner(InsertPolicyOwnerRequest request) throws Exception {
-
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
