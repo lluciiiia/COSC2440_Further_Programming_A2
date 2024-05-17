@@ -14,9 +14,9 @@ public interface AccountFacade {
 
     List<Account> getAllAccounts();
 
-    Account updateAccount(UpdateAccountRequest request);
+    Account updateAccount(UpdateAccountRequest request) throws Exception;
 
-    Account getAccountByCustomerID(int customerID);
+    Account getAccountByCustomerID(int customerID) throws Exception;
 
-    void deleteAccountById(int id);
+    void deleteAccountById(int id) throws Exception;
 }

@@ -61,7 +61,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testGetAccountByCustomerID() {
+    public void testGetAccountByCustomerID() throws Exception {
         int customerId = 6;
 
         Account expectedAccount = new Account(37, Date.valueOf("2024-05-12"), Date.valueOf("2024-05-12"),
@@ -86,7 +86,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testUpdateAccount() {
+    public void testUpdateAccount() throws Exception {
         int id = 40;
 
         Account currentAccount = accountController.getAccountByID(id);
@@ -101,7 +101,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testDeleteAccountById() {
+    public void testDeleteAccountById() throws Exception {
         int id = 1;
 
         accountController.deleteAccountById(id);
