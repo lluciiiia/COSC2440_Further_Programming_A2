@@ -1,6 +1,6 @@
 package com.team2.a2.Request;
 
-public class UpdateInsuranceManagerRequest {
+public class UpdateProviderRequest {
 
     private int id;
     private String companyName;
@@ -9,7 +9,7 @@ public class UpdateInsuranceManagerRequest {
     private String email;
     private String name;
 
-    public UpdateInsuranceManagerRequest(int id, String companyName, String companyAddress, String phoneNumber, String email, String name) {
+    public UpdateProviderRequest(int id, String companyName, String companyAddress, String phoneNumber, String email, String name) {
         this.id = id;
         this.companyName = companyName;
         this.companyAddress = companyAddress;

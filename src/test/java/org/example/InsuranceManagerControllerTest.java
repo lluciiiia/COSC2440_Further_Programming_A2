@@ -4,14 +4,12 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceManagerController;
 import com.team2.a2.Controller.InsuranceSurveyorController;
-import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
-import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
 import com.team2.a2.Request.LoginRequest;
-import com.team2.a2.Request.UpdateInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -116,7 +114,7 @@ public class InsuranceManagerControllerTest {
     public void testUpdateInsuranceManager() {
         int id = 3;
 
-        UpdateInsuranceManagerRequest request = new UpdateInsuranceManagerRequest(
+        UpdateProviderRequest request = new UpdateProviderRequest(
                 id,
                 "New Company2",
                 "New Address2",

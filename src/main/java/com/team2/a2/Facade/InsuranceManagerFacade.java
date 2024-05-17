@@ -2,7 +2,7 @@ package com.team2.a2.Facade;
 
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
-import com.team2.a2.Request.UpdateInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ public interface InsuranceManagerFacade {
 
     InsuranceManager getInsuranceManagerById(int id);
 
-    void updateInsuranceManager(UpdateInsuranceManagerRequest request);
+    void updateInsuranceManager(UpdateProviderRequest request);
 }
