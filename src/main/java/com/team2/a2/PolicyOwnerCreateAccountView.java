@@ -62,6 +62,15 @@ public class PolicyOwnerCreateAccountView implements Initializable {
     private ComboBox<CustomerType> customerTypeComboBox;
 
     @FXML
+    private TextField cardTextField;
+    @FXML
+    private TextField bankNameTextField;
+    @FXML
+    private TextField accountNumberTextField;
+    @FXML
+    private DatePicker expiryDate;
+
+    @FXML
     private ComboBox<Integer> policyHolder;
 
     @FXML
