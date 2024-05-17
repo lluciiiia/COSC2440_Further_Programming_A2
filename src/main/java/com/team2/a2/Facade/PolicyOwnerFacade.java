@@ -2,6 +2,7 @@ package com.team2.a2.Facade;
 
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface PolicyOwnerFacade {
     void deletePolicyOwnerById(int id);
 
     PolicyOwner getPolicyOwnerById(int id);
+
+    void updatePolicyOwner(UpdatePolicyOwnerRequest request);
 }
