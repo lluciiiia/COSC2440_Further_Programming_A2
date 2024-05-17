@@ -30,7 +30,7 @@ public class ClaimDocumentControllerTest {
     }
 
     @Test
-    public void testCreateClaimDocument() {
+    public void testCreateClaimDocument() throws Exception {
         InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(7, "sample_image.jpg");
 
         claimDocumentController.createClaimDocument(request);
@@ -41,7 +41,7 @@ public class ClaimDocumentControllerTest {
     }
 
     @Test
-    public void testGetClaimDocumentsByClaimId() {
+    public void testGetClaimDocumentsByClaimId() throws Exception {
         int claimId = 7;
 
         List<ClaimDocument> claimDocuments = claimDocumentController.getClaimDocumentsByClaimId(claimId);
@@ -50,7 +50,7 @@ public class ClaimDocumentControllerTest {
     }
 
     @Test
-    public void testUpdateClaimDocument() {
+    public void testUpdateClaimDocument() throws Exception {
         int id = 1;
 
         UpdateClaimDocumentRequest updateRequest = new UpdateClaimDocumentRequest(id, "new_image_src.jpg");
@@ -73,7 +73,7 @@ public class ClaimDocumentControllerTest {
     }
 
     @Test
-    public void testDeleteClaimDocumentById() {
+    public void testDeleteClaimDocumentById() throws Exception {
         int id = 1;
 
         InsertClaimDocumentRequest insertRequest = new InsertClaimDocumentRequest(id, "image_src.jpg");
@@ -89,7 +89,7 @@ public class ClaimDocumentControllerTest {
     }
 
     @Test
-    public void testAddClaimDocument() {
+    public void testAddClaimDocument() throws Exception {
         int claimId = 13;
         InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(claimId, "Document");
 

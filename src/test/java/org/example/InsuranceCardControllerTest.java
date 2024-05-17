@@ -44,7 +44,7 @@ public class InsuranceCardControllerTest {
     }
 
     @Test
-    public void testCreateInsuranceCard() {
+    public void testCreateInsuranceCard() throws Exception {
         InsertInsuranceCardRequest request = new InsertInsuranceCardRequest(1,
                                                                 "1234567890123456",
                                                                             Date.valueOf("2024-12-31"), "VPBank", "1234567890");
@@ -52,7 +52,7 @@ public class InsuranceCardControllerTest {
     }
 
     @Test
-    public void testDeleteInsuranceCardById() {
+    public void testDeleteInsuranceCardById() throws Exception {
         int customerId = 1;
 
         InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);

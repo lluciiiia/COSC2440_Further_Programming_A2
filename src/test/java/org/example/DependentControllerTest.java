@@ -37,7 +37,7 @@ public class DependentControllerTest {
     }
 
     @Test
-    public void testDeleteDependentById() {
+    public void testDeleteDependentById() throws Exception {
         int id = 16;
 
         dependentController.deleteDependentById(id);

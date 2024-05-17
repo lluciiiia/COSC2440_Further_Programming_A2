@@ -76,7 +76,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testGetDependentsByPolicyHolderAccountId() {
+    public void testGetDependentsByPolicyHolderAccountId() throws Exception {
         int policyHolderAccountId = 3;
 
         List<Customer> dependents = customerController.getDependentsByPolicyHolderAccountId(policyHolderAccountId);
@@ -85,7 +85,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testCreateCustomer() {
+    public void testCreateCustomer() throws Exception {
         InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph", "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER);
 
         InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT);
@@ -95,7 +95,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testUpdateCustomer() {
+    public void testUpdateCustomer() throws Exception {
 
         int accountId = 48;
 
@@ -128,7 +128,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testDeleteCustomerById() {
+    public void testDeleteCustomerById() throws Exception {
         int accountId = 3;
         List<Dependent> dependents = new ArrayList<>();
 

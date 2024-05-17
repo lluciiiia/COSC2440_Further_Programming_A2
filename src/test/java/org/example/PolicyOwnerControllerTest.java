@@ -50,14 +50,14 @@ public class PolicyOwnerControllerTest {
     }
 
     @Test
-    public void testCreatePolicyOwner() {
+    public void testCreatePolicyOwner() throws Exception {
         InsertPolicyOwnerRequest request = new InsertPolicyOwnerRequest("PO username", "12345", "PO name");
 
         policyOwnerController.createPolicyOwner(request);
     }
 
     @Test
-    public void testDeletePolicyOwnerById() {
+    public void testDeletePolicyOwnerById() throws Exception {
         int id = 1;
 
         policyOwnerController.deletePolicyOwnerById(id);
@@ -78,7 +78,7 @@ public class PolicyOwnerControllerTest {
     }
 
     @Test
-        public void testUpdatePolicyOwner() {
+        public void testUpdatePolicyOwner() throws Exception {
         int id = 3;
 
         UpdatePolicyOwnerRequest request = new UpdatePolicyOwnerRequest(id, "Jane Smith");
