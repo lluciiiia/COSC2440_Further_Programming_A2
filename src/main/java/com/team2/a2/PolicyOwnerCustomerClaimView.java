@@ -29,11 +29,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Date;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PolicyOwnerCustomerClaimView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button editClaimButton;
 
     @FXML
     private TableView<Claim> claimTable;
@@ -135,5 +138,17 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
                 e.printStackTrace();
             }
         });
+//
+//        editClaimButton.setOnAction(event -> {
+//            try {
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerEditClaimPage.fxml")));
+//                Scene scene = new Scene(root);
+//                Stage stage = (Stage) editClaimButton.getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 }

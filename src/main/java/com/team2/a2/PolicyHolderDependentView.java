@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PolicyHolderDependentView implements Initializable {
@@ -34,6 +35,8 @@ public class PolicyHolderDependentView implements Initializable {
     private Button returnButton;
     @FXML
     private Button dependentClaimView;
+    @FXML
+    private Button ViewDependentCard;
 
     @FXML
     private Text customerNameText;
@@ -175,6 +178,18 @@ public class PolicyHolderDependentView implements Initializable {
             showAlert("Success", "Customer information updated successfully.");
 
         });
+
+//        ViewDependentCard.setOnAction(event -> {
+//            try {
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderDependentCardPage.fxml")));
+//                Scene scene = new Scene(root);
+//                Stage stage = (Stage) ViewDependentCard.getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
 
     }
 

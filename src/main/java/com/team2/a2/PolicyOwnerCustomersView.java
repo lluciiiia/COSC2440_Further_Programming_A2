@@ -34,6 +34,8 @@ import java.util.ResourceBundle;
 public class PolicyOwnerCustomersView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button viewInsuranceCard;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -181,6 +183,18 @@ public class PolicyOwnerCustomersView implements Initializable {
             showAlert("Success", "Customer information updated successfully.");
 
         });
+
+//        viewInsuranceCard.setOnAction(event -> {
+//            try {
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCustomerCardPage.fxml")));
+//                Scene scene = new Scene(root);
+//                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 
     private void showAlert(String title, String message) {
