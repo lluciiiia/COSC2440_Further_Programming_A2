@@ -28,17 +28,22 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
+                <TableView fx:id="insuranceManagerTable" layoutX="39.0" layoutY="109.0" prefHeight="350.0" prefWidth="636.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Owner ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
+                        <TableColumn fx:id="insuranceManagerID" prefWidth="85.0" text="Manager ID" />
+                        <TableColumn fx:id="name" prefWidth="88.0" text="Name" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="128.0" text="Phone Number" />
+                        <TableColumn fx:id="companyAddress" prefWidth="125.0" text="Company Address" />
+                        <TableColumn fx:id="companyName" prefWidth="100.19992065429688" text="Company Name" />
+                        <TableColumn fx:id="email" prefWidth="108.60003662109375" text="Email" />
                     </columns>
                 </TableView>
-                <Button layoutX="423.0" layoutY="15.0" mnemonicParsing="false" text="Edit Manager information" />
-                <Button layoutX="423.0" layoutY="44.0" mnemonicParsing="false" text="Delete Manager account" />
+                <Button fx:id="editButton" layoutX="523.0" layoutY="76.0" mnemonicParsing="false" text="Edit Manager information" />
+                <Button fx:id="deleteButton" layoutX="395.0" layoutY="15.0" mnemonicParsing="false" text="Delete Manager account" />
+            <TextField fx:id="nameEdit" layoutX="39.0" layoutY="76.0" prefHeight="26.0" prefWidth="99.0" promptText="name" />
+            <TextField fx:id="phoneNumberEdit" layoutX="164.0" layoutY="76.0" prefHeight="26.0" prefWidth="98.0" promptText="phone number" />
+            <TextField fx:id="emailEdit" layoutX="284.0" layoutY="76.0" prefHeight="26.0" prefWidth="101.0" promptText="email" />
+            <TextField fx:id="passwordEdit" layoutX="405.0" layoutY="76.0" prefHeight="26.0" prefWidth="97.0" promptText="password" />
             </children>
         </AnchorPane>
     </left>

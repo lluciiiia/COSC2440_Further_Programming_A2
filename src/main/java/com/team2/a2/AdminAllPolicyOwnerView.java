@@ -9,6 +9,7 @@ import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.UpdateAccountRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -78,62 +79,61 @@ public class AdminAllPolicyOwnerView implements Initializable {
             }
         });
 
-//        editButton.setOnAction(event -> {
-//            PolicyOwner selectedPolicyOwner = policyOwnerTable.getSelectionModel().getSelectedItem();
-//            if (selectedPolicyOwner == null) {
-//                showAlert("No Selection", "Please select a policy owner from the table.");
-//                return;
-//            }
-//            Account accountSelected = accountController.getAccountByID(selectedPolicyOwner.getAccountId());
-//            String name = nameEdit.getText();
-//            String password = passwordEdit.getText();
-//
-//            if (name.isEmpty() || password.isEmpty()) {
-//                showAlert("Invalid Input", "All fields must be filled.");
-//                return;
-//            }
-//
-//            Update updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(), name, address, phone, email);
-//            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-//            accountController.updateAccount(updateAccountRequest);
-//            customerController.updateCustomer(updateCustomerRequest);
-//            showAlert("Success", "Customer information updated successfully.");
-//
-//            refreshTable();
-//        });
+        editButton.setOnAction(event -> {
+            PolicyOwner selectedPolicyOwner = policyOwnerTable.getSelectionModel().getSelectedItem();
+            if (selectedPolicyOwner == null) {
+                showAlert("No Selection", "Please select a policy owner from the table.");
+                return;
+            }
+            Account accountSelected = accountController.getAccountByID(selectedPolicyOwner.getAccountId());
+            String name = nameEdit.getText();
+            String password = passwordEdit.getText();
 
-//        deleteButton.setOnAction(event -> {
-//            Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
-//            if (selectedCustomer == null) {
-//                showAlert("No Selection", "Please select a customer from the table.");
-//                return;
-//            }
-//
-//            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-//            confirmationAlert.setTitle("Confirmation");
-//            confirmationAlert.setHeaderText("Are you sure to delete this customer?");
-//            confirmationAlert.setContentText("Customer's card, claims, and account will be deleted.");
-//
-//            ButtonType buttonYes = new ButtonType("Yes");
-//            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-//
-//            confirmationAlert.getButtonTypes().setAll(buttonYes, buttonNo);
-//
-//            Optional<ButtonType> result = confirmationAlert.showAndWait();
-//            if (result.isPresent() && result.get() == buttonYes) {
-//                customerController.deleteCustomerById(selectedCustomer.getId());
-//                showAlert("Success", "Customer deleted successfully.");
-//                originalCustomerList.remove(selectedCustomer);
-//                refreshTable();
-//            }
-//        });
+            if (name.isEmpty() || password.isEmpty()) {
+                showAlert("Invalid Input", "All fields must be filled.");
+                return;
+            }
+
+            UpdatePolicyOwnerRequest updatePolicyOwnerRequest = new UpdatePolicyOwnerRequest(selectedPolicyOwner.getId(), name);
+            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            accountController.updateAccount(updateAccountRequest);
+            policyOwnerController.updatePolicyOwner(updatePolicyOwnerRequest);
+            showAlert("Success", "Customer information updated successfully.");
+
+            refreshTable();
+        });
+
+        deleteButton.setOnAction(event -> {
+            PolicyOwner selectedPolicyOwner = policyOwnerTable.getSelectionModel().getSelectedItem();
+            if (selectedPolicyOwner == null) {
+                showAlert("No Selection", "Please select a policy owner from the table.");
+                return;
+            }
+
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to delete this customer?");
+            confirmationAlert.setContentText("Policy owner's account and surveyors will be deleted.");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            confirmationAlert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == buttonYes) {
+                policyOwnerController.deletePolicyOwnerById(selectedPolicyOwner.getId());
+                showAlert("Success", "Customer deleted successfully.");
+                originalPolicyOwnerList.remove(selectedPolicyOwner);
+                refreshTable();
+            }
+        });
     }
 
-//    private void refreshTable() {
-//        String selectedCustomerType = customerTypeComboBox.getValue();
-//        filterCustomerTable(selectedCustomerType);
-//        customerTable.refresh();
-//    }
+    private void refreshTable() {
+        policyOwnerTable.setItems(FXCollections.observableArrayList(originalPolicyOwnerList));
+        policyOwnerTable.refresh();
+    }
 
 
     private void showAlert(String title, String message) {
