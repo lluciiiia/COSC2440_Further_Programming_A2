@@ -12,7 +12,7 @@ import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Repository.DependentRepository;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
-import org.checkerframework.checker.units.qual.C;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -118,7 +118,7 @@ public class CustomerControllerTest {
         assertNotEquals(previousCustomer.getEmail(), updatedCustomer.getEmail(), "The email should be NOT the same as before.");
     }
 
-    
+
     @Test
     public void testGetAllPolicyHoldersByPolicyOwnerId() {
         int policyOwnerId = 1;

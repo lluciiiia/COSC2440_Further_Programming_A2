@@ -76,7 +76,7 @@ public class PolicyOwnerRepository {
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching dependent: " + e.getMessage());
+            System.err.println("Error fetching policy owner: " + e.getMessage());
         } finally {
             try {
                 if (resultSet != null) resultSet.close();
@@ -112,4 +112,65 @@ public class PolicyOwnerRepository {
             }
         }
     }
+
+    public PolicyOwner getPolicyOwnerById(int id) {
+        PolicyOwner policyOwner = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM policy_owners WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String name = resultSet.getString("name");
+
+                policyOwner = new PolicyOwner(id, createdAt, updatedAt, accountId, name);
+
+                return policyOwner;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching policy owner: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return policyOwner;
+    }
+
+    public void deletePolicyOwnerById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM policy_owners WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("A policy owner was deleted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting policy owner: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

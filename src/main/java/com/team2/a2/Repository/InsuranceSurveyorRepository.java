@@ -3,6 +3,7 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
+import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -179,4 +180,37 @@ public class InsuranceSurveyorRepository {
             }
         }
     }
+
+    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request, int accountId) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "INSERT INTO insurance_surveyors (account_id, insurance_manager_id, company_name, company_address, phone_number, email, name) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, accountId);
+            statement.setInt(2, request.getInsuranceManagerId());
+            statement.setString(3, request.getCompanyName());
+            statement.setString(4, request.getCompanyAddress());
+            statement.setString(5, request.getPhoneNumber());
+            statement.setString(6, request.getEmail());
+            statement.setString(7, request.getName());
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new insurance surveyor was inserted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error creating insurance surveyor: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

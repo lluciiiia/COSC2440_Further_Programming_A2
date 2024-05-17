@@ -55,5 +55,26 @@ public class PolicyOwnerControllerTest {
         policyOwnerController.createPolicyOwner(request);
     }
 
+    @Test
+    public void testDeletePolicyOwnerById() {
+        int id = 1;
+
+        policyOwnerController.deletePolicyOwnerById(id);
+
+        PolicyOwner deletedPolicyOwner = policyOwnerController.getPolicyOwnerById(id);
+        assertNull(deletedPolicyOwner, "Policy owner should be deleted successfully");
+    }
+
+
+    @Test
+    public void testGetPolicyOwnerById() {
+        int id = 1;
+
+        PolicyOwner policyOwner = policyOwnerController.getPolicyOwnerById(id);
+
+        assertNotNull(policyOwner, "The policy owner should not be null");
+        assertEquals(id, policyOwner.getId(), "The policy owner ID should match");
+    }
+
 
 }

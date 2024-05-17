@@ -2,8 +2,8 @@ package com.team2.a2.Controller;
 
 import com.team2.a2.Facade.InsuranceSurveyorFacade;
 import com.team2.a2.FacadeImpl.InsuranceSurveyorFacadeImpl;
-import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
+import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
 
 import java.util.List;
 
@@ -29,5 +29,7 @@ public class InsuranceSurveyorController {
     }
 
     public void deleteInsuranceSurveyorById(int id) { insuranceSurveyorFacade.deleteInsuranceSurveyorById(id); }
+
+    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) { insuranceSurveyorFacade.createInsuranceSurveyor(request); }
 
 }

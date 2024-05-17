@@ -1,7 +1,7 @@
 package com.team2.a2.FacadeImpl;
 
 import com.team2.a2.DependentInformationView;
-import com.team2.a2.Facade.AccountFacade;
+import com.team2.a2.Facade.*;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Admin;
@@ -25,6 +25,10 @@ public class AccountFacadeImpl implements AccountFacade {
     AdminRepository adminRepository;
     InsuranceManagerRepository insuranceManagerRepository;
     InsuranceSurveyorRepository insuranceSurveyorRepository;
+    CustomerFacade customerFacade;
+    InsuranceManagerFacade insuranceManagerFacade;
+    PolicyOwnerFacade policyOwnerFacade;
+    InsuranceSurveyorFacade insuranceSurveyorFacade;
 
     public AccountFacadeImpl() {
         this.accountRepository = new AccountRepository();
@@ -34,6 +38,10 @@ public class AccountFacadeImpl implements AccountFacade {
         this.customerRepository = new CustomerRepository();
         this.insuranceManagerRepository = new InsuranceManagerRepository();
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
+        this.customerFacade = new CustomerFacadeImpl();
+        this.insuranceManagerFacade = new InsuranceManagerFacadeImpl();
+        this.policyOwnerFacade = new PolicyOwnerFacadeImpl();
+        this.insuranceSurveyorFacade = new InsuranceSurveyorFacadeImpl();
     }
 
     public Account login(LoginRequest request) {
@@ -64,6 +72,51 @@ public class AccountFacadeImpl implements AccountFacade {
         if (customer == null) return null;
 
         return accountRepository.getAccountById(customer.getAccountId());
+    }
+
+    @Override
+    public void deleteAccountById(int id) {
+        Account account = accountRepository.getAccountById(id);
+        if (account == null) return;
+
+        switch (account.getType()) {
+            case ADMIN:
+                Admin admin = adminRepository.getAdminByAccountId(id);
+                if (admin == null) return;
+
+                adminRepository.deleteAdminById(admin.getId());
+                break;
+            case POLICY_HOLDER:
+            case DEPENDENT:
+                Customer customer = customerRepository.getCustomerByAccountId(id);
+                if (customer == null) return;
+
+                customerFacade.deleteCustomerById(customer.getId());
+                break;
+            case INSURANCE_MANAGER:
+                InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(id);
+                if (insuranceManager == null) return;
+
+                insuranceManagerFacade.deleteInsuranceManagerById(insuranceManager.getId());
+                break;
+            case POLICY_OWNER:
+                PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(id);
+                if (policyOwner == null) return;
+
+                policyOwnerFacade.deletePolicyOwnerById(policyOwner.getId());
+                break;
+            case INSURANCE_SURVEYOR:
+                InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(id);
+                if (insuranceSurveyor == null) return;
+
+                insuranceSurveyorFacade.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
+                break;
+            default:
+                System.out.println("Invalid account type");
+                break;
+        }
+
+        accountRepository.deleteAccountById(id);
     }
 
     public boolean createSubAccountObject(Account account) {

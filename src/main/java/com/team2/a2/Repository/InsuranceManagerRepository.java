@@ -3,6 +3,7 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
+import com.team2.a2.Request.InsertInsuranceManagerRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -120,4 +121,74 @@ public class InsuranceManagerRepository {
             }
         }
     }
+
+    public void createInsuranceManager(InsertInsuranceManagerRequest request, int accountId) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "INSERT INTO insurance_managers (account_id, company_name, company_address, phone_number, email, name) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, accountId);
+            statement.setString(2, request.getCompanyName());
+            statement.setString(3, request.getCompanyAddress());
+            statement.setString(4, request.getPhoneNumber());
+            statement.setString(5, request.getEmail());
+            statement.setString(6, request.getName());
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new insurance manager was inserted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error creating insurance manager: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public InsuranceManager getInsuranceManagerById(int insuranceManagerId) {
+        InsuranceManager insuranceManager = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM insurance_managers WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, insuranceManagerId);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String companyName = resultSet.getString("company_name");
+                String companyAddress = resultSet.getString("company_address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String name = resultSet.getString("name");
+
+                insuranceManager = new InsuranceManager(insuranceManagerId, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching insurance manager: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return insuranceManager;
+    }
+
 }
