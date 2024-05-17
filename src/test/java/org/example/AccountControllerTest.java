@@ -99,4 +99,14 @@ public class AccountControllerTest {
         assertNotEquals(currentAccount.getUsername(), updatedAccount.getUsername(), "The username between currentAccount and updatedAccount should NOT be the same.");
         assertNotEquals(currentAccount.getPassword(), updatedAccount.getPassword(), "The password between currentAccount and updatedAccount should NOT be the same.");
     }
+
+    @Test
+    public void testDeleteAccountById() {
+        int id = 1;
+
+        accountController.deleteAccountById(id);
+
+        Account deletedAccount = accountController.getAccountByID(id);
+        assertNull(deletedAccount, "The account should be deleted");
+    }
 }
