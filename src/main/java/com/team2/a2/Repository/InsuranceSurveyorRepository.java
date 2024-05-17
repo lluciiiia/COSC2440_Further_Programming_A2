@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +49,7 @@ public class InsuranceSurveyorRepository {
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching insurance surveyors: " + e.getMessage());
+            System.err.println("Error fetching insurance surveyor: " + e.getMessage());
         } finally {
             try {
                 if (resultSet != null) resultSet.close();
@@ -213,4 +214,69 @@ public class InsuranceSurveyorRepository {
         }
     }
 
+    public InsuranceSurveyor getInsuranceSurveyorById(int id) {
+        InsuranceSurveyor insuranceSurveyor = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM insurance_surveyors WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                int insuranceManagerId = resultSet.getInt("insurance_manager_id");
+                String companyName = resultSet.getString("company_name");
+                String companyAddress = resultSet.getString("company_address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String name = resultSet.getString("name");
+
+                insuranceSurveyor = new InsuranceSurveyor(id, createdAt, updatedAt, accountId, insuranceManagerId, companyName, companyAddress, phoneNumber, email, name);
+
+                return insuranceSurveyor;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching insurance surveyor: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return insuranceSurveyor;
+    }
+
+    public void updateInsuranceSurveyor(UpdateProviderRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE insurance_surveyors SET company_name = ?, company_address = ?, phone_number = ?, email = ?, name = ?, updated_at = NOW() WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, request.getCompanyName());
+            statement.setString(2, request.getCompanyAddress());
+            statement.setString(3, request.getPhoneNumber());
+            statement.setString(4, request.getEmail());
+            statement.setString(5, request.getName());
+            statement.setInt(6, request.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating insurance surveyor: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
