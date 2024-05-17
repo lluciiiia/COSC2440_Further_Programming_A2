@@ -1,12 +1,17 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.User.Account;
+import com.team2.a2.Model.User.Provider.InsuranceManager;
+import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -14,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -35,6 +41,8 @@ public class AdminView implements Initializable {
 
     @FXML
     private Button AllAccountButton;
+
+    private AccountController accountController = new AccountController();
 
 
     @FXML
@@ -101,11 +109,33 @@ public class AdminView implements Initializable {
 
         AllAccountButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewAllAccountPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) AllAccountButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewAllAccountPage.fxml"));
+                Parent root = loader.load();
+                AdminViewAllAccount adminViewAllAccount = loader.getController();
+                Task<List<Account>> loadAccountTask = new Task<>() {
+                    @Override
+                    protected List<Account> call() throws Exception {
+                        return accountController.getAllAccounts();
+                    }
+                };
+
+                loadAccountTask.setOnSucceeded(workerStateEvent -> {
+                    adminViewAllAccount.initData(FXCollections.observableArrayList(loadAccountTask.getValue()));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) AllAccountButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadAccountTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadAccountTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
