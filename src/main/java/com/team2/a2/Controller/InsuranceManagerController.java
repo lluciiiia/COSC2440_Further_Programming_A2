@@ -4,7 +4,7 @@ import com.team2.a2.Facade.InsuranceManagerFacade;
 import com.team2.a2.FacadeImpl.InsuranceManagerFacadeImpl;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
-import com.team2.a2.Request.UpdateInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.util.List;
 
@@ -28,5 +28,5 @@ public class InsuranceManagerController {
 
     public InsuranceManager getInsuranceManagerById(int id) { return insuranceManagerFacade.getInsuranceManagerById(id); }
 
-    public void updateInsuranceManager(UpdateInsuranceManagerRequest request) { insuranceManagerFacade.updateInsuranceManager(request); }
+    public void updateInsuranceManager(UpdateProviderRequest request) { insuranceManagerFacade.updateInsuranceManager(request); }
 }

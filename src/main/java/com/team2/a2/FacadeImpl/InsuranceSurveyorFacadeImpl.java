@@ -9,6 +9,7 @@ import com.team2.a2.Repository.AccountRepository;
 import com.team2.a2.Repository.InsuranceManagerRepository;
 import com.team2.a2.Repository.InsuranceSurveyorRepository;
 import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.util.List;
 
@@ -56,5 +57,18 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
         if (account == null) return;
 
         insuranceSurveyorRepository.createInsuranceSurveyor(request, account.getId());
+    }
+
+    @Override
+    public void updateInsuranceSurveyor(UpdateProviderRequest request) {
+        InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorById(request.getId());
+        if (insuranceSurveyor == null) return;
+
+        insuranceSurveyorRepository.updateInsuranceSurveyor(request);
+    }
+
+    @Override
+    public InsuranceSurveyor getInsuranceSurveyorById(int id) {
+        return insuranceSurveyorRepository.getInsuranceSurveyorById(id);
     }
 }

@@ -9,7 +9,7 @@ import com.team2.a2.Repository.AccountRepository;
 import com.team2.a2.Repository.InsuranceManagerRepository;
 import com.team2.a2.Repository.InsuranceSurveyorRepository;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
-import com.team2.a2.Request.UpdateInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.util.List;
 
@@ -69,7 +69,7 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     }
 
     @Override
-    public void updateInsuranceManager(UpdateInsuranceManagerRequest request) {
+    public void updateInsuranceManager(UpdateProviderRequest request) {
         InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(request.getId());
         if (insuranceManager == null) return;
 

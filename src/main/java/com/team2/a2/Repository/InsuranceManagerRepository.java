@@ -3,7 +3,7 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
-import com.team2.a2.Request.UpdateInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,7 +191,7 @@ public class InsuranceManagerRepository {
         return insuranceManager;
     }
 
-    public void updateInsuranceManager(UpdateInsuranceManagerRequest request) {
+    public void updateInsuranceManager(UpdateProviderRequest request) {
         PreparedStatement statement = null;
 
         try {
