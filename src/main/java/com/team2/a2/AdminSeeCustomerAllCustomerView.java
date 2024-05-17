@@ -64,6 +64,8 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
     private TextField passwordEdit;
     @FXML
     private Button editButton;
+    @FXML
+    private Button deleteButton;
 
     private AccountController accountController = new AccountController();
     private CustomerController customerController = new CustomerController();
@@ -105,7 +107,7 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
         editButton.setOnAction(event -> {
             Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
             if (selectedCustomer == null) {
-                showAlert("No Selection", "Please select a dependent from the table.");
+                showAlert("No Selection", "Please select a customer from the table.");
                 return;
             }
             Account accountSelected = accountController.getAccountByID(selectedCustomer.getAccountId());
@@ -126,6 +128,20 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
             customerController.updateCustomer(updateCustomerRequest);
             showAlert("Success", "Customer information updated successfully.");
 
+            refreshTable();
+        });
+
+        deleteButton.setOnAction(event -> {
+            Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+            if (selectedCustomer == null) {
+                showAlert("No Selection", "Please select a customer from the table.");
+                return;
+            }
+            customerController.deleteCustomerById(selectedCustomer.getId());
+            showAlert("Success", "Customer deleted successfully.");
+
+            // Remove the deleted customer from the original list and refresh the table
+            originalCustomerList.remove(selectedCustomer);
             refreshTable();
         });
     }

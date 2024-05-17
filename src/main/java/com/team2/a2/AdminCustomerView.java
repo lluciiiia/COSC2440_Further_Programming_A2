@@ -1,6 +1,8 @@
 package com.team2.a2;
 
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Customer.Customer;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -30,6 +32,7 @@ public class AdminCustomerView implements Initializable {
     private Button ViewListOfCustomerClaimButton;
 
     private CustomerController customerController = new CustomerController();
+    private ClaimController claimController = new ClaimController();
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
@@ -43,6 +46,7 @@ public class AdminCustomerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
         CreateCustomerAccountButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateCustomerAccountPage.fxml")));
@@ -54,13 +58,36 @@ public class AdminCustomerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
         ViewListOfCustomerClaimButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerLOCPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ViewListOfCustomerClaimButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerLOCPage.fxml"));
+                Parent root = loader.load();
+                AdminCustomerLOCView adminCustomerLOCView = loader.getController();
+                Task<List<Claim>> loadClaimTask = new Task<>() {
+                    @Override
+                    protected List<Claim> call() throws Exception {
+                        return claimController.getAllClaims();
+                    }
+                };
+
+                loadClaimTask.setOnSucceeded(workerStateEvent -> {
+                    adminCustomerLOCView.initData(FXCollections.observableArrayList(loadClaimTask.getValue()));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ViewListOfCustomerClaimButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadClaimTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadClaimTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

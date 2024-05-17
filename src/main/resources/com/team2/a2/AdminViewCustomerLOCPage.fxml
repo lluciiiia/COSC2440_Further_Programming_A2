@@ -28,14 +28,15 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
+                <TableView fx:id="claimTable" layoutX="29.0" layoutY="117.0" prefHeight="339.0" prefWidth="641.0">
                     <columns>
-                        <TableColumn prefWidth="96.0" text="Claim ID" />
-                        <TableColumn prefWidth="127.0" text="Claim Date" />
-                        <TableColumn prefWidth="112.0" text="Exam Date" />
-                        <TableColumn prefWidth="123.0" text="Amount" />
-                        <TableColumn prefWidth="104.0" text="Status" />
-                        <TableColumn prefWidth="78.0" text="Cus ID" />
+                        <TableColumn fx:id="claimID" prefWidth="64.00001335144043" text="Claim ID" />
+                        <TableColumn fx:id="claimDate" prefWidth="86.4000244140625" text="Claim Date" />
+                        <TableColumn fx:id="examDate" prefWidth="99.19999694824219" text="Exam Date" />
+                        <TableColumn fx:id="amount" prefWidth="86.39996337890625" text="Amount" />
+                        <TableColumn fx:id="status" prefWidth="100.20001220703125" text="Status" />
+                        <TableColumn fx:id="isDocumentRequested" prefWidth="120.60003662109375" text="Document request" />
+                        <TableColumn fx:id="cusID" prefWidth="84.80001220703127" text="Cus ID" />
                     </columns>
                 </TableView>
             </children>

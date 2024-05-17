@@ -46,7 +46,7 @@
             <TextField fx:id="emailEdit" layoutX="311.0" layoutY="70.0" prefHeight="26.0" prefWidth="68.0" promptText="email" />
             <TextField fx:id="passwordEdit" layoutX="406.0" layoutY="70.0" prefHeight="26.0" prefWidth="83.0" promptText="password" />
             <Button fx:id="editButton" layoutX="585.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Edit Customer" />
-            <Button layoutX="576.0" layoutY="38.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Delete Customer" />
+            <Button fx:id="deleteButton" layoutX="576.0" layoutY="38.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Delete Customer" />
             </children>
         </AnchorPane>
     </left>
