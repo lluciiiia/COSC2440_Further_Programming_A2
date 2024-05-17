@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
 
@@ -18,7 +19,7 @@
     <center>
         <BorderPane>
             <center>
-                <VBox alignment="CENTER" spacing="20.0">
+                <VBox alignment="CENTER" prefHeight="470.0" prefWidth="381.0" spacing="20.0">
                     <TextField fx:id="usernameTextField" promptText="Username" />
                     <TextField fx:id="passwordTextField" promptText="Password" />
                     <TextField fx:id="fullNameTextField" prefHeight="10.0" prefWidth="538.0" promptText="Full name" />
@@ -29,16 +30,45 @@
                     <ComboBox fx:id="policyHolder" prefHeight="26.0" prefWidth="705.0" promptText="Click to choose policy holder ID" style="-fx-background-color: #d6cece;" />
                     <ComboBox fx:id="policyOwner" prefHeight="15.0" prefWidth="538.0" promptText="Click to choose policy owner ID" style="-fx-background-color: #d6cece;" />
 
-                    <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
-
                     <padding>
                         <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
                     </padding>
                 </VBox>
             </center>
+         <right>
+            <VBox prefHeight="404.0" prefWidth="288.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Create New Insurance Card" textAlignment="CENTER" translateX="25.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="cardTextField" promptText="Insurance Card Number" />
+                  <TextField fx:id="bankNameTextField" promptText="Bank Name" />
+                  <TextField fx:id="accountNumberTextField" promptText="Account Number" />
+                  <DatePicker fx:id="expiryDate" prefHeight="25.0" prefWidth="289.0" promptText="Expiry Date" />
+               </children>
+               <BorderPane.margin>
+                  <Insets top="21.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets right="15.0" />
+               </padding></VBox>
+         </right>
         </BorderPane>
     </center>
     <left>
         <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-size: 20;" text="&lt;" BorderPane.alignment="TOP_LEFT" />
     </left>
+   <bottom>
+
+           <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>
