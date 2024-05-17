@@ -49,4 +49,31 @@ public class AdminRepository {
         }
         return admin;
     }
+
+    public void deleteAdminById(int id) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "DELETE FROM admins WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("An admin was deleted successfully!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting admin: " + e.getMessage());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+    }
+
 }

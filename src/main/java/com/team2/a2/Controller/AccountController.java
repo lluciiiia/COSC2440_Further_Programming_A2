@@ -17,13 +17,14 @@ public class AccountController {
     }
 
     public Account login(LoginRequest request) { return accountFacade.login(request); }
-    public Account getAccountByID(int accountID) {
-        return accountFacade.getAccountByID(accountID);
+    public Account getAccountByID(int id) {
+        return accountFacade.getAccountByID(id);
     }
     public Account getAccountByCustomerID(int customerID) {
         return accountFacade.getAccountByCustomerID(customerID);
     }
     public List<Account> getAllAccounts() { return accountFacade.getAllAccounts(); }
+    public Account updateAccount(UpdateAccountRequest request) { return accountFacade.updateAccount(request); }
 
-    public Account updateAccount(UpdateAccountRequest request) { return this.accountFacade.updateAccount(request); }
+    public void deleteAccountById(int id) { accountFacade.deleteAccountById(id); }
 }
