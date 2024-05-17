@@ -2,7 +2,6 @@ package com.team2.a2.FacadeImpl;
 
 import com.team2.a2.Facade.InsuranceManagerFacade;
 import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
@@ -10,6 +9,7 @@ import com.team2.a2.Repository.AccountRepository;
 import com.team2.a2.Repository.InsuranceManagerRepository;
 import com.team2.a2.Repository.InsuranceSurveyorRepository;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateInsuranceManagerRequest;
 
 import java.util.List;
 
@@ -66,5 +66,13 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     @Override
     public InsuranceManager getInsuranceManagerById(int id) {
         return insuranceManagerRepository.getInsuranceManagerById(id);
+    }
+
+    @Override
+    public void updateInsuranceManager(UpdateInsuranceManagerRequest request) {
+        InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(request.getId());
+        if (insuranceManager == null) return;
+
+        insuranceManagerRepository.updateInsuranceManager(request);
     }
 }
