@@ -1,9 +1,9 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
+import com.team2.a2.Request.UpdateInsuranceManagerRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -190,5 +190,31 @@ public class InsuranceManagerRepository {
 
         return insuranceManager;
     }
+
+    public void updateInsuranceManager(UpdateInsuranceManagerRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE insurance_managers SET company_name = ?, company_address = ?, phone_number = ?, email = ?, name = ?, updated_at = NOW() WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, request.getCompanyName());
+            statement.setString(2, request.getCompanyAddress());
+            statement.setString(3, request.getPhoneNumber());
+            statement.setString(4, request.getEmail());
+            statement.setString(5, request.getName());
+            statement.setInt(6, request.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating insurance manager: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }

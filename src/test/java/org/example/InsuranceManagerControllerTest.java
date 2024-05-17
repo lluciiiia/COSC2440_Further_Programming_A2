@@ -11,6 +11,7 @@ import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
 import com.team2.a2.Request.LoginRequest;
+import com.team2.a2.Request.UpdateInsuranceManagerRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -111,5 +112,28 @@ public class InsuranceManagerControllerTest {
         assertEquals(insuranceManagerId, insuranceManager.getId(), "ID should match");
       }
 
+    @Test
+    public void testUpdateInsuranceManager() {
+        int id = 3;
+
+        UpdateInsuranceManagerRequest request = new UpdateInsuranceManagerRequest(
+                id,
+                "New Company2",
+                "New Address2",
+                "09876543212",
+                "new2@example.com",
+                "New Name2"
+        );
+
+        insuranceManagerController.updateInsuranceManager(request);
+
+        InsuranceManager updatedInsuranceManager = insuranceManagerController.getInsuranceManagerById(id);
+
+        assertEquals(request.getCompanyName(), updatedInsuranceManager.getCompanyName(), "Company name should be updated");
+        assertEquals(request.getCompanyAddress(), updatedInsuranceManager.getCompanyAddress(), "Company address should be updated");
+        assertEquals(request.getPhoneNumber(), updatedInsuranceManager.getPhoneNumber(), "Phone number should be updated");
+        assertEquals(request.getEmail(), updatedInsuranceManager.getEmail(), "Email should be updated");
+        assertEquals(request.getName(), updatedInsuranceManager.getName(), "Name should be updated");
+    }
 
 }
