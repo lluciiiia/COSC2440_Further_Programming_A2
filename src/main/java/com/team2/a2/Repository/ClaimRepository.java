@@ -115,6 +115,12 @@ public class ClaimRepository {
 
         } catch (SQLException e) {
             System.err.println("Error deleting claim: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

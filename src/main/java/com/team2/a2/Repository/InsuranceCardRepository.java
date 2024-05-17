@@ -31,6 +31,12 @@ public class InsuranceCardRepository {
 
         } catch (SQLException e) {
             System.err.println("Error creating insurance card: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
