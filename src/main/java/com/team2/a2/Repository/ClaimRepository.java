@@ -271,4 +271,34 @@ public class ClaimRepository {
             }
         }
     }
+
+    public Double getAcceptedClaimsTotalAmount() {
+        Double totalAmount = 0.0;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT SUM(amount) AS total_amount FROM claims WHERE status = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setObject(1, ClaimStatus.ACCEPTED, Types.OTHER);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalAmount = resultSet.getDouble("total_amount");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching accepted claims total amount: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return totalAmount;
+    }
+
 }

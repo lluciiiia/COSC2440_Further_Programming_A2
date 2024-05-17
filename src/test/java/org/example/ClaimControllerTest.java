@@ -113,7 +113,7 @@ public class ClaimControllerTest {
 
     @Test
     public void testCreateClaim() {
-        InsertClaimRequest request = new InsertClaimRequest(8, Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00);
+        InsertClaimRequest request = new InsertClaimRequest(33, Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00);
 
         claimController.createClaim(request);
     }
@@ -146,5 +146,14 @@ public class ClaimControllerTest {
         assertEquals(updateRequest.getExamDate(), updatedClaim.getExamDate(), "Exam date should be updated correctly.");
         assertEquals(updateRequest.getAmount(), updatedClaim.getAmount(), 0.01, "Amount should be updated correctly.");
     }
+
+    @Test
+    public void testGetAcceptedClaimsTotalAmount() {
+        Double expectedTotalAmount = 1000.0;
+        Double actualTotalAmount = claimController.getAcceptedClaimsTotalAmount();
+
+        assertEquals(expectedTotalAmount, actualTotalAmount, "The total amount of accepted claims should match the expected value");
+    }
+
 
 }

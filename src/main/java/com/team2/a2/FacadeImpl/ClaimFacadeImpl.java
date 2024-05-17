@@ -102,4 +102,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
         claimRepository.updateClaim(request);
     }
+
+    @Override
+    public Double getAcceptedClaimsTotalAmount() {
+        return claimRepository.getAcceptedClaimsTotalAmount();
+    }
 }
