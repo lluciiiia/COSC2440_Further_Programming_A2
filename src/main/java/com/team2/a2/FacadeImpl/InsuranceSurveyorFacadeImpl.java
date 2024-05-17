@@ -42,7 +42,11 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
     @Override
     public void deleteInsuranceSurveyorById(int id) {
+        InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorById(id);
+        if (insuranceSurveyor == null) return;
+        int accountId = insuranceSurveyor.getAccountId();
         insuranceSurveyorRepository.deleteInsuranceSurveyorById(id);
+        accountRepository.deleteAccountById(accountId);
     }
 
     @Override

@@ -13,33 +13,48 @@
         </Text>
     </top>
     <left>
-        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
-            <children>
-                <BorderPane layoutX="26.0" layoutY="15.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
-                    <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" BorderPane.alignment="CENTER">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                    </center>
-                </BorderPane>
-                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
-                    <bottom>
-                    </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
-                    <columns>
-                        <TableColumn prefWidth="85.0" text="Owner ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
-                    </columns>
-                </TableView>
-                <Button layoutX="423.0" layoutY="15.0" mnemonicParsing="false" text="Edit Surveyor information" />
-                <Button layoutX="423.0" layoutY="44.0" mnemonicParsing="false" text="Delete Surveyor account" />
-            </children>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;"
+                    BorderPane.alignment="CENTER">
+            <BorderPane layoutX="26.0" layoutY="15.0" prefHeight="34.0" prefWidth="298.0"
+                        style="-fx-background-color: #E0E0E0;">
+                <center>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" BorderPane.alignment="CENTER">
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Text>
+                </center>
+            </BorderPane>
+            <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                <bottom>
+                </bottom>
+            </BorderPane>
+            <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false"
+                    style="-fx-font-weight: bold;" text="Return"/>
+            <TableView fx:id="insuranceSurveyorTable" layoutX="8.0" layoutY="109.0" prefHeight="350.0"
+                       prefWidth="687.0">
+                <columns>
+                    <TableColumn fx:id="insuranceSurveyorID" prefWidth="85.0" text="Surveyor ID"/>
+                    <TableColumn fx:id="name" prefWidth="75.0" text="Name"/>
+                    <TableColumn fx:id="phoneNumber" prefWidth="105.60000610351562" text="Phone Number"/>
+                    <TableColumn fx:id="companyAddress" prefWidth="134.5999755859375" text="Company Address"/>
+                    <TableColumn fx:id="companyName" prefWidth="123.0" text="Company Name"/>
+                    <TableColumn fx:id="email" prefWidth="76.0" text="Email"/>
+                    <TableColumn fx:id="managerId" prefWidth="86.4000244140625" text="ManagerID"/>
+                </columns>
+            </TableView>
+            <Button fx:id="editButton" layoutX="539.0" layoutY="70.0" mnemonicParsing="false"
+                    text="Edit Surveyor information"/>
+            <Button fx:id="deleteButton" layoutX="404.0" layoutY="15.0" mnemonicParsing="false"
+                    text="Delete Surveyor account"/>
+            <TextField fx:id="nameEdit" layoutX="34.0" layoutY="69.0" prefHeight="26.0" prefWidth="88.0"
+                       promptText="name"/>
+            <TextField fx:id="phoneNumberEdit" layoutX="153.0" layoutY="69.0" prefHeight="26.0" prefWidth="84.0"
+                       promptText="phone number"/>
+            <TextField fx:id="emailEdit" layoutX="259.0" layoutY="69.0" prefHeight="26.0" prefWidth="83.0"
+                       promptText="email"/>
+            <TextField fx:id="passwordEdit" layoutX="378.0" layoutY="69.0" prefHeight="26.0" prefWidth="95.0"
+                       promptText="password"/>
         </AnchorPane>
     </left>
 </BorderPane>

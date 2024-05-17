@@ -27,18 +27,17 @@
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
                     <bottom>
                     </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
+                <Button fx:id="returnButton" layoutX="615.0" layoutY="28.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
+                <TableView fx:id="policyOwnerTable" layoutX="85.0" layoutY="109.0" prefHeight="350.0" prefWidth="530.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Owner ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
+                        <TableColumn fx:id="policyOwnerID" prefWidth="270.5999984741211" text="Owner ID" />
+                        <TableColumn fx:id="name" prefWidth="259.7999572753906" text="Name" />
                     </columns>
                 </TableView>
-            <Button layoutX="423.0" layoutY="15.0" mnemonicParsing="false" text="Edit Policy Owner information" />
-            <Button layoutX="423.0" layoutY="44.0" mnemonicParsing="false" text="Delete Policy Owner account" />
+            <Button fx:id="editButton" layoutX="467.0" layoutY="76.0" mnemonicParsing="false" text="Edit Policy Owner information" />
+            <Button fx:id="deleteButton" layoutX="378.0" layoutY="28.0" mnemonicParsing="false" text="Delete Policy Owner account" />
+            <TextField fx:id="nameEdit" layoutX="85.0" layoutY="76.0" promptText="name" />
+            <TextField fx:id="passwordEdit" layoutX="249.0" layoutY="76.0" promptText="password" />
             </children>
         </AnchorPane>
     </left>

@@ -50,8 +50,18 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
+    public Customer getCustomerByCustomerId(int customerId) {
+        return customerRepository.getCustomerById(customerId);
+    }
+
+    @Override
     public List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId) {
         return customerRepository.getCustomersByPolicyOwnerId(policyOwnerId);
+    }
+
+    @Override
+    public List<Customer> getAllPolicyHolders() {
+        return customerRepository.getAllPolicyHolders();
     }
 
     @Override
@@ -126,7 +136,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public Customer updateCustomer(UpdateCustomerRequest request) {
         Customer customer = customerRepository.getCustomerById(request.getId());
-//        if (customer == null) return null;
+        if (customer == null) return null;
 
         return customerRepository.updateCustomer(request);
     }
@@ -135,6 +145,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public void deleteCustomerById(int id) {
         Customer customer = customerRepository.getCustomerById(id);
         if (customer == null) return;
+
+        int accountId = customer.getAccountId();
 
         if (customer.getType() == CustomerType.POLICY_HOLDER) {
             List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(id);
@@ -163,6 +175,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
         }
 
         customerRepository.deleteCustomerById(id);
+        accountRepository.deleteAccountById(accountId);
     }
 
 }

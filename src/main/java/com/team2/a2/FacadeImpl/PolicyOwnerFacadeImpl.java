@@ -57,6 +57,8 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(id);
         if (policyOwner == null) return;
 
+        int accountId = policyOwner.getAccountId();
+
         List<Customer> customers = customerRepository.getCustomersByPolicyOwnerId(policyOwner.getId());
 
         for (Customer customer : customers) {
@@ -64,6 +66,7 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
         }
 
         policyOwnerRepository.deletePolicyOwnerById(id);
+        accountRepository.deleteAccountById(accountId);
     }
 
     @Override
