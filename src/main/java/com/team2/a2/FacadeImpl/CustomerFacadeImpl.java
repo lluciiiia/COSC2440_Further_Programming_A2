@@ -64,11 +64,12 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerRepository.getCustomerByAccountId(accountID);
     }
 
-    public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) {
+    public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception {
         Customer policyHolder = customerRepository.getCustomerByAccountId(policyHolderAccountId);
-        if (policyHolder == null) return null;
+        if (policyHolder == null) throw new Exception("Policy holder doesn't exist");
 
-        if (policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+        if (policyHolder.getType() != CustomerType.POLICY_HOLDER)
+            throw new Exception("Policy holder's customer type mismatch");
 
         List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(policyHolder.getId());
 
@@ -83,34 +84,35 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer createCustomer(InsertCustomerRequest request) {
+    public Customer createCustomer(InsertCustomerRequest request) throws Exception {
         Customer customer = null;
 
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
-        if (policyOwner == null) return null;
+        if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) return null;
+        if (existingAccount != null) throw new Exception("Someone else is using the username. Please use a different username");
 
         AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
         if (request.getType() == CustomerType.POLICY_HOLDER) {
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
-            if (account == null) return null;
+            if (account == null) throw new Exception("Account hasn't been created");
 
             customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
-            if (customer == null) return null;
+            if (customer == null) throw new Exception("Customer hasn't been created");
         }
         else if (request.getType() == CustomerType.DEPENDENT) {
             Customer policyHolder = customerRepository.getCustomerById(request.getPolicyHolderId());
-            if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+            if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER)
+                throw new Exception("Policy holder doesn't exist or the customer type mismatch of the policy holder");
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
-            if (account == null) return null;
+            if (account == null) throw new Exception("Account hasn't been created");
 
             customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
-            if (customer == null) return null;
+            if (customer == null) throw new Exception("Customer hasn't been created");
 
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
@@ -124,17 +126,17 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer updateCustomer(UpdateCustomerRequest request) {
+    public Customer updateCustomer(UpdateCustomerRequest request) throws Exception {
         Customer customer = customerRepository.getCustomerById(request.getId());
-//        if (customer == null) return null;
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         return customerRepository.updateCustomer(request);
     }
 
     @Override
-    public void deleteCustomerById(int id) {
+    public void deleteCustomerById(int id) throws Exception {
         Customer customer = customerRepository.getCustomerById(id);
-        if (customer == null) return;
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         if (customer.getType() == CustomerType.POLICY_HOLDER) {
             List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(id);

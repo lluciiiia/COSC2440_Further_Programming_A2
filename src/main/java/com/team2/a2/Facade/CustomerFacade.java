@@ -17,14 +17,14 @@ public interface CustomerFacade {
 
     public Customer getCustomerByAccountId(int accountID);
 
-    List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
+    List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception;
 
-    Customer createCustomer(InsertCustomerRequest request);
+    Customer createCustomer(InsertCustomerRequest request) throws Exception;
 
     List<Customer> getAllCustomers();
 
-    Customer updateCustomer(UpdateCustomerRequest request);
+    Customer updateCustomer(UpdateCustomerRequest request) throws Exception;
 
 
-    void deleteCustomerById(int id);
+    void deleteCustomerById(int id) throws Exception;
 }
