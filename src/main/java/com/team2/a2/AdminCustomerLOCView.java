@@ -31,6 +31,8 @@ public class AdminCustomerLOCView implements Initializable {
     @FXML
     private Button returnButton;
     @FXML
+    private TextField totalClaimAmount;
+    @FXML
     private TableView<Claim> claimTable;
     @FXML
     private TableColumn<Claim, Integer> claimID;
@@ -90,6 +92,8 @@ public class AdminCustomerLOCView implements Initializable {
 
         claimsData = FXCollections.observableArrayList(claims);
         claimTable.setItems(claimsData);
+
+        calculateTotalClaimAmount();
     }
 
     @FXML
@@ -105,5 +109,13 @@ public class AdminCustomerLOCView implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void calculateTotalClaimAmount() {
+        double totalAmount = claimsData.stream()
+                .filter(claim -> claim.getStatus() == ClaimStatus.ACCEPTED)
+                .mapToDouble(Claim::getAmount)
+                .sum();
+        totalClaimAmount.setText(String.valueOf("Claim total: " + totalAmount));
     }
 }

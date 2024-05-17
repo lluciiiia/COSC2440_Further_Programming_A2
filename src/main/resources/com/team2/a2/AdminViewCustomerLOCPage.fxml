@@ -39,6 +39,7 @@
                         <TableColumn fx:id="cusID" prefWidth="84.80001220703127" text="Cus ID" />
                     </columns>
                 </TableView>
+            <TextField fx:id="totalClaimAmount" editable="false" layoutX="462.0" layoutY="76.0" promptText="total claim amount" />
             </children>
         </AnchorPane>
     </left>
