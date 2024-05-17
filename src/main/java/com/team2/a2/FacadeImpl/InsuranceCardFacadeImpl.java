@@ -18,12 +18,12 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     }
 
     @Override
-    public void createInsuranceCard(InsertInsuranceCardRequest request) {
+    public void createInsuranceCard(InsertInsuranceCardRequest request) throws Exception {
         Customer customer = customerRepository.getCustomerById(request.getCustomerId());
-        if (customer == null) return;
+        if (customer == null) throw new Exception("Customer doesn't exist");;
 
         InsuranceCard card = insuranceCardRepository.getInsuranceCard(request.getCardNumber(), request.getExpiryDate());
-        if (card != null) return;
+        if (card != null) throw new Exception("Insurance card is being used. Try a different card");;
 
         insuranceCardRepository.createInsuranceCard(request);
      }
@@ -34,9 +34,9 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     }
 
     @Override
-    public void deleteInsuranceCardById(int id) {
+    public void deleteInsuranceCardById(int id) throws Exception {
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardById(id);
-        if (insuranceCard == null) return;
+        if (insuranceCard == null) throw new Exception("Insurance card doesn't exist");;
 
         insuranceCardRepository.deleteInsuranceCardById(id);
     }

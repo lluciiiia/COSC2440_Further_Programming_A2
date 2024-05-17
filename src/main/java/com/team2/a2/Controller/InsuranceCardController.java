@@ -17,9 +17,9 @@ public class InsuranceCardController {
     public InsuranceCard getInsuranceCardByCustomerID(int customerID) {
         return insuranceCardFacade.getInsuranceCardByCustomerID(customerID);
     }
-    public void createInsuranceCard(InsertInsuranceCardRequest request) { this.insuranceCardFacade.createInsuranceCard(request); }
+    public void createInsuranceCard(InsertInsuranceCardRequest request) throws Exception { this.insuranceCardFacade.createInsuranceCard(request); }
 
-    public void deleteInsuranceCardById(int id) { this.insuranceCardFacade.deleteInsuranceCardById(id); }
+    public void deleteInsuranceCardById(int id) throws Exception { this.insuranceCardFacade.deleteInsuranceCardById(id); }
 
     public InsuranceCard getInsuranceCardById(int id) {
         return this.insuranceCardFacade.getInsuranceCardById(id);
