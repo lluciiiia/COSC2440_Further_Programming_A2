@@ -123,7 +123,7 @@ public class ClaimRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE claims SET status = ? WHERE id = ?";
+            String sql = "UPDATE claims SET status = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setObject(1, status, Types.OTHER);
             statement.setInt(2, id);
@@ -193,7 +193,7 @@ public class ClaimRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE claims SET document_requested = ? WHERE id = ?";
+            String sql = "UPDATE claims SET document_requested = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setBoolean(1, isRequested);
             statement.setInt(2, id);
@@ -247,7 +247,7 @@ public class ClaimRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE claims SET claim_date = ?, exam_date = ?, amount = ? WHERE id = ?";
+            String sql = "UPDATE claims SET claim_date = ?, exam_date = ?, amount = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setDate(1, request.getClaimDate());
             statement.setDate(2, request.getExamDate());
@@ -271,4 +271,34 @@ public class ClaimRepository {
             }
         }
     }
+
+    public Double getAcceptedClaimsTotalAmount() {
+        Double totalAmount = 0.0;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT SUM(amount) AS total_amount FROM claims WHERE status = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setObject(1, ClaimStatus.ACCEPTED, Types.OTHER);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalAmount = resultSet.getDouble("total_amount");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching accepted claims total amount: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return totalAmount;
+    }
+
 }

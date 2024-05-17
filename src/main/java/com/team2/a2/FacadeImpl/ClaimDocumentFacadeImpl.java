@@ -5,7 +5,6 @@ import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
 import com.team2.a2.Repository.ClaimDocumentRepository;
 import com.team2.a2.Repository.ClaimRepository;
-import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
@@ -56,5 +55,15 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
         if (claimDocument == null) return;
 
         claimDocumentRepository.deleteClaimDocumentById(id);
+    }
+
+    @Override
+    public void addClaimDocument(InsertClaimDocumentRequest request) {
+        Claim claim = claimRepository.getClaimById(request.getClaimId());
+        if (claim == null) return;
+
+        claimDocumentRepository.createClaimDocument(request);
+
+        if (claim.getDocumentRequested() == true) claimRepository.updateClaimDocumentRequested(claim.getId(), false);
     }
 }

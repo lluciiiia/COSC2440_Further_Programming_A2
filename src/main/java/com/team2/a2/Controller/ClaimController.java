@@ -34,4 +34,6 @@ public class ClaimController {
     public void updateClaimDocumentRequested(int id, boolean isRequested) { claimFacade.updateClaimDocumentRequested(id, isRequested); }
 
     public void updateClaim(UpdateClaimRequest request) { claimFacade.updateClaim(request); }
+
+    public Double getAcceptedClaimsTotalAmount() { return claimFacade.getAcceptedClaimsTotalAmount(); }
 }

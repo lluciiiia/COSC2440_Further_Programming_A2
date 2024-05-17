@@ -248,7 +248,7 @@ public class CustomerRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE customers SET name = ?, address = ?, phone_number = ?, email = ? WHERE id = ?";
+            String sql = "UPDATE customers SET name = ?, address = ?, phone_number = ?, email = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql);
 
             statement.setString(1, request.getName());

@@ -22,4 +22,6 @@ public interface ClaimFacade {
     void updateClaimDocumentRequested(int id, boolean isRequested);
 
     void updateClaim(UpdateClaimRequest request);
+
+    Double getAcceptedClaimsTotalAmount();
 }
