@@ -101,5 +101,15 @@ public class InsuranceManagerControllerTest {
         assertNotNull(createdInsuranceManager, "CreatedInsuranceManager should NOT be null.");
     }
 
+    @Test
+    public void testGetInsuranceManagerById() {
+        int insuranceManagerId = 3;
+
+        InsuranceManager insuranceManager = insuranceManagerController.getInsuranceManagerById(insuranceManagerId);
+
+        assertNotNull(insuranceManager, "Insurance Manager should not be null");
+        assertEquals(insuranceManagerId, insuranceManager.getId(), "ID should match");
+      }
+
 
 }
