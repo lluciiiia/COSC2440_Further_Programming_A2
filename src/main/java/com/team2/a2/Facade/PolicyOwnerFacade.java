@@ -12,4 +12,8 @@ public interface PolicyOwnerFacade {
     List<PolicyOwner> getAllPolicyOwners();
 
     void createPolicyOwner(InsertPolicyOwnerRequest request);
+
+    void deletePolicyOwnerById(int id);
+
+    PolicyOwner getPolicyOwnerById(int id);
 }
