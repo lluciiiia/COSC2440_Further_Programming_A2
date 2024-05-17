@@ -146,6 +146,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
         Customer customer = customerRepository.getCustomerById(id);
         if (customer == null) return;
 
+        int accountId = customer.getAccountId();
+
         if (customer.getType() == CustomerType.POLICY_HOLDER) {
             List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(id);
 
@@ -173,6 +175,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
         }
 
         customerRepository.deleteCustomerById(id);
+        accountRepository.deleteAccountById(accountId);
     }
 
 }

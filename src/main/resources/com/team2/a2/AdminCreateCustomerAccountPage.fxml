@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminCreateCustomerAccountView">
 
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
@@ -21,12 +21,13 @@
                 <VBox alignment="CENTER" spacing="20.0">
                     <TextField fx:id="usernameTextField" promptText="Username" />
                     <TextField fx:id="passwordTextField" promptText="Password" />
-                    <TextField fx:id="fullNameTextField" promptText="Full name" />
-                    <TextField fx:id="emailTextField" promptText="Enter Email Address" />
+                    <TextField fx:id="fullNameTextField" prefHeight="10.0" prefWidth="538.0" promptText="Full name" />
+                    <TextField fx:id="emailTextField" prefHeight="14.0" prefWidth="538.0" promptText="Enter Email Address" />
                     <TextField fx:id="phoneTextField" promptText="Enter Phone Number" />
                     <TextField fx:id="homeAddressTextField" promptText="Enter Home Address" />
                     <ComboBox fx:id="customerTypeComboBox" prefHeight="25.0" prefWidth="606.0" promptText="Click to choose customer's account type" style="-fx-background-color: #d6cece;" />
                     <ComboBox fx:id="policyHolder" prefHeight="26.0" prefWidth="705.0" promptText="Click to choose policy holder ID" style="-fx-background-color: #d6cece;" />
+                    <ComboBox fx:id="policyOwner" prefHeight="15.0" prefWidth="538.0" promptText="Click to choose policy owner ID" style="-fx-background-color: #d6cece;" />
 
                     <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
 

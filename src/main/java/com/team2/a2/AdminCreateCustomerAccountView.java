@@ -61,6 +61,8 @@ public class AdminCreateCustomerAccountView implements Initializable {
     private TextField homeAddressTextField;
     @FXML
     private ComboBox<CustomerType> customerTypeComboBox;
+    @FXML
+    private ComboBox<Integer> policyOwner;
 
     @FXML
     private ComboBox<Integer> policyHolder;
@@ -84,19 +86,39 @@ public class AdminCreateCustomerAccountView implements Initializable {
             }
         });
 
+        policyHolder.setVisible(false);
+        policyOwner.setVisible(false);
+
         customerTypeComboBox.setItems(FXCollections.observableArrayList(CustomerType.values()));
         customerTypeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal == CustomerType.DEPENDENT) {
                 updatePolicyHolderComboBox();
                 policyHolder.setVisible(true);
+                policyOwner.setVisible(false);
+            } else if (newVal == CustomerType.POLICY_HOLDER) {
+                updatePolicyOwnerComboBox();
+                policyHolder.setVisible(false);
+                policyOwner.setVisible(true);
             } else {
                 policyHolder.setVisible(false);
+                policyOwner.setVisible(false);
             }
         });
 
-        policyHolder.setVisible(false);
 
         policyHolder.setConverter(new StringConverter<Integer>() {
+            @Override
+            public String toString(Integer object) {
+                return object != null ? object.toString() : "";
+            }
+
+            @Override
+            public Integer fromString(String string) {
+                return string != null && !string.isEmpty() ? Integer.valueOf(string) : null;
+            }
+        });
+
+        policyOwner.setConverter(new StringConverter<Integer>() {
             @Override
             public String toString(Integer object) {
                 return object != null ? object.toString() : "";
@@ -119,6 +141,15 @@ public class AdminCreateCustomerAccountView implements Initializable {
         policyHolder.setItems(FXCollections.observableArrayList(customerIds));
     }
 
+    private void updatePolicyOwnerComboBox() {
+        List<PolicyOwner> policyOwners = policyOwnerController.getAllPolicyOwners();
+        List<Integer> policyOwnerIds = policyOwners.stream()
+                .map(PolicyOwner::getId)
+                .collect(Collectors.toList());
+        policyOwner.setItems(FXCollections.observableArrayList(policyOwnerIds));
+
+    }
+
     private void createAccount() {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
@@ -127,26 +158,40 @@ public class AdminCreateCustomerAccountView implements Initializable {
         String phone = phoneTextField.getText();
         String address = homeAddressTextField.getText();
         CustomerType customerType = customerTypeComboBox.getValue();
-        int policyHolderId = policyHolder.getValue() != null ? policyHolder.getValue() : -1;
-        Customer customer = customerController.getCustomerByCustomerId(policyHolderId);
-        int policyOwnerId = customer.getPolicyOwnerId();
-        PolicyOwner policyOwner = policyOwnerController.getPolicyOwnerById(policyOwnerId );
-        int policyOwnerAccountId = policyOwner.getAccountId();
 
         if (username.isEmpty() || password.isEmpty() || fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || customerType == null) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter all details");
             return;
         }
 
-        InsertCustomerRequest customerRequest;
+        InsertCustomerRequest customerRequest = null;
+
         if (customerType == CustomerType.DEPENDENT) {
+            Integer policyHolderId = policyHolder.getValue();
+            if (policyHolderId == null) {
+                showAlert(Alert.AlertType.ERROR, "Form Error!", "Please select a policy holder for a dependent customer.");
+                return;
+            }
+
+            Customer customer = customerController.getCustomerByCustomerId(policyHolderId);
+            int policyOwnerId = customer.getPolicyOwnerId();
+            PolicyOwner policyOwner = policyOwnerController.getPolicyOwnerById(policyOwnerId);
+            int policyOwnerAccountId = policyOwner.getAccountId();
+
             customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName, address, phone, email, customerType);
-        } else {
-            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, fullName, address, phone, email, customerType);
+            customerController.createCustomer(customerRequest);
+
+        } else if (customerType == CustomerType.POLICY_HOLDER) {
+            Integer poOwnerId = policyOwner.getValue();
+            PolicyOwner poOwner = policyOwnerController.getPolicyOwnerById(poOwnerId);
+            int poOwnerAccountId = poOwner.getAccountId();
+
+            customerRequest = new InsertCustomerRequest(username, password, poOwnerAccountId, fullName, address, phone, email, customerType);
+            customerController.createCustomer(customerRequest);
         }
 
-        customerController.createCustomer(customerRequest);
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
+
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
