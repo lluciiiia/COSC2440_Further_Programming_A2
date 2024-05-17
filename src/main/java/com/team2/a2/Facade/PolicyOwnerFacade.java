@@ -12,11 +12,11 @@ public interface PolicyOwnerFacade {
 
     List<PolicyOwner> getAllPolicyOwners();
 
-    void createPolicyOwner(InsertPolicyOwnerRequest request);
+    void createPolicyOwner(InsertPolicyOwnerRequest request) throws Exception;
 
-    void deletePolicyOwnerById(int id);
+    void deletePolicyOwnerById(int id) throws Exception;
 
     PolicyOwner getPolicyOwnerById(int id);
 
-    void updatePolicyOwner(UpdatePolicyOwnerRequest request);
+    void updatePolicyOwner(UpdatePolicyOwnerRequest request) throws Exception;
 }
