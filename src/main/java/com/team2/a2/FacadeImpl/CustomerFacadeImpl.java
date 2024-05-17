@@ -92,9 +92,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) return null;
 
-        if (request.getType() == CustomerType.POLICY_HOLDER) {
+        AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
-            AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
+        if (request.getType() == CustomerType.POLICY_HOLDER) {
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
             if (account == null) return null;
@@ -102,12 +102,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
             customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
             if (customer == null) return null;
         }
-
-        if (request.getType() == CustomerType.DEPENDENT) {
+        else if (request.getType() == CustomerType.DEPENDENT) {
             Customer policyHolder = customerRepository.getCustomerById(request.getPolicyHolderId());
             if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
-
-            AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
             if (account == null) return null;

@@ -1,10 +1,14 @@
 package org.example;
 
 import com.team2.a2.ConnectionManager;
+import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceSurveyorController;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
+import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
+import com.team2.a2.Request.LoginRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -18,11 +22,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InsuranceSurveyorControllerTest {
 
     private InsuranceSurveyorController insuranceSurveyorController;
+    private AccountController accountController;
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         insuranceSurveyorController = new InsuranceSurveyorController();
+        accountController = new AccountController();
     }
 
     @Test
@@ -78,4 +84,24 @@ public class InsuranceSurveyorControllerTest {
 
         assertNull(deletedInsuranceSurveyor, "The insurance surveyor should NOT exist.");
     }
+
+    @Test
+    public void testCreateInsuranceSurveyor() {
+        InsertInsuranceSurveyorRequest request = new InsertInsuranceSurveyorRequest("username", "password", "companyName", "companyAddress",
+                "phoneNumber", "email@gmail.com", "name-IS", 3);
+
+        insuranceSurveyorController.createInsuranceSurveyor(request);
+
+        Account createdAccount = accountController.login(new LoginRequest(request.getUsername(), request.getPassword()));
+
+        InsuranceSurveyor createdSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(createdAccount.getId());
+
+        assertNotNull(createdAccount, "The created account should not be null");
+        assertNotNull(createdSurveyor, "The created insurance surveyor should not be null");
+
+        assertEquals(request.getEmail(), createdSurveyor.getEmail(), "The emails should match");
+        assertEquals(request.getName(), createdSurveyor.getName(), "The names should match");
+        assertEquals(request.getInsuranceManagerId(), createdSurveyor.getInsuranceManagerId(), "The insurance manager IDs should match");
+    }
+
 }

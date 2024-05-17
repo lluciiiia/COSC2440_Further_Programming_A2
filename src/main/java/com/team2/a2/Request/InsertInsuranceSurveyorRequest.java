@@ -1,33 +1,32 @@
-package com.team2.a2.Model.User.Provider;
+package com.team2.a2.Request;
 
-import com.team2.a2.Model.BaseEntity;
-import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.User.Account;
-
-import java.util.Date;
-
-public class Provider extends BaseEntity {
-
-    private int accountId;
+public class InsertInsuranceSurveyorRequest {
+    private String username;
+    private String password;
     private String companyName;
     private String companyAddress;
     private String phoneNumber;
     private String email;
     private String name;
+    private int insuranceManagerId;
 
-    public Provider(int id, Date createdAt, Date updatedAt, int accountId, String companyName, String companyAddress,
-                    String phoneNumber, String email, String name) {
-        super(id, createdAt, updatedAt);
-        this.accountId = accountId;
+    public InsertInsuranceSurveyorRequest(String username, String password, String companyName, String companyAddress, String phoneNumber, String email, String name, int insuranceManagerId) {
+        this.username = username;
+        this.password = password;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.name = name;
+        this.insuranceManagerId = insuranceManagerId;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getCompanyName() {
@@ -49,4 +48,6 @@ public class Provider extends BaseEntity {
     public String getName() {
         return name;
     }
+
+    public int getInsuranceManagerId() { return insuranceManagerId; }
 }
