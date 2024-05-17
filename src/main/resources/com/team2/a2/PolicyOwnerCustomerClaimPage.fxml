@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="26.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="27.0" layoutY="11.0" prefHeight="31.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer's claims" BorderPane.alignment="CENTER">
                             <font>
@@ -39,8 +39,12 @@
                         <TableColumn fx:id="customerID" prefWidth="66.0" text="Cus ID" />
                     </columns>
                 </TableView>
-            <Button fx:id="editClaimButton" layoutX="389.0" layoutY="13.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Edit this Claim" />
-            <Button fx:id="deleteClaimButton" layoutX="389.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete this Claim" />
+            <Button fx:id="editClaimButton" layoutX="566.0" layoutY="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Edit this Claim" />
+            <Button fx:id="deleteClaimButton" layoutX="446.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete this Claim" />
+            <Button fx:id="createClaimButton" layoutX="340.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="Create Claim" />
+            <DatePicker fx:id="claimDatePicker" layoutX="20.0" layoutY="50.0" prefHeight="26.0" prefWidth="152.0" promptText="claim date" />
+            <DatePicker fx:id="examDatePicker" layoutX="190.0" layoutY="50.0" prefHeight="26.0" prefWidth="127.0" promptText="exam date" />
+            <TextField fx:id="amountField" layoutX="350.0" layoutY="50.0" prefHeight="26.0" prefWidth="105.0" promptText="amount" />
             </children>
         </AnchorPane>
     </left>
