@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -173,4 +174,24 @@ public class PolicyOwnerRepository {
         }
     }
 
+    public void updatePolicyOwner(UpdatePolicyOwnerRequest request) {
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "UPDATE policy_owners SET name = ?, updated_at = NOW() WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, request.getName());
+            statement.setInt(2, request.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error updating policy owner: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

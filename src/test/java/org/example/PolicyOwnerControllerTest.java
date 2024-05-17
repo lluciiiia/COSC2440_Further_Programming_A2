@@ -4,6 +4,7 @@ import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.PolicyOwnerController;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -74,6 +75,18 @@ public class PolicyOwnerControllerTest {
 
         assertNotNull(policyOwner, "The policy owner should not be null");
         assertEquals(id, policyOwner.getId(), "The policy owner ID should match");
+    }
+
+    @Test
+        public void testUpdatePolicyOwner() {
+        int id = 3;
+
+        UpdatePolicyOwnerRequest request = new UpdatePolicyOwnerRequest(id, "Jane Smith");
+
+        policyOwnerController.updatePolicyOwner(request);
+        PolicyOwner updatedPolicyOwner = policyOwnerController.getPolicyOwnerById(id);
+
+        assertEquals(request.getName(), updatedPolicyOwner.getName(), "The name should be the same.");
     }
 
 

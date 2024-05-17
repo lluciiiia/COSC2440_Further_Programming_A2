@@ -5,6 +5,7 @@ import com.team2.a2.Facade.PolicyOwnerFacade;
 import com.team2.a2.FacadeImpl.PolicyOwnerFacadeImpl;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public class PolicyOwnerController {
 
     public PolicyOwner getPolicyOwnerById(int id) { return policyOwnerFacade.getPolicyOwnerById(id);
     }
+
+    public void updatePolicyOwner(UpdatePolicyOwnerRequest request) { policyOwnerFacade.updatePolicyOwner(request); }
 }
