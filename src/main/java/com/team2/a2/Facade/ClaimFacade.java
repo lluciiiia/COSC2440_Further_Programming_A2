@@ -14,14 +14,14 @@ public interface ClaimFacade {
 
     void deleteClaimById(int id);
 
-    void updateClaimStatus(int id, ClaimStatus status);
+    void updateClaimStatus(int id, ClaimStatus status) throws Exception;
     List<Claim> getAllClaims();
 
-    void createClaim(InsertClaimRequest request);
+    void createClaim(InsertClaimRequest request) throws Exception;
 
-    void updateClaimDocumentRequested(int id, boolean isRequested);
+    void updateClaimDocumentRequested(int id, boolean isRequested) throws Exception;
 
-    void updateClaim(UpdateClaimRequest request);
+    void updateClaim(UpdateClaimRequest request) throws Exception;
 
     Double getAcceptedClaimsTotalAmount();
 }

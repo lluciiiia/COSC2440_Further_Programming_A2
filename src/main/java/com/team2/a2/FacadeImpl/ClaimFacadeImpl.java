@@ -45,17 +45,22 @@ public class ClaimFacadeImpl implements ClaimFacade {
     }
 
     @Override
-    public void updateClaimStatus(int id, ClaimStatus status) {
+    public void updateClaimStatus(int id, ClaimStatus status) throws Exception {
         Claim claim = claimRepository.getClaimById(id);
-        if (claim == null) return;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         switch (status) {
             case ACCEPTED:
-                if (claim.getStatus() == ClaimStatus.REJECTED) return;
+                if (claim.getStatus() == ClaimStatus.REJECTED)
+                    throw new Exception("Rejected claim can't be accepted");
                 break;
-
+            case REJECTED:
+                if (claim.getStatus() == ClaimStatus.ACCEPTED)
+                    throw new Exception("Accepted claim can't be rejected");
+                break;
             case PROCESSING:
-                if (claim.getStatus() != ClaimStatus.NEW) return;
+                if (claim.getStatus() != ClaimStatus.NEW)
+                    throw new Exception("Only new claims can be processed");
                 break;
         }
 
@@ -68,32 +73,35 @@ public class ClaimFacadeImpl implements ClaimFacade {
     }
 
     @Override
-    public void createClaim(InsertClaimRequest request) {
+    public void createClaim(InsertClaimRequest request) throws Exception {
         Customer customer = customerRepository.getCustomerById(request.getCustomerId());
-        if (customer == null) return;
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         claimRepository.createClaim(request);
     }
 
     @Override
-    public void updateClaimDocumentRequested(int id, boolean isRequested) {
+    public void updateClaimDocumentRequested(int id, boolean isRequested) throws Exception {
 
         Claim claim = claimRepository.getClaimById(id);
         if (claim == null) return;
 
         if (isRequested) {
-            if (claim.getDocumentRequested() == true) return;
+            if (claim.getDocumentRequested() == true)
+                throw new Exception("The document request status remains the same");
         } else {
-            if (claim.getDocumentRequested() == false) return;
+            if (claim.getDocumentRequested() == false)
+                throw new Exception("The document request status remains the same");
+            ;
         }
 
         claimRepository.updateClaimDocumentRequested(id, isRequested);
     }
 
     @Override
-    public void updateClaim(UpdateClaimRequest request) {
+    public void updateClaim(UpdateClaimRequest request) throws Exception {
         Claim claim = claimRepository.getClaimById(request.getId());
-        if (claim == null) return;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         claimRepository.updateClaim(request);
     }
