@@ -74,6 +74,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
     private CustomerController customerController= new CustomerController();
     private AccountController accountController = new AccountController();
     private Account account;
+    private Dependent dependent1;
 
     public void initData(ObservableList<Claim> claims, Customer customer, Dependent dependent) {
         originalClaimList = FXCollections.observableArrayList(claims);
@@ -136,6 +137,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
 
         int accountID = customer.getAccountId();
         account = accountController.getAccountByID(accountID);
+        dependent1 = dependent;
     }
 
     @FXML
@@ -157,17 +159,21 @@ public class PolicyHolderDependentClaimView implements Initializable {
         });
 
 
-//        createClaimButton.setOnAction(event -> {
-//            try {
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderCreateDependentClaimPage.fxml")));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) createClaimButton.getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        createClaimButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderCreateDependentClaimPage.fxml"));
+                Parent root = loader.load();
+
+                PolicyHolderCreateDependentClaimView policyHolderCreateDependentClaimView = loader.getController();
+                policyHolderCreateDependentClaimView.initData(dependent1);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) createClaimButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         editClaimButton.setOnAction(event -> editSelectedClaim());
     }
