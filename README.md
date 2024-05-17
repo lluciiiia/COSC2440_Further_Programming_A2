@@ -6,7 +6,7 @@ Welcome to the COSC2440 Further Programming A2 repository! This project serves a
 
 This repository contains the source code for the project developed in Java, which is an extension version of the first assignment. 
 
-## Authors (Team 2)
+## Authors (Team 2) 👨‍💻
 - [Seokyung Kim - s3939114@rmit.edu.vn](https://github.com/lluciiiia)
 - [Cu Duc Quang - s4021255@rmit.edu.vn](https://github.com/cuducquang)
 - [Ngo Duc Minh Quan - s3938194@rmit.edu.vn](https://github.com/MinhQuan2511)

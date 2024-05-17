@@ -59,7 +59,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerRepository.getAllPolicyHoldersByPolicyOwnerId(policyOwnerId);
     }
 
-
     @Override
     public Customer getCustomerByAccountId(int accountID) {
         return customerRepository.getCustomerByAccountId(accountID);
