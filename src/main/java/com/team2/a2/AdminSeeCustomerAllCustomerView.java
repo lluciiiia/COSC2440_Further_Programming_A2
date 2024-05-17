@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -137,12 +138,24 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
                 showAlert("No Selection", "Please select a customer from the table.");
                 return;
             }
-            customerController.deleteCustomerById(selectedCustomer.getId());
-            showAlert("Success", "Customer deleted successfully.");
 
-            // Remove the deleted customer from the original list and refresh the table
-            originalCustomerList.remove(selectedCustomer);
-            refreshTable();
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to delete this customer?");
+            confirmationAlert.setContentText("Customer's card, claims, and account will be deleted.");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            confirmationAlert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == buttonYes) {
+                customerController.deleteCustomerById(selectedCustomer.getId());
+                showAlert("Success", "Customer deleted successfully.");
+                originalCustomerList.remove(selectedCustomer);
+                refreshTable();
+            }
         });
     }
 
