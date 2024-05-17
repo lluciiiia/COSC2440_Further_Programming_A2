@@ -77,37 +77,37 @@ public class AccountFacadeImpl implements AccountFacade {
     @Override
     public void deleteAccountById(int id) throws Exception {
         Account account = accountRepository.getAccountById(id);
-        if (account == null) throw new Exception("Account doesn't exist");;
+        if (account == null) throw new Exception("Account doesn't exist");
 
         switch (account.getType()) {
             case ADMIN:
                 Admin admin = adminRepository.getAdminByAccountId(id);
-                if (admin == null) throw new Exception("Admin doesn't exist");;
+                if (admin == null) throw new Exception("Admin doesn't exist");
 
                 adminRepository.deleteAdminById(admin.getId());
                 break;
             case POLICY_HOLDER:
             case DEPENDENT:
                 Customer customer = customerRepository.getCustomerByAccountId(id);
-                if (customer == null) throw new Exception("Customer doesn't exist");;
+                if (customer == null) throw new Exception("Customer doesn't exist");
 
                 customerFacade.deleteCustomerById(customer.getId());
                 break;
             case INSURANCE_MANAGER:
                 InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(id);
-                if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");;
+                if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 
                 insuranceManagerFacade.deleteInsuranceManagerById(insuranceManager.getId());
                 break;
             case POLICY_OWNER:
                 PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(id);
-                if (policyOwner == null) throw new Exception("Policy owner doesn't exist");;
+                if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
                 policyOwnerFacade.deletePolicyOwnerById(policyOwner.getId());
                 break;
             case INSURANCE_SURVEYOR:
                 InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(id);
-                if (insuranceSurveyor == null) throw new Exception("Insurance Surveyor doesn't exist");;
+                if (insuranceSurveyor == null) throw new Exception("Insurance Surveyor doesn't exist");
 
                 insuranceSurveyorFacade.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
                 break;
