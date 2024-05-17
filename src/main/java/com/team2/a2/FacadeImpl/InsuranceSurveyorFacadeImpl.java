@@ -46,23 +46,23 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
     }
 
     @Override
-    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) {
+    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) throws Exception {
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) return;
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
         InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(request.getInsuranceManagerId());
-        if (insuranceManager == null) return;
+        if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 
         Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), AccountType.INSURANCE_SURVEYOR);
-        if (account == null) return;
+        if (account == null) throw new Exception("Account doesn't exist");
 
         insuranceSurveyorRepository.createInsuranceSurveyor(request, account.getId());
     }
 
     @Override
-    public void updateInsuranceSurveyor(UpdateProviderRequest request) {
+    public void updateInsuranceSurveyor(UpdateProviderRequest request) throws Exception {
         InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorById(request.getId());
-        if (insuranceSurveyor == null) return;
+        if (insuranceSurveyor == null) throw new Exception("Insurance surveyor doesn't exist");
 
         insuranceSurveyorRepository.updateInsuranceSurveyor(request);
     }
