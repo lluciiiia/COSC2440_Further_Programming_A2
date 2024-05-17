@@ -2,6 +2,7 @@ package com.team2.a2.Facade;
 
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface InsuranceSurveyorFacade {
     void deleteInsuranceSurveyorById(int id);
 
     void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request);
+
+    void updateInsuranceSurveyor(UpdateProviderRequest request);
+
+    InsuranceSurveyor getInsuranceSurveyorById(int id);
 }

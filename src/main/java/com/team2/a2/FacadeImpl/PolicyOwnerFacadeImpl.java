@@ -11,6 +11,7 @@ import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Repository.DependentRepository;
 import com.team2.a2.Repository.PolicyOwnerRepository;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
+import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 
 import java.util.List;
 
@@ -68,5 +69,13 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
     @Override
     public PolicyOwner getPolicyOwnerById(int id) {
         return policyOwnerRepository.getPolicyOwnerById(id);
+    }
+
+    @Override
+    public void updatePolicyOwner(UpdatePolicyOwnerRequest request) {
+        PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(request.getId());
+        if (policyOwner == null) return;
+
+        policyOwnerRepository.updatePolicyOwner(request);
     }
 }
