@@ -1,7 +1,9 @@
 package org.example;
 
 import com.team2.a2.ConnectionManager;
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.ClaimDocumentController;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
 import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
@@ -18,11 +20,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClaimDocumentControllerTest {
 
     private ClaimDocumentController claimDocumentController;
+    private ClaimController claimController;
 
     @BeforeAll
     public void setUp() {
         ConnectionManager.initConnection();
         claimDocumentController = new ClaimDocumentController();
+        claimController = new ClaimController();
     }
 
     @Test
@@ -82,6 +86,20 @@ public class ClaimDocumentControllerTest {
 
         ClaimDocument deletedClaimDocument = claimDocumentController.getClaimDocumentById(id);
         assertNull(deletedClaimDocument, "ClaimDocument should be null after deletion");
+    }
+
+    @Test
+    public void testAddClaimDocument() {
+        int claimId = 13;
+        InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(claimId, "Document");
+
+        Claim existingClaim = claimController.getClaimById(claimId);
+        assertNotNull(existingClaim, "The existing claim should exist.");
+
+        claimDocumentController.addClaimDocument(request);
+
+        Claim updatedClaim = claimController.getClaimById(claimId);
+        assertFalse(updatedClaim.getDocumentRequested());
     }
 
 
