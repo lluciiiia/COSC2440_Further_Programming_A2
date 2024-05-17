@@ -153,7 +153,7 @@ public class AccountRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE accounts SET username = ?, password = ? WHERE id = ?";
+            String sql = "UPDATE accounts SET username = ?, password = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, request.getUsername());
