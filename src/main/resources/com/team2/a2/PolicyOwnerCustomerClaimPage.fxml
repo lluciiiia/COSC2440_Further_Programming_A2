@@ -39,6 +39,8 @@
                         <TableColumn fx:id="customerID" prefWidth="66.0" text="Cus ID" />
                     </columns>
                 </TableView>
+            <Button fx:id="editClaimButton" layoutX="389.0" layoutY="13.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Edit this Claim" />
+            <Button fx:id="deleteClaimButton" layoutX="389.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete this Claim" />
             </children>
         </AnchorPane>
     </left>

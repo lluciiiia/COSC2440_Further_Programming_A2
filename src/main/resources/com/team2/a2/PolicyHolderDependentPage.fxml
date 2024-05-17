@@ -27,7 +27,7 @@
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
                     <bottom>
                     </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
+                <Button fx:id="returnButton" layoutX="619.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" style="-fx-font-weight: Bold;" text="Return" />
                 <TableView fx:id="dependentTable" layoutX="8.0" layoutY="91.0" prefHeight="365.0" prefWidth="684.0">
                     <columns>
                         <TableColumn fx:id="customerID" prefWidth="96.0" text="Customer ID" />
@@ -39,6 +39,7 @@
                     </columns>
                 </TableView>
             <Button fx:id="dependentClaimView" layoutX="339.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="View dependent's claim" />
+            <Button fx:id="ViewDependentCard" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="104.0" text="Insurance Card" />
             <Button fx:id="editButton" layoutX="540.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Edit dependent" />
             <TextField fx:id="nameEdit" layoutX="14.0" layoutY="55.0" prefHeight="26.0" prefWidth="88.0" promptText="name" />
             <TextField fx:id="addressEdit" layoutX="121.0" layoutY="54.0" prefHeight="26.0" prefWidth="89.0" promptText="address" />
