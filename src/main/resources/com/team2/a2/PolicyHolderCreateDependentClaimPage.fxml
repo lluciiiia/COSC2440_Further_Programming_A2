@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.PolicyHolderCreateDependentClaimView">
+
+
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: black;">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30" text="Create Claim" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+    </top>
+
+    <center>
+        <BorderPane>
+            <center>
+                <VBox alignment="CENTER" prefHeight="435.0" prefWidth="660.0" spacing="20.0">
+                    <DatePicker fx:id="claimDate" prefHeight="26.0" prefWidth="694.0" promptText="Claim date" />
+                    <DatePicker fx:id="examDate" prefHeight="26.0" prefWidth="644.0" promptText="exam date" />
+                    <TextField fx:id="claimAmount" promptText="amount" />
+
+                    <Button fx:id="createClaimButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="create claim" />
+
+                    <padding>
+                        <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+    <left>
+        <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 20;" text="&lt;" />
+    </left>
+
+</BorderPane>

@@ -18,10 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -31,6 +28,7 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PolicyHolderDependentClaimView implements Initializable {
@@ -39,6 +37,15 @@ public class PolicyHolderDependentClaimView implements Initializable {
 
     @FXML
     private Text customerNameText;
+
+    @FXML
+    private DatePicker claimDatePicker;
+    @FXML
+    private DatePicker examDatePicker;
+    @FXML
+    private Button editClaimButton;
+    @FXML
+    private Button createClaimButton;
 
     @FXML
     private TableView<Claim> claimTable;
@@ -141,5 +148,17 @@ public class PolicyHolderDependentClaimView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+//        createClaimButton.setOnAction(event -> {
+//            try {
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderCreateDependentClaimPage.fxml")));
+//                Scene scene = new Scene(root);
+//                Stage stage = (Stage) createClaimButton.getScene().getWindow();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 }
