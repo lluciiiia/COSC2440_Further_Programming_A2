@@ -1,11 +1,13 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Request.UpdateClaimRequest;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +45,8 @@ public class PolicyHolderDependentClaimView implements Initializable {
     private DatePicker claimDatePicker;
     @FXML
     private DatePicker examDatePicker;
+    @FXML
+    private TextField amountField;
     @FXML
     private Button editClaimButton;
     @FXML
@@ -63,12 +68,15 @@ public class PolicyHolderDependentClaimView implements Initializable {
     private TableColumn<Claim, String> status;
     @FXML
     private TableColumn<Claim, Boolean> isDocumentRequested;
+    private ObservableList<Claim> originalClaimList;
 
+    private ClaimController claimController = new ClaimController();
     private CustomerController customerController= new CustomerController();
     private AccountController accountController = new AccountController();
     private Account account;
 
     public void initData(ObservableList<Claim> claims, Customer customer, Dependent dependent) {
+        originalClaimList = FXCollections.observableArrayList(claims);
         claimID.setCellValueFactory(cellData -> {
             try {
                 Method method = Claim.class.getMethod("getId");
@@ -123,8 +131,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
             }
         });
 
-        ObservableList<Claim> claimsData = FXCollections.observableArrayList(claims);
-        claimTable.setItems(claimsData);
+        claimTable.setItems(originalClaimList);
         customerNameText.setText("Dependent's claims");
 
         int accountID = customer.getAccountId();
@@ -149,6 +156,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
             }
         });
 
+
 //        createClaimButton.setOnAction(event -> {
 //            try {
 //                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderCreateDependentClaimPage.fxml")));
@@ -160,5 +168,51 @@ public class PolicyHolderDependentClaimView implements Initializable {
 //                e.printStackTrace();
 //            }
 //        });
+
+        editClaimButton.setOnAction(event -> editSelectedClaim());
+    }
+
+    private void editSelectedClaim() {
+        Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
+        if (selectedClaim == null) {
+            showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to edit.");
+            return;
+        }
+
+        LocalDate claimLocalDate = claimDatePicker.getValue();
+        LocalDate examLocalDate = examDatePicker.getValue();
+        String amountText = amountField.getText();
+
+        if (claimLocalDate == null || examLocalDate == null || amountText.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Form Error", "Please fill in all fields.");
+            return;
+        }
+
+        try {
+            Double amount = Double.parseDouble(amountText);
+            java.sql.Date claimDate = java.sql.Date.valueOf(claimLocalDate);
+            java.sql.Date examDate = java.sql.Date.valueOf(examLocalDate);
+
+            UpdateClaimRequest updateClaimRequest = new UpdateClaimRequest(selectedClaim.getId(), claimDate, examDate, amount);
+            claimController.updateClaim(updateClaimRequest);
+
+            showAlert(Alert.AlertType.INFORMATION, "Update Successful", "Claim updated successfully.");
+            refreshClaimTable();
+
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Form Error", "Please enter a valid amount.");
+        }
+    }
+
+    private void refreshClaimTable() {
+        claimTable.refresh();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
