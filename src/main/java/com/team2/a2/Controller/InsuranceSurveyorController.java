@@ -2,6 +2,7 @@ package com.team2.a2.Controller;
 
 import com.team2.a2.Facade.InsuranceSurveyorFacade;
 import com.team2.a2.FacadeImpl.InsuranceSurveyorFacadeImpl;
+import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
 import com.team2.a2.Request.UpdateProviderRequest;
@@ -34,4 +35,7 @@ public class InsuranceSurveyorController {
     public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) { insuranceSurveyorFacade.createInsuranceSurveyor(request); }
 
     public void updateInsuranceSurveyor(UpdateProviderRequest request) { insuranceSurveyorFacade.updateInsuranceSurveyor(request); }
+
+    public InsuranceSurveyor getInsuranceSurveyorById(int id) { return insuranceSurveyorFacade.getInsuranceSurveyorById(id);
+    }
 }

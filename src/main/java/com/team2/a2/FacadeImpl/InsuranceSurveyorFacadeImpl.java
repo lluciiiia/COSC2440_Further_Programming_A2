@@ -66,4 +66,9 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
         insuranceSurveyorRepository.updateInsuranceSurveyor(request);
     }
+
+    @Override
+    public InsuranceSurveyor getInsuranceSurveyorById(int id) {
+        return insuranceSurveyorRepository.getInsuranceSurveyorById(id);
+    }
 }

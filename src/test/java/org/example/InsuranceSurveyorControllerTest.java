@@ -9,6 +9,7 @@ import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Request.InsertInsuranceSurveyorRequest;
 import com.team2.a2.Request.LoginRequest;
+import com.team2.a2.Request.UpdateProviderRequest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -102,6 +103,40 @@ public class InsuranceSurveyorControllerTest {
         assertEquals(request.getEmail(), createdSurveyor.getEmail(), "The emails should match");
         assertEquals(request.getName(), createdSurveyor.getName(), "The names should match");
         assertEquals(request.getInsuranceManagerId(), createdSurveyor.getInsuranceManagerId(), "The insurance manager IDs should match");
+    }
+
+    @Test
+    public void testUpdateInsuranceSurveyor() {
+        int id = 4;
+
+        UpdateProviderRequest request = new UpdateProviderRequest(
+                id,
+                "New Company2",
+                "New Address2",
+                "09876543212",
+                "new2@example.com",
+                "New Name2"
+        );
+
+        insuranceSurveyorController.updateInsuranceSurveyor(request);
+
+        InsuranceSurveyor updatedInsuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorById(id);
+
+        assertEquals(request.getCompanyName(), updatedInsuranceSurveyor.getCompanyName(), "Company name should be updated");
+        assertEquals(request.getCompanyAddress(), updatedInsuranceSurveyor.getCompanyAddress(), "Company address should be updated");
+        assertEquals(request.getPhoneNumber(), updatedInsuranceSurveyor.getPhoneNumber(), "Phone number should be updated");
+        assertEquals(request.getEmail(), updatedInsuranceSurveyor.getEmail(), "Email should be updated");
+        assertEquals(request.getName(), updatedInsuranceSurveyor.getName(), "Name should be updated");
+    }
+
+    @Test
+    public void testGetInsuranceSurveyorById() {
+        int id = 4;
+
+        InsuranceSurveyor insuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorById(id);
+
+        assertNotNull(insuranceSurveyor, "The insurance surveyor should NOT be null");
+        assertEquals(id, insuranceSurveyor.getId(), "The is should be the same");
     }
 
 }

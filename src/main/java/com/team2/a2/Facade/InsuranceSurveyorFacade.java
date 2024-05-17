@@ -18,4 +18,6 @@ public interface InsuranceSurveyorFacade {
     void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request);
 
     void updateInsuranceSurveyor(UpdateProviderRequest request);
+
+    InsuranceSurveyor getInsuranceSurveyorById(int id);
 }
