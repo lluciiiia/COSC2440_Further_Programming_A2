@@ -19,9 +19,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.chrono.Chronology;
-import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PolicyHolderCreateClaimView implements Initializable {

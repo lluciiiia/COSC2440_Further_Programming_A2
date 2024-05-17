@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="23.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="21.0" layoutY="7.0" prefHeight="37.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                             <font>
@@ -39,6 +39,10 @@
                         <TableColumn fx:id="customerID" prefWidth="52.7999267578125" text="Cus ID" />
                     </columns>
                 </TableView>
+            <DatePicker fx:id="claimDatePicker" layoutX="58.0" layoutY="51.0" prefHeight="26.0" prefWidth="155.0" promptText="claimDate" />
+            <DatePicker fx:id="examDatePicker" layoutX="233.0" layoutY="52.0" prefHeight="26.0" prefWidth="148.0" promptText="examDate" />
+            <TextField fx:id="amountField" layoutX="401.0" layoutY="52.0" prefHeight="26.0" prefWidth="100.0" promptText="amount" />
+            <Button fx:id="editClaim" layoutX="570.0" layoutY="52.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Edit Claim" />
             </children>
         </AnchorPane>
     </left>

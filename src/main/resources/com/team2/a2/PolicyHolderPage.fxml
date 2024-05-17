@@ -38,7 +38,6 @@
                   <children>
                      <Button fx:id="createClaim" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="Create Claim" />
                      <Button fx:id="viewClaimInformationButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View Policy Holder Claim" />
-                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="Edit Policy Holder Claim" />
                   </children>
                </VBox>
             </children></HBox>
