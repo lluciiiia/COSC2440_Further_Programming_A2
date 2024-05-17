@@ -152,4 +152,43 @@ public class InsuranceManagerRepository {
             }
         }
     }
+
+    public InsuranceManager getInsuranceManagerById(int insuranceManagerId) {
+        InsuranceManager insuranceManager = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM insurance_managers WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, insuranceManagerId);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int accountId = resultSet.getInt("account_id");
+                Date createdAt = resultSet.getDate("created_at");
+                Date updatedAt = resultSet.getDate("updated_at");
+                String companyName = resultSet.getString("company_name");
+                String companyAddress = resultSet.getString("company_address");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String name = resultSet.getString("name");
+
+                insuranceManager = new InsuranceManager(insuranceManagerId, createdAt, updatedAt, accountId, companyName, companyAddress, phoneNumber, email, name);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching insurance manager: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return insuranceManager;
+    }
+
 }

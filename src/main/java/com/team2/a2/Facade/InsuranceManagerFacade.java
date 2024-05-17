@@ -14,4 +14,6 @@ public interface InsuranceManagerFacade {
     void deleteInsuranceManagerById(int id);
 
     void createInsuranceManager(InsertInsuranceManagerRequest request);
+
+    InsuranceManager getInsuranceManagerById(int id);
 }

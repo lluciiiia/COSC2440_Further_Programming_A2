@@ -62,4 +62,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
 
             insuranceManagerRepository.createInsuranceManager(request, account.getId());
     }
+
+    @Override
+    public InsuranceManager getInsuranceManagerById(int id) {
+        return insuranceManagerRepository.getInsuranceManagerById(id);
+    }
 }
