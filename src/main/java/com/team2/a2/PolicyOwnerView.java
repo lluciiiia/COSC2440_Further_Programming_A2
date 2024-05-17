@@ -32,9 +32,6 @@ public class PolicyOwnerView implements Initializable {
     private Button ViewBeneficiaries;
 
     @FXML
-    private Button CreateClaimButton;
-
-    @FXML
     private Button CreateCusAccountButton;
 
     @FXML
@@ -112,18 +109,6 @@ public class PolicyOwnerView implements Initializable {
                 e.printStackTrace();
             }
         });
-
-//        CreateClaimButton.setOnAction(event -> {
-//            try {
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCreateClaim.fxml")));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) CreateClaimButton.getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
 
     }
 

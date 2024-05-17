@@ -123,6 +123,7 @@ public class PolicyOwnerCustomersView implements Initializable {
                     return;
                 }
                 int customerID = selectedCustomer.getId();
+                Customer customer = customerController.getCustomerByCustomerId(customerID);
 
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCustomerClaimPage.fxml"));
@@ -137,7 +138,7 @@ public class PolicyOwnerCustomersView implements Initializable {
 
 
                 loadClaimsTask.setOnSucceeded(workerStateEvent -> {
-                    policyOwnerCustomerClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), policyOwner1);
+                    policyOwnerCustomerClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), policyOwner1, customer);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) viewCustomerClaimButton.getScene().getWindow();
                     stage.setScene(scene);
