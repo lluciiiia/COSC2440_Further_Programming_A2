@@ -1,11 +1,11 @@
 package org.example;
 
-import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Repository.CustomerRepository;

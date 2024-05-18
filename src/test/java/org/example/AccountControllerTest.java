@@ -6,7 +6,6 @@ import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.LoginRequest;
 import com.team2.a2.Request.UpdateAccountRequest;
-
 import org.junit.jupiter.api.*;
 
 import java.sql.Date;

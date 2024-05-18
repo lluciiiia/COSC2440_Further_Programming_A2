@@ -3,7 +3,6 @@ package org.example;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.DependentController;
 import com.team2.a2.Model.User.Customer.Dependent;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
