@@ -2,10 +2,8 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
-import com.team2.a2.Controller.PolicyOwnerController;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertClaimRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,13 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-
-public class PolicyOwnerCreateClaimView implements Initializable {
-    @FXML
-    private Button returnButton;
+public class PolicyHolderCreateClaimView implements Initializable {
     @FXML
     private Button createClaimButton;
     @FXML
@@ -36,28 +30,28 @@ public class PolicyOwnerCreateClaimView implements Initializable {
     private DatePicker examDate;
     @FXML
     private TextField claimAmount;
+    @FXML
+    private Button returnButton;
 
     private AccountController accountController = new AccountController();
     private Account account;
-    private ClaimController claimController = new ClaimController();
     private Customer customer1;
+    private ClaimController claimController = new ClaimController();
 
-
-    public void initData(Customer customer, PolicyOwner policyOwner) {
-        int policyOwnerId = policyOwner.getAccountId();
-        account = accountController.getAccountByID(policyOwnerId);
+    public void initData(Customer customer) {
+        int accountId = customer.getAccountId();
+        account = accountController.getAccountByID(accountId);
         customer1 = customer;
     }
 
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerPage.fxml"));
-                Parent root = loader.load();
-                PolicyOwnerView policyOwnerView = loader.getController();
-                policyOwnerView.initData(account);
-
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PolicyHolderPage.fxml"));
+                Parent root = fxmlLoader.load();
+                PolicyHolderView policyHolderView = fxmlLoader.getController();
+                policyHolderView.initData(account);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);

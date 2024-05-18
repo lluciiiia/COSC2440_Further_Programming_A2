@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PolicyOwnerCustomersView implements Initializable {
@@ -36,6 +37,8 @@ public class PolicyOwnerCustomersView implements Initializable {
     private Button returnButton;
     @FXML
     private Button viewInsuranceCard;
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -71,6 +74,8 @@ public class PolicyOwnerCustomersView implements Initializable {
     @FXML
     private Button editButton;
 
+    private ObservableList<Customer> originalCustomerList;
+
     private AccountController accountController = new AccountController();
     private Account account;
 
@@ -81,6 +86,7 @@ public class PolicyOwnerCustomersView implements Initializable {
 
 
     public void initData(List<Customer> customers, PolicyOwner policyOwner) {
+        originalCustomerList = FXCollections.observableArrayList(customers);
         customerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         address.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress()));
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
@@ -88,8 +94,7 @@ public class PolicyOwnerCustomersView implements Initializable {
         phoneNumber.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
         type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
 
-        ObservableList<Customer> customerList = FXCollections.observableArrayList(customers);
-        customerTable.setItems(customerList);
+        customerTable.setItems(originalCustomerList);
 
         nameText.setText(policyOwner.getName() + "'s beneficiaries");
 
@@ -123,6 +128,7 @@ public class PolicyOwnerCustomersView implements Initializable {
                     return;
                 }
                 int customerID = selectedCustomer.getId();
+                Customer customer = customerController.getCustomerById(customerID);
 
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCustomerClaimPage.fxml"));
@@ -137,7 +143,7 @@ public class PolicyOwnerCustomersView implements Initializable {
 
 
                 loadClaimsTask.setOnSucceeded(workerStateEvent -> {
-                    policyOwnerCustomerClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), policyOwner1);
+                    policyOwnerCustomerClaimView.initData(FXCollections.observableArrayList(loadClaimsTask.getValue()), policyOwner1, customer);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) viewCustomerClaimButton.getScene().getWindow();
                     stage.setScene(scene);
@@ -184,6 +190,32 @@ public class PolicyOwnerCustomersView implements Initializable {
 
         });
 
+        deleteButton.setOnAction(event -> {
+            Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+            if (selectedCustomer == null) {
+                showAlert("No Selection", "Please select a customer from the table.");
+                return;
+            }
+
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to delete this customer?");
+            confirmationAlert.setContentText("Customer's card, claims, and account will be deleted.");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            confirmationAlert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == buttonYes) {
+                customerController.deleteCustomerById(selectedCustomer.getId());
+                showAlert("Success", "Customer deleted successfully.");
+                originalCustomerList.remove(selectedCustomer);
+                refreshTable();
+            }
+        });
+
 //        viewInsuranceCard.setOnAction(event -> {
 //            try {
 //                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerCustomerCardPage.fxml")));
@@ -195,6 +227,10 @@ public class PolicyOwnerCustomersView implements Initializable {
 //                e.printStackTrace();
 //            }
 //        });
+    }
+
+    private void refreshTable() {
+        customerTable.refresh();
     }
 
     private void showAlert(String title, String message) {

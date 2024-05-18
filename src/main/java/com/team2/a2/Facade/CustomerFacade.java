@@ -9,9 +9,11 @@ import com.team2.a2.Request.UpdateCustomerRequest;
 import java.util.List;
 
 public interface CustomerFacade {
-    List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerId);
+    Customer getCustomerById(int id);
 
     List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId);
+
+    List<Customer> getAllPolicyHolders();
 
     List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId);
 

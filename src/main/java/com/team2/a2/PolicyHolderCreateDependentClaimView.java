@@ -2,10 +2,10 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
-import com.team2.a2.Controller.PolicyOwnerController;
+import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.PolicyOwner;
+import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Request.InsertClaimRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +24,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
-public class PolicyOwnerCreateClaimView implements Initializable {
+public class PolicyHolderCreateDependentClaimView implements Initializable {
     @FXML
     private Button returnButton;
     @FXML
@@ -38,25 +37,27 @@ public class PolicyOwnerCreateClaimView implements Initializable {
     private TextField claimAmount;
 
     private AccountController accountController = new AccountController();
-    private Account account;
+    private CustomerController customerController = new CustomerController();
     private ClaimController claimController = new ClaimController();
-    private Customer customer1;
+    private Account account;
+    private Customer customer;
 
-
-    public void initData(Customer customer, PolicyOwner policyOwner) {
-        int policyOwnerId = policyOwner.getAccountId();
-        account = accountController.getAccountByID(policyOwnerId);
-        customer1 = customer;
+    public void initData(Dependent dependent) {
+        int customerId = dependent.getPolicyHolderId();
+        customer = customerController.getCustomerById(customerId);
+        int accountId = customer.getAccountId();
+        account = accountController.getAccountByID(accountId);
     }
+
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderPage.fxml"));
                 Parent root = loader.load();
-                PolicyOwnerView policyOwnerView = loader.getController();
-                policyOwnerView.initData(account);
+                PolicyHolderView policyHolderView = loader.getController();
+                policyHolderView.initData(account);
 
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
@@ -85,7 +86,7 @@ public class PolicyOwnerCreateClaimView implements Initializable {
             java.sql.Date claimDate = java.sql.Date.valueOf(claimLocalDate);
             java.sql.Date examDate = java.sql.Date.valueOf(examLocalDate);
 
-            InsertClaimRequest insertClaimRequest = new InsertClaimRequest(customer1.getId(), claimDate, examDate, amount);
+            InsertClaimRequest insertClaimRequest = new InsertClaimRequest(customer.getId(), claimDate, examDate, amount);
             claimController.createClaim(insertClaimRequest);
 
             showAlert(Alert.AlertType.INFORMATION, "Claim Created!", "Claim created successfully");

@@ -259,7 +259,7 @@ public class InsuranceSurveyorRepository {
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE insurance_surveyors SET company_name = ?, company_address = ?, phone_number = ?, email = ?, name = ?, updated_at = NOW() WHERE id = ?";
+            String sql = "UPDATE insurance_surveyors SET company_name = ?, company_address = ?, phone_number = ?, email = ?, name = ?, updated_at = NOW(), insurance_mamaner = ?, WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, request.getCompanyName());
             statement.setString(2, request.getCompanyAddress());
@@ -267,6 +267,7 @@ public class InsuranceSurveyorRepository {
             statement.setString(4, request.getEmail());
             statement.setString(5, request.getName());
             statement.setInt(6, request.getId());
+            statement.setInt(7, request.getInsuranceManagerId());
             statement.executeUpdate();
 
         } catch (SQLException e) {

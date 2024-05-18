@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="24.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="24.0" layoutY="14.0" prefHeight="46.0" prefWidth="214.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                             <font>
@@ -28,17 +28,24 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView fx:id="claimTable" layoutX="10.0" layoutY="85.0" prefHeight="371.0" prefWidth="681.0">
+                <TableView fx:id="claimTable" layoutX="10.0" layoutY="100.0" prefHeight="356.0" prefWidth="681.0">
                     <columns>
                         <TableColumn fx:id="claimID" prefWidth="72.99999809265137" text="Claim ID" />
                         <TableColumn fx:id="claimDate" prefWidth="90.60004425048828" text="Claim Date" />
                         <TableColumn fx:id="examDate" prefWidth="91.79998779296875" text="Exam Date" />
                         <TableColumn fx:id="claimAmount" prefWidth="82.79998779296875" text="Amount" />
                         <TableColumn fx:id="status" prefWidth="93.39996337890625" text="Status" />
-                        <TableColumn fx:id="isDocumentRequested" prefWidth="192.79995727539062" text="document requested" />
+                        <TableColumn fx:id="isDocumentRequested" prefWidth="192.79995727539062" text="Document Requested" />
                         <TableColumn fx:id="customerID" prefWidth="56.800048828125" text="Cus ID" />
                     </columns>
                 </TableView>
+            <DatePicker fx:id="claimDatePicker" layoutX="24.0" layoutY="67.0" promptText="Claim Date" />
+            <DatePicker fx:id="examDatePicker" layoutX="234.0" layoutY="67.0" promptText="Exam Date" />
+            <TextField fx:id="amountField" layoutX="444.0" layoutY="67.0" prefHeight="25.0" prefWidth="66.0" promptText="Amount" />
+            <Button fx:id="editClaimButton" layoutX="570.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Edit Claim" />
+            <Button fx:id="createClaimButton" layoutX="423.0" layoutY="24.0" mnemonicParsing="false" text="Create new Claim" />
+            <Button fx:id="addDocuments" layoutX="251.0" layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Add document" />
+            <Button fx:id="viewDocuments" layoutX="250.0" layoutY="27.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="View document" />
             </children>
         </AnchorPane>
     </left>

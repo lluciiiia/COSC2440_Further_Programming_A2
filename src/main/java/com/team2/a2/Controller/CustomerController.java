@@ -18,9 +18,15 @@ public class CustomerController {
     public Customer getCustomerByAccountId(int id) {
         return customerFacade.getCustomerByAccountId(id);
     }
+    public Customer getCustomerById(int id) {
+        return customerFacade.getCustomerById(id);
+    }
 
     public List<Customer> getAllCustomers() {
         return customerFacade.getAllCustomers();
+    }
+    public List<Customer> getAllPolicyHolders() {
+        return customerFacade.getAllPolicyHolders();
     }
 
     public List<Customer> getAllPolicyHoldersByPolicyOwnerId(int policyOwnerId) {

@@ -41,6 +41,7 @@
                 </TableView>
             <Button fx:id="requireMoreDocuments" layoutX="149.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Require more document" />
             <Button fx:id="sendToManager" layoutX="390.0" layoutY="73.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Send to manager" />
+            <Button fx:id="viewDocuments" layoutX="384.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="View document" />
             </children>
         </AnchorPane>
     </left>

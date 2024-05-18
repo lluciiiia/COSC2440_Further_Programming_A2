@@ -7,6 +7,7 @@ import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClaimDocumentController {
 
@@ -14,6 +15,13 @@ public class ClaimDocumentController {
 
     public ClaimDocumentController() {
         this.claimDocumentFacade = new ClaimDocumentFacadeImpl();
+    }
+
+    public List<String> getImageSourcesByClaimId(int claimId) throws Exception {
+        List<ClaimDocument> documents = claimDocumentFacade.getClaimDocumentsByClaimId(claimId);
+        return documents.stream()
+                .map(ClaimDocument::getImageSrc)
+                .collect(Collectors.toList());
     }
 
     public void createClaimDocument(InsertClaimDocumentRequest request) throws Exception { claimDocumentFacade.createClaimDocument(request);}

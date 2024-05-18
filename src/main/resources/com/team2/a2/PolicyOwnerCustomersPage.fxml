@@ -14,7 +14,7 @@
     </top>
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
-            <BorderPane layoutX="29.0" layoutY="14.0" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0;">
+            <BorderPane layoutX="29.0" layoutY="14.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #E0E0E0;">
                 <center>
                     <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                         <font>
@@ -46,6 +46,7 @@
          <TextField fx:id="passwordEdit" layoutX="432.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" promptText="password" />
          <Button fx:id="editButton" layoutX="532.0" layoutY="82.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Edit customer" />
          <Button fx:id="viewInsuranceCard" layoutX="350.0" layoutY="52.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="View Insurance Card" />
+         <Button fx:id="deleteButton" layoutX="565.0" layoutY="52.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Delete Customer" />
         </AnchorPane>
     </left>
 </BorderPane>

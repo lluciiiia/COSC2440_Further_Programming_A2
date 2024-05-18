@@ -32,11 +32,6 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="CreateClaimButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="366.0" text="Create New Claim">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Button fx:id="CreateCusAccountButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="366.0" text="Create Customer Account">
                <font>
                   <Font size="18.0" />

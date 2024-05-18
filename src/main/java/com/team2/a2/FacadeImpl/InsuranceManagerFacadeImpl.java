@@ -40,6 +40,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
 
     @Override
     public void deleteInsuranceManagerById(int id) {
+        InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(id);
+        if (insuranceManager == null) return;
+        int accountId = insuranceManager.getAccountId();
 
         List<InsuranceSurveyor> insuranceSurveyors = insuranceSurveyorRepository.getInsuranceSurveyorsByManagerID(id);
 
@@ -48,7 +51,7 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
         }
 
         insuranceManagerRepository.deleteInsuranceManagerById(id);
-
+        accountRepository.deleteAccountById(accountId);
     }
 
     @Override

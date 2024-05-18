@@ -15,7 +15,7 @@
     <left>
         <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
             <children>
-                <BorderPane layoutX="26.0" layoutY="15.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                <BorderPane layoutX="26.0" layoutY="15.0" prefHeight="43.0" prefWidth="298.0" style="-fx-background-color: #E0E0E0;">
                     <center>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" BorderPane.alignment="CENTER">
                             <font>
@@ -27,19 +27,26 @@
                 <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
                     <bottom>
                     </bottom></BorderPane>
-                <Button fx:id="returnButton" layoutX="618.0" layoutY="15.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
-                <TableView layoutX="47.0" layoutY="105.0" prefHeight="353.0" prefWidth="607.0">
+                <Button fx:id="returnButton" layoutX="599.0" layoutY="2.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Return" />
+                <TableView fx:id="customerTable" layoutX="47.0" layoutY="105.0" prefHeight="353.0" prefWidth="607.0">
                     <columns>
-                        <TableColumn prefWidth="85.0" text="Customer ID" />
-                        <TableColumn prefWidth="88.0" text="Name" />
-                        <TableColumn prefWidth="128.0" text="Phone Number" />
-                        <TableColumn prefWidth="125.0" text="Home Address" />
-                        <TableColumn prefWidth="103.0" text="Email" />
-                        <TableColumn prefWidth="77.0" text="Type" />
+                        <TableColumn fx:id="customerID" prefWidth="85.0000228881836" text="CusID" />
+                        <TableColumn fx:id="address" prefWidth="85.4000244140625" text="Address" />
+                        <TableColumn fx:id="name" prefWidth="101.60000610351562" text="Name" />
+                        <TableColumn fx:id="email" prefWidth="81.0" text="Email" />
+                        <TableColumn fx:id="type" prefWidth="112.19992065429688" text="Type" />
+                        <TableColumn fx:id="phoneNumber" prefWidth="138.4000122070313" text="Phone number" />
                     </columns>
                 </TableView>
-            <ComboBox layoutX="406.0" layoutY="15.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an account type" style="-fx-background-color: #d6cece;" />
-            <Button layoutX="406.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
+            <ComboBox fx:id="customerTypeComboBox" layoutX="377.0" layoutY="2.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an customer type" style="-fx-background-color: #d6cece;" />
+            <Button layoutX="378.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View Insurance Card information" />
+            <TextField fx:id="nameEdit" layoutX="26.0" layoutY="70.0" prefHeight="26.0" prefWidth="76.0" promptText="name" />
+            <TextField fx:id="addressEdit" layoutX="121.0" layoutY="70.0" prefHeight="26.0" prefWidth="75.0" promptText="address" />
+            <TextField fx:id="phoneEdit" layoutX="216.0" layoutY="70.0" prefHeight="26.0" prefWidth="74.0" promptText="phone" />
+            <TextField fx:id="emailEdit" layoutX="311.0" layoutY="70.0" prefHeight="26.0" prefWidth="68.0" promptText="email" />
+            <TextField fx:id="passwordEdit" layoutX="406.0" layoutY="70.0" prefHeight="26.0" prefWidth="83.0" promptText="password" />
+            <Button fx:id="editButton" layoutX="575.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Edit Customer" />
+            <Button fx:id="deleteButton" layoutX="576.0" layoutY="38.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Delete Customer" />
             </children>
         </AnchorPane>
     </left>

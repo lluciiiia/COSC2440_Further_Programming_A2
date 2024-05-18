@@ -19,16 +19,14 @@
         <BorderPane>
             <center>
                 <VBox alignment="CENTER" spacing="20.0">
-                    <TextField fx:id="tfClaimID" disable="false" promptText="Username" />
-                    <TextField fx:id="tfClaimDate" promptText="Password" />
-                    <TextField fx:id="tfFName" promptText="Full name" />
-                    <TextField fx:id="tfICNumber" promptText="Enter Email Address" />
-                    <TextField fx:id="tfClaimFile" disable="false" promptText="Enter Phone Number" />
-                    <TextField fx:id="tfTotal" disable="false" promptText="Enter Company Name" />
-                    <TextField fx:id="tfExDate" disable="false" promptText="Enter Company Address" />
-                    <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Return" />
-
-                    <Button fx:id="nextToInsuranceCardButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
+                    <TextField fx:id="usernameTextField" promptText="Username" />
+                    <TextField fx:id="passwordTextField" promptText="Password" />
+                    <TextField fx:id="fullNameTextField" promptText="Full name" />
+                    <TextField fx:id="emailTextField" promptText="Enter Email Address" />
+                    <TextField fx:id="phoneTextField" promptText="Enter Phone Number" />
+                    <TextField fx:id="companyNameTextField" promptText="Enter Company Name" />
+                    <TextField fx:id="addressTextField" promptText="Enter Company Address" />
+                    <Button fx:id="createAccountButton" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: black; -fx-font-weight: Bold; -fx-text-fill: white;" text="Register" />
 
                     <padding>
                         <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
@@ -37,5 +35,8 @@
             </center>
         </BorderPane>
     </center>
+    <left>
+        <Button fx:id="returnButton" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: transparent; -fx-font-size: 20;" text="&lt;" BorderPane.alignment="TOP_LEFT" />
+    </left>
 
 </BorderPane>
