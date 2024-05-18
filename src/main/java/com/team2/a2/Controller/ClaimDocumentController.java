@@ -18,10 +18,7 @@ public class ClaimDocumentController {
     }
 
     public List<String> getImageSourcesByClaimId(int claimId) throws Exception {
-        List<ClaimDocument> documents = claimDocumentFacade.getClaimDocumentsByClaimId(claimId);
-        return documents.stream()
-                .map(ClaimDocument::getImageSrc)
-                .collect(Collectors.toList());
+        return  claimDocumentFacade.getImageSourcesByClaimId(claimId);
     }
 
     public void createClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception { claimDocumentFacade.createClaimDocument(request, userAccountId);}
