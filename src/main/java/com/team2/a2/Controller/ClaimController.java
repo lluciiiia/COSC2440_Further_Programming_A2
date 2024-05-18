@@ -25,15 +25,15 @@ public class ClaimController {
 
     public List<Claim> getClaimsByCustomerId(int customerId) { return claimFacade.getClaimsByCustomerId(customerId); }
 
-    public void deleteClaimById(int id) { claimFacade.deleteClaimById(id); }
+    public void deleteClaimById(int id, int userAccountId) { claimFacade.deleteClaimById(id, userAccountId); }
 
-    public void updateClaimStatus(int id, ClaimStatus status) throws Exception { claimFacade.updateClaimStatus(id, status); }
+    public void updateClaimStatus(int id, ClaimStatus status, int userAccountId) throws Exception { claimFacade.updateClaimStatus(id, status, userAccountId); }
 
-    public void createClaim(InsertClaimRequest request) throws Exception { claimFacade.createClaim(request); }
+    public void createClaim(InsertClaimRequest request, int userAccountId) throws Exception { claimFacade.createClaim(request, userAccountId); }
 
-    public void updateClaimDocumentRequested(int id, boolean isRequested) throws Exception { claimFacade.updateClaimDocumentRequested(id, isRequested); }
+    public void updateClaimDocumentRequested(int id, boolean isRequested, int userAccountId) throws Exception { claimFacade.updateClaimDocumentRequested(id, isRequested, userAccountId); }
 
-    public void updateClaim(UpdateClaimRequest request) throws Exception { claimFacade.updateClaim(request); }
+    public void updateClaim(UpdateClaimRequest request, int userAccountId) throws Exception { claimFacade.updateClaim(request, userAccountId); }
 
     public Double getAcceptedClaimsTotalAmount() { return claimFacade.getAcceptedClaimsTotalAmount(); }
 }

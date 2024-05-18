@@ -12,16 +12,16 @@ public interface ClaimFacade {
 
     List<Claim> getClaimsByCustomerId(int id);
 
-    void deleteClaimById(int id);
+    void deleteClaimById(int id, int userAccountId);
 
-    void updateClaimStatus(int id, ClaimStatus status) throws Exception;
+    void updateClaimStatus(int id, ClaimStatus status, int userAccountId) throws Exception;
     List<Claim> getAllClaims();
 
-    void createClaim(InsertClaimRequest request) throws Exception;
+    void createClaim(InsertClaimRequest request, int userAccountId) throws Exception;
 
-    void updateClaimDocumentRequested(int id, boolean isRequested) throws Exception;
+    void updateClaimDocumentRequested(int id, boolean isRequested, int userAccountId) throws Exception;
 
-    void updateClaim(UpdateClaimRequest request) throws Exception;
+    void updateClaim(UpdateClaimRequest request, int userAccountId) throws Exception;
 
     Double getAcceptedClaimsTotalAmount();
 }
