@@ -3,6 +3,8 @@ package com.team2.a2.FacadeImpl;
 import com.team2.a2.Facade.ClaimDocumentFacade;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
+import com.team2.a2.Model.User.Account;
+import com.team2.a2.Repository.AccountRepository;
 import com.team2.a2.Repository.ClaimDocumentRepository;
 import com.team2.a2.Repository.ClaimRepository;
 import com.team2.a2.Repository.LogRepository;
@@ -16,17 +18,21 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
     ClaimRepository claimRepository;
     ClaimDocumentRepository claimDocumentRepository;
-
     LogRepository logRepository;
+    AccountRepository accountRepository;
 
     public ClaimDocumentFacadeImpl() {
         this.claimRepository = new ClaimRepository();
         this.claimDocumentRepository = new ClaimDocumentRepository();
         this.logRepository = new LogRepository();
+        this.accountRepository = new AccountRepository();
     }
 
     @Override
     public void createClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Claim claim = claimRepository.getClaimById(request.getClaimId());
         if (claim == null) throw new Exception("Claim doesn't exist");
 
@@ -44,6 +50,9 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
     @Override
     public void updateClaimDocument(UpdateClaimDocumentRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(request.getId());
         if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
@@ -59,6 +68,9 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
     @Override
     public void deleteClaimDocumentById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(id);
         if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
@@ -69,6 +81,9 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
     @Override
     public void addClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Claim claim = claimRepository.getClaimById(request.getClaimId());
         if (claim == null) throw new Exception("Claim doesn't exist");
 

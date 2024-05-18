@@ -12,7 +12,7 @@ public interface InsuranceManagerFacade {
 
     List<InsuranceManager> getAllInsuranceManagers();
 
-    void deleteInsuranceManagerById(int id, int userAccountId);
+    void deleteInsuranceManagerById(int id, int userAccountId) throws Exception;
 
     void createInsuranceManager(InsertInsuranceManagerRequest request, int userAccountId) throws Exception;
 

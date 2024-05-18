@@ -185,7 +185,13 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         });
 
         editClaimButton.setOnAction(event -> editSelectedClaim());
-        deleteClaimButton.setOnAction(event -> deleteSelectedClaim());
+        deleteClaimButton.setOnAction(event -> {
+            try {
+                deleteSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         addDocuments.setOnAction(event -> {
             try {
                 addDocumentToClaim();
@@ -236,7 +242,7 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         }
     }
 
-    private void deleteSelectedClaim() {
+    private void deleteSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to delete.");

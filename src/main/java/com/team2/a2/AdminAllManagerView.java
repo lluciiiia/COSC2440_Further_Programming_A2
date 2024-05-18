@@ -145,7 +145,11 @@ public class AdminAllManagerView implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
-                insuranceManagerController.deleteInsuranceManagerById(selectedManager.getId(), account1.getId());
+                try {
+                    insuranceManagerController.deleteInsuranceManagerById(selectedManager.getId(), account1.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 showAlert("Success", "Manager deleted successfully.");
                 originalInsuranceManagerList.remove(selectedManager);
                 refreshTable();

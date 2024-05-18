@@ -67,7 +67,7 @@ public class InsuranceManagerControllerTest {
     }
 
     @Test
-    public void testDeleteInsuranceManagerById() {
+    public void testDeleteInsuranceManagerById() throws Exception {
         int accountId = 5;
         int userAccountId = 1;
 
