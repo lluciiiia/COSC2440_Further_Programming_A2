@@ -186,8 +186,20 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
 
         editClaimButton.setOnAction(event -> editSelectedClaim());
         deleteClaimButton.setOnAction(event -> deleteSelectedClaim());
-        addDocuments.setOnAction(event -> addDocumentToClaim());
-        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
+        addDocuments.setOnAction(event -> {
+            try {
+                addDocumentToClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void editSelectedClaim() {
@@ -219,6 +231,8 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Form Error", "Please enter a valid amount.");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -246,7 +260,7 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         totalClaimAmount.setText(String.valueOf("Claim total: " + totalAmount));
     }
 
-    private void addDocumentToClaim() {
+    private void addDocumentToClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to add a document.");
@@ -269,7 +283,7 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         }
     }
 
-    private void viewDocumentsOfSelectedClaim() {
+    private void viewDocumentsOfSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");

@@ -42,16 +42,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerAccountId) {
-        PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(policyOwnerAccountId);
-        if (policyOwner == null) return null;
-
-        return customerRepository.getCustomersByPolicyOwnerId(policyOwner.getId());
-    }
-
-    @Override
-    public Customer getCustomerByCustomerId(int customerId) {
-        return customerRepository.getCustomerById(customerId);
+    public Customer getCustomerById(int id) {
+        return customerRepository.getCustomerById(id);
     }
 
     @Override
@@ -74,11 +66,12 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerRepository.getCustomerByAccountId(accountID);
     }
 
-    public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) {
+    public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception {
         Customer policyHolder = customerRepository.getCustomerByAccountId(policyHolderAccountId);
-        if (policyHolder == null) return null;
+        if (policyHolder == null) throw new Exception("Policy holder doesn't exist");
 
-        if (policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+        if (policyHolder.getType() != CustomerType.POLICY_HOLDER)
+            throw new Exception("Policy holder's customer type mismatch");
 
         List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(policyHolder.getId());
 
@@ -126,12 +119,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
 
-        // create insurance card
-        InsuranceCard card = insuranceCardRepository.getInsuranceCard(request.getCardNumber(), request.getExpiryDate());
-        if (card != null) throw new Exception("Insurance card is being used. Please try a different card");
-
-        insuranceCardRepository.createInsuranceCard(request, customer.getId());
-
         return customer;
     }
 
@@ -141,19 +128,17 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer updateCustomer(UpdateCustomerRequest request) {
+    public Customer updateCustomer(UpdateCustomerRequest request) throws Exception {
         Customer customer = customerRepository.getCustomerById(request.getId());
-        if (customer == null) return null;
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         return customerRepository.updateCustomer(request);
     }
 
     @Override
-    public void deleteCustomerById(int id) {
+    public void deleteCustomerById(int id) throws Exception {
         Customer customer = customerRepository.getCustomerById(id);
-        if (customer == null) return;
-
-        int accountId = customer.getAccountId();
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         if (customer.getType() == CustomerType.POLICY_HOLDER) {
             List<Dependent> dependents = dependentRepository.getDependentsByPolicyHolderId(id);
@@ -182,7 +167,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
         }
 
         customerRepository.deleteCustomerById(id);
-        accountRepository.deleteAccountById(accountId);
     }
 
 }

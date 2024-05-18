@@ -6,7 +6,7 @@ public interface InsuranceCardFacade {
 
     public InsuranceCard getInsuranceCardByCustomerID(int customerId);
 
-    void deleteInsuranceCardById(int id);
+    void deleteInsuranceCardById(int id) throws Exception;
 
     InsuranceCard getInsuranceCardById(int id);
 }

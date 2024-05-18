@@ -21,25 +21,25 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     }
 
     @Override
-    public void createClaimDocument(InsertClaimDocumentRequest request) {
+    public void createClaimDocument(InsertClaimDocumentRequest request) throws Exception {
         Claim claim = claimRepository.getClaimById(request.getClaimId());
-        if (claim == null) return;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         claimDocumentRepository.createClaimDocument(request);
     }
 
     @Override
-    public List<ClaimDocument> getClaimDocumentsByClaimId(int claimId) {
+    public List<ClaimDocument> getClaimDocumentsByClaimId(int claimId) throws Exception {
         Claim claim = claimRepository.getClaimById(claimId);
-        if (claim == null) return null;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         return claimDocumentRepository.getClaimDocumentsByClaimId(claimId);
     }
 
     @Override
-    public void updateClaimDocument(UpdateClaimDocumentRequest request) {
+    public void updateClaimDocument(UpdateClaimDocumentRequest request) throws Exception {
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(request.getId());
-        if (claimDocument == null) return;
+        if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
         claimDocumentRepository.updateClaimDocument(request);
     }
@@ -50,17 +50,17 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     }
 
     @Override
-    public void deleteClaimDocumentById(int id) {
+    public void deleteClaimDocumentById(int id) throws Exception {
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(id);
-        if (claimDocument == null) return;
+        if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
         claimDocumentRepository.deleteClaimDocumentById(id);
     }
 
     @Override
-    public void addClaimDocument(InsertClaimDocumentRequest request) {
+    public void addClaimDocument(InsertClaimDocumentRequest request) throws Exception {
         Claim claim = claimRepository.getClaimById(request.getClaimId());
-        if (claim == null) return;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         claimDocumentRepository.createClaimDocument(request);
 

@@ -87,7 +87,7 @@ public class InsuranceSurveyorControllerTest {
     }
 
     @Test
-    public void testCreateInsuranceSurveyor() {
+    public void testCreateInsuranceSurveyor() throws Exception {
         InsertInsuranceSurveyorRequest request = new InsertInsuranceSurveyorRequest("username", "password", "companyName", "companyAddress",
                 "phoneNumber", "email@gmail.com", "name-IS", 3);
 
@@ -106,7 +106,7 @@ public class InsuranceSurveyorControllerTest {
     }
 
     @Test
-    public void testUpdateInsuranceSurveyor() {
+    public void testUpdateInsuranceSurveyor() throws Exception {
         int id = 4;
 
         UpdateProviderRequest request = new UpdateProviderRequest(

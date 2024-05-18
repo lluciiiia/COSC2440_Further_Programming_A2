@@ -17,7 +17,7 @@ public class InsuranceCardController {
         return insuranceCardFacade.getInsuranceCardByCustomerID(customerID);
     }
 
-    public void deleteInsuranceCardById(int id) { this.insuranceCardFacade.deleteInsuranceCardById(id); }
+    public void deleteInsuranceCardById(int id) throws Exception { this.insuranceCardFacade.deleteInsuranceCardById(id); }
 
     public InsuranceCard getInsuranceCardById(int id) {
         return this.insuranceCardFacade.getInsuranceCardById(id);

@@ -32,9 +32,9 @@ public class InsuranceSurveyorController {
 
     public void deleteInsuranceSurveyorById(int id) { insuranceSurveyorFacade.deleteInsuranceSurveyorById(id); }
 
-    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) { insuranceSurveyorFacade.createInsuranceSurveyor(request); }
+    public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) throws Exception { insuranceSurveyorFacade.createInsuranceSurveyor(request); }
 
-    public void updateInsuranceSurveyor(UpdateProviderRequest request) { insuranceSurveyorFacade.updateInsuranceSurveyor(request); }
+    public void updateInsuranceSurveyor(UpdateProviderRequest request) throws Exception { insuranceSurveyorFacade.updateInsuranceSurveyor(request); }
 
     public InsuranceSurveyor getInsuranceSurveyorById(int id) { return insuranceSurveyorFacade.getInsuranceSurveyorById(id);
     }

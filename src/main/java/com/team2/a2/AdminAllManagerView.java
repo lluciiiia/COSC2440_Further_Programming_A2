@@ -108,8 +108,16 @@ public class AdminAllManagerView implements Initializable {
 
             UpdateProviderRequest updateManagerRequest = new UpdateProviderRequest(selectedManager.getId(), selectedManager.getCompanyName(), selectedManager.getCompanyAddress(), phone, email, name);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-            accountController.updateAccount(updateAccountRequest);
-            insuranceManagerController.updateInsuranceManager(updateManagerRequest);
+            try {
+                accountController.updateAccount(updateAccountRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                insuranceManagerController.updateInsuranceManager(updateManagerRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             showAlert("Success", "Manager information updated successfully.");
 
             refreshTable();

@@ -85,7 +85,7 @@ public class InsuranceManagerControllerTest {
     }
 
     @Test
-    public void testCreateInsuranceManager() {
+    public void testCreateInsuranceManager() throws Exception {
         String username = "new im username";
         String password = "12345";
 
@@ -111,7 +111,7 @@ public class InsuranceManagerControllerTest {
       }
 
     @Test
-    public void testUpdateInsuranceManager() {
+    public void testUpdateInsuranceManager() throws Exception {
         int id = 3;
 
         UpdateProviderRequest request = new UpdateProviderRequest(

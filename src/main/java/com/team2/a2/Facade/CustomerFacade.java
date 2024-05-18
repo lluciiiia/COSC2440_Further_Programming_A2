@@ -9,8 +9,7 @@ import com.team2.a2.Request.UpdateCustomerRequest;
 import java.util.List;
 
 public interface CustomerFacade {
-    List<Customer> getCustomersByPolicyOwnerAccountId(int policyOwnerId);
-    Customer getCustomerByCustomerId(int customerId);
+    Customer getCustomerById(int id);
 
     List<Customer> getCustomersByPolicyOwnerId(int policyOwnerId);
 
@@ -20,14 +19,14 @@ public interface CustomerFacade {
 
     public Customer getCustomerByAccountId(int accountID);
 
-    List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
+    List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception;
 
     Customer createCustomer(InsertCustomerRequest request) throws Exception;
 
     List<Customer> getAllCustomers();
 
-    Customer updateCustomer(UpdateCustomerRequest request);
+    Customer updateCustomer(UpdateCustomerRequest request) throws Exception;
 
 
-    void deleteCustomerById(int id);
+    void deleteCustomerById(int id) throws Exception;
 }

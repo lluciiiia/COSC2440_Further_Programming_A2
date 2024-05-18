@@ -115,7 +115,13 @@ public class InsuranceManagerLOCView implements Initializable {
                 selectedClaim = newSelection;
             }
         });
-        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -138,7 +144,11 @@ public class InsuranceManagerLOCView implements Initializable {
         acceptClaim.setOnAction(event -> {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
-                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED);
+                    try {
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     refreshTable();
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Invalid Status", "Only claims with status 'PROCESSING' can be accepted.");
@@ -151,7 +161,11 @@ public class InsuranceManagerLOCView implements Initializable {
         rejectClaim.setOnAction(event -> {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
-                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED);
+                    try {
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     refreshTable();
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Invalid Status", "Only claims with status 'PROCESSING' can be rejected.");
@@ -162,7 +176,7 @@ public class InsuranceManagerLOCView implements Initializable {
         });
     }
 
-    private void viewDocumentsOfSelectedClaim() {
+    private void viewDocumentsOfSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");

@@ -43,7 +43,7 @@ public class InsuranceCardControllerTest {
     }
 
     @Test
-    public void testDeleteInsuranceCardById() {
+    public void testDeleteInsuranceCardById() throws Exception {
         int customerId = 1;
 
         InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);

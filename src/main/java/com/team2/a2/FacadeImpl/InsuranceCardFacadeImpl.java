@@ -2,6 +2,7 @@ package com.team2.a2.FacadeImpl;
 
 import com.team2.a2.Facade.InsuranceCardFacade;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Repository.InsuranceCardRepository;
 
@@ -21,9 +22,9 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     }
 
     @Override
-    public void deleteInsuranceCardById(int id) {
+    public void deleteInsuranceCardById(int id) throws Exception {
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardById(id);
-        if (insuranceCard == null) return;
+        if (insuranceCard == null) throw new Exception("Insurance card doesn't exist");;
 
         insuranceCardRepository.deleteInsuranceCardById(id);
     }

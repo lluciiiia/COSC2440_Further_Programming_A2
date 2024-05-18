@@ -59,99 +59,66 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public Account updateAccount(UpdateAccountRequest request) {
+    public Account updateAccount(UpdateAccountRequest request) throws Exception {
         Account account = accountRepository.getAccountById(request.getId());
-        if (account == null) return null;
+        if (account == null) throw new Exception("Account doesn't exist");
+
+        Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
         return accountRepository.updateAccount(request);
     }
 
     @Override
-    public Account getAccountByCustomerID(int customerID) {
+    public Account getAccountByCustomerID(int customerID) throws Exception {
         Customer customer = customerRepository.getCustomerById(customerID);
-        if (customer == null) return null;
+        if (customer == null) throw new Exception("Customer doesn't exist");
 
         return accountRepository.getAccountById(customer.getAccountId());
     }
 
     @Override
-    public void deleteAccountById(int id) {
+    public void deleteAccountById(int id) throws Exception {
         Account account = accountRepository.getAccountById(id);
-        if (account == null) return;
+        if (account == null) throw new Exception("Account doesn't exist");
 
         switch (account.getType()) {
             case ADMIN:
                 Admin admin = adminRepository.getAdminByAccountId(id);
-                if (admin == null) return;
+                if (admin == null) throw new Exception("Admin doesn't exist");
 
                 adminRepository.deleteAdminById(admin.getId());
                 break;
             case POLICY_HOLDER:
             case DEPENDENT:
                 Customer customer = customerRepository.getCustomerByAccountId(id);
-                if (customer == null) return;
+                if (customer == null) throw new Exception("Customer doesn't exist");
 
                 customerFacade.deleteCustomerById(customer.getId());
                 break;
             case INSURANCE_MANAGER:
                 InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(id);
-                if (insuranceManager == null) return;
+                if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 
                 insuranceManagerFacade.deleteInsuranceManagerById(insuranceManager.getId());
                 break;
             case POLICY_OWNER:
                 PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(id);
-                if (policyOwner == null) return;
+                if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
                 policyOwnerFacade.deletePolicyOwnerById(policyOwner.getId());
                 break;
             case INSURANCE_SURVEYOR:
                 InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(id);
-                if (insuranceSurveyor == null) return;
+                if (insuranceSurveyor == null) throw new Exception("Insurance Surveyor doesn't exist");
 
                 insuranceSurveyorFacade.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
                 break;
             default:
-                System.out.println("Invalid account type");
-                break;
+                throw new Exception("Invalid Account Type");
         }
 
         accountRepository.deleteAccountById(id);
     }
-
-    public boolean createSubAccountObject(Account account) {
-        AccountType accountType = account.getType();
-        System.out.println(accountType);
-        Customer customer;
-        Dependent dependent;
-        PolicyOwner policyOwner;
-        Admin admin;
-        InsuranceManager insuranceManager;
-        InsuranceSurveyor insuranceSurveyor;
-        switch(accountType) {
-            case POLICY_HOLDER:
-                customer = customerRepository.getCustomerByAccountId(account.getId());
-                break;
-            case DEPENDENT:
-                customer = customerRepository.getCustomerByAccountId(account.getId());
-                dependent = dependentRepository.getDependentByCustomerId(customer.getId());
-//                System.out.println(customer.getName());
-                break;
-            case POLICY_OWNER:
-                policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(account.getId());
-                break;
-            case ADMIN:
-                admin = adminRepository.getAdminByAccountId(account.getId());
-                break;
-            case INSURANCE_MANAGER:
-                insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(account.getId());
-                break;
-            case INSURANCE_SURVEYOR:
-                insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(account.getId());
-                break;
-        }
-        return true;
-    }
-
 
 }

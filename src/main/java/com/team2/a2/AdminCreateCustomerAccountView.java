@@ -195,7 +195,7 @@ public class AdminCreateCustomerAccountView implements Initializable {
                 return;
             }
 
-            Customer customer = customerController.getCustomerByCustomerId(policyHolderId);
+            Customer customer = customerController.getCustomerById(policyHolderId);
             int policyOwnerId = customer.getPolicyOwnerId();
             PolicyOwner policyOwner = policyOwnerController.getPolicyOwnerById(policyOwnerId);
             int policyOwnerAccountId = policyOwner.getAccountId();

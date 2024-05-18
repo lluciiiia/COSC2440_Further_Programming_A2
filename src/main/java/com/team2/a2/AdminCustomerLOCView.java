@@ -100,7 +100,13 @@ public class AdminCustomerLOCView implements Initializable {
         claimTable.setItems(claimsData);
 
         calculateTotalClaimAmount();
-        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -118,7 +124,7 @@ public class AdminCustomerLOCView implements Initializable {
         });
     }
 
-    private void viewDocumentsOfSelectedClaim() {
+    private void viewDocumentsOfSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");

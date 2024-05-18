@@ -115,7 +115,13 @@ public class InsuranceSurveyorLOCView implements Initializable {
                 selectedClaim = newSelection;
             }
         });
-        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -138,7 +144,11 @@ public class InsuranceSurveyorLOCView implements Initializable {
         sendToManager.setOnAction(event -> {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.NEW) {
-                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING);
+                    try {
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     refreshTable();
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Invalid Status", "Only claims with status 'NEW' can be sent to the manager.");
@@ -152,7 +162,11 @@ public class InsuranceSurveyorLOCView implements Initializable {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.NEW) {
                     if (!selectedClaim.getDocumentRequested()) {
-                        claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
+                        try {
+                            claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                         refreshTable();
                     } else {
                         showAlert(Alert.AlertType.ERROR, "Document Requested", "Documents have already been requested for this claim.");
@@ -166,7 +180,7 @@ public class InsuranceSurveyorLOCView implements Initializable {
         });
     }
 
-    private void viewDocumentsOfSelectedClaim() {
+    private void viewDocumentsOfSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");

@@ -20,9 +20,9 @@ public class DependentFacadeImpl implements DependentFacade {
     }
 
     @Override
-    public void deleteDependentById(int id) {
+    public void deleteDependentById(int id) throws Exception {
         Dependent dependent = dependentRepository.getDependentById(id);
-        if (dependent == null) return;
+        if (dependent == null) throw new Exception("Dependent doesn't exist");
 
         dependentRepository.deleteDependentById(id);
     }
