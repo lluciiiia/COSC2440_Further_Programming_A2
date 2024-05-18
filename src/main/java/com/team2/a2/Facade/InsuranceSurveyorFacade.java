@@ -15,9 +15,9 @@ public interface InsuranceSurveyorFacade {
 
     void deleteInsuranceSurveyorById(int id);
 
-    void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request);
+    void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) throws Exception;
 
-    void updateInsuranceSurveyor(UpdateProviderRequest request);
+    void updateInsuranceSurveyor(UpdateProviderRequest request) throws Exception;
 
     InsuranceSurveyor getInsuranceSurveyorById(int id);
 }

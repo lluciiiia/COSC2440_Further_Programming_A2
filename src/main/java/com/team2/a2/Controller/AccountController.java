@@ -24,7 +24,7 @@ public class AccountController {
         return accountFacade.getAccountByID(id);
     }
 
-    public Account getAccountByCustomerID(int customerID) {
+    public Account getAccountByCustomerID(int customerID) throws Exception {
         return accountFacade.getAccountByCustomerID(customerID);
     }
 
@@ -32,11 +32,11 @@ public class AccountController {
         return accountFacade.getAllAccounts();
     }
 
-    public Account updateAccount(UpdateAccountRequest request) {
+    public Account updateAccount(UpdateAccountRequest request) throws Exception {
         return accountFacade.updateAccount(request);
     }
 
-    public void deleteAccountById(int id) {
+    public void deleteAccountById(int id) throws Exception {
         accountFacade.deleteAccountById(id);
     }
 }

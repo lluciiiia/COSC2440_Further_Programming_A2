@@ -27,13 +27,13 @@ public class ClaimController {
 
     public void deleteClaimById(int id) { claimFacade.deleteClaimById(id); }
 
-    public void updateClaimStatus(int id, ClaimStatus status) { claimFacade.updateClaimStatus(id, status); }
+    public void updateClaimStatus(int id, ClaimStatus status) throws Exception { claimFacade.updateClaimStatus(id, status); }
 
-    public void createClaim(InsertClaimRequest request) { claimFacade.createClaim(request); }
+    public void createClaim(InsertClaimRequest request) throws Exception { claimFacade.createClaim(request); }
 
-    public void updateClaimDocumentRequested(int id, boolean isRequested) { claimFacade.updateClaimDocumentRequested(id, isRequested); }
+    public void updateClaimDocumentRequested(int id, boolean isRequested) throws Exception { claimFacade.updateClaimDocumentRequested(id, isRequested); }
 
-    public void updateClaim(UpdateClaimRequest request) { claimFacade.updateClaim(request); }
+    public void updateClaim(UpdateClaimRequest request) throws Exception { claimFacade.updateClaim(request); }
 
     public Double getAcceptedClaimsTotalAmount() { return claimFacade.getAcceptedClaimsTotalAmount(); }
 }

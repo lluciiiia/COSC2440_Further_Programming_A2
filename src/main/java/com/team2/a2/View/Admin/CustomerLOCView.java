@@ -1,5 +1,6 @@
 package com.team2.a2.View.Admin;
 
+import com.team2.a2.Controller.ClaimDocumentController;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -12,10 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,12 +24,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomerLOCView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button viewDocuments;
     @FXML
     private TextField totalClaimAmount;
     @FXML
@@ -47,6 +51,8 @@ public class CustomerLOCView implements Initializable {
     private TableColumn<Claim, Integer> cusID;
     @FXML
     private TableColumn<Claim, Boolean> isDocumentRequested;
+
+    private ClaimDocumentController claimDocumentController = new ClaimDocumentController();
 
     private ObservableList<Claim> claimsData;
 
@@ -93,6 +99,13 @@ public class CustomerLOCView implements Initializable {
         claimTable.setItems(claimsData);
 
         calculateTotalClaimAmount();
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -108,6 +121,47 @@ public class CustomerLOCView implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void viewDocumentsOfSelectedClaim() throws Exception {
+        Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
+        if (selectedClaim == null) {
+            showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");
+            return;
+        }
+
+        List<String> imageSources = claimDocumentController.getImageSourcesByClaimId(selectedClaim.getId());
+
+        if (imageSources == null || imageSources.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "No Document", "No documents found for the selected claim.");
+            return;
+        }
+
+        Stage stage = new Stage();
+        VBox vbox = new VBox();
+        for (String imageSource : imageSources) {
+            ImageView imageView = new ImageView(new Image(imageSource));
+            imageView.setFitWidth(800);
+            imageView.setPreserveRatio(true);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+            vbox.getChildren().add(imageView);
+        }
+
+        ScrollPane scrollPane = new ScrollPane(vbox);
+        Scene scene = new Scene(scrollPane, 800, 600);
+
+        stage.setTitle("View Documents");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void showAlert(Alert.AlertType error, String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void calculateTotalClaimAmount() {

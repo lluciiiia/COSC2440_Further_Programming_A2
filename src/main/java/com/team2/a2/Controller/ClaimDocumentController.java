@@ -7,6 +7,7 @@ import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClaimDocumentController {
 
@@ -16,15 +17,22 @@ public class ClaimDocumentController {
         this.claimDocumentFacade = new ClaimDocumentFacadeImpl();
     }
 
-    public void createClaimDocument(InsertClaimDocumentRequest request) { claimDocumentFacade.createClaimDocument(request);}
+    public List<String> getImageSourcesByClaimId(int claimId) throws Exception {
+        List<ClaimDocument> documents = claimDocumentFacade.getClaimDocumentsByClaimId(claimId);
+        return documents.stream()
+                .map(ClaimDocument::getImageSrc)
+                .collect(Collectors.toList());
+    }
 
-    public List<ClaimDocument> getClaimDocumentsByClaimId(int claimId) { return claimDocumentFacade.getClaimDocumentsByClaimId(claimId);}
+    public void createClaimDocument(InsertClaimDocumentRequest request) throws Exception { claimDocumentFacade.createClaimDocument(request);}
 
-    public void updateClaimDocument(UpdateClaimDocumentRequest request) { claimDocumentFacade.updateClaimDocument(request); }
+    public List<ClaimDocument> getClaimDocumentsByClaimId(int claimId) throws Exception { return claimDocumentFacade.getClaimDocumentsByClaimId(claimId);}
+
+    public void updateClaimDocument(UpdateClaimDocumentRequest request) throws Exception { claimDocumentFacade.updateClaimDocument(request); }
 
     public ClaimDocument getClaimDocumentById(int id) { return claimDocumentFacade.getClaimDocumentById(id); }
 
-    public void deleteClaimDocumentById(int id) { claimDocumentFacade.deleteClaimDocumentById(id); }
+    public void deleteClaimDocumentById(int id) throws Exception { claimDocumentFacade.deleteClaimDocumentById(id); }
 
-    public void addClaimDocument(InsertClaimDocumentRequest request) { claimDocumentFacade.addClaimDocument(request); }
+    public void addClaimDocument(InsertClaimDocumentRequest request) throws Exception { claimDocumentFacade.addClaimDocument(request); }
 }

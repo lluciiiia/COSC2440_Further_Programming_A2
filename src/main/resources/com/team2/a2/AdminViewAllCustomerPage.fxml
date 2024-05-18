@@ -38,8 +38,8 @@
                         <TableColumn fx:id="phoneNumber" prefWidth="138.4000122070313" text="Phone number" />
                     </columns>
                 </TableView>
-            <ComboBox fx:id="customerTypeComboBox" layoutX="377.0" layoutY="2.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an customer type" style="-fx-background-color: #d6cece;" />
-            <Button layoutX="378.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View.Insurance. Card information" />
+            <ComboBox fx:id="customerTypeComboBox" layoutX="365.0" layoutY="2.0" prefHeight="26.0" prefWidth="191.0" promptText="Choose an customer type" style="-fx-background-color: #d6cece;" />
+            <Button fx:id="viewInsuranceCard" layoutX="364.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="192.0" text="View Insurance Card information" />
             <TextField fx:id="nameEdit" layoutX="26.0" layoutY="70.0" prefHeight="26.0" prefWidth="76.0" promptText="name" />
             <TextField fx:id="addressEdit" layoutX="121.0" layoutY="70.0" prefHeight="26.0" prefWidth="75.0" promptText="address" />
             <TextField fx:id="phoneEdit" layoutX="216.0" layoutY="70.0" prefHeight="26.0" prefWidth="74.0" promptText="phone" />

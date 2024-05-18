@@ -43,7 +43,7 @@ public class HolderCreateDependentClaimView implements Initializable {
 
     public void initData(Dependent dependent) {
         int customerId = dependent.getPolicyHolderId();
-        customer = customerController.getCustomerByCustomerId(customerId);
+        customer = customerController.getCustomerById(customerId);
         int accountId = customer.getAccountId();
         account = accountController.getAccountByID(accountId);
     }
@@ -91,6 +91,8 @@ public class HolderCreateDependentClaimView implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Claim Created!", "Claim created successfully");
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter a valid amount");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

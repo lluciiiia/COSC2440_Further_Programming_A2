@@ -5,7 +5,6 @@ import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Repository.InsuranceCardRepository;
-import com.team2.a2.Request.InsertInsuranceCardRequest;
 
 public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
 
@@ -18,25 +17,14 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     }
 
     @Override
-    public void createInsuranceCard(InsertInsuranceCardRequest request) {
-        Customer customer = customerRepository.getCustomerById(request.getCustomerId());
-        if (customer == null) return;
-
-        InsuranceCard card = insuranceCardRepository.getInsuranceCard(request.getCardNumber(), request.getExpiryDate());
-        if (card != null) return;
-
-        insuranceCardRepository.createInsuranceCard(request);
-     }
-
-    @Override
     public InsuranceCard getInsuranceCardByCustomerID(int customerID) {
         return insuranceCardRepository.getInsuranceCardByCustomerId(customerID);
     }
 
     @Override
-    public void deleteInsuranceCardById(int id) {
+    public void deleteInsuranceCardById(int id) throws Exception {
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardById(id);
-        if (insuranceCard == null) return;
+        if (insuranceCard == null) throw new Exception("Insurance card doesn't exist");;
 
         insuranceCardRepository.deleteInsuranceCardById(id);
     }

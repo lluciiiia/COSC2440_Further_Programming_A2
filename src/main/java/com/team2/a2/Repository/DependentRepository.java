@@ -102,6 +102,12 @@ public class DependentRepository {
 
         } catch (SQLException e) {
             System.err.println("Error creating dependent: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

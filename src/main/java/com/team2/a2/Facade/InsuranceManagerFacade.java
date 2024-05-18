@@ -14,9 +14,9 @@ public interface InsuranceManagerFacade {
 
     void deleteInsuranceManagerById(int id);
 
-    void createInsuranceManager(InsertInsuranceManagerRequest request);
+    void createInsuranceManager(InsertInsuranceManagerRequest request) throws Exception;
 
     InsuranceManager getInsuranceManagerById(int id);
 
-    void updateInsuranceManager(UpdateProviderRequest request);
+    void updateInsuranceManager(UpdateProviderRequest request) throws Exception;
 }

@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.io.IOException;
 import java.net.URL;
@@ -119,16 +120,27 @@ public class OwnerCreateAccountView implements Initializable {
             }
         });
 
-        createAccountButton.setOnAction(event -> createAccount());
+        createAccountButton.setOnAction(event -> {
+            try {
+                createAccount();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private void createAccount() {
+    private void createAccount() throws Exception {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String fullName = fullNameTextField.getText();
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         String address = homeAddressTextField.getText();
+        String card = cardTextField.getText();
+        String bankName = bankNameTextField.getText();
+        String accountNumber = accountNumberTextField.getText();
+        LocalDate expiry = expiryDate.getValue();
+        java.sql.Date expriryDate = java.sql.Date.valueOf(expiry);
         CustomerType customerType = customerTypeComboBox.getValue();
         int policyOwnerAccountId = account.getId();
         int policyHolderId = policyHolder.getValue() != null ? policyHolder.getValue() : -1;
@@ -140,9 +152,11 @@ public class OwnerCreateAccountView implements Initializable {
 
         InsertCustomerRequest customerRequest;
         if (customerType == CustomerType.DEPENDENT) {
-            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName, address, phone, email, customerType);
+            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName,
+                    address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
         } else {
-            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, fullName, address, phone, email, customerType);
+            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, fullName,
+                    address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
         }
 
         customerController.createCustomer(customerRequest);

@@ -87,7 +87,7 @@ public class ClaimControllerTest {
     }
 
     @Test
-    public void testDeleteClaimById() {
+    public void testDeleteClaimById() throws Exception {
         int id = 7;
 
         claimController.deleteClaimById(id);
@@ -100,7 +100,7 @@ public class ClaimControllerTest {
     }
 
     @Test
-    void testUpdateClaimStatus() {
+    void testUpdateClaimStatus() throws Exception {
         int claimId = 7;
         ClaimStatus newClaimStatus = ClaimStatus.PROCESSING;
 
@@ -113,14 +113,14 @@ public class ClaimControllerTest {
     }
 
     @Test
-    public void testCreateClaim() {
+    public void testCreateClaim() throws Exception {
         InsertClaimRequest request = new InsertClaimRequest(33, Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00);
 
         claimController.createClaim(request);
     }
 
     @Test
-    public void testUpdateClaimDocumentRequested() {
+    public void testUpdateClaimDocumentRequested() throws Exception {
         int claimId = 7;
 
         Claim previousClaim = claimController.getClaimById(claimId);
@@ -134,7 +134,7 @@ public class ClaimControllerTest {
     }
 
     @Test
-    public void testUpdateClaim() {
+    public void testUpdateClaim() throws Exception {
         int claimId = 8;
 
         UpdateClaimRequest updateRequest = new UpdateClaimRequest(claimId,

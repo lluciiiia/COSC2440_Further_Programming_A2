@@ -24,9 +24,9 @@ public class InsuranceManagerController {
 
     public void deleteInsuranceManagerById(int id) { insuranceManagerFacade.deleteInsuranceManagerById(id); }
 
-    public void createInsuranceManager(InsertInsuranceManagerRequest request) { insuranceManagerFacade.createInsuranceManager(request); }
+    public void createInsuranceManager(InsertInsuranceManagerRequest request) throws Exception { insuranceManagerFacade.createInsuranceManager(request); }
 
     public InsuranceManager getInsuranceManagerById(int id) { return insuranceManagerFacade.getInsuranceManagerById(id); }
 
-    public void updateInsuranceManager(UpdateProviderRequest request) { insuranceManagerFacade.updateInsuranceManager(request); }
+    public void updateInsuranceManager(UpdateProviderRequest request) throws Exception { insuranceManagerFacade.updateInsuranceManager(request); }
 }

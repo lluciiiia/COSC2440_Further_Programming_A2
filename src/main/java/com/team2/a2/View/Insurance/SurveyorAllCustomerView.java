@@ -1,6 +1,8 @@
 package com.team2.a2.View.Insurance;
 
 import com.team2.a2.Controller.AccountController;
+import com.team2.a2.Controller.InsuranceCardController;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.Enum.CustomerType;
@@ -15,10 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +29,8 @@ import java.util.stream.Collectors;
 public class SurveyorAllCustomerView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button viewInsuranceCard;
     @FXML
     private ComboBox<String> customerTypeComboBox;
     @FXML
@@ -53,6 +54,8 @@ public class SurveyorAllCustomerView implements Initializable {
 
     private AccountController accountController = new AccountController();
     private Account account;
+    private InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
     public void initData(ObservableList<Customer> customers, InsuranceSurveyor insuranceSurveyor) {
         originalCustomerList = FXCollections.observableArrayList(customers);
@@ -93,6 +96,27 @@ public class SurveyorAllCustomerView implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        viewInsuranceCard.setOnAction(event -> {
+            try {
+                Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+                if (selectedCustomer == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
+                insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(selectedCustomer.getId());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceSurveyorViewCardPage.fxml"));
+                Parent root = loader.load();
+                InsuranceSurveyorViewCard insuranceSurveyorViewCard = loader.getController();
+                insuranceSurveyorViewCard.initData(insuranceCard, account);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void filterCustomerTable(String customerType) {
@@ -105,5 +129,13 @@ public class SurveyorAllCustomerView implements Initializable {
                     .collect(Collectors.toList());
             customerTable.setItems(FXCollections.observableArrayList(filteredList));
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

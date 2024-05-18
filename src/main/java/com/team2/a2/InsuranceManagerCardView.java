@@ -1,9 +1,7 @@
-package com.team2.a2.View.Policy;
+package com.team2.a2;
 
-import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,11 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class HolderCardView implements Initializable {
-
+public class InsuranceManagerCardView implements Initializable {
     @FXML
     private Button returnButton;
     @FXML
@@ -33,27 +29,25 @@ public class HolderCardView implements Initializable {
     @FXML
     private TextField BankAccountNumber;
 
-    private AccountController accountController = new AccountController();
-    private Account account;
+    private Account account1;
 
-    public void initData(InsuranceCard insuranceCard, Customer customer) {
+    public void initData(InsuranceCard insuranceCard, Account account) {
         customerID.setText("CustomerID: " + insuranceCard.getCustomerId());
         cardNumber.setText("Card number: " + insuranceCard.getCardNumber());
         ExpiryDate.setText("Expiry date: " + insuranceCard.getExpiryDate());
         BankName.setText("Bank name: " + insuranceCard.getBankName());
         BankAccountNumber.setText("Bank account number: " + insuranceCard.getAccountNumber());
-        int accountID = customer.getAccountId();
-        account = accountController.getAccountByID(accountID);
+        account1 = account;
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/team2/a2/PolicyHolderPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceManagerPage.fxml"));
                 Parent root = loader.load();
-                HolderView policyHolderView = loader.getController();
-                policyHolderView.initData(account);
+                InsuranceManagerView insuranceManagerView = loader.getController();
+                insuranceManagerView.initData(account1);
 
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();

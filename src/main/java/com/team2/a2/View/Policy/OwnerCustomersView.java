@@ -3,8 +3,10 @@ package com.team2.a2.View.Policy;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
@@ -82,6 +84,8 @@ public class OwnerCustomersView implements Initializable {
     private PolicyOwner policyOwner1;
 
     private CustomerController customerController = new CustomerController();
+    private InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
 
     public void initData(List<Customer> customers, PolicyOwner policyOwner) {
@@ -127,7 +131,7 @@ public class OwnerCustomersView implements Initializable {
                     return;
                 }
                 int customerID = selectedCustomer.getId();
-                Customer customer = customerController.getCustomerByCustomerId(customerID);
+                Customer customer = customerController.getCustomerById(customerID);
 
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/team2/a2/PolicyOwnerCustomerClaimPage.fxml"));
@@ -183,8 +187,16 @@ public class OwnerCustomersView implements Initializable {
 
             UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(),name, address, phone, email);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-            accountController.updateAccount(updateAccountRequest);
-            customerController.updateCustomer(updateCustomerRequest);
+            try {
+                accountController.updateAccount(updateAccountRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                customerController.updateCustomer(updateCustomerRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             showAlert("Success", "Customer information updated successfully.");
 
         });
@@ -208,24 +220,37 @@ public class OwnerCustomersView implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
-                customerController.deleteCustomerById(selectedCustomer.getId());
+                try {
+                    customerController.deleteCustomerById(selectedCustomer.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 showAlert("Success", "Customer deleted successfully.");
                 originalCustomerList.remove(selectedCustomer);
                 refreshTable();
             }
         });
 
-//        viewInsuranceCard.setOnAction(event -> {
-//            try {
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/team2/a2/PolicyOwnerCustomerCardPage.fxml")));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        viewInsuranceCard.setOnAction(event -> {
+            try {
+                Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+                if (selectedCustomer == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
+                insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(selectedCustomer.getId());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCustomerCardPage.fxml"));
+                Parent root = loader.load();
+                OwnerCustomerCardView policyOwnerCustomerCardView = loader.getController();
+                policyOwnerCustomerCardView.initData(insuranceCard, account);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void refreshTable() {

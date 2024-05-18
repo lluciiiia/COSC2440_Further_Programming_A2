@@ -2,6 +2,7 @@ package com.team2.a2.View.Insurance;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
+import com.team2.a2.Controller.ClaimDocumentController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.User.Account;
@@ -16,10 +17,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,11 +28,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ManagerLOCView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button viewDocuments;
     @FXML
     private TableView<Claim> claimTable;
     @FXML
@@ -56,7 +60,7 @@ public class ManagerLOCView implements Initializable {
 
     private AccountController accountController = new AccountController();
     private Account account;
-
+    private ClaimDocumentController claimDocumentController = new ClaimDocumentController();
     private ClaimController claimController = new ClaimController();
     private Claim selectedClaim;
     private ObservableList<Claim> claimsData;
@@ -111,6 +115,13 @@ public class ManagerLOCView implements Initializable {
                 selectedClaim = newSelection;
             }
         });
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
@@ -133,28 +144,69 @@ public class ManagerLOCView implements Initializable {
         acceptClaim.setOnAction(event -> {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
-                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED);
+                    try {
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     refreshTable();
                 } else {
-                    showAlert("Invalid Status", "Only claims with status 'PROCESSING' can be accepted.");
+                    showAlert(Alert.AlertType.ERROR, "Invalid Status", "Only claims with status 'PROCESSING' can be accepted.");
                 }
             } else {
-                showAlert("No selection", "Please select a claim to accept.");
+                showAlert(Alert.AlertType.ERROR, "No selection", "Please select a claim to accept.");
             }
         });
 
         rejectClaim.setOnAction(event -> {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
-                    claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED);
+                    try {
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     refreshTable();
                 } else {
-                    showAlert("Invalid Status", "Only claims with status 'PROCESSING' can be rejected.");
+                    showAlert(Alert.AlertType.ERROR, "Invalid Status", "Only claims with status 'PROCESSING' can be rejected.");
                 }
             } else {
-                showAlert("No selection", "Please select a claim to reject.");
+                showAlert(Alert.AlertType.ERROR, "No selection", "Please select a claim to reject.");
             }
         });
+    }
+
+    private void viewDocumentsOfSelectedClaim() throws Exception {
+        Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
+        if (selectedClaim == null) {
+            showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");
+            return;
+        }
+
+        List<String> imageSources = claimDocumentController.getImageSourcesByClaimId(selectedClaim.getId());
+
+        if (imageSources == null || imageSources.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "No Document", "No documents found for the selected claim.");
+            return;
+        }
+
+        Stage stage = new Stage();
+        VBox vbox = new VBox();
+        for (String imageSource : imageSources) {
+            ImageView imageView = new ImageView(new Image(imageSource));
+            imageView.setFitWidth(800);
+            imageView.setPreserveRatio(true);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+            vbox.getChildren().add(imageView);
+        }
+
+        ScrollPane scrollPane = new ScrollPane(vbox);
+        Scene scene = new Scene(scrollPane, 800, 600);
+
+        stage.setTitle("View Documents");
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void refreshTable() {
@@ -164,7 +216,7 @@ public class ManagerLOCView implements Initializable {
         claimTable.refresh();
     }
 
-    private void showAlert(String title, String message) {
+    private void showAlert(Alert.AlertType error, String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
         alert.setHeaderText(null);

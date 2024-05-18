@@ -47,7 +47,13 @@ public class CreatePolicyOwnerAccountView implements Initializable {
             }
         });
 
-        createAccountButton.setOnAction(event -> createAccount());
+        createAccountButton.setOnAction(event -> {
+            try {
+                createAccount();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -58,7 +64,7 @@ public class CreatePolicyOwnerAccountView implements Initializable {
         alert.showAndWait();
     }
 
-    private void createAccount() {
+    private void createAccount() throws Exception {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String fullName = fullNameTextField.getText();

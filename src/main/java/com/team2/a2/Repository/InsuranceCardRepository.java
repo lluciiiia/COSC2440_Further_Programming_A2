@@ -2,7 +2,7 @@ package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
-import com.team2.a2.Request.InsertInsuranceCardRequest;
+import com.team2.a2.Request.InsertCustomerRequest;
 
 import java.sql.*;
 
@@ -13,7 +13,7 @@ public class InsuranceCardRepository {
         this.connection = ConnectionManager.getConnection();
     }
 
-    public void createInsuranceCard(InsertInsuranceCardRequest request) {
+    public void createInsuranceCard(InsertCustomerRequest request, int customerId) {
         PreparedStatement statement = null;
 
         try {
@@ -21,7 +21,7 @@ public class InsuranceCardRepository {
                     "VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, request.getCustomerId());
+            statement.setInt(1, customerId);
             statement.setString(2, request.getCardNumber());
             statement.setDate(3, request.getExpiryDate());
             statement.setString(4, request.getBankName());
@@ -31,6 +31,12 @@ public class InsuranceCardRepository {
 
         } catch (SQLException e) {
             System.err.println("Error creating insurance card: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }

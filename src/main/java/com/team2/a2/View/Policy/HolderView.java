@@ -2,7 +2,9 @@ package com.team2.a2.View.Policy;
 
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.View.BaseView;
@@ -29,6 +31,8 @@ import java.util.ResourceBundle;
 public class HolderView implements Initializable, BaseView {
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button viewInsuranceButton;
 
     @FXML
     private Button viewInfoButton;
@@ -46,10 +50,13 @@ public class HolderView implements Initializable, BaseView {
     private Customer customer;
 
     private final ClaimController claimController = new ClaimController();
+    private InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
     public void initData(Account account) {
         customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
+        insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customer.getId());
     }
 
     @FXML
@@ -157,6 +164,21 @@ public class HolderView implements Initializable, BaseView {
                 policyHolderCreateClaimView.initData(customer);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) createClaim.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewInsuranceButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderInsuranceCardPage.fxml"));
+                Parent root = loader.load();
+                PolicyHolderCardView policyHolderCardView = loader.getController();
+                policyHolderCardView.initData(insuranceCard, customer);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewInsuranceButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

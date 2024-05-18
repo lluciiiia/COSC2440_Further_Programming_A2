@@ -55,13 +55,12 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     }
 
     @Override
-    public void createInsuranceManager(InsertInsuranceManagerRequest request) {
+    public void createInsuranceManager(InsertInsuranceManagerRequest request) throws Exception {
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) return;
-
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), AccountType.INSURANCE_MANAGER);
-            if (account == null) return;
+            if (account == null) throw new Exception("Account hasn't been created");
 
             insuranceManagerRepository.createInsuranceManager(request, account.getId());
     }
@@ -72,9 +71,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     }
 
     @Override
-    public void updateInsuranceManager(UpdateProviderRequest request) {
+    public void updateInsuranceManager(UpdateProviderRequest request) throws Exception {
         InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(request.getId());
-        if (insuranceManager == null) return;
+        if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 
         insuranceManagerRepository.updateInsuranceManager(request);
     }
