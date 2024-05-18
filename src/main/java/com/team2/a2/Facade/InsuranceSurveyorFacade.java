@@ -13,11 +13,11 @@ public interface InsuranceSurveyorFacade {
 
     List<InsuranceSurveyor> getAllInsuranceSurveyors();
 
-    void deleteInsuranceSurveyorById(int id);
+    void deleteInsuranceSurveyorById(int id, int userAccountId) throws Exception;
 
-    void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request) throws Exception;
+    void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request, int userAccountId) throws Exception;
 
-    void updateInsuranceSurveyor(UpdateProviderRequest request) throws Exception;
+    void updateInsuranceSurveyor(UpdateProviderRequest request, int userAccountId) throws Exception;
 
     InsuranceSurveyor getInsuranceSurveyorById(int id);
 }
