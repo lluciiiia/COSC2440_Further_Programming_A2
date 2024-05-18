@@ -1,17 +1,12 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
-import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.PolicyOwnerController;
-import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
-import com.team2.a2.Request.UpdateAccountRequest;
-import com.team2.a2.Request.UpdateCustomerRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,11 +20,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class AdminAllPolicyOwnerView implements Initializable {
     @FXML
@@ -101,9 +93,9 @@ public class AdminAllPolicyOwnerView implements Initializable {
             }
 
             UpdatePolicyOwnerRequest updatePolicyOwnerRequest = new UpdatePolicyOwnerRequest(selectedPolicyOwner.getId(), name);
-            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            UpdatePasswordRequest updatePasswordRequest = new UpdatePasswordRequest(accountSelected.getId(), password);
             try {
-                accountController.updateAccount(updateAccountRequest, account1.getId());
+                accountController.updatePassword(updatePasswordRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

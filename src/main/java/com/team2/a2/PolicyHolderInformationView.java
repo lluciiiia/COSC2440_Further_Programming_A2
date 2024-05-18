@@ -4,7 +4,7 @@ import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,9 +103,9 @@ public class PolicyHolderInformationView implements Initializable {
             showAlert("Invalid Input", "All fields must be filled.");
             return;
         }
-        UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(account.getId(), account.getUsername(), password);
+        UpdatePasswordRequest updatePasswordRequest = new UpdatePasswordRequest(account.getId(), password);
         UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(customer1.getId(),name, address, phone, email);
-        Account updatedAccount = accountController.updateAccount(updateAccountRequest, account.getId());
+        Account updatedAccount = accountController.updatePassword(updatePasswordRequest, account.getId());
         Customer updatedCustomer = customerController.updateCustomer(updateCustomerRequest, account.getId());
 
         if (updatedCustomer != null) {

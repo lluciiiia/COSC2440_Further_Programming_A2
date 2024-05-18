@@ -1,19 +1,15 @@
 package com.team2.a2.FacadeImpl;
 
-import com.team2.a2.DependentInformationView;
 import com.team2.a2.Facade.*;
-import com.team2.a2.Model.Enum.AccountType;
-import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Admin;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 
 import java.util.List;
 
@@ -63,16 +59,13 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public Account updateAccount(UpdateAccountRequest request, int userAccountId) throws Exception {
+    public Account updatePassword(UpdatePasswordRequest request, int userAccountId) throws Exception {
         Account account = accountRepository.getAccountById(request.getId());
         if (account == null) throw new Exception("Account doesn't exist");
 
-        Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
+        logRepository.createLog(userAccountId, "Updated password of an account with id " + account.getId());
 
-        logRepository.createLog(userAccountId, "Updated an account with id " + account.getId());
-
-        return accountRepository.updateAccount(request);
+        return accountRepository.updatePassword(request);
     }
 
     @Override

@@ -5,12 +5,9 @@ import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.Dependent;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertCustomerRequest;
-import com.team2.a2.Request.UpdateAccountRequest;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,23 +22,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class PolicyOwnerCreateAccountView implements Initializable {

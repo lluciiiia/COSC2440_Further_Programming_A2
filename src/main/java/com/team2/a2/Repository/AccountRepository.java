@@ -3,7 +3,7 @@ package com.team2.a2.Repository;
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -156,17 +156,16 @@ public class AccountRepository {
         return accounts;
     }
 
-    public Account updateAccount(UpdateAccountRequest request) {
+    public Account updatePassword(UpdatePasswordRequest request) {
         Account account = null;
         PreparedStatement statement = null;
 
         try {
-            String sql = "UPDATE accounts SET username = ?, password = ?, updated_at = NOW() WHERE id = ?";
+            String sql = "UPDATE accounts SET password = ?, updated_at = NOW() WHERE id = ?";
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            statement.setString(1, request.getUsername());
-            statement.setString(2, request.getPassword());
-            statement.setInt(3, request.getId());
+            statement.setString(1, request.getPassword());
+            statement.setInt(2, request.getId());
 
             statement.executeUpdate();
 

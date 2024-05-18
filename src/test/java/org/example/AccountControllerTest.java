@@ -5,7 +5,7 @@ import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.LoginRequest;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 import org.junit.jupiter.api.*;
 
 import java.sql.Date;
@@ -86,18 +86,17 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testUpdateAccount() throws Exception {
+    public void testUpdatePassword() throws Exception {
         int id = 40;
         int userAccountId = 1;
 
         Account currentAccount = accountController.getAccountByID(id);
 
-        UpdateAccountRequest request = new UpdateAccountRequest(id, "i'm updated", "12345678");
-        accountController.updateAccount(request, userAccountId);
+        UpdatePasswordRequest request = new UpdatePasswordRequest(id, "12345678");
+        accountController.updatePassword(request, userAccountId);
 
         Account updatedAccount = accountController.getAccountByID(id);
 
-        assertNotEquals(currentAccount.getUsername(), updatedAccount.getUsername(), "The username between currentAccount and updatedAccount should NOT be the same.");
         assertNotEquals(currentAccount.getPassword(), updatedAccount.getPassword(), "The password between currentAccount and updatedAccount should NOT be the same.");
     }
 
