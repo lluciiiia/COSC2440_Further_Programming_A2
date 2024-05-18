@@ -1,6 +1,5 @@
 package com.team2.a2.FacadeImpl;
 
-import com.team2.a2.DependentInformationView;
 import com.team2.a2.Facade.*;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;

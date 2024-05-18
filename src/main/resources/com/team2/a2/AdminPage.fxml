@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.AdminView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.View.Admin.View">
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: black;">
             <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 30;" text="ADMIN" textAlignment="CENTER" />
@@ -33,15 +33,15 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="ViewPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Policy Owners">
+            <Button fx:id="ViewPolicyOwnerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View.Policy. Owners">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Surveyors">
+            <Button fx:id="ViewInsuranceSurveyorButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View.Insurance. Surveyors">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View Insurance Managers">
+            <Button fx:id="ViewInsuranceManagerButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="367.0" text="View.Insurance. Managers">
                <font>
                   <Font size="18.0" />
                </font></Button>

@@ -1,7 +1,7 @@
 package com.team2.a2.Repository;
 
-import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.User.Customer.Customer;
+import com.team2.a2.ConnectionManager;
 import com.team2.a2.Model.Enum.CustomerType;
 import com.team2.a2.Request.InsertCustomerRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
