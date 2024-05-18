@@ -21,11 +21,7 @@ public class CustomerController {
     public Customer getCustomerById(int id) {
         return customerFacade.getCustomerById(id);
     }
-
-    public Customer getCustomerByCustomerId(int id) {
-        return customerFacade.getCustomerByCustomerId(id);
-    }
-
+    
     public List<Customer> getAllCustomers() {
         return customerFacade.getAllCustomers();
     }

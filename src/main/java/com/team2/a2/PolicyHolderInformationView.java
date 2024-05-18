@@ -89,12 +89,16 @@ public class PolicyHolderInformationView implements Initializable {
             String email = emailEdit.getText();
             String address = addressEdit.getText();
             String password = passwordEdit.getText();
-            editInformation(name, phone, email, address, password);
+            try {
+                editInformation(name, phone, email, address, password);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
     }
 
-    public void editInformation(String name, String phone, String email, String address, String password) {
+    public void editInformation(String name, String phone, String email, String address, String password) throws Exception {
         if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()) {
             showAlert("Invalid Input", "All fields must be filled.");
             return;

@@ -112,8 +112,16 @@ public class AdminAllSurveyorView implements Initializable {
             int managerID = Integer.parseInt(managerId.getText());
             UpdateProviderRequest updateSurveyorRequest = new UpdateProviderRequest(selectedSurveyor.getId(), selectedSurveyor.getCompanyName(), selectedSurveyor.getCompanyAddress(), phone, email, name, managerID);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-            accountController.updateAccount(updateAccountRequest);
-            insuranceSurveyorController.updateInsuranceSurveyor(updateSurveyorRequest);
+            try {
+                accountController.updateAccount(updateAccountRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                insuranceSurveyorController.updateInsuranceSurveyor(updateSurveyorRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             showAlert("Success", "Surveyor information updated successfully.");
 
             refreshTable();

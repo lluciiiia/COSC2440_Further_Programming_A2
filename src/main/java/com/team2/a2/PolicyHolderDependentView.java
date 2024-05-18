@@ -174,8 +174,16 @@ public class PolicyHolderDependentView implements Initializable {
 
             UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedDependent.getId(),name, address, phone, email);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-            accountController.updateAccount(updateAccountRequest);
-            customerController.updateCustomer(updateCustomerRequest);
+            try {
+                accountController.updateAccount(updateAccountRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                customerController.updateCustomer(updateCustomerRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             showAlert("Success", "Customer information updated successfully.");
 
         });

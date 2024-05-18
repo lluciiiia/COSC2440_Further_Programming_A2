@@ -188,8 +188,16 @@ public class PolicyOwnerCustomersView implements Initializable {
 
             UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(),name, address, phone, email);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
-            accountController.updateAccount(updateAccountRequest);
-            customerController.updateCustomer(updateCustomerRequest);
+            try {
+                accountController.updateAccount(updateAccountRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                customerController.updateCustomer(updateCustomerRequest);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             showAlert("Success", "Customer information updated successfully.");
 
         });
@@ -213,7 +221,11 @@ public class PolicyOwnerCustomersView implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
-                customerController.deleteCustomerById(selectedCustomer.getId());
+                try {
+                    customerController.deleteCustomerById(selectedCustomer.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 showAlert("Success", "Customer deleted successfully.");
                 originalCustomerList.remove(selectedCustomer);
                 refreshTable();
