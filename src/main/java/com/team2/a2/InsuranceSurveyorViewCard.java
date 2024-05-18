@@ -2,8 +2,6 @@ package com.team2.a2;
 
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Model.User.Customer.PolicyOwner;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,10 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PolicyOwnerCustomerCardView implements Initializable {
+public class InsuranceSurveyorViewCard implements Initializable {
     @FXML
     private Button returnButton;
     @FXML
@@ -47,10 +44,10 @@ public class PolicyOwnerCustomerCardView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceSurveyorPage.fxml"));
                 Parent root = loader.load();
-                PolicyOwnerView policyOwnerView = loader.getController();
-                policyOwnerView.initData(account1);
+                InsuranceSurveyorView insuranceSurveyorView = loader.getController();
+                insuranceSurveyorView.initData(account1);
 
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
