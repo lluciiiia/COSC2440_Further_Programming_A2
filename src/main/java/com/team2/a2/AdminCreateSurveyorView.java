@@ -79,7 +79,13 @@ public class AdminCreateSurveyorView implements Initializable {
             }
         });
         updateInsuranceManagerComboBox();
-        createAccountButton.setOnAction(event -> createAccount());
+        createAccountButton.setOnAction(event -> {
+            try {
+                createAccount();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void updateInsuranceManagerComboBox() {
@@ -98,7 +104,7 @@ public class AdminCreateSurveyorView implements Initializable {
         alert.showAndWait();
     }
 
-    private void createAccount() {
+    private void createAccount() throws Exception {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String fullName = fullNameTextField.getText();

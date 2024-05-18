@@ -40,6 +40,7 @@
                     </columns>
                 </TableView>
             <TextField fx:id="totalClaimAmount" editable="false" layoutX="462.0" layoutY="76.0" promptText="total claim amount" />
+            <Button fx:id="viewDocuments" layoutX="372.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="View document" />
             </children>
         </AnchorPane>
     </left>

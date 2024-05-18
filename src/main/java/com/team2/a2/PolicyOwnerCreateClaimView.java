@@ -91,6 +91,8 @@ public class PolicyOwnerCreateClaimView implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Claim Created!", "Claim created successfully");
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter a valid amount");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

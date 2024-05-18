@@ -183,8 +183,20 @@ public class PolicyHolderDependentClaimView implements Initializable {
         });
 
         editClaimButton.setOnAction(event -> editSelectedClaim());
-        addDocuments.setOnAction(event -> addDocumentToClaim());
-        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
+        addDocuments.setOnAction(event -> {
+            try {
+                addDocumentToClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        viewDocuments.setOnAction(event -> {
+            try {
+                viewDocumentsOfSelectedClaim();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void editSelectedClaim() {
@@ -216,10 +228,12 @@ public class PolicyHolderDependentClaimView implements Initializable {
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Form Error", "Please enter a valid amount.");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void addDocumentToClaim() {
+    private void addDocumentToClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to add a document.");
@@ -242,7 +256,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
         }
     }
 
-    private void viewDocumentsOfSelectedClaim() {
+    private void viewDocumentsOfSelectedClaim() throws Exception {
         Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
         if (selectedClaim == null) {
             showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");

@@ -29,7 +29,7 @@
             <children>
                <VBox alignment="CENTER" prefHeight="250.0" prefWidth="337.0" spacing="25">
                   <children>
-                     <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="219.0" style="-fx-font-weight: bold;" text="View My Insurance Card" />
+                     <Button fx:id="viewInsuranceButton" mnemonicParsing="false" prefHeight="49.0" prefWidth="219.0" style="-fx-font-weight: bold;" text="View My Insurance Card" />
                      <Button fx:id="viewInfoButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View My Information" />
                      <Button fx:id="viewDependentInformationButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" style="-fx-font-weight: Bold;" text="View Dependent Information" />
                   </children>

@@ -40,7 +40,7 @@
                     </columns>
                 </TableView>
             <ComboBox fx:id="customerTypeComboBox" layoutX="411.0" layoutY="15.0" prefHeight="25.0" prefWidth="174.0" promptText="Choose an account type" style="-fx-background-color: #d6cece;" />
-            <Button layoutX="411.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
+            <Button fx:id="viewInsuranceCard" layoutX="411.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
             </children>
         </AnchorPane>
     </left>
