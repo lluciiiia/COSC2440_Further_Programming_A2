@@ -48,7 +48,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="viewLogHistory" mnemonicParsing="false" prefHeight="40.0" prefWidth="366.0" text="View Log History">
+            <Button fx:id="viewLogHistoryButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="366.0" text="View Log History">
                <font>
                   <Font size="18.0" />
                </font>
