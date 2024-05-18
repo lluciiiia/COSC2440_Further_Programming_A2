@@ -35,6 +35,8 @@ public class InsuranceSurveyorView implements Initializable {
     @FXML
     private Button ViewInsuranceSurveyorClaimButton;
     @FXML
+    private Button viewLogHistoryButton;
+    @FXML
     private Text insuranceSurveyorName;
 
     private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
@@ -57,6 +59,17 @@ public class InsuranceSurveyorView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceSurveyorViewLogHistoryPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

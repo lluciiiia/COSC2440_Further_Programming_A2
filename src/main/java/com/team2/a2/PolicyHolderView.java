@@ -41,6 +41,8 @@ public class PolicyHolderView implements Initializable {
     private Button viewClaimInformationButton;
     @FXML
     private Button createClaim;
+    @FXML
+    private Button viewLogHistoryButton;
 
     @FXML
     private Text welcomeText;
@@ -65,6 +67,18 @@ public class PolicyHolderView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderViewLogHistoryPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

@@ -42,6 +42,9 @@ public class AdminView implements Initializable {
     @FXML
     private Button AllAccountButton;
 
+    @FXML
+    private Button viewLogHistoryButton;
+
     private AccountController accountController = new AccountController();
 
 
@@ -52,6 +55,18 @@ public class AdminView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewLogHistoryPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {

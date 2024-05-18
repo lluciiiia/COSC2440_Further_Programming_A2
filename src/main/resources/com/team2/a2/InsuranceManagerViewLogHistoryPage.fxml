@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.InsuranceManagerLogHistoryView">
+    <top>
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold;" text="View Log History" textAlignment="CENTER" wrappingWidth="350.6162109375" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="31.0" />
+            </font>
+        </Text>
+    </top>
+    <left>
+        <AnchorPane prefHeight="433.0" prefWidth="705.0" style="-fx-background-color: #66B2FF;" BorderPane.alignment="CENTER">
+            <children>
+                <BorderPane layoutX="25.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
+                    <center>
+                        <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="378.0" layoutY="109.0" prefHeight="313.0" prefWidth="264.0">
+                    <bottom>
+                    </bottom></BorderPane>
+                <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
+                <TableView fx:id="logHistoryTable" layoutX="116.0" layoutY="109.0" prefHeight="352.0" prefWidth="467.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="64.0" text="ID" />
+                        <TableColumn fx:id="userIdColumn" prefWidth="96.20001220703125" text="User ID" />
+                        <TableColumn fx:id="roleColumn" prefWidth="101.0" text="Role" />
+                        <TableColumn fx:id="logHistoryColumn" prefWidth="204.00001831054686" text="Log History" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>
