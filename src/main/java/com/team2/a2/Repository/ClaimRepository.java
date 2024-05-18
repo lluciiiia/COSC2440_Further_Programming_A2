@@ -1,7 +1,7 @@
 package com.team2.a2.Repository;
 
-import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.ConnectionManager;
+import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Request.InsertClaimRequest;
 import com.team2.a2.Request.UpdateClaimRequest;
