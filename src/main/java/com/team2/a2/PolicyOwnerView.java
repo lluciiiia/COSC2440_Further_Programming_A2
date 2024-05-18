@@ -68,18 +68,6 @@ public class PolicyOwnerView implements Initializable {
             }
         });
 
-        viewLogHistoryButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerViewLogHistoryPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
         CreateCusAccountButton.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerCreateAccount.fxml"));
