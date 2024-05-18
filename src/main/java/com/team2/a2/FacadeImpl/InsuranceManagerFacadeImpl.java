@@ -22,12 +22,10 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     LogRepository logRepository;
 
     public InsuranceManagerFacadeImpl() {
-
         this.insuranceManagerRepository = new InsuranceManagerRepository();
         this.insuranceSurveyorRepository = new InsuranceSurveyorRepository();
         this.accountRepository = new AccountRepository();
         this.logRepository = new LogRepository();
-
     }
 
     @Override
@@ -41,9 +39,13 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
     }
 
     @Override
-    public void deleteInsuranceManagerById(int id, int userAccountId) {
+    public void deleteInsuranceManagerById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(id);
-        if (insuranceManager == null) return;
+        if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
+
         int accountId = insuranceManager.getAccountId();
 
         List<InsuranceSurveyor> insuranceSurveyors = insuranceSurveyorRepository.getInsuranceSurveyorsByManagerID(id);
@@ -60,6 +62,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
 
     @Override
     public void createInsuranceManager(InsertInsuranceManagerRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
@@ -78,6 +83,9 @@ public class InsuranceManagerFacadeImpl implements InsuranceManagerFacade {
 
     @Override
     public void updateInsuranceManager(UpdateProviderRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerById(request.getId());
         if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 

@@ -60,6 +60,9 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Override
     public Account updatePassword(UpdatePasswordRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Account account = accountRepository.getAccountById(request.getId());
         if (account == null) throw new Exception("Account doesn't exist");
 
@@ -78,6 +81,9 @@ public class AccountFacadeImpl implements AccountFacade {
 
     @Override
     public void deleteAccountById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Account account = accountRepository.getAccountById(id);
         if (account == null) throw new Exception("Account doesn't exist");
 

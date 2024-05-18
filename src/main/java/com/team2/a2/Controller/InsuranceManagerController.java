@@ -22,7 +22,7 @@ public class InsuranceManagerController {
         return insuranceManagerFacade.getAllInsuranceManagers();
     }
 
-    public void deleteInsuranceManagerById(int id, int userAccountId) { insuranceManagerFacade.deleteInsuranceManagerById(id, userAccountId); }
+    public void deleteInsuranceManagerById(int id, int userAccountId) throws Exception { insuranceManagerFacade.deleteInsuranceManagerById(id, userAccountId); }
 
     public void createInsuranceManager(InsertInsuranceManagerRequest request, int userAccountId) throws Exception { insuranceManagerFacade.createInsuranceManager(request, userAccountId); }
 

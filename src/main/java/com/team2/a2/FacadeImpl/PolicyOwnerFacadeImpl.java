@@ -42,6 +42,9 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
 
     @Override
     public void createPolicyOwner(InsertPolicyOwnerRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
@@ -55,6 +58,9 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
 
     @Override
     public void deletePolicyOwnerById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(id);
         if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
@@ -79,6 +85,9 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
 
     @Override
     public void updatePolicyOwner(UpdatePolicyOwnerRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(request.getId());
         if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
