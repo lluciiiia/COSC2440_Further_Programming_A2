@@ -3,8 +3,10 @@ package com.team2.a2;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.InsuranceCardController;
+import com.team2.a2.Controller.LogController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.InsuranceCard;
+import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 
@@ -53,11 +55,14 @@ public class PolicyHolderView implements Initializable {
     private final ClaimController claimController = new ClaimController();
     private InsuranceCardController insuranceCardController = new InsuranceCardController();
     private InsuranceCard insuranceCard;
+    private Account account1;
+    private LogController logController = new LogController();
 
     public void initData(Account account) {
         customer = customerController.getCustomerByAccountId(account.getId());
         welcomeText.setText("Welcome, " + customer.getName());
         insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customer.getId());
+        account1 = account;
     }
 
     @FXML
@@ -199,6 +204,39 @@ public class PolicyHolderView implements Initializable {
             }
         });
 
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderViewLogHistoryPage.fxml"));
+                Parent root = loader.load();
+                PolicyHolderLogHistoryView policyHolderLogHistoryView = loader.getController();
+                Task<List<Log>> loadLogTask = new Task<>() {
+                    @Override
+                    protected List<Log> call() throws Exception {
+                        return logController.getLogsByAccountId(account1.getId());
+                    }
+                };
+
+                loadLogTask.setOnSucceeded(workerStateEvent -> {
+                    policyHolderLogHistoryView.initData(FXCollections.observableArrayList(loadLogTask.getValue()), account1);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadLogTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadLogTask).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 }

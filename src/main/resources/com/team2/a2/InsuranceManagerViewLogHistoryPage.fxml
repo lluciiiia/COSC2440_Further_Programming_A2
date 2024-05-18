@@ -17,7 +17,7 @@
             <children>
                 <BorderPane layoutX="25.0" layoutY="14.0" prefHeight="54.0" prefWidth="297.0" style="-fx-background-color: #E0E0E0;">
                     <center>
-                        <Text fx:id="customerNameText" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Manager Log History" BorderPane.alignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -28,12 +28,12 @@
                     <bottom>
                     </bottom></BorderPane>
                 <Button fx:id="returnButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-font-weight: Bold;" text="Return" />
-                <TableView fx:id="logHistoryTable" layoutX="116.0" layoutY="109.0" prefHeight="352.0" prefWidth="467.0">
+                <TableView fx:id="tableView" layoutX="15.0" layoutY="109.0" prefHeight="352.0" prefWidth="675.0">
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="64.0" text="ID" />
-                        <TableColumn fx:id="userIdColumn" prefWidth="96.20001220703125" text="User ID" />
-                        <TableColumn fx:id="roleColumn" prefWidth="101.0" text="Role" />
-                        <TableColumn fx:id="logHistoryColumn" prefWidth="204.00001831054686" text="Log History" />
+                        <TableColumn fx:id="accountId" prefWidth="96.20001220703125" text="Account ID" />
+                        <TableColumn fx:id="roleColumn" prefWidth="401.0000305175781" text="Content" />
+                        <TableColumn fx:id="createAt" prefWidth="112.5999755859375" text="Create at" />
                     </columns>
                 </TableView>
             </children>

@@ -78,7 +78,6 @@ public class AdminView implements Initializable {
                 Task<List<Log>> loadLogTask = new Task<>() {
                     @Override
                     protected List<Log> call() throws Exception {
-                        System.out.println(account1.getId());
                         return logController.getLogsByAccountId(account1.getId());
                     }
                 };
