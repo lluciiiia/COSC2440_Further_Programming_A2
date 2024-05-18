@@ -3,9 +3,8 @@ package com.team2.a2;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceManagerController;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 import com.team2.a2.Request.UpdateProviderRequest;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,7 +20,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -112,9 +110,9 @@ public class AdminAllManagerView implements Initializable {
             }
 
             UpdateProviderRequest updateManagerRequest = new UpdateProviderRequest(selectedManager.getId(), selectedManager.getCompanyName(), selectedManager.getCompanyAddress(), phone, email, name);
-            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            UpdatePasswordRequest updatePasswordRequest = new UpdatePasswordRequest(accountSelected.getId(), password);
             try {
-                accountController.updateAccount(updateAccountRequest, account1.getId());
+                accountController.updatePassword(updatePasswordRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

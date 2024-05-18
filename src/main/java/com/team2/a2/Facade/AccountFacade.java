@@ -1,10 +1,8 @@
 package com.team2.a2.Facade;
 
-import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
-import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Request.LoginRequest;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ public interface AccountFacade {
 
     List<Account> getAllAccounts();
 
-    Account updateAccount(UpdateAccountRequest request, int userAccountId) throws Exception;
+    Account updatePassword(UpdatePasswordRequest request, int userAccountId) throws Exception;
 
     Account getAccountByCustomerID(int customerID) throws Exception;
 
