@@ -1,9 +1,9 @@
-module com.team.a2 {
+module com.team2.a2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
 
 
-    opens com.team2.a2 to javafx.fxml;
+    opens com.team2.a2.View to javafx.fxml;
     exports com.team2.a2;
 }

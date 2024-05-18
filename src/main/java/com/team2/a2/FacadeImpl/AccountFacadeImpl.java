@@ -1,6 +1,5 @@
 package com.team2.a2.FacadeImpl;
 
-import com.team2.a2.DependentInformationView;
 import com.team2.a2.Facade.*;
 import com.team2.a2.Model.Enum.AccountType;
 import com.team2.a2.Model.User.Account;
@@ -13,6 +12,7 @@ import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.View.DependentInformationView;
 
 import java.util.List;
 
