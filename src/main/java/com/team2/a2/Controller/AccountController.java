@@ -16,15 +16,27 @@ public class AccountController {
         this.accountFacade = new AccountFacadeImpl();
     }
 
-    public Account login(LoginRequest request) { return accountFacade.login(request); }
+    public Account login(LoginRequest request) {
+        return accountFacade.login(request);
+    }
+
     public Account getAccountByID(int id) {
         return accountFacade.getAccountByID(id);
     }
+
     public Account getAccountByCustomerID(int customerID) {
         return accountFacade.getAccountByCustomerID(customerID);
     }
-    public List<Account> getAllAccounts() { return accountFacade.getAllAccounts(); }
-    public Account updateAccount(UpdateAccountRequest request) { return accountFacade.updateAccount(request); }
 
-    public void deleteAccountById(int id) { accountFacade.deleteAccountById(id); }
+    public List<Account> getAllAccounts() {
+        return accountFacade.getAllAccounts();
+    }
+
+    public Account updateAccount(UpdateAccountRequest request) {
+        return accountFacade.updateAccount(request);
+    }
+
+    public void deleteAccountById(int id) {
+        accountFacade.deleteAccountById(id);
+    }
 }

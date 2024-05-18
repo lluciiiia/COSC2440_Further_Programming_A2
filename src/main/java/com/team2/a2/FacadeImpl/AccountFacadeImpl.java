@@ -12,7 +12,6 @@ import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import com.team2.a2.Repository.*;
 import com.team2.a2.Request.LoginRequest;
 import com.team2.a2.Request.UpdateAccountRequest;
-import com.team2.a2.View.DependentInformationView;
 
 import java.util.List;
 

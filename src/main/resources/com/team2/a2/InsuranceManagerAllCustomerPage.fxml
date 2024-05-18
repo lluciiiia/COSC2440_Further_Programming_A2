@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.View.InsuranceManagerAllCustomerView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.View.Insurance.ManagerAllCustomerView">
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="List of Customer Information" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>
@@ -40,7 +40,7 @@
                     </columns>
                 </TableView>
             <ComboBox fx:id="customerTypeComboBox" layoutX="399.0" layoutY="15.0" prefHeight="25.0" prefWidth="186.0" promptText="Choose an account type" style="-fx-background-color: #d6cece;" />
-            <Button layoutX="399.0" layoutY="44.0" mnemonicParsing="false" text="View Insurance Card information" />
+            <Button layoutX="399.0" layoutY="44.0" mnemonicParsing="false" text="View.Insurance. Card information" />
             </children>
         </AnchorPane>
     </left>

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.View.AdminSeeCustomerAllCustomerView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team2.a2.View.Admin.SeeCustomerAllCustomerView">
     <top>
         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="List of Customer Information" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>
@@ -39,7 +39,7 @@
                     </columns>
                 </TableView>
             <ComboBox fx:id="customerTypeComboBox" layoutX="377.0" layoutY="2.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose an customer type" style="-fx-background-color: #d6cece;" />
-            <Button layoutX="378.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View Insurance Card information" />
+            <Button layoutX="378.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="View.Insurance. Card information" />
             <TextField fx:id="nameEdit" layoutX="26.0" layoutY="70.0" prefHeight="26.0" prefWidth="76.0" promptText="name" />
             <TextField fx:id="addressEdit" layoutX="121.0" layoutY="70.0" prefHeight="26.0" prefWidth="75.0" promptText="address" />
             <TextField fx:id="phoneEdit" layoutX="216.0" layoutY="70.0" prefHeight="26.0" prefWidth="74.0" promptText="phone" />
