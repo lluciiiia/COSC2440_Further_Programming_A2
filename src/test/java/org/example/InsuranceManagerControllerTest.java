@@ -69,12 +69,13 @@ public class InsuranceManagerControllerTest {
     @Test
     public void testDeleteInsuranceManagerById() {
         int accountId = 5;
+        int userAccountId = 1;
 
         InsuranceManager insuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(accountId);
 
         assertNotNull(insuranceManager, "The insurance manager should exist.");
 
-        insuranceManagerController.deleteInsuranceManagerById(insuranceManager.getId());
+        insuranceManagerController.deleteInsuranceManagerById(insuranceManager.getId(), userAccountId);
 
         InsuranceManager deletedInsuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(accountId);
         assertNull(deletedInsuranceManager, "The insurance manager should NOT exist.");
@@ -86,12 +87,14 @@ public class InsuranceManagerControllerTest {
 
     @Test
     public void testCreateInsuranceManager() throws Exception {
+        int userAccountId = 1;
+
         String username = "new im username";
         String password = "12345";
 
         InsertInsuranceManagerRequest request = new InsertInsuranceManagerRequest(username, password, "rmit", "hcm", "2134567589", "12435@gmail.com", "im imim");
 
-        insuranceManagerController.createInsuranceManager(request);
+        insuranceManagerController.createInsuranceManager(request, userAccountId);
 
         Account createdAccount = accountController.login(new LoginRequest(username, password));
         InsuranceManager createdInsuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(createdAccount.getId());
@@ -113,6 +116,7 @@ public class InsuranceManagerControllerTest {
     @Test
     public void testUpdateInsuranceManager() throws Exception {
         int id = 3;
+        int userAccountId = 1;
 
         UpdateProviderRequest request = new UpdateProviderRequest(
                 id,
@@ -123,7 +127,7 @@ public class InsuranceManagerControllerTest {
                 "New Name2"
         );
 
-        insuranceManagerController.updateInsuranceManager(request);
+        insuranceManagerController.updateInsuranceManager(request, userAccountId);
 
         InsuranceManager updatedInsuranceManager = insuranceManagerController.getInsuranceManagerById(id);
 

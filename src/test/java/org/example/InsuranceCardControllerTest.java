@@ -45,12 +45,13 @@ public class InsuranceCardControllerTest {
     @Test
     public void testDeleteInsuranceCardById() throws Exception {
         int customerId = 1;
+        int userAccountId = 1;
 
         InsuranceCard insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);
 
         assertNotNull(insuranceCard, "The insurance card should exist.");
 
-        insuranceCardController.deleteInsuranceCardById(insuranceCard.getId());
+        insuranceCardController.deleteInsuranceCardById(insuranceCard.getId(), userAccountId);
 
         InsuranceCard deletedInsuranceCard = insuranceCardController.getInsuranceCardByCustomerID(customerId);
 

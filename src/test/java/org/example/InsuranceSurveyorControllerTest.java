@@ -72,14 +72,15 @@ public class InsuranceSurveyorControllerTest {
     }
 
     @Test
-    public void testDeleteInsuranceSurveyorById() {
+    public void testDeleteInsuranceSurveyorById() throws Exception {
         int accountId = 6;
+        int userAccountId = 1;
 
         InsuranceSurveyor insuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(accountId);
 
         assertNotNull(insuranceSurveyor, "The insurance surveyor should exist.");
 
-        insuranceSurveyorController.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
+        insuranceSurveyorController.deleteInsuranceSurveyorById(insuranceSurveyor.getId(), userAccountId);
 
         InsuranceSurveyor deletedInsuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorByAccountId(accountId);
 
@@ -88,10 +89,12 @@ public class InsuranceSurveyorControllerTest {
 
     @Test
     public void testCreateInsuranceSurveyor() throws Exception {
+        int userAccountId = 1;
+
         InsertInsuranceSurveyorRequest request = new InsertInsuranceSurveyorRequest("username", "password", "companyName", "companyAddress",
                 "phoneNumber", "email@gmail.com", "name-IS", 3);
 
-        insuranceSurveyorController.createInsuranceSurveyor(request);
+        insuranceSurveyorController.createInsuranceSurveyor(request, userAccountId);
 
         Account createdAccount = accountController.login(new LoginRequest(request.getUsername(), request.getPassword()));
 
@@ -108,6 +111,7 @@ public class InsuranceSurveyorControllerTest {
     @Test
     public void testUpdateInsuranceSurveyor() throws Exception {
         int id = 4;
+        int userAccountId = 1;
 
         UpdateProviderRequest request = new UpdateProviderRequest(
                 id,
@@ -118,7 +122,7 @@ public class InsuranceSurveyorControllerTest {
                 "New Name2"
         );
 
-        insuranceSurveyorController.updateInsuranceSurveyor(request);
+        insuranceSurveyorController.updateInsuranceSurveyor(request, userAccountId);
 
         InsuranceSurveyor updatedInsuranceSurveyor = insuranceSurveyorController.getInsuranceSurveyorById(id);
 

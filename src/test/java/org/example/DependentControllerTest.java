@@ -39,8 +39,9 @@ public class DependentControllerTest {
     @Test
     public void testDeleteDependentById() throws Exception {
         int id = 16;
+        int userAccountId = 1;
 
-        dependentController.deleteDependentById(id);
+        dependentController.deleteDependentById(id, userAccountId);
 
         Dependent deletedDependent = dependentController.getDependentById(id);
         assertNull(deletedDependent, "Dependent should be null after deletion");
