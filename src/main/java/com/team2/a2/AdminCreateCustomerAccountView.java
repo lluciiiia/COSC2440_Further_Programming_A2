@@ -3,6 +3,7 @@ package com.team2.a2;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.PolicyOwnerController;
 import com.team2.a2.Model.Enum.CustomerType;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Request.InsertCustomerRequest;
@@ -83,11 +84,20 @@ public class AdminCreateCustomerAccountView implements Initializable {
     private CustomerController customerController = new CustomerController();
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
 
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerPage.fxml"));
+                Parent root = loader.load();
+                AdminCustomerView adminCustomerView = (AdminCustomerView) loader.getController();
+                adminCustomerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -202,7 +212,7 @@ public class AdminCreateCustomerAccountView implements Initializable {
 
             customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName,
                     address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
-            customerController.createCustomer(customerRequest);
+            customerController.createCustomer(customerRequest, account1.getId());
 
         } else if (customerType == CustomerType.POLICY_HOLDER) {
             Integer poOwnerId = policyOwner.getValue();
@@ -211,7 +221,7 @@ public class AdminCreateCustomerAccountView implements Initializable {
 
             customerRequest = new InsertCustomerRequest(username, password, poOwnerAccountId, fullName,
                     address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
-            customerController.createCustomer(customerRequest);
+            customerController.createCustomer(customerRequest, account1.getId());
         }
 
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");

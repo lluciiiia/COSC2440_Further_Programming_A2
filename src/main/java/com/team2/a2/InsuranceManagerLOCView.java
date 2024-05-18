@@ -145,7 +145,7 @@ public class InsuranceManagerLOCView implements Initializable {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
                     try {
-                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED);
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.ACCEPTED, account.getId());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -162,7 +162,7 @@ public class InsuranceManagerLOCView implements Initializable {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.PROCESSING) {
                     try {
-                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED);
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.REJECTED, account.getId());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

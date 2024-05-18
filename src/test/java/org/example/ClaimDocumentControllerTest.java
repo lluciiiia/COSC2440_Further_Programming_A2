@@ -31,9 +31,11 @@ public class ClaimDocumentControllerTest {
 
     @Test
     public void testCreateClaimDocument() throws Exception {
+        int userAccountId = 1;
+
         InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(7, "sample_image.jpg");
 
-        claimDocumentController.createClaimDocument(request);
+        claimDocumentController.createClaimDocument(request, userAccountId);
 
         List<ClaimDocument> claimDocuments = claimDocumentController.getClaimDocumentsByClaimId(request.getClaimId());
 
@@ -52,10 +54,11 @@ public class ClaimDocumentControllerTest {
     @Test
     public void testUpdateClaimDocument() throws Exception {
         int id = 1;
+        int userAccountId = 1;
 
         UpdateClaimDocumentRequest updateRequest = new UpdateClaimDocumentRequest(id, "new_image_src.jpg");
 
-        claimDocumentController.updateClaimDocument(updateRequest);
+        claimDocumentController.updateClaimDocument(updateRequest, userAccountId);
 
         ClaimDocument updatedClaimDocument = claimDocumentController.getClaimDocumentById(id);
 
@@ -75,14 +78,15 @@ public class ClaimDocumentControllerTest {
     @Test
     public void testDeleteClaimDocumentById() throws Exception {
         int id = 1;
+        int userAccountId = 1;
 
         InsertClaimDocumentRequest insertRequest = new InsertClaimDocumentRequest(id, "image_src.jpg");
-        claimDocumentController.createClaimDocument(insertRequest);
+        claimDocumentController.createClaimDocument(insertRequest, userAccountId);
 
         ClaimDocument claimDocument = claimDocumentController.getClaimDocumentById(id);
         assertNotNull(claimDocument, "ClaimDocument should exist before deletion");
 
-        claimDocumentController.deleteClaimDocumentById(id);
+        claimDocumentController.deleteClaimDocumentById(id, userAccountId);
 
         ClaimDocument deletedClaimDocument = claimDocumentController.getClaimDocumentById(id);
         assertNull(deletedClaimDocument, "ClaimDocument should be null after deletion");
@@ -91,12 +95,14 @@ public class ClaimDocumentControllerTest {
     @Test
     public void testAddClaimDocument() throws Exception {
         int claimId = 13;
+        int userAccountId = 1;
+
         InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(claimId, "Document");
 
         Claim existingClaim = claimController.getClaimById(claimId);
         assertNotNull(existingClaim, "The existing claim should exist.");
 
-        claimDocumentController.addClaimDocument(request);
+        claimDocumentController.addClaimDocument(request, userAccountId);
 
         Claim updatedClaim = claimController.getClaimById(claimId);
         assertFalse(updatedClaim.getDocumentRequested());

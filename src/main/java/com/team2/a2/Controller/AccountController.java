@@ -24,7 +24,7 @@ public class AccountController {
         return accountFacade.getAccountByCustomerID(customerID);
     }
     public List<Account> getAllAccounts() { return accountFacade.getAllAccounts(); }
-    public Account updateAccount(UpdateAccountRequest request) throws Exception { return accountFacade.updateAccount(request); }
+    public Account updateAccount(UpdateAccountRequest request, int userAccountId) throws Exception { return accountFacade.updateAccount(request, userAccountId); }
 
-    public void deleteAccountById(int id) throws Exception { accountFacade.deleteAccountById(id); }
+    public void deleteAccountById(int id, int userAccountId) throws Exception { accountFacade.deleteAccountById(id, userAccountId); }
 }

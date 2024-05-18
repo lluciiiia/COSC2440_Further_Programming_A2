@@ -29,13 +29,15 @@ public class AdminCardView implements Initializable {
     @FXML
     private TextField BankAccountNumber;
 
+    private Account account1;
 
-    public void initData(InsuranceCard insuranceCard) {
+    public void initData(InsuranceCard insuranceCard, Account account) {
         customerID.setText("CustomerID: " + insuranceCard.getCustomerId());
         cardNumber.setText("Card number: " + insuranceCard.getCardNumber());
         ExpiryDate.setText("Expiry date: " + insuranceCard.getExpiryDate());
         BankName.setText("Bank name: " + insuranceCard.getBankName());
         BankAccountNumber.setText("Bank account number: " + insuranceCard.getAccountNumber());
+        account1 = account;
     }
 
     @FXML
@@ -44,6 +46,8 @@ public class AdminCardView implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
                 Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);

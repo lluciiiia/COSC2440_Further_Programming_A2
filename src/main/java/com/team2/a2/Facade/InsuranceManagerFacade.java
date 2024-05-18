@@ -12,11 +12,11 @@ public interface InsuranceManagerFacade {
 
     List<InsuranceManager> getAllInsuranceManagers();
 
-    void deleteInsuranceManagerById(int id);
+    void deleteInsuranceManagerById(int id, int userAccountId);
 
-    void createInsuranceManager(InsertInsuranceManagerRequest request) throws Exception;
+    void createInsuranceManager(InsertInsuranceManagerRequest request, int userAccountId) throws Exception;
 
     InsuranceManager getInsuranceManagerById(int id);
 
-    void updateInsuranceManager(UpdateProviderRequest request) throws Exception;
+    void updateInsuranceManager(UpdateProviderRequest request, int userAccountId) throws Exception;
 }

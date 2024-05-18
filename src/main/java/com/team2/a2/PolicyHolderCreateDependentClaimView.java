@@ -87,7 +87,7 @@ public class PolicyHolderCreateDependentClaimView implements Initializable {
             java.sql.Date examDate = java.sql.Date.valueOf(examLocalDate);
 
             InsertClaimRequest insertClaimRequest = new InsertClaimRequest(customer.getId(), claimDate, examDate, amount);
-            claimController.createClaim(insertClaimRequest);
+            claimController.createClaim(insertClaimRequest, account.getId());
 
             showAlert(Alert.AlertType.INFORMATION, "Claim Created!", "Claim created successfully");
         } catch (NumberFormatException e) {

@@ -65,7 +65,9 @@ public class AdminAllSurveyorView implements Initializable {
     private AccountController accountController = new AccountController();
     private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
 
-    void initData(ObservableList<InsuranceSurveyor> insuranceSurveyors) {
+    private Account account1;
+
+    void initData(ObservableList<InsuranceSurveyor> insuranceSurveyors, Account account) {
         originalInsuranceSurveyorList = FXCollections.observableArrayList(insuranceSurveyors);
         insuranceSurveyorID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
@@ -76,13 +78,17 @@ public class AdminAllSurveyorView implements Initializable {
         managerId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getInsuranceManagerId()).asObject());
 
         insuranceSurveyorTable.setItems(originalInsuranceSurveyorList);
+        account1 = account;
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewSurveyorPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewSurveyorPage.fxml"));
+                Parent root = loader.load();
+                AdminSurveyorView adminSurveyorView = loader.getController();
+                adminSurveyorView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -113,12 +119,12 @@ public class AdminAllSurveyorView implements Initializable {
             UpdateProviderRequest updateSurveyorRequest = new UpdateProviderRequest(selectedSurveyor.getId(), selectedSurveyor.getCompanyName(), selectedSurveyor.getCompanyAddress(), phone, email, name, managerID);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
             try {
-                accountController.updateAccount(updateAccountRequest);
+                accountController.updateAccount(updateAccountRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             try {
-                insuranceSurveyorController.updateInsuranceSurveyor(updateSurveyorRequest);
+                insuranceSurveyorController.updateInsuranceSurveyor(updateSurveyorRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -146,7 +152,11 @@ public class AdminAllSurveyorView implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
-                insuranceSurveyorController.deleteInsuranceSurveyorById(selectedSurveyor.getId());
+                try {
+                    insuranceSurveyorController.deleteInsuranceSurveyorById(selectedSurveyor.getId(), account1.getId());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 showAlert("Success", "Manager deleted successfully.");
                 originalInsuranceSurveyorList.remove(selectedSurveyor);
                 refreshTable();

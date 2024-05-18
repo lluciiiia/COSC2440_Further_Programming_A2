@@ -88,11 +88,12 @@ public class AccountControllerTest {
     @Test
     public void testUpdateAccount() throws Exception {
         int id = 40;
+        int userAccountId = 1;
 
         Account currentAccount = accountController.getAccountByID(id);
 
         UpdateAccountRequest request = new UpdateAccountRequest(id, "i'm updated", "12345678");
-        accountController.updateAccount(request);
+        accountController.updateAccount(request, userAccountId);
 
         Account updatedAccount = accountController.getAccountByID(id);
 
@@ -103,8 +104,9 @@ public class AccountControllerTest {
     @Test
     public void testDeleteAccountById() throws Exception {
         int id = 1;
+        int userAccountId = 1;
 
-        accountController.deleteAccountById(id);
+        accountController.deleteAccountById(id, userAccountId);
 
         Account deletedAccount = accountController.getAccountByID(id);
         assertNull(deletedAccount, "The account should be deleted");

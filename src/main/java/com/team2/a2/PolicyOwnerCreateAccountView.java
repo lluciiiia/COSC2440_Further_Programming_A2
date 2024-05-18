@@ -174,7 +174,7 @@ public class PolicyOwnerCreateAccountView implements Initializable {
                     address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
         }
 
-        customerController.createCustomer(customerRequest);
+        customerController.createCustomer(customerRequest, account.getId());
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
 
     }

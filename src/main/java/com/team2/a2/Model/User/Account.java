@@ -7,19 +7,16 @@ import java.util.Date;
 
 public class Account extends BaseEntity {
 
-    protected String username;
-    protected String password;
-    public AccountType type;
+    private String username;
+    private String password;
+    private AccountType type;
 
-    //initializer
     public Account(int id, Date createdAt, Date updatedAt, String username, String password, AccountType type) {
         super(id, createdAt, updatedAt);
         this.username = username;
         this.password = password;
         this.type = type;
     }
-
-    //getter function
 
     public String getUsername() {
         return username;

@@ -105,8 +105,8 @@ public class PolicyHolderInformationView implements Initializable {
         }
         UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(account.getId(), account.getUsername(), password);
         UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(customer1.getId(),name, address, phone, email);
-        Account updatedAccount = accountController.updateAccount(updateAccountRequest);
-        Customer updatedCustomer = customerController.updateCustomer(updateCustomerRequest);
+        Account updatedAccount = accountController.updateAccount(updateAccountRequest, account.getId());
+        Customer updatedCustomer = customerController.updateCustomer(updateCustomerRequest, account.getId());
 
         if (updatedCustomer != null) {
             customer1 = updatedCustomer;

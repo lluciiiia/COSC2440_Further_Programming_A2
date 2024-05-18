@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.PolicyOwnerController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import javafx.collections.FXCollections;
@@ -31,10 +32,20 @@ public class AdminPolicyOwnerView implements Initializable {
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
 
 
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
+
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+                Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -46,7 +57,10 @@ public class AdminPolicyOwnerView implements Initializable {
 
         CreatePolicyOwnerAccount.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreatePolicyOwnerAccountPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCreatePolicyOwnerAccountPage.fxml"));
+                Parent root = loader.load();
+                AdminCreatePolicyOwnerAccountView adminCreatePolicyOwnerAccountView = loader.getController();
+                adminCreatePolicyOwnerAccountView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) CreatePolicyOwnerAccount.getScene().getWindow();
                 stage.setScene(scene);
@@ -69,7 +83,7 @@ public class AdminPolicyOwnerView implements Initializable {
                 };
 
                 loadPolicyOwnerTask.setOnSucceeded(workerStateEvent -> {
-                    adminAllPolicyOwnerView.initData(FXCollections.observableArrayList(loadPolicyOwnerTask.getValue()));
+                    adminAllPolicyOwnerView.initData(FXCollections.observableArrayList(loadPolicyOwnerTask.getValue()), account1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ViewAllPolicyOwnerButton.getScene().getWindow();
                     stage.setScene(scene);

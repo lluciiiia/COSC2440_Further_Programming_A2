@@ -86,6 +86,8 @@ public class CustomerControllerTest {
 
     @Test
     public void testCreateCustomer() throws Exception {
+        int userAccountId = 1;
+
         InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph",
                 "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER,
                 "1234567890123456",
@@ -99,14 +101,14 @@ public class CustomerControllerTest {
                 "VPBank",
                 "12390");
 
-        customerController.createCustomer(policyHolderRequest);
-        customerController.createCustomer(dependentRequest);
+        customerController.createCustomer(policyHolderRequest, userAccountId);
+        customerController.createCustomer(dependentRequest, userAccountId);
     }
 
     @Test
     public void testUpdateCustomer() throws Exception {
-
         int accountId = 48;
+        int userAccountId = 1;
 
         Customer previousCustomer = customerController.getCustomerByAccountId(accountId);
 
@@ -115,7 +117,7 @@ public class CustomerControllerTest {
 
         UpdateCustomerRequest request = new UpdateCustomerRequest(previousCustomer.getId(), "already dp", "Hoi an", "12345678987654", "changed@gmail.com");
 
-        customerController.updateCustomer(request);
+        customerController.updateCustomer(request, userAccountId);
 
         Customer updatedCustomer = customerController.getCustomerByAccountId(accountId);
 
@@ -139,6 +141,8 @@ public class CustomerControllerTest {
     @Test
     public void testDeleteCustomerById() throws Exception {
         int accountId = 3;
+        int userAccountId = 1;
+
         List<Dependent> dependents = new ArrayList<>();
 
         Customer customer = customerController.getCustomerByAccountId(accountId);
@@ -149,7 +153,7 @@ public class CustomerControllerTest {
 
         assertNotNull(customer, "Customer should NOT be null for testing.");
 
-        customerController.deleteCustomerById(customer.getId());
+        customerController.deleteCustomerById(customer.getId(), userAccountId);
 
         assertNull(customerRepository.getCustomerById(customer.getId()), "Customer should be deleted");
 

@@ -2,6 +2,7 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.InsuranceManagerController;
 import com.team2.a2.Controller.PolicyOwnerController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.InsertInsuranceManagerRequest;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
 import javafx.fxml.FXML;
@@ -40,13 +41,22 @@ public class AdminCreateManagerAccountView implements Initializable {
     @FXML
     private Button createAccountButton;
 
+
+    private Account account1;
+    public void initData(Account account) {
+        account1 = account;
+    }
+
     private InsuranceManagerController insuranceManagerController = new InsuranceManagerController();
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewManagerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewManagerPage.fxml"));
+                Parent root = loader.load();
+                AdminManagerView adminManagerView = loader.getController();
+                adminManagerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -89,7 +99,7 @@ public class AdminCreateManagerAccountView implements Initializable {
 
         InsertInsuranceManagerRequest insertInsuranceManagerRequest;
         insertInsuranceManagerRequest = new InsertInsuranceManagerRequest(username, password, companyName, address, phone, email, fullName);
-        insuranceManagerController.createInsuranceManager(insertInsuranceManagerRequest);
+        insuranceManagerController.createInsuranceManager(insertInsuranceManagerRequest, account1.getId());
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
     }
 }

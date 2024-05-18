@@ -2,6 +2,7 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.InsuranceManagerController;
 import com.team2.a2.Controller.InsuranceSurveyorController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
@@ -53,11 +54,20 @@ public class AdminCreateSurveyorView implements Initializable {
     private InsuranceManagerController insuranceManagerController = new InsuranceManagerController();
     private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
 
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewSurveyorPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewSurveyorPage.fxml"));
+                Parent root = loader.load();
+                AdminSurveyorView adminSurveyorView = loader.getController();
+                adminSurveyorView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -120,7 +130,7 @@ public class AdminCreateSurveyorView implements Initializable {
 
         InsertInsuranceSurveyorRequest insertInsuranceSurveyorRequest;
         insertInsuranceSurveyorRequest = new InsertInsuranceSurveyorRequest(username, password, companyName, address, phone, email, fullName, insuranceManagerId);
-        insuranceSurveyorController.createInsuranceSurveyor(insertInsuranceSurveyorRequest);
+        insuranceSurveyorController.createInsuranceSurveyor(insertInsuranceSurveyorRequest, account1.getId());
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
     }
 }

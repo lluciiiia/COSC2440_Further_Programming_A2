@@ -29,6 +29,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
     ClaimFacade claimFacade;
     InsuranceCardFacade insuranceCardFacade;
 
+    LogRepository logRepository;
+
 
     public CustomerFacadeImpl() {
         this.policyOwnerRepository = new PolicyOwnerRepository();
@@ -39,6 +41,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
         this.claimRepository = new ClaimRepository();
         this.claimFacade = new ClaimFacadeImpl();
         this.insuranceCardFacade = new InsuranceCardFacadeImpl();
+        this.logRepository = new LogRepository();
     }
 
     @Override
@@ -86,7 +89,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer createCustomer(InsertCustomerRequest request) throws Exception {
+    public Customer createCustomer(InsertCustomerRequest request, int userAccountId) throws Exception {
         Customer customer = null;
 
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
@@ -119,6 +122,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
 
+        logRepository.createLog(userAccountId, "Created a customer with id " + customer.getId());
+
         return customer;
     }
 
@@ -128,15 +133,17 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer updateCustomer(UpdateCustomerRequest request) throws Exception {
+    public Customer updateCustomer(UpdateCustomerRequest request, int userAccountId) throws Exception {
         Customer customer = customerRepository.getCustomerById(request.getId());
         if (customer == null) throw new Exception("Customer doesn't exist");
+
+        logRepository.createLog(userAccountId, "Updated a customer with id " + request.getId());
 
         return customerRepository.updateCustomer(request);
     }
 
     @Override
-    public void deleteCustomerById(int id) throws Exception {
+    public void deleteCustomerById(int id, int userAccountId) throws Exception {
         Customer customer = customerRepository.getCustomerById(id);
         if (customer == null) throw new Exception("Customer doesn't exist");
 
@@ -157,16 +164,18 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardByCustomerId(id);
         if (insuranceCard != null) {
-            insuranceCardFacade.deleteInsuranceCardById(insuranceCard.getId());
+            insuranceCardFacade.deleteInsuranceCardById(insuranceCard.getId(), userAccountId);
         }
 
         List<Claim> claims = claimRepository.getClaimsByCustomerId(id);
 
         for (Claim claim : claims) {
-            claimFacade.deleteClaimById(claim.getId());
+            claimFacade.deleteClaimById(claim.getId(), userAccountId);
         }
 
         customerRepository.deleteCustomerById(id);
+
+        logRepository.createLog(userAccountId, "Deleted a customer with id " + id);
     }
 
 }

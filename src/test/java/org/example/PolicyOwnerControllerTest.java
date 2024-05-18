@@ -51,16 +51,19 @@ public class PolicyOwnerControllerTest {
 
     @Test
     public void testCreatePolicyOwner() throws Exception {
+        int userAccountId = 1;
+
         InsertPolicyOwnerRequest request = new InsertPolicyOwnerRequest("PO username", "12345", "PO name");
 
-        policyOwnerController.createPolicyOwner(request);
+        policyOwnerController.createPolicyOwner(request, userAccountId);
     }
 
     @Test
     public void testDeletePolicyOwnerById() throws Exception {
         int id = 1;
+        int userAccountId = 1;
 
-        policyOwnerController.deletePolicyOwnerById(id);
+        policyOwnerController.deletePolicyOwnerById(id, userAccountId);
 
         PolicyOwner deletedPolicyOwner = policyOwnerController.getPolicyOwnerById(id);
         assertNull(deletedPolicyOwner, "Policy owner should be deleted successfully");
@@ -80,10 +83,11 @@ public class PolicyOwnerControllerTest {
     @Test
         public void testUpdatePolicyOwner() throws Exception {
         int id = 3;
+        int userAccountId = 1;
 
         UpdatePolicyOwnerRequest request = new UpdatePolicyOwnerRequest(id, "Jane Smith");
 
-        policyOwnerController.updatePolicyOwner(request);
+        policyOwnerController.updatePolicyOwner(request, userAccountId);
         PolicyOwner updatedPolicyOwner = policyOwnerController.getPolicyOwnerById(id);
 
         assertEquals(request.getName(), updatedPolicyOwner.getName(), "The name should be the same.");

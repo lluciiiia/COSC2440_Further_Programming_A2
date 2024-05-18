@@ -22,12 +22,12 @@ public class PolicyOwnerController {
 
     public List<PolicyOwner> getAllPolicyOwners() { return policyOwnerFacade.getAllPolicyOwners(); }
 
-    public void createPolicyOwner(InsertPolicyOwnerRequest request) throws Exception { policyOwnerFacade.createPolicyOwner(request); }
+    public void createPolicyOwner(InsertPolicyOwnerRequest request, int userAccountId) throws Exception { policyOwnerFacade.createPolicyOwner(request, userAccountId); }
 
-    public void deletePolicyOwnerById(int id) throws Exception { policyOwnerFacade.deletePolicyOwnerById(id); }
+    public void deletePolicyOwnerById(int id, int userAccountId) throws Exception { policyOwnerFacade.deletePolicyOwnerById(id, userAccountId); }
 
     public PolicyOwner getPolicyOwnerById(int id) { return policyOwnerFacade.getPolicyOwnerById(id);
     }
 
-    public void updatePolicyOwner(UpdatePolicyOwnerRequest request) throws Exception { policyOwnerFacade.updatePolicyOwner(request); }
+    public void updatePolicyOwner(UpdatePolicyOwnerRequest request, int userAccountId) throws Exception { policyOwnerFacade.updatePolicyOwner(request, userAccountId); }
 }

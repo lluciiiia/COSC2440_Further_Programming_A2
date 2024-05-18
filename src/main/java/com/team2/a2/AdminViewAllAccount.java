@@ -48,8 +48,10 @@ public class AdminViewAllAccount implements Initializable {
 
     private ObservableList<Account> originalAccountList;
 
+    private Account account1;
 
-    public void initData(ObservableList<Account> accounts) {
+
+    public void initData(ObservableList<Account> accounts, Account account) {
         originalAccountList = FXCollections.observableArrayList(accounts);
         accountId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         createdAtColumn.setCellValueFactory(cellData -> {
@@ -77,6 +79,7 @@ public class AdminViewAllAccount implements Initializable {
         type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
 
         accountTable.setItems(originalAccountList);
+        account1 = account;
     }
 
 
@@ -85,7 +88,10 @@ public class AdminViewAllAccount implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+                Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);

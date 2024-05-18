@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.InsuranceManagerController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import javafx.collections.FXCollections;
@@ -29,12 +30,20 @@ public class AdminManagerView implements Initializable {
     private Button ViewAllManager;
 
     private InsuranceManagerController insuranceManagerController = new InsuranceManagerController();
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+                Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -46,7 +55,10 @@ public class AdminManagerView implements Initializable {
 
         CreateManagerAccountButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateManagerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCreateManagerPage.fxml"));
+                Parent root = loader.load();
+                AdminCreateManagerAccountView adminCreateManagerAccountView = loader.getController();
+                adminCreateManagerAccountView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) CreateManagerAccountButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -69,7 +81,7 @@ public class AdminManagerView implements Initializable {
                 };
 
                 loadManagerTask.setOnSucceeded(workerStateEvent -> {
-                    adminAllManagerView.initData(FXCollections.observableArrayList(loadManagerTask.getValue()));
+                    adminAllManagerView.initData(FXCollections.observableArrayList(loadManagerTask.getValue()), account1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ViewAllManager.getScene().getWindow();
                     stage.setScene(scene);

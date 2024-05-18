@@ -57,7 +57,9 @@ public class AdminCustomerLOCView implements Initializable {
 
     private ObservableList<Claim> claimsData;
 
-    public void initData(ObservableList<Claim> claims) {
+    private Account account1;
+
+    public void initData(ObservableList<Claim> claims, Account account) {
         claimID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
 
         claimDate.setCellValueFactory(cellData -> {
@@ -107,13 +109,18 @@ public class AdminCustomerLOCView implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
+        account1 = account;
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerPage.fxml"));
+                Parent root = loader.load();
+                AdminCustomerView adminCustomerView = (AdminCustomerView) loader.getController();
+                adminCustomerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);

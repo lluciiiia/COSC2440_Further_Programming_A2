@@ -88,8 +88,9 @@ public class ClaimControllerTest {
     @Test
     public void testDeleteClaimById() throws Exception {
         int id = 7;
+        int userAccountId = 1;
 
-        claimController.deleteClaimById(id);
+        claimController.deleteClaimById(id, userAccountId);
 
         Claim claim = claimController.getClaimById(id);
         List<ClaimDocument> claimDocuments = claimDocumentController.getClaimDocumentsByClaimId(id);
@@ -101,10 +102,12 @@ public class ClaimControllerTest {
     @Test
     void testUpdateClaimStatus() throws Exception {
         int claimId = 7;
+        int userAccountId = 1;
+
         ClaimStatus newClaimStatus = ClaimStatus.PROCESSING;
 
         Claim previousClaim = claimController.getClaimById(claimId);
-        claimController.updateClaimStatus(claimId, newClaimStatus);
+        claimController.updateClaimStatus(claimId, newClaimStatus, userAccountId);
 
         Claim updatedClaim = claimController.getClaimById(claimId);
 
@@ -113,19 +116,22 @@ public class ClaimControllerTest {
 
     @Test
     public void testCreateClaim() throws Exception {
+        int userAccountId = 1;
+
         InsertClaimRequest request = new InsertClaimRequest(33, Date.valueOf("2027-02-12"), Date.valueOf("2027-02-12"), 2345.00);
 
-        claimController.createClaim(request);
+        claimController.createClaim(request, userAccountId);
     }
 
     @Test
     public void testUpdateClaimDocumentRequested() throws Exception {
         int claimId = 7;
+        int userAccountId = 1;
 
         Claim previousClaim = claimController.getClaimById(claimId);
         boolean newDocumentRequested = !previousClaim.getDocumentRequested();
 
-        claimController.updateClaimDocumentRequested(claimId, newDocumentRequested);
+        claimController.updateClaimDocumentRequested(claimId, newDocumentRequested, userAccountId);
 
         Claim updatedClaim = claimController.getClaimById(claimId);
 
@@ -135,10 +141,11 @@ public class ClaimControllerTest {
     @Test
     public void testUpdateClaim() throws Exception {
         int claimId = 8;
+        int userAccountId = 1;
 
         UpdateClaimRequest updateRequest = new UpdateClaimRequest(claimId,
                 Date.valueOf("2024-05-01"), Date.valueOf("2024-05-15"), 2500.0);
-        claimController.updateClaim(updateRequest);
+        claimController.updateClaim(updateRequest, userAccountId);
 
         Claim updatedClaim = claimController.getClaimById(claimId);
 

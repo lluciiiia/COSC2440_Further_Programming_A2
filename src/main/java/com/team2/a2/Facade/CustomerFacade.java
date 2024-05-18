@@ -21,12 +21,12 @@ public interface CustomerFacade {
 
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception;
 
-    Customer createCustomer(InsertCustomerRequest request) throws Exception;
+    Customer createCustomer(InsertCustomerRequest request, int userAccountId) throws Exception;
 
     List<Customer> getAllCustomers();
 
-    Customer updateCustomer(UpdateCustomerRequest request) throws Exception;
+    Customer updateCustomer(UpdateCustomerRequest request, int userAccountId) throws Exception;
 
 
-    void deleteCustomerById(int id) throws Exception;
+    void deleteCustomerById(int id, int userAccountId) throws Exception;
 }

@@ -62,7 +62,8 @@ public class AdminAllManagerView implements Initializable {
     private AccountController accountController = new AccountController();
     private InsuranceManagerController insuranceManagerController = new InsuranceManagerController();
 
-    public void initData(ObservableList<InsuranceManager> insuranceManagers) {
+    private Account account1;
+    public void initData(ObservableList<InsuranceManager> insuranceManagers, Account account) {
         originalInsuranceManagerList = FXCollections.observableArrayList(insuranceManagers);
 
         insuranceManagerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -73,13 +74,17 @@ public class AdminAllManagerView implements Initializable {
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
 
         insuranceManagerTable.setItems(originalInsuranceManagerList);
+        account1 = account;
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewManagerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewManagerPage.fxml"));
+                Parent root = loader.load();
+                AdminManagerView adminManagerView = loader.getController();
+                adminManagerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -109,12 +114,12 @@ public class AdminAllManagerView implements Initializable {
             UpdateProviderRequest updateManagerRequest = new UpdateProviderRequest(selectedManager.getId(), selectedManager.getCompanyName(), selectedManager.getCompanyAddress(), phone, email, name);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
             try {
-                accountController.updateAccount(updateAccountRequest);
+                accountController.updateAccount(updateAccountRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             try {
-                insuranceManagerController.updateInsuranceManager(updateManagerRequest);
+                insuranceManagerController.updateInsuranceManager(updateManagerRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -142,7 +147,7 @@ public class AdminAllManagerView implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
-                insuranceManagerController.deleteInsuranceManagerById(selectedManager.getId());
+                insuranceManagerController.deleteInsuranceManagerById(selectedManager.getId(), account1.getId());
                 showAlert("Success", "Manager deleted successfully.");
                 originalInsuranceManagerList.remove(selectedManager);
                 refreshTable();

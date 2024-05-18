@@ -5,6 +5,7 @@ import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
 import com.team2.a2.Repository.ClaimDocumentRepository;
 import com.team2.a2.Repository.ClaimRepository;
+import com.team2.a2.Repository.LogRepository;
 import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
@@ -15,17 +16,21 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     ClaimRepository claimRepository;
     ClaimDocumentRepository claimDocumentRepository;
 
+    LogRepository logRepository;
+
     public ClaimDocumentFacadeImpl() {
         this.claimRepository = new ClaimRepository();
         this.claimDocumentRepository = new ClaimDocumentRepository();
+        this.logRepository = new LogRepository();
     }
 
     @Override
-    public void createClaimDocument(InsertClaimDocumentRequest request) throws Exception {
+    public void createClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception {
         Claim claim = claimRepository.getClaimById(request.getClaimId());
         if (claim == null) throw new Exception("Claim doesn't exist");
 
         claimDocumentRepository.createClaimDocument(request);
+        logRepository.createLog(userAccountId, "Created a claim document for a claim with id " + request.getClaimId());
     }
 
     @Override
@@ -37,11 +42,13 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     }
 
     @Override
-    public void updateClaimDocument(UpdateClaimDocumentRequest request) throws Exception {
+    public void updateClaimDocument(UpdateClaimDocumentRequest request, int userAccountId) throws Exception {
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(request.getId());
         if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
         claimDocumentRepository.updateClaimDocument(request);
+
+        logRepository.createLog(userAccountId, "Updated a claim document with id " + request.getId());
     }
 
     @Override
@@ -50,20 +57,24 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
     }
 
     @Override
-    public void deleteClaimDocumentById(int id) throws Exception {
+    public void deleteClaimDocumentById(int id, int userAccountId) throws Exception {
         ClaimDocument claimDocument = claimDocumentRepository.getClaimDocumentById(id);
         if (claimDocument == null) throw new Exception("Claim document doesn't exist");
 
         claimDocumentRepository.deleteClaimDocumentById(id);
+
+        logRepository.createLog(userAccountId, "Deleted a claim document with id " + id);
     }
 
     @Override
-    public void addClaimDocument(InsertClaimDocumentRequest request) throws Exception {
+    public void addClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception {
         Claim claim = claimRepository.getClaimById(request.getClaimId());
         if (claim == null) throw new Exception("Claim doesn't exist");
 
         claimDocumentRepository.createClaimDocument(request);
 
         if (claim.getDocumentRequested() == true) claimRepository.updateClaimDocumentRequested(claim.getId(), false);
+
+        logRepository.createLog(userAccountId, "Added a claim document for a claim with id " + request.getClaimId());
     }
 }

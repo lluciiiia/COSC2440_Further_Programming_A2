@@ -77,7 +77,8 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
     private InsuranceCardController insuranceCardController = new InsuranceCardController();
     private InsuranceCard insuranceCard;
 
-    public void initData(ObservableList<Customer> customers) {
+    private Account account1;
+    public void initData(ObservableList<Customer> customers, Account account) {
         originalCustomerList = FXCollections.observableArrayList(customers);
 
         customerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -88,6 +89,7 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
         type.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType()));
 
         customerTable.setItems(originalCustomerList);
+        account1 = account;
     }
 
     @FXML
@@ -101,7 +103,10 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
 
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewCustomerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerPage.fxml"));
+                Parent root = loader.load();
+                AdminCustomerView adminCustomerView = loader.getController();
+                adminCustomerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -132,12 +137,12 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
             UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(), name, address, phone, email);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
             try {
-                accountController.updateAccount(updateAccountRequest);
+                accountController.updateAccount(updateAccountRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             try {
-                customerController.updateCustomer(updateCustomerRequest);
+                customerController.updateCustomer(updateCustomerRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -166,7 +171,7 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
                 try {
-                    customerController.deleteCustomerById(selectedCustomer.getId());
+                    customerController.deleteCustomerById(selectedCustomer.getId(), account1.getId());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -187,7 +192,7 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerCardPage.fxml"));
                 Parent root = loader.load();
                 AdminCardView adminCardView = loader.getController();
-                adminCardView.initData(insuranceCard);
+                adminCardView.initData(insuranceCard, account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
                 stage.setScene(scene);

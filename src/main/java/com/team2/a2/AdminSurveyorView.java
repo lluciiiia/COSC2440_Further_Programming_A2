@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.InsuranceSurveyorController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
 import com.team2.a2.Model.User.Provider.InsuranceSurveyor;
 import javafx.collections.FXCollections;
@@ -29,12 +30,20 @@ public class AdminSurveyorView implements Initializable {
     private Button ViewAllSurveyorButton;
 
     private InsuranceSurveyorController insuranceSurveyorController = new InsuranceSurveyorController();
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+                Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -46,7 +55,10 @@ public class AdminSurveyorView implements Initializable {
 
         CreateSurveyorButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateSurveyorPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCreateSurveyorPage.fxml"));
+                Parent root = loader.load();
+                AdminCreateSurveyorView adminCreateSurveyorView = loader.getController();
+                adminCreateSurveyorView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) CreateSurveyorButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -69,7 +81,7 @@ public class AdminSurveyorView implements Initializable {
                 };
 
                 loadSurveyorTask.setOnSucceeded(workerStateEvent -> {
-                    adminAllSurveyorView.initData(FXCollections.observableArrayList(loadSurveyorTask.getValue()));
+                    adminAllSurveyorView.initData(FXCollections.observableArrayList(loadSurveyorTask.getValue()), account1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ViewAllSurveyorButton.getScene().getWindow();
                     stage.setScene(scene);
