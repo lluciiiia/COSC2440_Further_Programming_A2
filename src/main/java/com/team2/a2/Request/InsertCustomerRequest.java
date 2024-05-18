@@ -2,6 +2,8 @@ package com.team2.a2.Request;
 
 import com.team2.a2.Model.Enum.CustomerType;
 
+import java.sql.Date;
+
 public class InsertCustomerRequest {
 
     private String username;
@@ -14,9 +16,17 @@ public class InsertCustomerRequest {
     private String email;
     private CustomerType type;
 
+    // Insurance Card
+    private String cardNumber;
+    private Date expiryDate;
+
+    private String bankName;
+    private String accountNumber;
+
     // Dependent Constructor
     public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, int policyHolderId, String name,
-                                 String address, String phoneNumber, String email, CustomerType type) {
+                                 String address, String phoneNumber, String email, CustomerType type,
+                                 String cardNumber, Date expiryDate, String bankName, String accountNumber) {
         this.username = username;
         this.password = password;
         this.policyOwnerAccountId = policyOwnerAccountId;
@@ -26,11 +36,16 @@ public class InsertCustomerRequest {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.type = type;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.bankName = bankName;
+        this.accountNumber = accountNumber;
     }
 
     // Policy Holder Constructor
     public InsertCustomerRequest(String username, String password, int policyOwnerAccountId, String name,
-                                 String address, String phoneNumber, String email, CustomerType type) {
+                                 String address, String phoneNumber, String email, CustomerType type,
+                                 String cardNumber, Date expiryDate, String bankName, String accountNumber) {
         this.username = username;
         this.password = password;
         this.policyOwnerAccountId = policyOwnerAccountId;
@@ -39,6 +54,10 @@ public class InsertCustomerRequest {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.type = type;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.bankName = bankName;
+        this.accountNumber = accountNumber;
     }
 
     // Getters
@@ -76,5 +95,21 @@ public class InsertCustomerRequest {
 
     public CustomerType getType() {
         return type;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 }
