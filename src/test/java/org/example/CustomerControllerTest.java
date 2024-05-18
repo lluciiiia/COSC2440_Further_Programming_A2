@@ -86,9 +86,18 @@ public class CustomerControllerTest {
 
     @Test
     public void testCreateCustomer() {
-        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph", "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER);
+        InsertCustomerRequest policyHolderRequest = new InsertCustomerRequest("new ph username", "12345", 4, "wanna be a ph",
+                "hochiminh", "098765", "123456@gmail.com", CustomerType.POLICY_HOLDER,
+                "1234567890123456",
+                Date.valueOf("2024-12-31"),
+                "VPBank",
+                "12390");
 
-        InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT);
+        InsertCustomerRequest dependentRequest = new InsertCustomerRequest("new dep username", "12345", 4, 12, "wanna be a dp", "danang", "098765", "12ewca6@gmail.com", CustomerType.DEPENDENT,
+                "1234567890123456",
+                Date.valueOf("2024-12-31"),
+                "VPBank",
+                "12390");
 
         customerController.createCustomer(policyHolderRequest);
         customerController.createCustomer(dependentRequest);

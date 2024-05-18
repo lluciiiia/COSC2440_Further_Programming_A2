@@ -22,7 +22,7 @@ public interface CustomerFacade {
 
     List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId);
 
-    Customer createCustomer(InsertCustomerRequest request);
+    Customer createCustomer(InsertCustomerRequest request) throws Exception;
 
     List<Customer> getAllCustomers();
 
