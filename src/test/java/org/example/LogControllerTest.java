@@ -1,15 +1,17 @@
 package org.example;
 
 import com.team2.a2.ConnectionManager;
-import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.LogController;
 import com.team2.a2.Model.Log;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class LogControllerTest {
     private LogController logController;
