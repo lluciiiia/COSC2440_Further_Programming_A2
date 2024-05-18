@@ -39,10 +39,12 @@
                         <TableColumn fx:id="customerID" prefWidth="52.7999267578125" text="Cus ID" />
                     </columns>
                 </TableView>
-            <DatePicker fx:id="claimDatePicker" layoutX="58.0" layoutY="51.0" prefHeight="26.0" prefWidth="155.0" promptText="claimDate" />
-            <DatePicker fx:id="examDatePicker" layoutX="233.0" layoutY="52.0" prefHeight="26.0" prefWidth="148.0" promptText="examDate" />
-            <TextField fx:id="amountField" layoutX="401.0" layoutY="52.0" prefHeight="26.0" prefWidth="100.0" promptText="amount" />
+            <DatePicker fx:id="claimDatePicker" layoutX="21.0" layoutY="52.0" prefHeight="26.0" prefWidth="155.0" promptText="claimDate" />
+            <DatePicker fx:id="examDatePicker" layoutX="193.0" layoutY="52.0" prefHeight="26.0" prefWidth="148.0" promptText="examDate" />
+            <TextField fx:id="amountField" layoutX="368.0" layoutY="52.0" prefHeight="26.0" prefWidth="100.0" promptText="amount" />
             <Button fx:id="editClaim" layoutX="570.0" layoutY="52.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Edit Claim" />
+            <Button fx:id="viewDocuments" layoutX="334.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="View document" />
+            <Button fx:id="addDocuments" layoutX="452.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Add document" />
             </children>
         </AnchorPane>
     </left>

@@ -2,11 +2,13 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
+import com.team2.a2.Controller.ClaimDocumentController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
+import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimRequest;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -21,6 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,14 +34,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PolicyHolderDependentClaimView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button addDocuments;
+    @FXML
+    private Button viewDocuments;
 
     @FXML
     private Text customerNameText;
@@ -71,6 +77,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
     private ObservableList<Claim> originalClaimList;
 
     private ClaimController claimController = new ClaimController();
+    private ClaimDocumentController claimDocumentController = new ClaimDocumentController();
     private CustomerController customerController= new CustomerController();
     private AccountController accountController = new AccountController();
     private Account account;
@@ -176,6 +183,8 @@ public class PolicyHolderDependentClaimView implements Initializable {
         });
 
         editClaimButton.setOnAction(event -> editSelectedClaim());
+        addDocuments.setOnAction(event -> addDocumentToClaim());
+        viewDocuments.setOnAction(event -> viewDocumentsOfSelectedClaim());
     }
 
     private void editSelectedClaim() {
@@ -208,6 +217,62 @@ public class PolicyHolderDependentClaimView implements Initializable {
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Form Error", "Please enter a valid amount.");
         }
+    }
+
+    private void addDocumentToClaim() {
+        Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
+        if (selectedClaim == null) {
+            showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to add a document.");
+            return;
+        }
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Add Document");
+        dialog.setHeaderText("Add Document to Claim ID: " + selectedClaim.getId());
+        dialog.setContentText("Please enter the image source:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String imageSource = result.get();
+
+            InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(selectedClaim.getId(), imageSource);
+            claimDocumentController.createClaimDocument(request);
+
+            showAlert(Alert.AlertType.INFORMATION, "Add Document", "Document added successfully.");
+        }
+    }
+
+    private void viewDocumentsOfSelectedClaim() {
+        Claim selectedClaim = claimTable.getSelectionModel().getSelectedItem();
+        if (selectedClaim == null) {
+            showAlert(Alert.AlertType.ERROR, "Selection Error", "Please select a claim to view documents.");
+            return;
+        }
+
+        List<String> imageSources = claimDocumentController.getImageSourcesByClaimId(selectedClaim.getId());
+
+        if (imageSources == null || imageSources.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "No Document", "No documents found for the selected claim.");
+            return;
+        }
+
+        Stage stage = new Stage();
+        VBox vbox = new VBox();
+        for (String imageSource : imageSources) {
+            ImageView imageView = new ImageView(new Image(imageSource));
+            imageView.setFitWidth(800);
+            imageView.setPreserveRatio(true);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+            vbox.getChildren().add(imageView);
+        }
+
+        ScrollPane scrollPane = new ScrollPane(vbox);
+        Scene scene = new Scene(scrollPane, 800, 600);
+
+        stage.setTitle("View Documents");
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void refreshClaimTable() {
