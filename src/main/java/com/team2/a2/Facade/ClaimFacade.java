@@ -12,7 +12,7 @@ public interface ClaimFacade {
 
     List<Claim> getClaimsByCustomerId(int id);
 
-    void deleteClaimById(int id, int userAccountId);
+    void deleteClaimById(int id, int userAccountId) throws Exception;
 
     void updateClaimStatus(int id, ClaimStatus status, int userAccountId) throws Exception;
     List<Claim> getAllClaims();

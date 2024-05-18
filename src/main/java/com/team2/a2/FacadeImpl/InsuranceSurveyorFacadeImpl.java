@@ -46,9 +46,14 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
     @Override
     public void deleteInsuranceSurveyorById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorById(id);
         if (insuranceSurveyor == null) throw new Exception("Insurance surveyor doesn't exist");
+
         int accountId = insuranceSurveyor.getAccountId();
+
         insuranceSurveyorRepository.deleteInsuranceSurveyorById(id);
         accountRepository.deleteAccountById(accountId);
 
@@ -57,6 +62,9 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
     @Override
     public void createInsuranceSurveyor(InsertInsuranceSurveyorRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
@@ -73,6 +81,9 @@ public class InsuranceSurveyorFacadeImpl implements InsuranceSurveyorFacade {
 
     @Override
     public void updateInsuranceSurveyor(UpdateProviderRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorById(request.getId());
         if (insuranceSurveyor == null) throw new Exception("Insurance surveyor doesn't exist");
 

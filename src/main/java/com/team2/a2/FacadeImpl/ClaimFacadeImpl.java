@@ -4,11 +4,9 @@ import com.team2.a2.Facade.ClaimFacade;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.InsuranceObject.ClaimDocument;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
-import com.team2.a2.Repository.ClaimDocumentRepository;
-import com.team2.a2.Repository.ClaimRepository;
-import com.team2.a2.Repository.CustomerRepository;
-import com.team2.a2.Repository.LogRepository;
+import com.team2.a2.Repository.*;
 import com.team2.a2.Request.InsertClaimRequest;
 import com.team2.a2.Request.UpdateClaimRequest;
 
@@ -21,12 +19,14 @@ public class ClaimFacadeImpl implements ClaimFacade {
     ClaimDocumentRepository claimDocumentRepository;
 
     LogRepository logRepository;
+    AccountRepository accountRepository;
 
     public ClaimFacadeImpl() {
         this.claimRepository = new ClaimRepository();
         this.customerRepository = new CustomerRepository();
         this.claimDocumentRepository = new ClaimDocumentRepository();
         this.logRepository = new LogRepository();
+        this.accountRepository = new AccountRepository();
     }
 
     @Override
@@ -38,7 +38,10 @@ public class ClaimFacadeImpl implements ClaimFacade {
     public List<Claim> getClaimsByCustomerId(int customerId) { return claimRepository.getClaimsByCustomerId(customerId); }
 
     @Override
-    public void deleteClaimById(int id, int userAccountId) {
+    public void deleteClaimById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         List<ClaimDocument> claimDocuments = claimDocumentRepository.getClaimDocumentsByClaimId(id);
 
         for (ClaimDocument claimDocument : claimDocuments) {
@@ -52,6 +55,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     @Override
     public void updateClaimStatus(int id, ClaimStatus status, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Claim claim = claimRepository.getClaimById(id);
         if (claim == null) throw new Exception("Claim doesn't exist");
 
@@ -82,6 +88,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     @Override
     public void createClaim(InsertClaimRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Customer customer = customerRepository.getCustomerById(request.getCustomerId());
         if (customer == null) throw new Exception("Customer doesn't exist");
 
@@ -92,9 +101,11 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     @Override
     public void updateClaimDocumentRequested(int id, boolean isRequested, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
 
         Claim claim = claimRepository.getClaimById(id);
-        if (claim == null) return;
+        if (claim == null) throw new Exception("Claim doesn't exist");
 
         if (isRequested) {
             if (claim.getDocumentRequested() == true)
@@ -112,6 +123,9 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
     @Override
     public void updateClaim(UpdateClaimRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Claim claim = claimRepository.getClaimById(request.getId());
         if (claim == null) throw new Exception("Claim doesn't exist");
 

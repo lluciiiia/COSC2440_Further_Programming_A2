@@ -90,6 +90,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public Customer createCustomer(InsertCustomerRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Customer customer = null;
 
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
@@ -134,6 +137,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public Customer updateCustomer(UpdateCustomerRequest request, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Customer customer = customerRepository.getCustomerById(request.getId());
         if (customer == null) throw new Exception("Customer doesn't exist");
 
@@ -144,6 +150,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public void deleteCustomerById(int id, int userAccountId) throws Exception {
+        Account userAccount = accountRepository.getAccountById(userAccountId);
+        if (userAccount == null) throw new Exception("Current user's account doesn't exist");
+
         Customer customer = customerRepository.getCustomerById(id);
         if (customer == null) throw new Exception("Customer doesn't exist");
 
