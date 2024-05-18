@@ -3,6 +3,7 @@ package com.team2.a2;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.InsuranceObject.Claim;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -48,6 +49,8 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
     private Button deleteClaimButton;
     @FXML
     private Button createClaimButton;
+    @FXML
+    private TextField totalClaimAmount;
 
     @FXML
     private TableView<Claim> claimTable;
@@ -131,7 +134,7 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         });
 
         claimTable.setItems(originalClaimList);
-
+        calculateTotalClaimAmount();
         int accountID = policyOwner.getAccountId();
         account = accountController.getAccountByID(accountID);
 
@@ -223,6 +226,14 @@ public class PolicyOwnerCustomerClaimView implements Initializable {
         refreshClaimTable();
 
         showAlert(Alert.AlertType.INFORMATION, "Delete Successful", "Claim deleted successfully.");
+    }
+
+    private void calculateTotalClaimAmount() {
+        double totalAmount = originalClaimList.stream()
+                .filter(claim -> claim.getStatus() == ClaimStatus.ACCEPTED)
+                .mapToDouble(Claim::getAmount)
+                .sum();
+        totalClaimAmount.setText(String.valueOf("Claim total: " + totalAmount));
     }
 
     private void refreshClaimTable() {

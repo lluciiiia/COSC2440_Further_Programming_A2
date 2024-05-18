@@ -39,12 +39,13 @@
                         <TableColumn fx:id="customerID" prefWidth="66.0" text="Cus ID" />
                     </columns>
                 </TableView>
-            <Button fx:id="editClaimButton" layoutX="566.0" layoutY="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Edit this Claim" />
+            <Button fx:id="editClaimButton" layoutX="446.0" layoutY="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Edit this Claim" />
             <Button fx:id="deleteClaimButton" layoutX="446.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete this Claim" />
             <Button fx:id="createClaimButton" layoutX="340.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="Create Claim" />
             <DatePicker fx:id="claimDatePicker" layoutX="20.0" layoutY="50.0" prefHeight="26.0" prefWidth="152.0" promptText="claim date" />
             <DatePicker fx:id="examDatePicker" layoutX="190.0" layoutY="50.0" prefHeight="26.0" prefWidth="127.0" promptText="exam date" />
-            <TextField fx:id="amountField" layoutX="350.0" layoutY="50.0" prefHeight="26.0" prefWidth="105.0" promptText="amount" />
+            <TextField fx:id="amountField" layoutX="335.0" layoutY="50.0" prefHeight="26.0" prefWidth="105.0" promptText="amount" />
+            <TextField fx:id="totalClaimAmount" editable="false" layoutX="568.0" layoutY="50.0" prefHeight="26.0" prefWidth="106.0" promptText="total claim amount" />
             </children>
         </AnchorPane>
     </left>
