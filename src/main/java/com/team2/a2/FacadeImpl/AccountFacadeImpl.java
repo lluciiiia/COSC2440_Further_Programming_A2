@@ -3,6 +3,7 @@ package com.team2.a2.FacadeImpl;
 import com.team2.a2.DependentInformationView;
 import com.team2.a2.Facade.*;
 import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Admin;
 import com.team2.a2.Model.User.Customer.Customer;
@@ -30,6 +31,8 @@ public class AccountFacadeImpl implements AccountFacade {
     PolicyOwnerFacade policyOwnerFacade;
     InsuranceSurveyorFacade insuranceSurveyorFacade;
 
+    LogRepository logRepository;
+
     public AccountFacadeImpl() {
         this.accountRepository = new AccountRepository();
         this.adminRepository = new AdminRepository();
@@ -42,6 +45,7 @@ public class AccountFacadeImpl implements AccountFacade {
         this.insuranceManagerFacade = new InsuranceManagerFacadeImpl();
         this.policyOwnerFacade = new PolicyOwnerFacadeImpl();
         this.insuranceSurveyorFacade = new InsuranceSurveyorFacadeImpl();
+        this.logRepository = new LogRepository();
     }
 
     public Account login(LoginRequest request) {
@@ -59,12 +63,14 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public Account updateAccount(UpdateAccountRequest request) throws Exception {
+    public Account updateAccount(UpdateAccountRequest request, int userAccountId) throws Exception {
         Account account = accountRepository.getAccountById(request.getId());
         if (account == null) throw new Exception("Account doesn't exist");
 
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
+
+        logRepository.createLog(userAccountId, "Updated an account with id " + account.getId());
 
         return accountRepository.updateAccount(request);
     }
@@ -78,7 +84,7 @@ public class AccountFacadeImpl implements AccountFacade {
     }
 
     @Override
-    public void deleteAccountById(int id) throws Exception {
+    public void deleteAccountById(int id, int userAccountId) throws Exception {
         Account account = accountRepository.getAccountById(id);
         if (account == null) throw new Exception("Account doesn't exist");
 
@@ -119,6 +125,8 @@ public class AccountFacadeImpl implements AccountFacade {
         }
 
         accountRepository.deleteAccountById(id);
+
+        logRepository.createLog(userAccountId, "Deleted an account with id " + id);
     }
 
 }
