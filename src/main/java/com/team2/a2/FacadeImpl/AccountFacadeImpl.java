@@ -100,25 +100,25 @@ public class AccountFacadeImpl implements AccountFacade {
                 Customer customer = customerRepository.getCustomerByAccountId(id);
                 if (customer == null) throw new Exception("Customer doesn't exist");
 
-                customerFacade.deleteCustomerById(customer.getId());
+                customerFacade.deleteCustomerById(customer.getId(), userAccountId);
                 break;
             case INSURANCE_MANAGER:
                 InsuranceManager insuranceManager = insuranceManagerRepository.getInsuranceManagerByAccountId(id);
                 if (insuranceManager == null) throw new Exception("Insurance manager doesn't exist");
 
-                insuranceManagerFacade.deleteInsuranceManagerById(insuranceManager.getId());
+                insuranceManagerFacade.deleteInsuranceManagerById(insuranceManager.getId(), userAccountId);
                 break;
             case POLICY_OWNER:
                 PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(id);
                 if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
-                policyOwnerFacade.deletePolicyOwnerById(policyOwner.getId());
+                policyOwnerFacade.deletePolicyOwnerById(policyOwner.getId(), userAccountId);
                 break;
             case INSURANCE_SURVEYOR:
                 InsuranceSurveyor insuranceSurveyor = insuranceSurveyorRepository.getInsuranceSurveyorByAccountId(id);
                 if (insuranceSurveyor == null) throw new Exception("Insurance Surveyor doesn't exist");
 
-                insuranceSurveyorFacade.deleteInsuranceSurveyorById(insuranceSurveyor.getId());
+                insuranceSurveyorFacade.deleteInsuranceSurveyorById(insuranceSurveyor.getId(), userAccountId);
                 break;
             default:
                 throw new Exception("Invalid Account Type");

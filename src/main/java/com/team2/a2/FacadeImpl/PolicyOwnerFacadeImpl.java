@@ -3,13 +3,11 @@ package com.team2.a2.FacadeImpl;
 import com.team2.a2.Facade.CustomerFacade;
 import com.team2.a2.Facade.PolicyOwnerFacade;
 import com.team2.a2.Model.Enum.AccountType;
+import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
-import com.team2.a2.Repository.AccountRepository;
-import com.team2.a2.Repository.CustomerRepository;
-import com.team2.a2.Repository.DependentRepository;
-import com.team2.a2.Repository.PolicyOwnerRepository;
+import com.team2.a2.Repository.*;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
 import com.team2.a2.Request.UpdatePolicyOwnerRequest;
 
@@ -21,6 +19,7 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
     AccountRepository accountRepository;
     CustomerRepository customerRepository;
     CustomerFacade customerFacade;
+    LogRepository logRepository;
 
     public PolicyOwnerFacadeImpl() {
 
@@ -28,6 +27,7 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
         this.accountRepository = new AccountRepository();
         this.customerRepository = new CustomerRepository();
         this.customerFacade = new CustomerFacadeImpl();
+        this.logRepository = new LogRepository();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
     }
 
     @Override
-    public void createPolicyOwner(InsertPolicyOwnerRequest request) throws Exception {
+    public void createPolicyOwner(InsertPolicyOwnerRequest request, int userAccountId) throws Exception {
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
         if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
@@ -49,10 +49,12 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
         if (account == null) throw new Exception("Account hasn't been created");
 
         policyOwnerRepository.createPolicyOwner(request, account.getId());
+
+        logRepository.createLog(userAccountId, "Created a policy owner");
     }
 
     @Override
-    public void deletePolicyOwnerById(int id) throws Exception {
+    public void deletePolicyOwnerById(int id, int userAccountId) throws Exception {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(id);
         if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
@@ -61,11 +63,13 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
         List<Customer> customers = customerRepository.getCustomersByPolicyOwnerId(policyOwner.getId());
 
         for (Customer customer : customers) {
-            customerFacade.deleteCustomerById(customer.getId());
+            customerFacade.deleteCustomerById(customer.getId(), userAccountId);
         }
 
         policyOwnerRepository.deletePolicyOwnerById(id);
         accountRepository.deleteAccountById(accountId);
+
+        logRepository.createLog(userAccountId, "Deleted a policy owner with id " + id);
     }
 
     @Override
@@ -74,10 +78,12 @@ public class PolicyOwnerFacadeImpl implements PolicyOwnerFacade {
     }
 
     @Override
-    public void updatePolicyOwner(UpdatePolicyOwnerRequest request) throws Exception {
+    public void updatePolicyOwner(UpdatePolicyOwnerRequest request, int userAccountId) throws Exception {
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerById(request.getId());
         if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
         policyOwnerRepository.updatePolicyOwner(request);
+
+        logRepository.createLog(userAccountId, "Updated a policy owner with id " + request.getId());
     }
 }
