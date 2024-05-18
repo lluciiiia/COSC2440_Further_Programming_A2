@@ -1,10 +1,8 @@
 package com.team2.a2;
 
-import com.team2.a2.Controller.ClaimController;
-import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Controller.InsuranceManagerController;
-import com.team2.a2.Controller.InsuranceSurveyorController;
+import com.team2.a2.Controller.*;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
@@ -55,10 +53,13 @@ public class InsuranceManagerView implements Initializable {
 
     private CustomerController customerController = new CustomerController();
     private ClaimController claimController = new ClaimController();
+    private LogController logController = new LogController();
+    private Account account1;
 
     public void initData(Account account) {
         insuranceManager = insuranceManagerController.getInsuranceManagerByAccountId(account.getId());
         myNameText.setText("Welcome, " + insuranceManager.getName());
+        account1 = account;
     }
 
     @FXML
@@ -68,18 +69,6 @@ public class InsuranceManagerView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        viewLogHistoryButton.setOnAction(event -> {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InsuranceManagerViewLogHistoryPage.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -204,5 +193,38 @@ public class InsuranceManagerView implements Initializable {
             }
         });
 
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InsuranceManagerViewLogHistoryPage.fxml"));
+                Parent root = loader.load();
+                InsuranceManagerLogHistoryView insuranceManagerLogHistoryView = loader.getController();
+                Task<List<Log>> loadLogTask = new Task<>() {
+                    @Override
+                    protected List<Log> call() throws Exception {
+                        return logController.getLogsByAccountId(account1.getId());
+                    }
+                };
+
+                loadLogTask.setOnSucceeded(workerStateEvent -> {
+                    insuranceManagerLogHistoryView.initData(FXCollections.observableArrayList(loadLogTask.getValue()), account1);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadLogTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadLogTask).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
