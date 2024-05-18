@@ -35,6 +35,9 @@ public class PolicyOwnerView implements Initializable {
     private Button CreateCusAccountButton;
 
     @FXML
+    private Button viewLogHistoryButton;
+
+    @FXML
     private Text nameText;
 
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
@@ -54,6 +57,18 @@ public class PolicyOwnerView implements Initializable {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginPage.fxml")));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyOwnerViewLogHistoryPage.fxml")));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
