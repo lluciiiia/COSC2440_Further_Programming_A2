@@ -5,15 +5,18 @@ import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Repository.CustomerRepository;
 import com.team2.a2.Repository.InsuranceCardRepository;
+import com.team2.a2.Repository.LogRepository;
 
 public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
 
     CustomerRepository customerRepository;
     InsuranceCardRepository insuranceCardRepository;
+    LogRepository logRepository;
 
     public InsuranceCardFacadeImpl() {
         this.customerRepository = new CustomerRepository();
         this.insuranceCardRepository = new InsuranceCardRepository();
+        this.logRepository = new LogRepository();
     }
 
     @Override
@@ -22,11 +25,13 @@ public class InsuranceCardFacadeImpl implements InsuranceCardFacade {
     }
 
     @Override
-    public void deleteInsuranceCardById(int id) throws Exception {
+    public void deleteInsuranceCardById(int id, int userAccountId) throws Exception {
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardById(id);
         if (insuranceCard == null) throw new Exception("Insurance card doesn't exist");;
 
         insuranceCardRepository.deleteInsuranceCardById(id);
+
+        logRepository.createLog(userAccountId, "Deleted an insurance card with id " + id);
     }
 
     @Override

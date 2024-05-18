@@ -72,7 +72,7 @@ public class ClaimFacadeImpl implements ClaimFacade {
 
         claimRepository.updateClaimStatus(id, status);
 
-        logRepository.createLog(userAccountId, "Updated a claim status with id " + id + " to ", status);
+        logRepository.createLog(userAccountId, "Updated a claim status with id " + id + " to " + status);
     }
 
     @Override

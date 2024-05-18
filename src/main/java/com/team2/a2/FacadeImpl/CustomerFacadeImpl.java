@@ -164,7 +164,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
         InsuranceCard insuranceCard = insuranceCardRepository.getInsuranceCardByCustomerId(id);
         if (insuranceCard != null) {
-            insuranceCardFacade.deleteInsuranceCardById(insuranceCard.getId());
+            insuranceCardFacade.deleteInsuranceCardById(insuranceCard.getId(), userAccountId);
         }
 
         List<Claim> claims = claimRepository.getClaimsByCustomerId(id);
