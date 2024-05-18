@@ -56,20 +56,26 @@ public class AdminAllPolicyOwnerView implements Initializable {
     private AccountController accountController = new AccountController();
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
 
-    public void initData(ObservableList<PolicyOwner> policyOwners) {
+    private Account account1;
+
+    public void initData(ObservableList<PolicyOwner> policyOwners, Account account) {
         originalPolicyOwnerList = FXCollections.observableArrayList(policyOwners);
 
         policyOwnerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
 
         policyOwnerTable.setItems(originalPolicyOwnerList);
+        account1 = account;
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewPolicyOwnerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewPolicyOwnerPage.fxml"));
+                Parent root = loader.load();
+                AdminPolicyOwnerView adminPolicyOwnerView = loader.getController();
+                adminPolicyOwnerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -97,12 +103,12 @@ public class AdminAllPolicyOwnerView implements Initializable {
             UpdatePolicyOwnerRequest updatePolicyOwnerRequest = new UpdatePolicyOwnerRequest(selectedPolicyOwner.getId(), name);
             UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
             try {
-                accountController.updateAccount(updateAccountRequest);
+                accountController.updateAccount(updateAccountRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             try {
-                policyOwnerController.updatePolicyOwner(updatePolicyOwnerRequest);
+                policyOwnerController.updatePolicyOwner(updatePolicyOwnerRequest, account1.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -131,7 +137,7 @@ public class AdminAllPolicyOwnerView implements Initializable {
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == buttonYes) {
                 try {
-                    policyOwnerController.deletePolicyOwnerById(selectedPolicyOwner.getId());
+                    policyOwnerController.deletePolicyOwnerById(selectedPolicyOwner.getId(), account1.getId());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

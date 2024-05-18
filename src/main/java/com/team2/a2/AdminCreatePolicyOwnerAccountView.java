@@ -1,6 +1,7 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.PolicyOwnerController;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Request.InsertPolicyOwnerRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,11 +34,20 @@ public class AdminCreatePolicyOwnerAccountView implements Initializable {
 
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
 
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminViewPolicyOwnerPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewPolicyOwnerPage.fxml"));
+                Parent root = loader.load();
+                AdminPolicyOwnerView adminPolicyOwnerView = loader.getController();
+                adminPolicyOwnerView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -76,7 +86,7 @@ public class AdminCreatePolicyOwnerAccountView implements Initializable {
 
         InsertPolicyOwnerRequest insertPolicyOwnerRequest;
         insertPolicyOwnerRequest = new InsertPolicyOwnerRequest(username, password, fullName);
-        policyOwnerController.createPolicyOwner(insertPolicyOwnerRequest);
+        policyOwnerController.createPolicyOwner(insertPolicyOwnerRequest, account1.getId());
         showAlert(Alert.AlertType.INFORMATION, "Account Created!", "Account created successfully");
     }
 }

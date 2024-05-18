@@ -50,7 +50,7 @@ public class LogRepository {
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT * FROM logs WHERE account_id = ?";
+            String sql = "SELECT id, content, created_at FROM logs WHERE account_id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, accountId);
 
@@ -59,9 +59,10 @@ public class LogRepository {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String content = resultSet.getString("content");
-                Timestamp timestamp = resultSet.getTimestamp("timestamp");
+                Timestamp timestamp = resultSet.getTimestamp("created_at");
+                Date createdAt = new Date(timestamp.getTime());
 
-                Log log = new Log(id, accountId, content, timestamp);
+                Log log = new Log(id, accountId, content, createdAt);
                 logs.add(log);
             }
 

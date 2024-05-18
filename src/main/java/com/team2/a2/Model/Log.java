@@ -25,5 +25,11 @@ public class Log {
     public Date getCreatedAt() {
         return createdAt;
     }
+    public int getAccountId() {
+        return accountId;
+    }
+    public String getContent() {
+        return content;
+    }
 
 }

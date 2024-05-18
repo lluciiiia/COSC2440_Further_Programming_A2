@@ -3,6 +3,7 @@ package com.team2.a2;
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -33,11 +34,21 @@ public class AdminCustomerView implements Initializable {
 
     private CustomerController customerController = new CustomerController();
     private ClaimController claimController = new ClaimController();
+
+    private Account account1;
+
+    public void initData(Account account) {
+        account1 = account;
+    }
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+                Parent root = loader.load();
+                AdminView adminView = loader.getController();
+                adminView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) returnButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -49,7 +60,10 @@ public class AdminCustomerView implements Initializable {
 
         CreateCustomerAccountButton.setOnAction(event -> {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AdminCreateCustomerAccountPage.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCreateCustomerAccountPage.fxml"));
+                Parent root = loader.load();
+                AdminCreateCustomerAccountView adminCreateCustomerAccountView = loader.getController();
+                adminCreateCustomerAccountView.initData(account1);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) CreateCustomerAccountButton.getScene().getWindow();
                 stage.setScene(scene);
@@ -72,7 +86,7 @@ public class AdminCustomerView implements Initializable {
                 };
 
                 loadClaimTask.setOnSucceeded(workerStateEvent -> {
-                    adminCustomerLOCView.initData(FXCollections.observableArrayList(loadClaimTask.getValue()));
+                    adminCustomerLOCView.initData(FXCollections.observableArrayList(loadClaimTask.getValue()), account1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ViewListOfCustomerClaimButton.getScene().getWindow();
                     stage.setScene(scene);
@@ -106,7 +120,7 @@ public class AdminCustomerView implements Initializable {
                 };
 
                 loadCustomersTask.setOnSucceeded(workerStateEvent -> {
-                    adminSeeCustomerAllCustomerView.initData(FXCollections.observableArrayList(loadCustomersTask.getValue()));
+                    adminSeeCustomerAllCustomerView.initData(FXCollections.observableArrayList(loadCustomersTask.getValue()), account1);
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ViewCustomerInformationButton.getScene().getWindow();
                     stage.setScene(scene);

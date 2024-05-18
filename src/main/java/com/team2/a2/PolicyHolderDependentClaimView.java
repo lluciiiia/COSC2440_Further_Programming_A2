@@ -221,7 +221,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
             java.sql.Date examDate = java.sql.Date.valueOf(examLocalDate);
 
             UpdateClaimRequest updateClaimRequest = new UpdateClaimRequest(selectedClaim.getId(), claimDate, examDate, amount);
-            claimController.updateClaim(updateClaimRequest);
+            claimController.updateClaim(updateClaimRequest, account.getId());
 
             showAlert(Alert.AlertType.INFORMATION, "Update Successful", "Claim updated successfully.");
             refreshClaimTable();
@@ -250,7 +250,7 @@ public class PolicyHolderDependentClaimView implements Initializable {
             String imageSource = result.get();
 
             InsertClaimDocumentRequest request = new InsertClaimDocumentRequest(selectedClaim.getId(), imageSource);
-            claimDocumentController.createClaimDocument(request);
+            claimDocumentController.createClaimDocument(request, account.getId());
 
             showAlert(Alert.AlertType.INFORMATION, "Add Document", "Document added successfully.");
         }

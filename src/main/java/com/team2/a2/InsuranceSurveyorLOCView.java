@@ -145,7 +145,7 @@ public class InsuranceSurveyorLOCView implements Initializable {
             if (selectedClaim != null) {
                 if (selectedClaim.getStatus() == ClaimStatus.NEW) {
                     try {
-                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING);
+                        claimController.updateClaimStatus(selectedClaim.getId(), ClaimStatus.PROCESSING, account.getId());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -163,7 +163,7 @@ public class InsuranceSurveyorLOCView implements Initializable {
                 if (selectedClaim.getStatus() == ClaimStatus.NEW) {
                     if (!selectedClaim.getDocumentRequested()) {
                         try {
-                            claimController.updateClaimDocumentRequested(selectedClaim.getId(), true);
+                            claimController.updateClaimDocumentRequested(selectedClaim.getId(), true, account.getId());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
