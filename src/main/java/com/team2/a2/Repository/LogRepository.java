@@ -1,8 +1,11 @@
 package com.team2.a2.Repository;
 
 import com.team2.a2.ConnectionManager;
+import com.team2.a2.Model.Log;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LogRepository {
 
@@ -39,5 +42,48 @@ public class LogRepository {
                 }
             }
         }
+    }
+
+    public List<Log> getLogsByAccountId(int accountId) {
+        List<Log> logs = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM logs WHERE account_id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, accountId);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String content = resultSet.getString("content");
+                Timestamp timestamp = resultSet.getTimestamp("timestamp");
+
+                Log log = new Log(id, accountId, content, timestamp);
+                logs.add(log);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching logs: " + e.getMessage());
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing ResultSet: " + e.getMessage());
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+                }
+            }
+        }
+
+        return logs;
     }
 }
