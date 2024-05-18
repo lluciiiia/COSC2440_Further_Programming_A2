@@ -16,7 +16,7 @@ public class DependentController {
         return dependentFacade.getDependentByCustomerId(id);
     }
 
-    public void deleteDependentById(int id) throws Exception { dependentFacade.deleteDependentById(id); }
+    public void deleteDependentById(int id, int userAccountId) throws Exception { dependentFacade.deleteDependentById(id, userAccountId); }
 
     public Dependent getDependentById(int id) { return dependentFacade.getDependentById(id);
     }
