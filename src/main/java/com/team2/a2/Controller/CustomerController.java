@@ -37,7 +37,7 @@ public class CustomerController {
 
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };
 
-    public Customer createCustomer(InsertCustomerRequest request) { return this.customerFacade.createCustomer(request); }
+    public Customer createCustomer(InsertCustomerRequest request) throws Exception { return this.customerFacade.createCustomer(request); }
 
     public Customer updateCustomer(UpdateCustomerRequest request) { return this.customerFacade.updateCustomer(request); }
 

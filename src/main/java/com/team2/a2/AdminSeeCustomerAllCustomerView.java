@@ -2,7 +2,9 @@ package com.team2.a2;
 
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.InsuranceCardController;
 import com.team2.a2.Model.Enum.CustomerType;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Request.UpdateAccountRequest;
@@ -32,6 +34,8 @@ import java.util.stream.Collectors;
 public class AdminSeeCustomerAllCustomerView implements Initializable {
     @FXML
     private Button returnButton;
+    @FXML
+    private Button viewInsuranceCard;
     @FXML
     private ComboBox<String> customerTypeComboBox;
 
@@ -70,6 +74,8 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
 
     private AccountController accountController = new AccountController();
     private CustomerController customerController = new CustomerController();
+    private InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
     public void initData(ObservableList<Customer> customers) {
         originalCustomerList = FXCollections.observableArrayList(customers);
@@ -155,6 +161,27 @@ public class AdminSeeCustomerAllCustomerView implements Initializable {
                 showAlert("Success", "Customer deleted successfully.");
                 originalCustomerList.remove(selectedCustomer);
                 refreshTable();
+            }
+        });
+
+        viewInsuranceCard.setOnAction(event -> {
+            try {
+                Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+                if (selectedCustomer == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
+                insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(selectedCustomer.getId());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminViewCustomerCardPage.fxml"));
+                Parent root = loader.load();
+                AdminCardView adminCardView = loader.getController();
+                adminCardView.initData(insuranceCard);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) viewInsuranceCard.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
