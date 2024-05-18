@@ -93,37 +93,44 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Customer createCustomer(InsertCustomerRequest request) {
+    public Customer createCustomer(InsertCustomerRequest request) throws Exception {
         Customer customer = null;
 
         PolicyOwner policyOwner = policyOwnerRepository.getPolicyOwnerByAccountId(request.getPolicyOwnerAccountId());
-        if (policyOwner == null) return null;
+        if (policyOwner == null) throw new Exception("Policy owner doesn't exist");
 
         Account existingAccount = accountRepository.getAccountByUsername(request.getUsername());
-        if (existingAccount != null) return null;
+        if (existingAccount != null) throw new Exception("Username is being used. Please try a different username");
 
         AccountType accountType = request.getType() == CustomerType.POLICY_HOLDER ? AccountType.POLICY_HOLDER : AccountType.DEPENDENT;
 
         if (request.getType() == CustomerType.POLICY_HOLDER) {
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
-            if (account == null) return null;
+            if (account == null) throw new Exception("Account hasn't been created");
 
             customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
-            if (customer == null) return null;
+            if (customer == null) throw new Exception("Customer hasn't been created");
         }
         else if (request.getType() == CustomerType.DEPENDENT) {
             Customer policyHolder = customerRepository.getCustomerById(request.getPolicyHolderId());
-            if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER) return null;
+            if (policyHolder == null || policyHolder.getType() != CustomerType.POLICY_HOLDER)
+                throw new Exception("Policy holder doesn't exist or the customer type mismatch of the policy holder");
 
             Account account = accountRepository.createAccount(request.getUsername(), request.getPassword(), accountType);
-            if (account == null) return null;
+            if (account == null) throw new Exception("Account hasn't been created");
 
             customer = customerRepository.createCustomer(request, account.getId(), policyOwner.getId());
-            if (customer == null) return null;
+            if (customer == null) throw new Exception("Customer hasn't been created");
 
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
+
+        // create insurance card
+        InsuranceCard card = insuranceCardRepository.getInsuranceCard(request.getCardNumber(), request.getExpiryDate());
+        if (card != null) throw new Exception("Insurance card is being used. Please try a different card");
+
+        insuranceCardRepository.createInsuranceCard(request, customer.getId());
 
         return customer;
     }
