@@ -1,7 +1,9 @@
 package com.team2.a2;
 
 import com.team2.a2.Controller.CustomerController;
+import com.team2.a2.Controller.LogController;
 import com.team2.a2.Controller.PolicyOwnerController;
+import com.team2.a2.Model.Log;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
@@ -42,12 +44,14 @@ public class PolicyOwnerView implements Initializable {
 
     private PolicyOwnerController policyOwnerController = new PolicyOwnerController();
     private CustomerController customerController = new CustomerController();
-
+    private LogController logController = new LogController();
     private PolicyOwner policyOwner;
+    private Account account1;
 
     public void initData(Account account) {
         policyOwner = policyOwnerController.getPolicyOwnerByAccountId(account.getId());
         nameText.setText("Welcome, " + policyOwner.getName());
+        account1 = account;
     }
 
     @FXML
@@ -120,6 +124,40 @@ public class PolicyOwnerView implements Initializable {
                 });
 
                 new Thread(loadCustomersTask).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        viewLogHistoryButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyOwnerViewLogHistoryPage.fxml"));
+                Parent root = loader.load();
+                PolicyOwnerLogHistoryView policyOwnerLogHistoryView = loader.getController();
+                Task<List<Log>> loadLogTask = new Task<>() {
+                    @Override
+                    protected List<Log> call() throws Exception {
+                        return logController.getLogsByAccountId(account1.getId());
+                    }
+                };
+
+                loadLogTask.setOnSucceeded(workerStateEvent -> {
+                    policyOwnerLogHistoryView.initData(FXCollections.observableArrayList(loadLogTask.getValue()), account1);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) viewLogHistoryButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                loadLogTask.setOnFailed(workerStateEvent -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Failed to load claims");
+                    alert.setContentText("Please try again later.");
+                    alert.showAndWait();
+                });
+
+                new Thread(loadLogTask).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
