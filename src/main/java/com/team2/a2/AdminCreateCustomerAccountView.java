@@ -21,6 +21,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -67,14 +68,14 @@ public class AdminCreateCustomerAccountView implements Initializable {
     @FXML
     private ComboBox<Integer> policyHolder;
 
-//    @FXML
-//    private TextField cardTextField;
-//    @FXML
-//    private TextField bankNameTextField;
-//    @FXML
-//    private TextField accountNumberTextField;
-//    @FXML
-//    private DatePicker expiryDate;
+    @FXML
+    private TextField cardTextField;
+    @FXML
+    private TextField bankNameTextField;
+    @FXML
+    private TextField accountNumberTextField;
+    @FXML
+    private DatePicker expiryDate;
 
     @FXML
     private Button createAccountButton;
@@ -140,7 +141,13 @@ public class AdminCreateCustomerAccountView implements Initializable {
             }
         });
 
-        createAccountButton.setOnAction(event -> createAccount());
+        createAccountButton.setOnAction(event -> {
+            try {
+                createAccount();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void updatePolicyHolderComboBox() {
@@ -160,16 +167,21 @@ public class AdminCreateCustomerAccountView implements Initializable {
 
     }
 
-    private void createAccount() {
+    private void createAccount() throws Exception {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
         String fullName = fullNameTextField.getText();
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         String address = homeAddressTextField.getText();
+        String card = cardTextField.getText();
+        String bankName = bankNameTextField.getText();
+        String accountNumber = accountNumberTextField.getText();
+        LocalDate expiry = expiryDate.getValue();
+        java.sql.Date expriryDate = java.sql.Date.valueOf(expiry);
         CustomerType customerType = customerTypeComboBox.getValue();
 
-        if (username.isEmpty() || password.isEmpty() || fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || customerType == null) {
+        if (username.isEmpty() || password.isEmpty() || fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || customerType == null || bankName.isEmpty() || accountNumber.isEmpty() || expiry == null) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please enter all details");
             return;
         }
@@ -188,7 +200,8 @@ public class AdminCreateCustomerAccountView implements Initializable {
             PolicyOwner policyOwner = policyOwnerController.getPolicyOwnerById(policyOwnerId);
             int policyOwnerAccountId = policyOwner.getAccountId();
 
-            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName, address, phone, email, customerType);
+            customerRequest = new InsertCustomerRequest(username, password, policyOwnerAccountId, policyHolderId, fullName,
+                    address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
             customerController.createCustomer(customerRequest);
 
         } else if (customerType == CustomerType.POLICY_HOLDER) {
@@ -196,7 +209,8 @@ public class AdminCreateCustomerAccountView implements Initializable {
             PolicyOwner poOwner = policyOwnerController.getPolicyOwnerById(poOwnerId);
             int poOwnerAccountId = poOwner.getAccountId();
 
-            customerRequest = new InsertCustomerRequest(username, password, poOwnerAccountId, fullName, address, phone, email, customerType);
+            customerRequest = new InsertCustomerRequest(username, password, poOwnerAccountId, fullName,
+                    address, phone, email, customerType, card, expriryDate, bankName, accountNumber);
             customerController.createCustomer(customerRequest);
         }
 
