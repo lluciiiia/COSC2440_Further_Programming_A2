@@ -22,6 +22,10 @@ public class CustomerController {
         return customerFacade.getCustomerById(id);
     }
 
+    public Customer getCustomerByCustomerId(int id) {
+        return customerFacade.getCustomerByCustomerId(id);
+    }
+
     public List<Customer> getAllCustomers() {
         return customerFacade.getAllCustomers();
     }
@@ -37,10 +41,10 @@ public class CustomerController {
 
     public List<Customer> getDependentsByPolicyHolderAccountId(int policyHolderAccountId) throws Exception { return customerFacade.getDependentsByPolicyHolderAccountId(policyHolderAccountId); };
 
-    public Customer createCustomer(InsertCustomerRequest request) throws Exception { return customerFacade.createCustomer(request); }
+    public Customer createCustomer(InsertCustomerRequest request) throws Exception { return this.customerFacade.createCustomer(request); }
 
-    public Customer updateCustomer(UpdateCustomerRequest request) throws Exception { return customerFacade.updateCustomer(request); }
+    public Customer updateCustomer(UpdateCustomerRequest request) throws Exception { return this.customerFacade.updateCustomer(request); }
 
-    public void deleteCustomerById(int id) throws Exception { customerFacade.deleteCustomerById(id); }
+    public void deleteCustomerById(int id) throws Exception { this.customerFacade.deleteCustomerById(id); }
 
 }

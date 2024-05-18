@@ -1,10 +1,8 @@
 package com.team2.a2;
 
-import com.team2.a2.Controller.AccountController;
-import com.team2.a2.Controller.ClaimController;
-import com.team2.a2.Controller.CustomerController;
-import com.team2.a2.Controller.DependentController;
+import com.team2.a2.Controller.*;
 import com.team2.a2.Model.InsuranceObject.Claim;
+import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.Dependent;
@@ -76,6 +74,9 @@ public class PolicyHolderDependentView implements Initializable {
 
     private Account account;
     private Customer customer1;
+
+    private InsuranceCardController insuranceCardController = new InsuranceCardController();
+    private InsuranceCard insuranceCard;
 
     public void initData(ObservableList<Customer> dependents, Customer customer){
         customerID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -179,17 +180,27 @@ public class PolicyHolderDependentView implements Initializable {
 
         });
 
-//        ViewDependentCard.setOnAction(event -> {
-//            try {
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PolicyHolderDependentCardPage.fxml")));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) ViewDependentCard.getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        ViewDependentCard.setOnAction(event -> {
+            try {
+                Customer selectedDependent = dependentTable.getSelectionModel().getSelectedItem();
+                if (selectedDependent == null) {
+                    showAlert("No Selection", "Please select a dependent from the table.");
+                    return;
+                }
+
+                insuranceCard = insuranceCardController.getInsuranceCardByCustomerID(selectedDependent.getId());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PolicyHolderDependentCardPage.fxml"));
+                Parent root = loader.load();
+                PolicyHolderDependentCardView policyHolderDependentCardView = loader.getController();
+                policyHolderDependentCardView.initData(insuranceCard, account);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ViewDependentCard.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
