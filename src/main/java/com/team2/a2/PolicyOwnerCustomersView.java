@@ -10,7 +10,7 @@ import com.team2.a2.Model.InsuranceObject.InsuranceCard;
 import com.team2.a2.Model.User.Account;
 import com.team2.a2.Model.User.Customer.Customer;
 import com.team2.a2.Model.User.Customer.PolicyOwner;
-import com.team2.a2.Request.UpdateAccountRequest;
+import com.team2.a2.Request.UpdatePasswordRequest;
 import com.team2.a2.Request.UpdateCustomerRequest;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -187,9 +186,9 @@ public class PolicyOwnerCustomersView implements Initializable {
             }
 
             UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest(selectedCustomer.getId(),name, address, phone, email);
-            UpdateAccountRequest updateAccountRequest = new UpdateAccountRequest(accountSelected.getId(), accountSelected.getUsername(), password);
+            UpdatePasswordRequest updatePasswordRequest = new UpdatePasswordRequest(accountSelected.getId(), password);
             try {
-                accountController.updateAccount(updateAccountRequest, account.getId());
+                accountController.updatePassword(updatePasswordRequest, account.getId());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

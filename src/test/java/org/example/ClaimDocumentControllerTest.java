@@ -108,5 +108,12 @@ public class ClaimDocumentControllerTest {
         assertFalse(updatedClaim.getDocumentRequested());
     }
 
+    @Test
+    public void testGetImageSourcesByClaimId() throws Exception {
+        int id = 18;
 
+        List<String> imageSources = claimDocumentController.getImageSourcesByClaimId(id);
+
+        assertNotNull(imageSources, "The image sources should exist.");
+    }
 }

@@ -10,6 +10,7 @@ import com.team2.a2.Request.InsertClaimDocumentRequest;
 import com.team2.a2.Request.UpdateClaimDocumentRequest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
 
@@ -76,5 +77,17 @@ public class ClaimDocumentFacadeImpl implements ClaimDocumentFacade {
         if (claim.getDocumentRequested() == true) claimRepository.updateClaimDocumentRequested(claim.getId(), false);
 
         logRepository.createLog(userAccountId, "Added a claim document for a claim with id " + request.getClaimId());
+    }
+
+    @Override
+    public List<String> getImageSourcesByClaimId(int claimId) throws Exception {
+        Claim claim = claimRepository.getClaimById(claimId);
+        if (claim == null) throw new Exception("Claim doesn't exist");
+
+        List<ClaimDocument> documents = claimDocumentRepository.getClaimDocumentsByClaimId(claimId);
+
+        return documents.stream()
+                .map(ClaimDocument::getImageSrc)
+                .collect(Collectors.toList());
     }
 }

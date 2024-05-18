@@ -18,4 +18,6 @@ public interface ClaimDocumentFacade {
     void deleteClaimDocumentById(int id, int userAccountId) throws Exception;
 
     void addClaimDocument(InsertClaimDocumentRequest request, int userAccountId) throws Exception;
+
+    List<String> getImageSourcesByClaimId(int claimId) throws Exception;
 }
