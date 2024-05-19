@@ -1,5 +1,9 @@
 package org.example;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.ConnectionManager;
 import com.team2.a2.Controller.AccountController;
 import com.team2.a2.Controller.InsuranceManagerController;
