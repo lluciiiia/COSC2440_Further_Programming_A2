@@ -129,6 +129,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
             dependentRepository.createDependent(customer.getId(), policyHolder.getId());
         }
 
+        insuranceCardRepository.createInsuranceCard(request, customer.getId());
+
         logRepository.createLog(userAccountId, "Created a customer with id " + customer.getId());
 
         return customer;
