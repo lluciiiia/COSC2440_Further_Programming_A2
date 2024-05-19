@@ -13,7 +13,10 @@ This repository contains the source code for the project developed in Java, whic
 - [Nguyen Phan Nam - s3873792@rmit.edu.vn](https://github.com/nguyenphannam2223)
 
 ### Contribution Score
-- Group contribution score has been submitted separately to the professor, Minh.
+- Seokyung Kim: 3.56
+- Cu Duc Quan: 3.56
+- Ngo Duc Minh Quan: 3.56
+- Nguyen Phan Nam: 1.3
 
 ## Getting Started 🚀
 
