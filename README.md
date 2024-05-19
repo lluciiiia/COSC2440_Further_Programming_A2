@@ -12,6 +12,9 @@ This repository contains the source code for the project developed in Java, whic
 - [Ngo Duc Minh Quan - s3938194@rmit.edu.vn](https://github.com/MinhQuan2511)
 - [Nguyen Phan Nam - s3873792@rmit.edu.vn](https://github.com/nguyenphannam2223)
 
+### Contribution Score
+- Group contribution score has been submitted separately to the professor, Minh.
+
 ## Getting Started 🚀
 
 To get started with the project:
@@ -26,3 +29,7 @@ Special thanks to the course instructors for providing guidance and resources fo
 Additionally, gratitude to all contributors and users who help improve the system through feedback and suggestions.
 
 Thank you for visiting the COSC2440 Further Programming A2 repository. Happy coding! 🎉
+
+## Video Demonstration Link 🎬
+
+- https://youtu.be/chrtuHBr1mo?si=4_5--jgW9bDOAGLv
