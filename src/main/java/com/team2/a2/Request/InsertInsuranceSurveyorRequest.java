@@ -1,5 +1,9 @@
 package com.team2.a2.Request;
 
+/**
+ * @author <Team 2>
+ */
+
 public class InsertInsuranceSurveyorRequest {
     private String username;
     private String password;

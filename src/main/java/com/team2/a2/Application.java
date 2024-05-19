@@ -1,5 +1,9 @@
 package com.team2.a2;
 
+/**
+ * @author <Team 2>
+ */
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

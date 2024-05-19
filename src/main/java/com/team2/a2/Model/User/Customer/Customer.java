@@ -1,5 +1,9 @@
 package com.team2.a2.Model.User.Customer;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Model.BaseEntity;
 import com.team2.a2.Model.Enum.CustomerType;
 

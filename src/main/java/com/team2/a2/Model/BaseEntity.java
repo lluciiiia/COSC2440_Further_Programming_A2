@@ -1,5 +1,9 @@
 package com.team2.a2.Model;
 
+/**
+ * @author <Team 2>
+ */
+
 import java.util.Date;
 
 public abstract class BaseEntity {

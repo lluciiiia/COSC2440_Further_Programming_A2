@@ -1,5 +1,9 @@
 package com.team2.a2.View.InsuranceSurveyor;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Controller.ClaimController;
 import com.team2.a2.Controller.CustomerController;
 import com.team2.a2.Controller.InsuranceSurveyorController;

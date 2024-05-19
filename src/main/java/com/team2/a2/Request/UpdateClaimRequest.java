@@ -1,5 +1,9 @@
 package com.team2.a2.Request;
 
+/**
+ * @author <Team 2>
+ */
+
 import java.sql.Date;
 
 public class UpdateClaimRequest {

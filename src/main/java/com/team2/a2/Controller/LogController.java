@@ -1,5 +1,9 @@
 package com.team2.a2.Controller;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Facade.LogFacade;
 import com.team2.a2.FacadeImpl.LogFacadeImpl;
 import com.team2.a2.Model.Log;

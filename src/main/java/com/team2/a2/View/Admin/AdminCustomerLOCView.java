@@ -1,5 +1,9 @@
 package com.team2.a2.View.Admin;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Controller.ClaimDocumentController;
 import com.team2.a2.Model.Enum.ClaimStatus;
 import com.team2.a2.Model.InsuranceObject.Claim;

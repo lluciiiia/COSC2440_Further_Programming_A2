@@ -1,5 +1,9 @@
 package com.team2.a2.Request;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Model.Enum.ClaimStatus;
 
 import java.sql.Date;

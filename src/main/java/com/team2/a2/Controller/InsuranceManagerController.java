@@ -1,5 +1,9 @@
 package com.team2.a2.Controller;
 
+/**
+ * @author <Team 2>
+ */
+
 import com.team2.a2.Facade.InsuranceManagerFacade;
 import com.team2.a2.FacadeImpl.InsuranceManagerFacadeImpl;
 import com.team2.a2.Model.User.Provider.InsuranceManager;
